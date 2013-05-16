@@ -20,21 +20,20 @@ function Answer(num,questionid,answer){
 
 /****题号对象***/
 var Num = function(config){
-	$.extend(this , Exam.defaults , config);
+	$.extend(this , Num.defaults , config);
 }
 
 Num.defaults = {
-	width : 20,
-	height: 20
+	width : 30,
+	height: 30
 }
 
 Num.prototype = {
 	 init : function(){
-		 var div  = $("<div></div>");
-		 div.attr("id",this.num);
-		 div.html(this.num);
+		 var div  = $('<div class="selectGrid" id="'+this.num+'"><div class="top"><span>'+this.num+'</span></div><div class="center"><span></span></div></div>');
+		 console.debug("width:"+this.width);
 		 div.width(this.width);
-		 div.heigth(this.height);
+		 div.height(this.height);
 		 this.div = div;
 		 return div;
 	 },
@@ -55,6 +54,9 @@ Num.prototype = {
 	 setDefault : function(){
 		 //设置为默认效果
 		 
+	 },
+	 getNum : function(){
+		 return this.num;
 	 }
 	 
 }
@@ -62,7 +64,8 @@ Num.prototype = {
 /****考试对象***/
 var Exam = function(config){
 	$.extend(this , Exam.defaults , config);
-	this.renderTo = typeof this.renderTo=='string'?$("#"+this.renderTo):this.renderTo;
+	this.selectGridRenderTo = typeof this.selectGridRenderTo=='string'?$("#"+this.selectGridRenderTo):this.selectGridRenderTo;
+	this.questionRenderTo = typeof this.questionRenderTo=='string'?$("#"+this.questionRenderTo):this.questionRenderTo;
 	this.init();
 };
 //默认设置
@@ -82,7 +85,7 @@ Exam.prototype = {
 		this.qa.push(question);
 		console.debug(question.num);
 	},
-	get : function(index){
+	getQuestion : function(index){
 		//获得一个试题
 		if(index<this.qa.length)
 			return this.qa[index];
@@ -113,6 +116,61 @@ Exam.prototype = {
 	hasPrev : function(){
 		//是否有上一个
 		return this.qa_index>=0 ? true :false;
+	},
+	drawQuestion : function(question){
+		var content = [];
+		//获得问题
+		var questionDiv = '<div ><span class="question">'+question.question+'</span></div>';
+		content.push(questionDiv);
+		//获得答案
+		var answer = question.answer;
+		//单选题
+		if(answer.length==1){
+			var a = '<div><input type="radio" name="answer" value="a"><span class="answer">'+question.answer_a+'</span><div>';
+			content.push(a);
+			var b = '<div><input type="radio" name="answer" value="b"><span class="answer">'+question.answer_b+'</span><div>';
+			content.push(b);
+			if(question.answer_c!=""&&question.answer_c!=null){
+				var c = '<div><input type="radio" name="answer" value="c"><span class="answer">'+question.answer_c+'</span><div>';
+				content.push(c);
+			}
+			if(question.answer_d!=""&&question.answer_d!=null){
+				var d = '<div><input type="radio" name="answer" value="d"><span class="answer">'+question.answer_d+'</span><div>';
+				content.push(d);
+			}
+			
+		}else if(answer.length>1){
+		//多选题	
+			var a = '<div><input type="checkbox" name="answer" value="a"><span class="answer">'+question.answer_a+'</span><div>';
+			content.push(a);
+			var b = '<div><input type="checkbox" name="answer" value="b"><span class="answer">'+question.answer_b+'</span><div>';
+			content.push(b);
+			var c = '<div><input type="checkbox" name="answer" value="c"><span class="answer">'+question.answer_c+'</span><div>';
+			content.push(c);
+			var d = '<div><input type="checkbox" name="answer" value="d"><span class="answer">'+question.answer_d+'</span><div>';
+			content.push(d);
+		}
+		this.questionRenderTo.empty();
+		this.questionRenderTo.append(content.join(''));
+		var entity = this;
+		this.questionRenderTo.find("input").bind("click",function(){
+			alert(entity.questionRenderTo.find("input:checked").size());
+		});
+	},
+	
+	drawSelectGrid : function(){
+		var entity = this;
+		var divarray = [];
+		for(var i=0;i<entity.qa.length;i++){
+			var num = new Num({'num':i+1});
+			var div = num.init();
+			div.data("num",i);
+			div.bind("click",function(){
+				entity.drawQuestion(entity.getQuestion($(this).data("num")));
+			});
+			entity.selectGridRenderTo.append(div);
+		}
+		//将构造后的div 添加到dom
 	}
 	
 		
