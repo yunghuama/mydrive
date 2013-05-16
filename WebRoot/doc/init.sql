@@ -14,6 +14,7 @@ create table questions_car(
 	answer varchar(4) not null,
 	question_img varchar(20),
 	question_vedio varchar(20),
+	tips varchar(80),
 	category varchar(50),
 	createtime datetime
 );
@@ -30,6 +31,7 @@ create table questions_bus(
 	answer varchar(4) not null,
 	question_img varchar(20),
 	question_vedio varchar(20),
+	tips varchar(80),
 	category varchar(50),
 	createtime datetime
 );
@@ -46,12 +48,13 @@ create table questions_truck(
 	answer varchar(4) not null,
 	question_img varchar(20),
 	question_vedio varchar(20),
+	tips varchar(80),
 	category varchar(50),
 	createtime datetime
 );
 
 drop table if exists questions_motorcycle;
-create table questions_truck(
+create table questions_motorcycle(
 	id char(32) not null primary key,
 	code varchar(10) not null,
 	question varchar(150) not null,
@@ -62,6 +65,34 @@ create table questions_truck(
 	answer varchar(4) not null,
 	question_img varchar(20),
 	question_vedio varchar(20),
+	tips varchar(80),
 	category varchar(50),
 	createtime datetime
+);
+
+drop table if exists studentcard;
+create table studentcard (
+    id char(32) not null primary key,
+    schoolId char(32) not null ,
+    number varchar(11) not null,
+    password varchar(16) not null,
+    begindate datetime not null,
+    remidtimes int not null,
+    reminddays int not null,
+    identity varchar(20),
+    name varchar(10),
+    nickname varchar(20),
+    cartype char(1),
+    phonenumber varchar(12),
+    age int,
+    sex char(1),
+    createtime datetime
+);
+
+drop table if exists schoolcard;
+create table schoolcard (
+    id char(32) not null primary key,
+    number varchar(11) not null,
+    password varchar(16) not null,
+    createtime datetime
 );

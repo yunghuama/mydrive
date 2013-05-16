@@ -1,0 +1,24 @@
+#main {
+	position:relative;
+	width:100%;
+	height:100%;
+	border:1px solid red;
+}
+
+#persionInfo{
+	width:300px;
+	height:300px;
+	float:left;
+}
+
+#questionContent{
+	width:300px;
+	height:300px;
+	float:left;
+}
+
+#questionnumber{
+	width:300px;
+	height:300px;
+	float:left;
+}

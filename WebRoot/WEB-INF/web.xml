@@ -3,7 +3,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
-  <display-name>platform</display-name>
+  <display-name>Driver</display-name>
 
   <!-- Struts2 过滤器 -->
   <filter>
@@ -12,7 +12,7 @@
   </filter>
   <filter-mapping>
     <filter-name>struts2</filter-name>
-    <url-pattern>*.v</url-pattern>
+    <url-pattern>*.d</url-pattern>
   </filter-mapping>
   <filter-mapping>
     <filter-name>struts2</filter-name>

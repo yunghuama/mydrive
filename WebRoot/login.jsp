@@ -79,7 +79,7 @@ String path = request.getContextPath();
   </head>
 
   <body>
-    <form id="loginForm" method="post" action="<%=path%>/login.v">
+    <form id="loginForm" method="post" action="<%=path%>/login.d">
       <input type="hidden" id="remember" name="remember" value="${cookie.remember.value}"/>
       <input type="text" id="accountName" name="accountName" class="acnDiv textInput" value="${cookie.accountName.value}"/>
       <input type="password" id="passwd" name="password" class="pwdDiv textInput" value="${cookie.password.value}"/>

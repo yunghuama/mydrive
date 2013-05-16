@@ -1,6 +1,7 @@
 package com.platform.web.action;
 
 import java.io.FileInputStream;
+import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -10,61 +11,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.platform.domain.Question;
-import com.platform.domain.Users;
 import com.platform.service.QuestionService;
 import com.platform.service.UsersService;
-import com.platform.util.LoginBean;
+import com.platform.vo.QuestionVO;
 
 
 @Controller
 @Scope("prototype")
-public class LoginAction extends ActionSupport {
+public class QuestionAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1797119564459862667L;
-	private static final String PASSWORD_WRONG = "passwordWrong";
-	private static final String STATE_FALSE = "stateFalse";
 
 	@Autowired
 	private UsersService usersService;
 	@Autowired
 	private QuestionService questionService;
-
-	private String accountName;
-	private String password;
-	private String errorMes;
-	private String remember;
-
+	private List<QuestionVO> list;
+	
 	/**
-	 * 登录
-	 * 
+	 * 初始化练习模式试题
 	 * @return
-	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
-	public String login() throws Exception {
-
-//		Users user = usersService.saveLogin(accountName, password);
-//		if (user == null) {
-//			errorMes = "用户名或密码错误，请重新登录";
-//			return PASSWORD_WRONG;
-//		} else if(!StringConstant.TRUE.equals(user.getState())) {
-//			errorMes = "用户已被禁用，无法登录";
-//			return STATE_FALSE;
-//		} else {
-////			Hibernate.initialize(user.getDepartment());
-//			LoginBean loginBean = new LoginBean();
-//			loginBean.setUser(user);
-//			ActionContext.getContext().getSession().put("LoginBean", loginBean);
-//			
-//			return SUCCESS;
-//		}	
-		LoginBean loginBean = new LoginBean();
-		loginBean.setUser(new Users());
-		ActionContext.getContext().getSession().put("LoginBean", loginBean);
-
+	public String initExerciseQuestion(){
+		long t = System.currentTimeMillis();
+		list = questionService.listQuestionRandom_car();
+		System.out.println(System.currentTimeMillis()-t);
 		return SUCCESS;
 	}
 
@@ -106,49 +79,13 @@ public class LoginAction extends ActionSupport {
 			e.printStackTrace();
 		}
 	}
-	
-	/**
-	 * 退出
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public String logout() throws Exception {
-		ActionContext.getContext().getSession().remove("LoginBean");
-		return SUCCESS;
-	}
-	
-	/**
-	 * 显示桌面
-	 * @return
-	 * @throws Exception
-	 */
-	public String showDeskTop() throws Exception {
-	   
-		return SUCCESS;
-	}
-	
 
-	public String getAccountName() {
-		return accountName;
+	public List<QuestionVO> getList() {
+		return list;
 	}
-	public void setAccountName(String accountName) {
-		this.accountName = accountName;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getErrorMes() {
-		return errorMes;
-	}
-	public void setRemember(String remember) {
-		this.remember = remember;
-	}
-	public String getRemember() {
-		return remember;
+
+	public void setList(List<QuestionVO> list) {
+		this.list = list;
 	}
 
 }

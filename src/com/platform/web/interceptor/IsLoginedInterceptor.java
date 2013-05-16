@@ -11,6 +11,7 @@ public class IsLoginedInterceptor extends AbstractInterceptor {
 
     @Override
     public String intercept(ActionInvocation invocation) throws Exception {
+    	System.out.println("登录检查");
         if (ActionContext.getContext().getSession().get("LoginBean") == null) {
             return StringConstant.NO_LOGIN;
         } else {

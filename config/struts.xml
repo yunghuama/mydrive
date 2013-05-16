@@ -3,7 +3,7 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-  <constant name="struts.action.extension" value="v" />
+  <constant name="struts.action.extension" value="d" />
   <constant name="struts.i18n.encoding" value="UTF-8"/>
   <constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
   <constant name="struts.ui.theme" value="simple"/>
@@ -14,13 +14,14 @@
   
   <!-- 系统管理 -->
   <include file="struts-default.xml"/>
-  <include file="users.xml"/>
+  <include file="subject1.xml"/>
+  <include file="role-plugin.xml"/>
   <include file="system-ajax.xml"/>
 
   
   <package name="sysLogin" extends="struts-default">
     <action name="login" class="loginAction" method="login">
-      <result type="redirect">/</result>
+      <result type="redirect">/main.jsp</result>
       <result name="passwordWrong" type="redirect">/login.jsp?PW=1</result>
       <result name="stateFalse" type="redirect">/login.jsp?PW=2</result>
     </action>
