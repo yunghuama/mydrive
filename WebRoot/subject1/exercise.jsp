@@ -23,16 +23,44 @@ $(document).ready(function(){
 	//默认选择第一个
 	 exam.drawQuestion(exam.getQuestion(0));
 	 exam.setClickBorder(exam.getNum(0));
+	 $("#prev").bind("click",function(){
+		 var question = exam.getPrev();
+		 if(question==null||question==undefined)
+			 return;
+		 exam.drawQuestion(question);
+		 exam.setClickBorder(exam.getNum(question.num));
+	 });
+ 	$("#next").bind("click",function(){
+ 		var question = exam.getNext();
+ 		if(question==null||question==undefined)
+			 return;
+		 exam.drawQuestion(question);
+		 exam.setClickBorder(exam.getNum(question.num));
+	 });
+ 	$("#reexam").bind("click",function(){
+		 
+	 });
+ 	$("#commitexam").bind("click",function(){
+		 
+	 });
 });
 </script>
 </head>
 <body>
 	 <div id="main">
 	 <div id="persionInfo">
-
+	 
 	 </div>
+	 <div id="questionDiv">
 	 <div id="questionContent">
 	 
+	 </div>
+	 <div id="questionButton">
+	 <button id="prev">上一个</button>
+	 <button id="next">下一个</button>
+	 <button id="reexam">重考</button>
+	 <button id="commitexam">交卷</button>
+	 </div>
 	 </div>
 	 <div id="questionnumber">
 	 

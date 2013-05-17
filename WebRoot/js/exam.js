@@ -94,25 +94,32 @@ Exam.prototype = {
 		//计算分数
 		
 	},
-	next : function(){
+	getNext : function(){
 		//获得下一个问题
 		this.qa_index = this.qa_index+1;
-		if(hasNext(this.qa_index))
-			return get(this.qa_index);
+		if(this.hasNext(this.qa_index))
+			return this.getQuestion(this.qa_index);
+		else
+			this.qa_index = this.qa_index-1;
 	},
-	prev : function(){
+	getPrev : function(){
 		//获得上一个问题
 		this.qa_index = this.qa_index-1;
-		if(hasPrev(this.qa_index))
-			return get(this.qa_index);
+		if(this.hasPrev(this.qa_index))
+			return this.getQuestion(this.qa_index);
+		else
+			this.qa_index = this.qa_index+1;
 	},
-	hasNext : function(){
+	hasNext : function(index){
 		//是否有下一个
-		return this.qa_index<this.qa.length?true:false;
+		return index < this.qa.length ? true : false;
 	},
-	hasPrev : function(){
+	hasPrev : function(index){
 		//是否有上一个
-		return this.qa_index>=0 ? true :false;
+		return index >= 0 ? true : false;
+	},
+	getIndex : function(){
+		return this.qa_index;
 	},
 	setClickBorder : function(num){
 		if(this.tempDiv != null)
@@ -120,10 +127,14 @@ Exam.prototype = {
 		num.removeClass("normal-border").addClass("click-border");
 		this.tempDiv =num;
 	},
+	//绘制题目
 	drawQuestion : function(question){
+		if(question==null||question==undefined)
+			return;
 		var content = [];
+		this.qa_index = parseInt(question.num);
 		//获得问题
-		var questionDiv = '<div ><span class="question">'+question.question+'</span></div>';
+		var questionDiv = '<div ><span class="question">'+(parseInt(question.num)+1)+"."+question.question+'</span></div>';
 		content.push(questionDiv);
 		//获得答案
 		var answer = question.answer;
@@ -177,6 +188,7 @@ Exam.prototype = {
 			console.debug(question.myanswer);
 		});
 	},
+	//绘制数字选题格子
 	drawSelectGrid : function(){
 		var entity = this;
 		var divarray = [];
@@ -191,8 +203,5 @@ Exam.prototype = {
 			entity.selectGridRenderTo.append(div);
 			this.na.push(div);
 		}
-	
 	}
-	
-		
 }
