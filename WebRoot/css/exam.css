@@ -69,6 +69,14 @@ body{
 	border:1px solid red;
 }
 
+#questionImage {
+	width:800px;
+	height:300px;
+	clear:both;
+	border:1px solid red;
+	margin:0px auto;
+}
+
 .selectGrid{
 	border-width : 1px;
 	border-style : solid;

@@ -12,6 +12,12 @@ function Question(num,id,question,answer_a,answer_b,answer_c,answer_d,answer,img
 	this.vedio = vedio;
 }
 
+/**回答错误的问题**/
+function ErrorQuestion(num,id,answer){
+	this.num = num;
+	this.id = id;
+	this.answer = answer;
+}
 
 /****题号对象***/
 var Num = function(config){
@@ -26,7 +32,6 @@ Num.defaults = {
 Num.prototype = {
 	 createDiv : function(){
 		 var div  = $('<div class="selectGrid normal-border" id="'+this.num+'"><div class="top"><span>'+this.num+'</span></div><div class="center"><span id="result"></span></div></div>');
-		 console.debug("width:"+this.width);
 		 div.width(this.width);
 		 div.height(this.height);
 		 this.div = div;
@@ -58,6 +63,7 @@ var Exam = function(config){
 	$.extend(this , Exam.defaults , config);
 	this.selectGridRenderTo = typeof this.selectGridRenderTo=='string'?$("#"+this.selectGridRenderTo):this.selectGridRenderTo;
 	this.questionRenderTo = typeof this.questionRenderTo=='string'?$("#"+this.questionRenderTo):this.questionRenderTo;
+	this.richMediaRenderTo = typeof this.richMediaRenderTo=='string'?$("#"+this.richMediaRenderTo):this.richMediaRenderTo;
 	this.init();
 };
 //默认设置
@@ -70,15 +76,16 @@ Exam.prototype = {
 		this.qa = [];
 		this.aa = [];//创建存放答案的集合
 		this.na = [];//创建存放序号的集合
+		this.ea = [];//创建存放错题的集合
 		this.qa_index = 0;
 		this.aa_index = 0;
 		this.na_index = 0;
 		this.tempDiv = null;
+		this.isScore = false;//是否已经交卷。交卷后可以查看答案
 	},
 	add : function(question){
 		//添加试题
 		this.qa.push(question);
-		console.debug(question.num);
 	},
 	getQuestion : function(index){
 		//获得一个试题
@@ -91,8 +98,28 @@ Exam.prototype = {
 			return this.na[index];
 	},
 	score : function(){
+		if(this.isScore){
+			alert("请勿重复交卷");
+			return;
+		}
 		//计算分数
-		
+		var qa = this.qa;
+		var score = 0;
+		for(var i=0;i<qa.length;i++){
+			var question = qa[i];
+			if(question.answer==question.myanswer){
+				score+=1;
+			}else {
+				var errorQuestion = new ErrorQuestion(question.num,question.id,question.myanswer);
+				this.ea.push(errorQuestion);
+				var numObj = this.getNum(question.num);
+				numObj.find("#result").text(question.myanswer);
+				numObj.removeClass("answered").addClass("error");
+			}
+		}
+		console.debug("得分:"+score);
+		//将错误结果绘制到数字键盘
+		this.isScore = true;
 	},
 	getNext : function(){
 		//获得下一个问题
@@ -152,7 +179,11 @@ Exam.prototype = {
 				var d = '<div><input type="radio" name="answer" value="d"><span class="answer">'+question.answer_d+'</span><div>';
 				content.push(d);
 			}
-			
+			//如果已经交卷，则显示答案
+			if(this.isScore){
+				var ans = '<div><span>正确答案:'+question.answer+'</span></div>';
+				content.push(ans);
+			}
 		}else if(answer.length>1){
 		//多选题	
 			var a = '<div><input type="checkbox" name="answer" value="a"><span class="answer">'+question.answer_a+'</span><div>';
@@ -163,10 +194,26 @@ Exam.prototype = {
 			content.push(c);
 			var d = '<div><input type="checkbox" name="answer" value="d"><span class="answer">'+question.answer_d+'</span><div>';
 			content.push(d);
+			//如果已经交卷，则显示答案
+			if(this.isScore){
+				var ans = '<div><span>正确答案:'+question.answer+'</span></div>';
+				content.push(ans);
+			}
 		}
 		
 		this.questionRenderTo.empty();
+		this.richMediaRenderTo.empty();
 		this.questionRenderTo.prepend(content.join(''));
+		//如果有图片就显示图片
+		if(question.img!=""&&question.img!=null){
+			var img = '<img src='+question.img+'>'
+			this.richMediaRenderTo.append(img);
+		}
+		//如果有视频则显示视频
+		if(question.vedio!=""&&question.vedio!=null){
+			
+		}
+		
 		//如果有答案就将答案选中
 		if(question.myanswer!=null&&question.myanswer!=undefined){
 			var rr = question.myanswer.split('');
