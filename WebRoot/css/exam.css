@@ -12,6 +12,19 @@ body{
 	border:1px solid red;
 }
 
+.answered{
+	background-color:blue;
+}
+.error{
+	background-color:red;
+}
+.click-border{
+	border-color:red;
+}
+.normal-border{
+	border-color:#7d7d7d;
+}
+
 #persionInfo{
 	width:200px;
 	height:300px;
@@ -51,9 +64,11 @@ body{
 }
 
 .selectGrid{
-	border : 1px solid blue;
+	border-width : 1px;
+	border-style : solid;
 	float : left;
 	margin : 1px;
+	cursor : pointer;
 }
 
 .selectGrid .top {

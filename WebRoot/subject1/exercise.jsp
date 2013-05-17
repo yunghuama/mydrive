@@ -20,6 +20,9 @@ $(document).ready(function(){
 	 </s:iterator>
 	//绘制表格
 	 exam.drawSelectGrid();
+	//默认选择第一个
+	 exam.drawQuestion(exam.getQuestion(0));
+	 exam.setClickBorder(exam.getNum(0));
 });
 </script>
 </head>
