@@ -123,7 +123,7 @@ String path = request.getContextPath();
       if('${param.PW}'=='1') {
         alert('用户名或密码错误，请重新登录');
         //注销一下，防止拿缓存数据去验证而不停的alert
-        window.location = '<%=path%>/logout.v';
+        window.location = '<%=path%>/logout.d';
       }
       if('${param.PW}'=='2') {
         alert('该用户已被禁用，无法登录');

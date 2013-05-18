@@ -61,7 +61,7 @@ public class LoginAction extends ActionSupport {
 		ActionContext.getContext().getSession().put("LoginBean", loginBean);
 
 		//判断学员需不需要改资料
-		if(StringConstant.ROLE_SCHOOL.equals(users.getRole())){
+		if(StringConstant.ROLE_STUDENT.equals(users.getRole())){
 			if(users.getIdentity()==null||users.getName()==null){
 				return FIRST_INIT;
 			}
