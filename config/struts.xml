@@ -17,6 +17,7 @@
   <include file="subject1.xml"/>
   <include file="role-plugin.xml"/>
   <include file="system-ajax.xml"/>
+  <include file="users.xml"/>
 
   
   <package name="sysLogin" extends="struts-default">

@@ -38,6 +38,7 @@ public class LoginAction extends ActionSupport {
 	private String password;
 	private String errorMes;
 	private String remember;
+	private Users users;
 
 	/**
 	 * 登录
@@ -48,7 +49,7 @@ public class LoginAction extends ActionSupport {
 	@SuppressWarnings("unchecked")
 	public String login() throws Exception {
 
-		Users users= usersService.login(accountName, password);
+		users= usersService.login(accountName, password);
 		//如果登录失败
 		if (users == null) {
 			errorMes = "用户名或密码错误，请重新登录";
@@ -70,44 +71,6 @@ public class LoginAction extends ActionSupport {
 		return SUCCESS;
 	}
 
-	public void importXls(){
-		System.out.println("导入");
-		try{
-
-		FileInputStream f = new FileInputStream("/home/cheney/question_car.xls");
-		HSSFWorkbook wb = new HSSFWorkbook(f);
-		HSSFSheet sheet = wb.getSheetAt(0);
-		int rowNum = sheet.getLastRowNum();
-		//如果没有错误,则进行导入
-			for(int i=1;i<=rowNum;i++){
-				HSSFRow row = sheet.getRow(i);
-				HSSFCell code = row.getCell((short)0);
-				HSSFCell question = row.getCell((short)1);
-				HSSFCell a = row.getCell((short)2);
-				HSSFCell b = row.getCell((short)3);
-				HSSFCell c = row.getCell((short)4);
-				HSSFCell d = row.getCell((short)5);
-				HSSFCell answer = row.getCell((short)6);
-				HSSFCell image = row.getCell((short)7);
-				HSSFCell category = row.getCell((short)8);
-				
-				Question q = new Question();
-				q.setCode(code.getStringCellValue());
-				q.setQuestion(question.getStringCellValue());
-				q.setAnswer_a(a.getStringCellValue());
-				q.setAnswer_b(b.getStringCellValue());
-				q.setAnswer_c(c==null? "" : c.getStringCellValue());
-				q.setAnswer_d(d==null? "" :d.getStringCellValue());
-				q.setAnswer(answer.getStringCellValue());
-				q.setCategory(category==null? "":category.getStringCellValue());
-				q.setQuestion_img(image==null?"":image.getStringCellValue());
-				questionService.saveQuestion_car(q);
-			}
-			
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	}
 	
 	/**
 	 * 退出
@@ -121,15 +84,24 @@ public class LoginAction extends ActionSupport {
 	}
 	
 	/**
-	 * 显示桌面
+	 * 
 	 * @return
-	 * @throws Exception
 	 */
-	public String showDeskTop() throws Exception {
-	   
+	public String firstInit(){
+		try{
+			usersService.update(users);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		return SUCCESS;
 	}
 	
+	public String workpace(){
+		LoginBean bean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		users = bean.getUser();
+		return SUCCESS;
+	}
 
 	public String getAccountName() {
 		return accountName;
@@ -151,6 +123,14 @@ public class LoginAction extends ActionSupport {
 	}
 	public String getRemember() {
 		return remember;
+	}
+
+	public Users getUsers() {
+		return users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
 	}
 
 }

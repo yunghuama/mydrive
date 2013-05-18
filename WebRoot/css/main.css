@@ -10,6 +10,18 @@
 	width:200px;
 }
 
+#userInfo {
+	position:absolute;
+	right:20px;
+	top:10px;
+	color: #FFFFFF;
+}
+
+#userInfo a {
+   text-decoration: none;
+   color: #FFFFFF;
+}
+
 #nav-div{
 	position:absolute;
 	height:26px;

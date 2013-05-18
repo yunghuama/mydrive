@@ -4,8 +4,8 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
   <package name="users" extends="role-default" namespace="/system/users">
-  	<action name="listTree" class="usersAction" method="listTree">
-      <result>/system/user/treeUser.jsp</result>
+  	<action name="firstInit" class="loginAction" method="firstInit">
+      <result type="redirect">/main.jsp</result>
     </action>
   </package>
 </struts>

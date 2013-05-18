@@ -40,5 +40,7 @@ public class UsersService implements IService {
         return user;
     }
 
-   
+   public int update(Users users){
+	   return usersDAO.updateInfo(users);
+   }
 }

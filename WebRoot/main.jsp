@@ -30,9 +30,7 @@ if(session.getAttribute("LoginBean")==null) {
   </head>
   <body>
   <div id="head">
- 	    <div id="logo">
-  			
-  		</div>
+  		<div id="logo"></div>
   		<div id="nav-div">
   			<ul id="nav" class="nav">
   				<li class="menu-item">
@@ -64,6 +62,11 @@ if(session.getAttribute("LoginBean")==null) {
   				    </li>
   				<li class="menu-item"><a href="javascript:void(0);" name="id_4_1">个人中心</a></li>
   			</ul>
+  		</div>
+  		<div id="userInfo">
+  		欢迎您：<s:property value="#session['LoginBean'].user.name"/> | 剩余次数：<s:property value="#session['LoginBean'].user.remidtimes"/>
+  		| 剩余天数：<s:property value="#session['LoginBean'].user.reminddays"/>
+  		| <a href="<%=path%>/logout.d">安全退出</a>
   		</div>
   </div>
   <div id="content">

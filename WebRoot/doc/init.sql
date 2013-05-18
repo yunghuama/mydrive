@@ -82,7 +82,7 @@ create table studentcard (
     identity varchar(20),
     name varchar(10),
     nickname varchar(20),
-    cartype char(1),
+    cartype char(2),
     phonenumber varchar(12),
     age int,
     sex char(1),

@@ -21,7 +21,7 @@ public final class SQLConstant {
 	 * 学员
 	 */
 	public static final String STUDENT_LOGIN = "select id,name,remidtimes,begindate,identity from studentcard where number = ? and password = ?";
-
+	public static final String STUDENT_UPDATEINFO = "update studentcard set name=?,identity=?,age=?,sex=?,cartype=?,phonenumber=? where id=?";
 	
 	/**
 	 * 学校

@@ -37,6 +37,12 @@ public class UsersDAO extends GenericDAO{
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
+	/**
+	 * 学员登录
+	 * @param number
+	 * @param password
+	 * @return
+	 */
 	public Users login_student(String number,String password){
 		List<Users> list = jdbcTemplate.query(SQLConstant.STUDENT_LOGIN, new Object[]{number,password},new RowMapper<Users>(){
 			@Override
@@ -104,4 +110,20 @@ public class UsersDAO extends GenericDAO{
 		return null;
 	}
 	
+	/**
+	 * 信息完善
+	 * @param users
+	 * @return
+	 */
+	public int updateInfo(Users users){
+		return jdbcTemplate.update(SQLConstant.STUDENT_UPDATEINFO, new Object[]{
+			users.getName(),
+			users.getIdentity(),
+			users.getAge(),
+			users.getSex(),
+			users.getCartype(),
+			users.getPhonenumber(),
+			users.getId()
+		});
+	}
 }
