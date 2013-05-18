@@ -9,6 +9,7 @@
 <link href="<%=path%>/css/exam.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
 <script type="text/javascript" src="<%=path%>/js/exam.js"></script>
+<script type="text/javascript" src="<%=path%>/js/time.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	var exam = new Exam({'selectGridRenderTo':'questionnumber','questionRenderTo':'questionContent','richMediaRenderTo':'questionImage'});
@@ -42,6 +43,8 @@ $(document).ready(function(){
  	$("#commitexam").bind("click",function(){
  		exam.score();
 	 });
+ 	var timer = new Timer({"time":60*45,"renderTo":"timeDiv"});
+ 	timer.start();
 });
 </script>
 </head>

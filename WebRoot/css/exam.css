@@ -98,3 +98,13 @@ body{
 #persionInfo table tr{
 	height:30px;		
 }
+
+#timeDiv {
+	margin-top:60px;
+}
+
+#timeDiv span {
+	font-size:30px;
+	border:1px solid red;
+	padding:10px;
+}
