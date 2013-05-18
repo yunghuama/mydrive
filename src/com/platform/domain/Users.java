@@ -1,123 +1,106 @@
 package com.platform.domain;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+public class Users extends BaseDomain{
 
-import org.apache.struts2.json.annotations.JSON;
-
-public class Users extends BaseDomain {
-
-    private static final long serialVersionUID = -7094766838338441306L;
-    private String accountName; // 账户名
-    private String realName; // 真实姓名
-    private String password; // 密码
-    private String sex; // 性别
-    private Date birthday; // 生日
-    private String edu; // 学历
-    private String area; //地域(暂时济南1，深圳0)
-    private String state; // 帐户可用状态(T:可用,F:停用)
-    private String cellNo;//手机号
-    private String bigImage;
-    private String normalImage;
-    private String smallImage;
-    
-
-    public String getAccountName() {
-        return this.accountName;
-    }
-
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
-    }
-
-    public String getRealName() {
-        return this.realName;
-    }
-
-    public void setRealName(String realName) {
-        this.realName = realName;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getState() {
-        return this.state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-	public Date getBirthday() {
-		return birthday;
+	private String number;
+	private String password;
+	private String schoolId;
+	private String begindate;
+	private int remidtimes;
+	private int reminddays;
+	private String identity;
+	private String name;
+	private String nickname;
+	private String cartype;
+	private String phonenumber;
+	private String age;
+	private String sex;
+	private String role;
+	
+	public String getNumber() {
+		return number;
+	}
+	public void setNumber(String number) {
+		this.number = number;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getSchoolId() {
+		return schoolId;
+	}
+	public void setSchoolId(String schoolId) {
+		this.schoolId = schoolId;
+	}
+	public String getBegindate() {
+		return begindate;
+	}
+	public void setBegindate(String begindate) {
+		this.begindate = begindate;
+	}
+	public int getRemidtimes() {
+		return remidtimes;
+	}
+	public void setRemidtimes(int remidtimes) {
+		this.remidtimes = remidtimes;
+	}
+	public int getReminddays() {
+		return reminddays;
+	}
+	public void setReminddays(int reminddays) {
+		this.reminddays = reminddays;
+	}
+	public String getIdentity() {
+		return identity;
+	}
+	public void setIdentity(String identity) {
+		this.identity = identity;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getCartype() {
+		return cartype;
+	}
+	public void setCartype(String cartype) {
+		this.cartype = cartype;
+	}
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
+	public String getRole() {
+		return role;
 	}
-
-	public String getEdu() {
-		return edu;
+	
+	public void SetRole(String role) {
+		this.role = role;
 	}
-
-	public void setEdu(String edu) {
-		this.edu = edu;
-	}
-
-	public String getBigImage() {
-		return bigImage;
-	}
-
-	public void setBigImage(String bigImage) {
-		this.bigImage = bigImage;
-	}
-
-	public String getNormalImage() {
-		return normalImage;
-	}
-
-	public void setNormalImage(String normalImage) {
-		this.normalImage = normalImage;
-	}
-
-	public String getSmallImage() {
-		return smallImage;
-	}
-
-	public void setSmallImage(String smallImage) {
-		this.smallImage = smallImage;
-	}
-
-	public String getArea() {
-		return area;
-	}
-
-	public void setArea(String area) {
-		this.area = area;
-	}
-
-    public String getCellNo() {
-        return cellNo;
-    }
-
-    public void setCellNo(String cellNo) {
-        this.cellNo = cellNo;
-    }
-
 }

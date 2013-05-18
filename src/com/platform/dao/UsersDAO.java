@@ -1,6 +1,15 @@
 package com.platform.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+
+import com.platform.constants.SQLConstant;
+import com.platform.constants.StringConstant;
+import com.platform.domain.Users;
 
 /**
  * <p>程序名称：       UsersDAO.java</p>
@@ -26,6 +35,73 @@ public class UsersDAO extends GenericDAO{
 	public UsersDAO(JdbcTemplate jdbcTemplate){
 		super(jdbcTemplate);
 		this.jdbcTemplate = jdbcTemplate;
+	}
+	
+	public Users login_student(String number,String password){
+		List<Users> list = jdbcTemplate.query(SQLConstant.STUDENT_LOGIN, new Object[]{number,password},new RowMapper<Users>(){
+			@Override
+			public Users mapRow(ResultSet rs, int arg1) throws SQLException {
+				Users user = new Users();
+				user.setId(rs.getString("id"));
+				user.setBegindate(rs.getDate("begindate")+"");
+				user.setIdentity(rs.getString("identity"));
+				user.setName(rs.getString("name"));
+				user.setRemidtimes(rs.getInt("remidtimes"));
+				user.SetRole(StringConstant.ROLE_STUDENT);
+				return user;
+			}
+		});
+		
+		if(list!=null&&list.size()>0){
+			return list.get(0);
+		}
+		return null;
+	}
+	
+	/**
+	 * 学校登录
+	 * @param number
+	 * @param password
+	 * @return
+	 */
+	public Users login_school(String number,String password){
+		List<Users> list = jdbcTemplate.query(SQLConstant.SCHOOL_LOGIN, new Object[]{number,password},new RowMapper<Users>(){
+			@Override
+			public Users mapRow(ResultSet rs, int arg1) throws SQLException {
+				Users user = new Users();
+				user.setId(rs.getString("id"));
+				user.SetRole(StringConstant.ROLE_SCHOOL);
+				return user;
+			}
+		});
+		
+		if(list!=null&&list.size()>0){
+			return list.get(0);
+		}
+		return null;
+	}
+	
+	/**
+	 * 学校登录
+	 * @param number
+	 * @param password
+	 * @return
+	 */
+	public Users login_admin(String number,String password){
+		List<Users> list = jdbcTemplate.query(SQLConstant.SCHOOL_LOGIN, new Object[]{number,password},new RowMapper<Users>(){
+			@Override
+			public Users mapRow(ResultSet rs, int arg1) throws SQLException {
+				Users user = new Users();
+				user.setId(rs.getString("id"));
+				user.SetRole(StringConstant.ROLE_ADMIN);
+				return user;
+			}
+		});
+		
+		if(list!=null&&list.size()>0){
+			return list.get(0);
+		}
+		return null;
 	}
 	
 }

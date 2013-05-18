@@ -31,7 +31,7 @@ public class LoginBean {
                 loginBean = new LoginBean();
                 Users user = new Users();
                 user.setId("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-                user.setAccountName("admin");
+//                user.setAccountName("admin");
                 loginBean.setUser(user);
             }
             return loginBean;

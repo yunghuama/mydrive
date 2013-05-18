@@ -96,3 +96,5 @@ create table schoolcard (
     password varchar(16) not null,
     createtime datetime
 );
+
+insert into studentcard(id,number,password,schoolid,begindate,remidtimes,reminddays) values('4028813518f35feb0118f392eee50043','123','123','4028813518f35feb0118f392eee50046','2013-05-18',50,365);

@@ -17,9 +17,13 @@ if(session.getAttribute("LoginBean")==null) {
 	<script type="text/javascript" src="<%=path%>/js/nav.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			
+			//初始化菜单
 			initNav();
+			//添加点击效果
 			
+			$("a[name='id_1_1']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/subject1/initExerciseQuestion.d");
+			});
 		});
 	
 	</script>
@@ -34,34 +38,34 @@ if(session.getAttribute("LoginBean")==null) {
   				<li class="menu-item">
   					<a href="javascript:void(0);">科目一</a>
   					<ul class="sub-nav">
-  						<li class="sub-menu-item"><a href="javascript:void(0);">练习模式</a></li>
-  						<li class="sub-menu-item"><a href="javascript:void(0);">模拟考试</a></li>
-  						<li class="sub-menu-item"><a href="javascript:void(0);">顺序练习</a></li>
-  						<li class="sub-menu-item"><a href="javascript:void(0);">标记练习</a></li>
-  						<li class="sub-menu-item"><a href="javascript:void(0);">错题练习</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_1_1">练习模式</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_1_2">模拟考试</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_1_3">顺序练习</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_1_4">标记练习</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_1_5">错题练习</a></li>
   					</ul>
   					</li>
   				<li class="menu-item">
   				    <a href="javascript:void(0);">科目二</a>
   				    <ul class="sub-nav">
-  						<li class="sub-menu-item"><a href="javascript:void(0);">考试须知</a></li>
-  						<li class="sub-menu-item"><a href="javascript:void(0);">场地仿真动画</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_2_1">考试须知</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_2_2" >场地仿真动画</a></li>
   					</ul>
   				    </li>
   				<li class="menu-item">
   				    <a href="javascript:void(0);">科目三</a>
   				    <ul class="sub-nav">
-  						<li class="sub-menu-item"><a href="javascript:void(0);">练习模式</a></li>
-  						<li class="sub-menu-item"><a href="javascript:void(0);">模拟考试</a></li>
-  						<li class="sub-menu-item"><a href="javascript:void(0);">顺序练习</a></li>
-  						<li class="sub-menu-item"><a href="javascript:void(0);">标记练习</a></li>
-  						<li class="sub-menu-item"><a href="javascript:void(0);">错题练习</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_3_1">练习模式</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_3_2">模拟考试</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_3_3">顺序练习</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_3_4">标记练习</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_3_5">错题练习</a></li>
   					</ul>
   				    </li>
-  				<li class="menu-item"><a href="javascript:void(0);">个人中心</a></li>
+  				<li class="menu-item"><a href="javascript:void(0);" name="id_4_1">个人中心</a></li>
   			</ul>
   		</div>
   </div>
-    <a href="<%=path%>/exam/subject1/initExerciseQuestion.d" target="_blank">练习模式</a> <a href="">模拟考试</a>
-  </body>
+  <div id="content">
+  	<iframe id="mainFrame" class="mainFrame" src="subject1/simulation.jsp"></iframe>
 </html>

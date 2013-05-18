@@ -1,24 +1,12 @@
 package com.platform.service;
 
-import java.util.Date;
-import java.util.List;
-
-import org.eclipse.jdt.internal.compiler.impl.StringConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.opensymphony.xwork2.ActionContext;
-import com.platform.constants.SQLConstant;
 import com.platform.dao.UsersDAO;
 import com.platform.domain.Users;
 import com.platform.exception.CRUDException;
-import com.platform.util.FileHelper;
-import com.platform.util.ImageHelper;
-import com.platform.util.LoginBean;
-import com.platform.util.SearchUtil;
-import com.platform.util.Validate;
 
 @Service
 public class UsersService implements IService {
@@ -38,8 +26,18 @@ public class UsersService implements IService {
      * @return
      * @throws CRUDException
      */
-    public Users saveLogin(String accountName, String password) throws CRUDException {
-        return null;
+    public Users login(String accountName, String password) throws CRUDException {
+    	
+    	//先查询学员表
+    	Users user = usersDAO.login_student(accountName.toString(), password.toString());
+    	//再查询学校表
+    	if(user==null)
+    		user = usersDAO.login_student(accountName.toString(), password.toString());
+    	//最后查询管理员表
+    	if(user==null)
+    		user = usersDAO.login_admin(accountName.toString(), password.toString());
+    	
+        return user;
     }
 
    

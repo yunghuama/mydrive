@@ -24,6 +24,7 @@
       <result type="redirect">/main.jsp</result>
       <result name="passwordWrong" type="redirect">/login.jsp?PW=1</result>
       <result name="stateFalse" type="redirect">/login.jsp?PW=2</result>
+      <result name="firstInit" >/system/firstInit.jsp</result>
     </action>
     <action name="logout" class="loginAction" method="logout">
       <result type="redirect">/login.jsp</result>

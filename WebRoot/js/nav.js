@@ -1,8 +1,6 @@
 
 //初始化菜单操作
 function initNav(){
-	/***为一级菜单添加***/
-	
 	$(".menu-item").hover(function(){
 	$(".menu-item:visible").removeClass("active");
 	if($('.sub-nav', this).length === 0) {

@@ -21,28 +21,9 @@ import org.apache.struts2.json.annotations.JSON;
 public abstract class BaseDomain implements Serializable {
 
     protected String id;
-    protected Users creator;
-    protected Users editor;
     protected Date createTime;
     protected Date editTime;
 
-    @JSON(serialize = false)
-    public Users getCreator() {
-        return creator;
-    }
-
-    public void setCreator(Users creator) {
-        this.creator = creator;
-    }
-
-    @JSON(serialize = false)
-    public Users getEditor() {
-        return editor;
-    }
-
-    public void setEditor(Users editor) {
-        this.editor = editor;
-    }
 
     @JSON(format = "yyyy-MM-dd HH:mm:ss")
     public Date getEditTime() {
