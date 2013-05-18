@@ -10,7 +10,6 @@
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
 <script type="text/javascript" src="<%=path%>/js/exam.js"></script>
 <script type="text/javascript">
-
 $(document).ready(function(){
 	var exam = new Exam({'selectGridRenderTo':'questionnumber','questionRenderTo':'questionContent','richMediaRenderTo':'questionImage'});
 	//添加题目
@@ -46,15 +45,22 @@ $(document).ready(function(){
 });
 </script>
 </head>
-<body style="overflow: auto">
+<body style="overflow:auto">
 	 <div id="main">
 	 <div id="persionInfo">
-	 
+	 <div id="title"><span>考生信息</span></div>
+	 <div id="info">
+	 	<table id="infoTable" align="center" width="100%">
+	 		<tr><td>题型：</td><td>科目一</td></tr>
+	 		<tr><td>模式：</td><td>练习模式</td></tr>
+	 		<tr><td>姓名：</td><td>1212</td></tr>
+	 		<tr><td>车型：</td><td>C1</td></tr>
+	 	</table>
+	 </div>
+	 <div id="timeDiv"></div>
 	 </div>
 	 <div id="questionDiv">
-	 <div id="questionContent">
-	 
-	 </div>
+	 <div id="questionContent"></div>
 	 <div id="questionButton">
 	 <button id="prev">上一个</button>
 	 <button id="next">下一个</button>
@@ -63,7 +69,7 @@ $(document).ready(function(){
 	 </div>
 	 </div>
 	 <div id="questionnumber">
-	 
+	
 	 </div>
 	 <div id="questionImage"></div>
 	 </div>
