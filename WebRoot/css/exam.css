@@ -9,37 +9,52 @@ body{
 	width:1100px;
 	height:100%;
 	margin: 0 auto;
-	border:1px solid red;
+	padding-top:20px;
 }
 
 .answered{
-	background-color:blue;
+	background-color:#4169E1;
 }
 .error{
-	background-color:red;
+	background-color:#FF0000;
 }
 .click-border{
-	border-color:red;
+	border-color:#FF0000;
 }
 .normal-border{
 	border-color:#7d7d7d;
 }
 
-
+/******答题区********/
 #questionDiv{
 	position:relative;
-	width:500px;
+	width:580px;
 	height:300px;
 	float:left;
-	border:1px solid red;
+	border:1px solid #7d7d7d;
 	text-align:left;
-	padding-left:20px;
-	padding-top:20px;
+	margin-left:5px;
+	margin-right:5px;
 }
+
+#questionTitle {
+	text-align:center;
+	border-bottom:1px solid #7d7d7d;
+	padding:3px;
+}
+
 #questionDiv #questionButton{
 	position:absolute;
 	bottom:0px;
 	left:0px;
+}
+
+#questionContent {
+	padding:5px;
+}
+
+#questionContent #questions{
+	margin-bottom:10px;
 }
 
 #questionContent .question{
@@ -47,6 +62,7 @@ body{
     white-space: normal;
     word-wrap: break-word;
     word-break: break-all;
+    font-family: sans-serif;
 }
 
 #questionContent .answer{
@@ -54,21 +70,26 @@ body{
 	white-space: normal;
     word-wrap: break-word;
     word-break: break-all;
+    font-family: sans-serif;
 }
+
+#questionContent #rightAnswer {
+	margin-top:10px;
+}
+
+#rightAnswer span {
+	font-size:20px;
+	color:red;
+}
+
+/***答题卡***/
 
 #questionnumber{
-	width:350px;
-	height:350px;
-	float:left;
-	border:1px solid red;
-}
-
-#questionImage {
-	width:800px;
+	width:300px;
 	height:300px;
-	clear:both;
-	border:1px solid red;
-	margin:0px auto;
+	float:left;
+	border:1px solid #7d7d7d;
+	padding:1px;
 }
 
 .selectGrid{
@@ -83,13 +104,43 @@ body{
 	text-align :center;
 }
 
+/*********图片视频区域************/
+
+#questionImageDiv {
+	width:1100px;
+	height:400px;
+	clear:both;
+	margin:0px auto;
+	padding-top:10px;
+}
+
+#questionImageDiv #questionImage {
+	width:1100px;
+	height:300px;
+	margin:0px auto;
+	border:1px solid #7d7d7d;
+}
+#questionImage img {
+	max-height:300px;
+	max-width:900px;
+}
 /********个人信息********/
 #persionInfo{
 	width:200px;
 	height:300px;
 	float:left;
-	border:1px solid red;
+	border:1px solid #7d7d7d;
 }
+
+#persionInfo #infoTitle {
+	border-bottom:1px solid #7d7d7d;
+	padding:3px;
+}
+
+#persionInfo #info {
+	
+}
+
 #persionInfo table{
 	width:100%;
 	border-collapse:collapse;
@@ -98,13 +149,14 @@ body{
 #persionInfo table tr{
 	height:30px;		
 }
-
+/********倒计时**********/
 #timeDiv {
 	margin-top:60px;
 }
 
 #timeDiv span {
 	font-size:30px;
-	border:1px solid red;
+	border:1px solid #7d7d7d;
 	padding:10px;
+	font-family: sans-serif;
 }

@@ -39,4 +39,29 @@ public class QuestionService implements IService {
     	return questionDAO.listQuestionRandom_Car();
     }
     
+    /**
+     * 随机获得客车题目
+     * 
+     */
+    public List<QuestionVO> listQuestionRandom_bus(){
+    	return questionDAO.listQuestionRandom_bus();
+    }
+    
+    /**
+     * 随机获得货车题目
+     * 
+     */
+    public List<QuestionVO> listQuestionRandom_truck(){
+    	return questionDAO.listQuestionRandom_truck();
+    }
+    
+    /**
+     * 随机获得摩托车题目
+     * 
+     */
+    public List<QuestionVO> listQuestionRandom_moto(){
+    	return questionDAO.listQuestionRandom_moto();
+    }
+    
+    
 }

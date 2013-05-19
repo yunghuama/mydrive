@@ -11,10 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import com.platform.constants.StringConstant;
 import com.platform.domain.Question;
+import com.platform.domain.Users;
 import com.platform.service.QuestionService;
 import com.platform.service.UsersService;
+import com.platform.util.LoginBean;
 import com.platform.vo.QuestionVO;
 
 
@@ -23,7 +27,7 @@ import com.platform.vo.QuestionVO;
 public class QuestionAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1797119564459862667L;
-
+	private String message;
 	@Autowired
 	private UsersService usersService;
 	@Autowired
@@ -35,9 +39,26 @@ public class QuestionAction extends ActionSupport {
 	 * @return
 	 */
 	public String initExerciseQuestion(){
+		try{
 		long t = System.currentTimeMillis();
-		list = questionService.listQuestionRandom_car();
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		Users users = loginBean.getUser();
+		if(StringConstant.questionType_car == StringConstant.questionType.get(users.getCartype()))
+			list = questionService.listQuestionRandom_car();
+		if(StringConstant.questionType_bus == StringConstant.questionType.get(users.getCartype()))
+			list = questionService.listQuestionRandom_bus();
+		if(StringConstant.questionType_truck == StringConstant.questionType.get(users.getCartype()))
+			list = questionService.listQuestionRandom_truck();
+		if(StringConstant.questionType_moto == StringConstant.questionType.get(users.getCartype()))
+			list = questionService.listQuestionRandom_moto();
 		System.out.println(System.currentTimeMillis()-t);
+		if(list==null||list.size()==0){
+			message = "暂无 "+users.getCartype()+" 类型的题库";
+			return "noquestion";
+		}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 
@@ -86,6 +107,14 @@ public class QuestionAction extends ActionSupport {
 
 	public void setList(List<QuestionVO> list) {
 		this.list = list;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

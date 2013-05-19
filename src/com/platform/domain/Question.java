@@ -18,7 +18,7 @@ public class Question extends BaseDomain {
 	private String answer_d ;
 	private String answer;
 	private String question_img;
-	private String question_vedio;
+	private String question_video;
 	private String category ;
 	
 	
@@ -70,17 +70,17 @@ public class Question extends BaseDomain {
 	public void setQuestion_img(String question_img) {
 		this.question_img = question_img;
 	}
-	public String getQuestion_vedio() {
-		return question_vedio;
-	}
-	public void setQuestion_vedio(String question_vedio) {
-		this.question_vedio = question_vedio;
-	}
+	
 	public String getCategory() {
 		return category;
 	}
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
+	public String getQuestion_video() {
+		return question_video;
+	}
+	public void setQuestion_video(String question_video) {
+		this.question_video = question_video;
+	}
 }

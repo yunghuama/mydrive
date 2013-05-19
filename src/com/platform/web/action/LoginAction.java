@@ -90,6 +90,8 @@ public class LoginAction extends ActionSupport {
 	public String firstInit(){
 		try{
 			usersService.update(users);
+			Users user = (Users)ActionContext.getContext().getSession().get("LoginBean");
+			user.setCartype(users.getCartype());
 		}catch(Exception e){
 			e.printStackTrace();
 		}

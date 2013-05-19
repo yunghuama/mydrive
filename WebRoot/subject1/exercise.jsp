@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="<%=path%>/css/core.css" rel="stylesheet" type="text/css"/>
 <link href="<%=path%>/css/exam.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="<%=path%>/js/core.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
 <script type="text/javascript" src="<%=path%>/js/exam.js"></script>
 <script type="text/javascript" src="<%=path%>/js/time.js"></script>
@@ -51,18 +52,19 @@ $(document).ready(function(){
 <body style="overflow:auto">
 	 <div id="main">
 	 <div id="persionInfo">
-	 <div id="title"><span>考生信息</span></div>
+	 <div id="infoTitle"><span>考生信息</span></div>
 	 <div id="info">
 	 	<table id="infoTable" align="center" width="100%">
 	 		<tr><td>题型：</td><td>科目一</td></tr>
 	 		<tr><td>模式：</td><td>练习模式</td></tr>
-	 		<tr><td>姓名：</td><td>1212</td></tr>
-	 		<tr><td>车型：</td><td>C1</td></tr>
+	 		<tr><td>姓名：</td><td><s:property value="#session['LoginBean'].user.name"/></td></tr>
+	 		<tr><td>车型：</td><td><s:property value="#session['LoginBean'].user.cartype"/></td></tr>
 	 	</table>
 	 </div>
 	 <div id="timeDiv"></div>
 	 </div>
 	 <div id="questionDiv">
+	 <div id="questionTitle"><span>答题区</span></div>
 	 <div id="questionContent"></div>
 	 <div id="questionButton">
 	 <button id="prev">上一个</button>
@@ -74,7 +76,9 @@ $(document).ready(function(){
 	 <div id="questionnumber">
 	
 	 </div>
-	 <div id="questionImage"></div>
+	 <div id="questionImageDiv">
+	 	<div id="questionImage"></div>
+	 </div>
 	 </div>
 </body>
 </html>

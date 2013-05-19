@@ -13,7 +13,7 @@ create table questions_car(
 	answer_d varchar(80),
 	answer varchar(4) not null,
 	question_img varchar(20),
-	question_vedio varchar(20),
+	question_video varchar(20),
 	tips varchar(80),
 	category varchar(50),
 	createtime datetime
@@ -30,7 +30,7 @@ create table questions_bus(
 	answer_d varchar(80),
 	answer varchar(4) not null,
 	question_img varchar(20),
-	question_vedio varchar(20),
+	question_video varchar(20),
 	tips varchar(80),
 	category varchar(50),
 	createtime datetime
@@ -47,7 +47,7 @@ create table questions_truck(
 	answer_d varchar(80),
 	answer varchar(4) not null,
 	question_img varchar(20),
-	question_vedio varchar(20),
+	question_video varchar(20),
 	tips varchar(80),
 	category varchar(50),
 	createtime datetime
@@ -64,7 +64,7 @@ create table questions_motorcycle(
 	answer_d varchar(80),
 	answer varchar(4) not null,
 	question_img varchar(20),
-	question_vedio varchar(20),
+	question_video varchar(20),
 	tips varchar(80),
 	category varchar(50),
 	createtime datetime
@@ -77,7 +77,7 @@ create table studentcard (
     number varchar(11) not null,
     password varchar(16) not null,
     begindate datetime not null,
-    remidtimes int not null,
+    remindtimes int not null,
     reminddays int not null,
     identity varchar(20),
     name varchar(10),
@@ -97,4 +97,15 @@ create table schoolcard (
     createtime datetime
 );
 
-insert into studentcard(id,number,password,schoolid,begindate,remidtimes,reminddays) values('4028813518f35feb0118f392eee50043','123','123','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
+alter table questions_car drop column question_vedio;
+alter table questions_car add column question_video varchar(20);
+alter table questions_bus drop column question_vedio;
+alter table questions_bus add column question_video varchar(20);
+alter table questions_truck drop column question_vedio;
+alter table questions_truck add column question_video varchar(20);
+alter table questions_motorcycle drop column question_vedio;
+alter table questions_motorcycle add column question_video varchar(20);
+alter table studentcard drop column remidtimes;
+alter table studentcard add column remindtimes int;
+
+insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50043','123','123','4028813518f35feb0118f392eee50046','2013-05-18',50,365);

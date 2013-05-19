@@ -11,7 +11,7 @@ String path = request.getContextPath();
   </head>
   <body>
     <div class="noData">
-      <div class="textDiv">未查找到数据</div>
+      <div class="textDiv"><s:property value="message"/> </div>
     </div>
     <script src="<%=path%>/js/jquery.js" type="text/javascript"></script>
     <script type="text/javascript">

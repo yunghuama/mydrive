@@ -52,7 +52,8 @@ public class UsersDAO extends GenericDAO{
 				user.setBegindate(rs.getDate("begindate")+"");
 				user.setIdentity(rs.getString("identity"));
 				user.setName(rs.getString("name"));
-				user.setRemidtimes(rs.getInt("remidtimes"));
+				user.setRemindtimes(rs.getInt("remindtimes"));
+				user.setCartype(rs.getString("cartype"));
 				user.SetRole(StringConstant.ROLE_STUDENT);
 				return user;
 			}

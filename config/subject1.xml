@@ -6,6 +6,7 @@
   <package name="subjct1" extends="role-default" namespace="/exam/subject1">
   	<action name="initExerciseQuestion" class="questionAction" method="initExerciseQuestion">
       <result>/subject1/exercise.jsp</result>
+      <result name="noquestion">/share/blank.jsp</result>
     </action>
   </package>
 </struts>

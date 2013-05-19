@@ -11,8 +11,10 @@ Timer.defaults = {
 
 Timer.prototype = {
 	init : function(){
+		this.time = parseInt(this.time);
 		var timeBody = $("<span></span>");
 		this.timeBody = timeBody;
+		this.timeBody.text(this.timeConvert(this.time));
 		this.renderTo.append(timeBody);
 	},
 	start : function(){
@@ -21,14 +23,20 @@ Timer.prototype = {
 	this.inId = setInterval(function(){entity.refresh()}, 1000);
 	},
 	refresh : function(){
-		console.debug("refresh");
 		this.time = parseInt(this.time) - 1;
-		var minutes = Math.floor(this.time / 60);
-		var seconds = Math.floor(this.time % 60);
 		this.timeBody.empty();
-		this.timeBody.text(minutes+":"+seconds);
+		this.timeBody.text(this.timeConvert(this.time));
 		if(this.time == 0)
 			this.timeOver();
+	},
+	timeConvert : function(time){
+		var minutes = Math.floor(this.time / 60);
+		var seconds = Math.floor(this.time % 60);
+		if(minutes<10)
+			minutes = "0"+minutes;
+		if(seconds<10)
+			seconds = "0"+seconds;
+		return minutes+":"+seconds;
 	},
 	timeOver : function(){
 		//倒计时结束执行

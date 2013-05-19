@@ -25,8 +25,8 @@ var Num = function(config){
 }
 
 Num.defaults = {
-	width : 30,
-	height: 30
+	width : 25,
+	height: 25
 }
 
 Num.prototype = {
@@ -161,7 +161,7 @@ Exam.prototype = {
 		var content = [];
 		this.qa_index = parseInt(question.num);
 		//获得问题
-		var questionDiv = '<div ><span class="question">'+(parseInt(question.num)+1)+"."+question.question+'</span></div>';
+		var questionDiv = '<div id="questions"><span class="question">'+(parseInt(question.num)+1)+"."+question.question+'</span></div>';
 		content.push(questionDiv);
 		//获得答案
 		var answer = question.answer;
@@ -181,7 +181,7 @@ Exam.prototype = {
 			}
 			//如果已经交卷，则显示答案
 			if(this.isScore){
-				var ans = '<div><span>正确答案:'+question.answer+'</span></div>';
+				var ans = '<div id="rightAnswer"><span>正确答案:'+question.answer+'</span></div>';
 				content.push(ans);
 			}
 		}else if(answer.length>1){
@@ -206,11 +206,11 @@ Exam.prototype = {
 		this.questionRenderTo.prepend(content.join(''));
 		//如果有图片就显示图片
 		if(question.img!=""&&question.img!=null){
-			var img = '<img src='+question.img+'>'
+			var img = '<img src='+projectName+"/upload/image/"+question.img+'>';
 			this.richMediaRenderTo.append(img);
 		}
 		//如果有视频则显示视频
-		if(question.vedio!=""&&question.vedio!=null){
+		if(question.video!=""&&question.video!=null){
 			
 		}
 		

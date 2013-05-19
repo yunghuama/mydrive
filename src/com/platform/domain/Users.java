@@ -6,7 +6,7 @@ public class Users extends BaseDomain{
 	private String password;
 	private String schoolId;
 	private String begindate;
-	private int remidtimes;
+	private int remindtimes;
 	private int reminddays;
 	private String identity;
 	private String name;
@@ -41,12 +41,7 @@ public class Users extends BaseDomain{
 	public void setBegindate(String begindate) {
 		this.begindate = begindate;
 	}
-	public int getRemidtimes() {
-		return remidtimes;
-	}
-	public void setRemidtimes(int remidtimes) {
-		this.remidtimes = remidtimes;
-	}
+
 	public int getReminddays() {
 		return reminddays;
 	}
@@ -103,4 +98,11 @@ public class Users extends BaseDomain{
 	public void SetRole(String role) {
 		this.role = role;
 	}
+	public int getRemindtimes() {
+		return remindtimes;
+	}
+	public void setRemindtimes(int remindtimes) {
+		this.remindtimes = remindtimes;
+	}
+	
 }

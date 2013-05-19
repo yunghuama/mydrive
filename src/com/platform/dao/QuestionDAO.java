@@ -53,7 +53,7 @@ public class QuestionDAO extends GenericDAO{
 				question.getAnswer_d(),
 				question.getAnswer(),
 				question.getQuestion_img(),
-				question.getQuestion_vedio(),
+				question.getQuestion_video(),
 				question.getCategory(),
 				new Date()
 		});
@@ -77,7 +77,79 @@ public class QuestionDAO extends GenericDAO{
 				vo.setAnswer_d(rs.getString("answer_d"));
 				vo.setQuestion(rs.getString("question"));
 				vo.setImage(rs.getString("question_img"));
-				vo.setVedio(rs.getString("question_vedio"));
+				vo.setVideo(rs.getString("question_video"));
+				return vo;
+			}
+		});
+	}
+	
+	/**
+	 * 从客车题库获得指定数量的题目
+	 * @return
+	 */
+	public List<QuestionVO> listQuestionRandom_bus(){
+		return jdbcTemplate.query(SQLConstant.QUESTION_BUS_QUERY_RANDOM,new Object[]{100},new RowMapper<QuestionVO>(){
+			@Override
+			public QuestionVO mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				QuestionVO vo = new QuestionVO();
+				vo.setId(rs.getInt("id"));
+				vo.setAnswer(rs.getString("answer"));
+				vo.setAnswer_a(rs.getString("answer_a"));
+				vo.setAnswer_b(rs.getString("answer_b"));
+				vo.setAnswer_c(rs.getString("answer_c"));
+				vo.setAnswer_d(rs.getString("answer_d"));
+				vo.setQuestion(rs.getString("question"));
+				vo.setImage(rs.getString("question_img"));
+				vo.setVideo(rs.getString("question_video"));
+				return vo;
+			}
+		});
+	}
+	
+	/**
+	 * 从大货车题库获得指定数量的题目
+	 * @return
+	 */
+	public List<QuestionVO> listQuestionRandom_truck(){
+		return jdbcTemplate.query(SQLConstant.QUESTION_TRUCK_QUERY_RANDOM,new Object[]{100},new RowMapper<QuestionVO>(){
+			@Override
+			public QuestionVO mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				QuestionVO vo = new QuestionVO();
+				vo.setId(rs.getInt("id"));
+				vo.setAnswer(rs.getString("answer"));
+				vo.setAnswer_a(rs.getString("answer_a"));
+				vo.setAnswer_b(rs.getString("answer_b"));
+				vo.setAnswer_c(rs.getString("answer_c"));
+				vo.setAnswer_d(rs.getString("answer_d"));
+				vo.setQuestion(rs.getString("question"));
+				vo.setImage(rs.getString("question_img"));
+				vo.setVideo(rs.getString("question_video"));
+				return vo;
+			}
+		});
+	}
+	
+	/**
+	 * 从大货车题库获得指定数量的题目
+	 * @return
+	 */
+	public List<QuestionVO> listQuestionRandom_moto(){
+		return jdbcTemplate.query(SQLConstant.QUESTION_MOTO_QUERY_RANDOM,new Object[]{100},new RowMapper<QuestionVO>(){
+			@Override
+			public QuestionVO mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				QuestionVO vo = new QuestionVO();
+				vo.setId(rs.getInt("id"));
+				vo.setAnswer(rs.getString("answer"));
+				vo.setAnswer_a(rs.getString("answer_a"));
+				vo.setAnswer_b(rs.getString("answer_b"));
+				vo.setAnswer_c(rs.getString("answer_c"));
+				vo.setAnswer_d(rs.getString("answer_d"));
+				vo.setQuestion(rs.getString("question"));
+				vo.setImage(rs.getString("question_img"));
+				vo.setVideo(rs.getString("question_video"));
 				return vo;
 			}
 		});

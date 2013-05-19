@@ -10,7 +10,7 @@ public class QuestionVO {
 	private String answer_d;
 	private String answer;
 	private String image;
-	private String vedio;
+	private String video;
 	
 	
 	public int getId() {
@@ -77,12 +77,12 @@ public class QuestionVO {
 		this.image = image;
 	}
 
-	public String getVedio() {
-		return vedio;
+	public String getVideo() {
+		return video;
 	}
 
-	public void setVedio(String vedio) {
-		this.vedio = vedio;
+	public void setVideo(String video) {
+		this.video = video;
 	}
 	
 }
