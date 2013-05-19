@@ -39,6 +39,8 @@ body{
 #commitingInfo span {
 	color:#000000;
 	font-size:18px;
+}
+.questionTitle{
 	white-space: normal;
     word-wrap: break-word;
     word-break: break-all;

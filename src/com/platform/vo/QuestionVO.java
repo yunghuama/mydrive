@@ -11,7 +11,7 @@ public class QuestionVO {
 	private String answer;
 	private String image;
 	private String video;
-	
+	private String tips;
 	
 	public int getId() {
 		return id;
@@ -83,6 +83,14 @@ public class QuestionVO {
 
 	public void setVideo(String video) {
 		this.video = video;
+	}
+
+	public String getTips() {
+		return tips;
+	}
+
+	public void setTips(String tips) {
+		this.tips = tips;
 	}
 	
 }

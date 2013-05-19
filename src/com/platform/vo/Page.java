@@ -61,6 +61,10 @@ public class Page<T> {
     }
 
     public int getCurrPage() {
+    	if(currPage<=1)
+    		return 1;
+    	if(currPage>maxPage)
+    		return maxPage;
         return currPage;
     }
 
