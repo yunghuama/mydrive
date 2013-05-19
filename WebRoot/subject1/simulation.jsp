@@ -42,7 +42,7 @@ $(document).ready(function(){
  	$("#reexam").bind("click",function(){
  		location.reload();
 	 });
- 	var timer = new Timer({"time":5,"renderTo":"timeDiv","complete":function(time){
+ 	var timer = new Timer({"time":45*60,"renderTo":"timeDiv","complete":function(time){
  		exam.score(time);
  	}});
  	timer.start();

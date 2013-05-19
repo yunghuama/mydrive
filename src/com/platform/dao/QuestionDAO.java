@@ -174,4 +174,14 @@ public class QuestionDAO extends GenericDAO{
 				new Date()
 		});
 	}
+	
+	public int saveErrorQuestion(String questionId,String studentId,int questiontype){
+		return jdbcTemplate.update(SQLConstant.ERRORQUESTION_SAVE, new Object[]{
+				UUIDGenerator.generate(),
+				questionId,
+				studentId,
+				questiontype,
+				new Date()
+		});
+	}
 }

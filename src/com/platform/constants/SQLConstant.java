@@ -36,4 +36,10 @@ public final class SQLConstant {
 	 * 考试成绩
 	 */
 	public static final String EXAMSCORE_SAVE = "insert into examscore(id,studentId,score,time,cartype,createtime) values(?,?,?,?,?,?)";
+
+	
+	/**
+	 * 错题保存
+	 */
+	public static final String ERRORQUESTION_SAVE = "insert question_wrong(id,questionId,studentId,questiontype,updateTime) values(?,?,?,?,?)";
 }

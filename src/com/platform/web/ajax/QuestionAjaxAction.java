@@ -23,7 +23,7 @@ public class QuestionAjaxAction {
 	public String saveScore(){
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		if(loginBean!=null){
-			int r = questionService.saveExamScore(loginBean.getUser().getId(), score.getScore(), score.getTime(), loginBean.getUser().getCartype());
+			int r = questionService.saveExamScore(loginBean.getUser().getId(), score.getScore(), score.getTime(), loginBean.getUser().getCartype(),score.getErrorQuestion());
 			if(r==1)
 				result = "success";
 			else 

@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.platform.constants.StringConstant;
 import com.platform.dao.QuestionDAO;
 import com.platform.domain.Question;
 import com.platform.vo.QuestionVO;
@@ -66,7 +67,14 @@ public class QuestionService implements IService {
     /**
      * 保存考试成绩
      */
-    public int saveExamScore(String studentId,int score,String time,String cartype){
+    @Transactional(rollbackFor={Exception.class,RuntimeException.class})
+    public int saveExamScore(String studentId,int score,String time,String cartype,String errorQuestions){
+    	if(errorQuestions!=null&&!errorQuestions.equals("")){
+    		String array[] = errorQuestions.split("@");
+    		for(int i=0;i<array.length;i++){
+    			questionDAO.saveErrorQuestion(array[i], studentId, StringConstant.questionType.get(cartype));
+    		}
+    	}
     	return questionDAO.saveExamScore(studentId, score, time, cartype);
     }
 }
