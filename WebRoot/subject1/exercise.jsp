@@ -9,6 +9,7 @@
 <link href="<%=path%>/css/exam.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="<%=path%>/js/core.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
+<script type="text/javascript" src="<%=path%>/js/mask.js"></script>
 <script type="text/javascript" src="<%=path%>/js/exam.js"></script>
 <script type="text/javascript" src="<%=path%>/js/time.js"></script>
 <script type="text/javascript">
@@ -46,10 +47,17 @@ $(document).ready(function(){
 	 });
  	var timer = new Timer({"time":60*45,"renderTo":"timeDiv"});
  	timer.start();
+ 	
 });
 </script>
 </head>
 <body style="overflow:auto">
+	<div id="commiting">
+	</div>
+	<div id="commitingInfo">
+	<dir id="commitingInfoTitle"><span></span></dir>
+	<dir id="commitingButton"><button id="commitingButtonClose">关闭</button> </dir>
+	</div>
 	 <div id="main">
 	 <div id="persionInfo">
 	 <div id="infoTitle"><span>考生信息</span></div>

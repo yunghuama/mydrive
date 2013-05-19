@@ -102,6 +102,10 @@ Exam.prototype = {
 			alert("请勿重复交卷");
 			return;
 		}
+		//显示遮罩层
+		var mask = new Mask();
+		mask.show();
+		mask.refreshMessage("正在计算分数...请稍后...");
 		//计算分数
 		var qa = this.qa;
 		var score = 0;
@@ -117,8 +121,7 @@ Exam.prototype = {
 				numObj.removeClass("answered").addClass("error");
 			}
 		}
-		console.debug("得分:"+score);
-		//将错误结果绘制到数字键盘
+		mask.refreshMessage("您本次练习得分 : "+score);
 		this.isScore = true;
 	},
 	getNext : function(){
