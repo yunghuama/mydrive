@@ -110,6 +110,8 @@ public class QuestionAction extends GenericAction {
 	}
 	
 	public String roderQuestion1(){
+		try{
+		
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		Users users = loginBean.getUser();
 		if(StringConstant.questionType_car == StringConstant.questionType.get(users.getCartype()))
@@ -120,9 +122,9 @@ public class QuestionAction extends GenericAction {
 			page = questionService.listQuestionOrder_truck(page,categoryId);
 		if(StringConstant.questionType_moto == StringConstant.questionType.get(users.getCartype()))
 			page = questionService.listQuestionOrder_moto(page,categoryId);
-		if(list==null||list.size()==0){
-			message = "暂无 "+users.getCartype()+" 类型的题库";
-			return "noquestion";
+		
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 		return SUCCESS;
 	}
@@ -188,6 +190,14 @@ public class QuestionAction extends GenericAction {
 
 	public void setSectionList(List<Section> sectionList) {
 		this.sectionList = sectionList;
+	}
+
+	public String getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
 
 }

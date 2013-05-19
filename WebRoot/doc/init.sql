@@ -138,7 +138,12 @@ alter table studentcard add column remindtimes int;
 
 insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50043','123','123','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
 
-insert into section(id,name,category) values('4028813518f35feb0118f392eee50045','section1',1);
-insert into section(id,name,category) values('4028813518f35feb0118f392eee50046','section2',1);
-insert into section(id,name,category) values('4028813518f35feb0118f392eee50047','section3',1);
+insert into section(id,name,category) values('4028813518f35feb0118f392eee50045','道路交通安全法律、法规和规章',1);
+insert into section(id,name,category) values('4028813518f35feb0118f392eee50046','交通信号',1);
+insert into section(id,name,category) values('4028813518f35feb0118f392eee50047','安全行车、文明驾驶基础知识',1);
+insert into section(id,name,category) values('4028813518f35feb0118f392eee50048','机动车驾驶操作相关基础知识',1);
 
+update questions_car set category = '4028813518f35feb0118f392eee50045' where category = '道路交通安全法律、法规和规章';
+update questions_car set category = '4028813518f35feb0118f392eee50046' where category = '交通信号';
+update questions_car set category = '4028813518f35feb0118f392eee50047' where category = '安全行车、文明驾驶基础知识';
+update questions_car set category = '4028813518f35feb0118f392eee50048' where category = '机动车驾驶操作相关基础知识';

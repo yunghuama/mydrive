@@ -113,7 +113,7 @@ public class QuestionDAO extends GenericDAO{
 		int rowCount = queryForInt(SQLConstant.QUESTION_CAR_QUERY_ROWCOUNT,category);
 		page.setRowCount(rowCount);
 		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
-		
+		page.setList(list);
 		return page;
 	}
 	
@@ -143,6 +143,36 @@ public class QuestionDAO extends GenericDAO{
 				return vo;
 			}
 		});
+	}
+	
+	
+	/**
+	 * 从小车题库根据类型分页获取题目
+	 * @return
+	 */
+	public Page<QuestionVO> listQuestionOrder_bus(Page<QuestionVO> page,String category){
+		List<QuestionVO> list =  jdbcTemplate.query(SQLConstant.QUESTION_CAR_QUERY_PAGE,new Object[]{category,(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<QuestionVO>(){
+			@Override
+			public QuestionVO mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				QuestionVO vo = new QuestionVO();
+				vo.setId(rs.getInt("id"));
+				vo.setAnswer(rs.getString("answer"));
+				vo.setAnswer_a(rs.getString("answer_a"));
+				vo.setAnswer_b(rs.getString("answer_b"));
+				vo.setAnswer_c(rs.getString("answer_c"));
+				vo.setAnswer_d(rs.getString("answer_d"));
+				vo.setQuestion(rs.getString("question"));
+				vo.setImage(rs.getString("question_img"));
+				vo.setVideo(rs.getString("question_video"));
+				return vo;
+			}
+		});
+		int rowCount = queryForInt(SQLConstant.QUESTION_CAR_QUERY_ROWCOUNT,category);
+		page.setRowCount(rowCount);
+		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
+		
+		return page;
 	}
 	
 	/**

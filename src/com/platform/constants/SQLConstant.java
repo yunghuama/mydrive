@@ -20,6 +20,13 @@ public final class SQLConstant {
 	public static final String QUESTION_MOTO_QUERY_RANDOM = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_motorcycle order by rand() limit ?";
 	public static final String QUESTION_CAR_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_car where category = ? limit ?,?";
 	public static final String QUESTION_CAR_QUERY_ROWCOUNT = "select count(id) from questions_car where category = ?";
+	public static final String QUESTION_BUS_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_bus where category = ? limit ?,?";
+	public static final String QUESTION_BUS_QUERY_ROWCOUNT = "select count(id) from questions_bus where category = ?";
+	public static final String QUESTION_TRUCK_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_truck where category = ? limit ?,?";
+	public static final String QUESTION_TRUCK_QUERY_ROWCOUNT = "select count(id) from questions_truck where category = ?";
+	public static final String QUESTION_MOTO_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_moto where category = ? limit ?,?";
+	public static final String QUESTION_MOTO_QUERY_ROWCOUNT = "select count(id) from questions_moto where category = ?";
+	
 	/**
 	 * 学员
 	 */
