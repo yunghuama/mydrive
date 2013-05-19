@@ -14,7 +14,7 @@
 <script type="text/javascript" src="<%=path%>/js/time.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	var exam = new Exam({'selectGridRenderTo':'questionnumber','questionRenderTo':'questionContent','richMediaRenderTo':'questionImage'});
+	var exam = new Exam({'selectGridRenderTo':'questionnumber','questionRenderTo':'questionContent','richMediaRenderTo':'questionImage','postUrl':'<%=path%>/system/ajax/saveScore.d'});
 	//添加题目
 	 <s:iterator id="question" value="list" status="i">
 	 var question = new Question('<s:property value="#i.index"/>','<s:property value="#question.id"/>','<s:property value="#question.question"/>','<s:property value="#question.answer_a"/>','<s:property value="#question.answer_b"/>','<s:property value="#question.answer_c"/>','<s:property value="#question.answer_d"/>','<s:property value="#question.answer"/>','<s:property value="#question.image"/>','<s:property value="#question.vedio"/>');
@@ -42,12 +42,12 @@ $(document).ready(function(){
  	$("#reexam").bind("click",function(){
  		location.reload();
 	 });
- 	var timer = new Timer({"time":45*60,"renderTo":"timeDiv","complete":function(){
- 		exam.score();
+ 	var timer = new Timer({"time":5,"renderTo":"timeDiv","complete":function(time){
+ 		exam.score(time);
  	}});
  	timer.start();
  	$("#commitexam").bind("click",function(){
- 		exam.score();
+ 		exam.score(timer.getUsedTime());
  		timer.stop();
 	 });
 });

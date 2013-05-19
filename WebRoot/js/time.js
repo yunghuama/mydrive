@@ -16,6 +16,7 @@ Timer.prototype = {
 		this.timeBody = timeBody;
 		this.timeBody.text(this.timeConvert(this.time));
 		this.renderTo.append(timeBody);
+		this.useTime = 0;
 	},
 	start : function(){
 	//开始倒计时
@@ -24,6 +25,7 @@ Timer.prototype = {
 	},
 	refresh : function(){
 		this.time = parseInt(this.time) - 1;
+		this.useTime += 1;
 		this.timeBody.empty();
 		this.timeBody.text(this.timeConvert(this.time));
 		if(this.time == 0)
@@ -40,11 +42,20 @@ Timer.prototype = {
 	},
 	timeOver : function(){
 		//倒计时结束执行
-		this.complete();
+		this.complete(this.getUsedTime());
 		clearInterval(this.inId);
 	},
 	stop : function(){
 		clearInterval(this.inId);
+	},
+	getUsedTime : function(){
+		var minutes = Math.floor(this.useTime / 60);
+		var seconds = Math.floor(this.useTime % 60);
+		if(minutes<10)
+			minutes = "0"+minutes;
+		if(seconds<10)
+			seconds = "0"+seconds;
+		return minutes+":"+seconds;
 	}
 	
 }

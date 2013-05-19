@@ -99,7 +99,7 @@ Exam.prototype = {
 		if(index<this.na.length)
 			return this.na[index];
 	},
-	score : function(){
+	score : function(time){
 		if(this.isScore){
 			alert("请勿重复交卷");
 			return;
@@ -116,17 +116,38 @@ Exam.prototype = {
 			if(question.answer==question.myanswer){
 				score+=1;
 			}else {
-				var errorQuestion = new ErrorQuestion(question.num,question.id,question.myanswer);
-				this.ea.push(errorQuestion);
+//				var errorQuestion = new ErrorQuestion(question.num,question.id,question.myanswer);
+				if(question.myanswer!=null&&question.myanswer!=undefined){
+				this.ea.push(question.id);
+				}
 				var numObj = this.getNum(question.num);
 				numObj.find("#result").text(question.myanswer);
 				numObj.removeClass("answered").addClass("error");
 			}
 		}
 		//将错题和分数提交到服务器
+		var entity = this;
+		console.debug(entity.ea.join('@'));
+		console.debug(entity.postUrl);
+		var isSuccess =false;
+		mask.refreshMessage("正在提交分数..请稍后...");
+		$.ajax({
+		   type: "POST",
+		   url: entity.postUrl,
+		   data: {'score.score':score,'score.errorQuestion':entity.ea.join('@'),'score.time':time},
+		   async: false,
+		   success: function(msg){
+		    if(msg=='success')
+		    	isSuccess = true;
+		   }
+		});
+		if(isSuccess){
+			mask.refreshMessage("分数提交成功,您本次模拟考试得分 : "+score);
+			this.isScore = true;
+		}else {
+			mask.refreshMessage("分数提交失败,您本次模拟考试得分 : "+score);
+		}
 		
-		mask.refreshMessage("您本次练习得分 : "+score);
-		this.isScore = true;
 	},
 	getNext : function(){
 		//获得下一个问题

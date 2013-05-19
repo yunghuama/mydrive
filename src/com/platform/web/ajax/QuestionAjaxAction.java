@@ -48,5 +48,13 @@ public class QuestionAjaxAction {
 	public void setScore(Score score) {
 		this.score = score;
 	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
 	
 }
