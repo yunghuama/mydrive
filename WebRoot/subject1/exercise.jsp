@@ -42,12 +42,14 @@ $(document).ready(function(){
  	$("#reexam").bind("click",function(){
  		location.reload();
 	 });
+ 	var timer = new Timer({"time":45*60,"renderTo":"timeDiv","complete":function(){
+ 		exam.score();
+ 	}});
+ 	timer.start();
  	$("#commitexam").bind("click",function(){
  		exam.score();
+ 		timer.stop();
 	 });
- 	var timer = new Timer({"time":60*45,"renderTo":"timeDiv"});
- 	timer.start();
- 	
 });
 </script>
 </head>

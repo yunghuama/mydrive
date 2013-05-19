@@ -24,6 +24,10 @@ if(session.getAttribute("LoginBean")==null) {
 			$("a[name='id_1_1']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/exam/subject1/initExerciseQuestion.d");
 			});
+			
+			$("a[name='id_1_2']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/subject1/initSimulationQuestion.d");
+			});
 		});
 	
 	</script>
@@ -70,5 +74,5 @@ if(session.getAttribute("LoginBean")==null) {
   		</div>
   </div>
   <div id="content">
-  	<iframe id="mainFrame" class="mainFrame" src="subject1/simulation.jsp"></iframe>
+  	<iframe id="mainFrame" class="mainFrame" src="system/examlist.jsp"></iframe>
 </html>

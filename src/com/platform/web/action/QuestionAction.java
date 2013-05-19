@@ -61,6 +61,34 @@ public class QuestionAction extends ActionSupport {
 		}
 		return SUCCESS;
 	}
+	
+	/**
+	 * 初始化练习模式试题
+	 * @return
+	 */
+	public String initSimulationQuestion(){
+		try{
+		long t = System.currentTimeMillis();
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		Users users = loginBean.getUser();
+		if(StringConstant.questionType_car == StringConstant.questionType.get(users.getCartype()))
+			list = questionService.listQuestionRandom_car();
+		if(StringConstant.questionType_bus == StringConstant.questionType.get(users.getCartype()))
+			list = questionService.listQuestionRandom_bus();
+		if(StringConstant.questionType_truck == StringConstant.questionType.get(users.getCartype()))
+			list = questionService.listQuestionRandom_truck();
+		if(StringConstant.questionType_moto == StringConstant.questionType.get(users.getCartype()))
+			list = questionService.listQuestionRandom_moto();
+		System.out.println(System.currentTimeMillis()-t);
+		if(list==null||list.size()==0){
+			message = "暂无 "+users.getCartype()+" 类型的题库";
+			return "noquestion";
+		}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
 
 	public void importXls(){
 		System.out.println("导入");

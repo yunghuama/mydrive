@@ -97,6 +97,27 @@ create table schoolcard (
     createtime datetime
 );
 
+drop table if exists examscore;
+create table examscore (
+    id char(32) not null primary key,
+    studentId char(32) not null,
+    score int,
+    time varchar(5),
+    cartype char(2),
+    createtime datetime
+);
+
+drop table if exists question_wrong;
+create table question_wrong (
+    id char(32) not null primary key,
+    questionId  int not null,
+    studentId char(32) not null,
+    questiontype char(1),
+    count int,
+    updatetime datetime
+);
+
+
 alter table questions_car drop column question_vedio;
 alter table questions_car add column question_video varchar(20);
 alter table questions_bus drop column question_vedio;

@@ -63,5 +63,10 @@ public class QuestionService implements IService {
     	return questionDAO.listQuestionRandom_moto();
     }
     
-    
+    /**
+     * 保存考试成绩
+     */
+    public int saveExamScore(String studentId,int score,String time,String cartype){
+    	return questionDAO.saveExamScore(studentId, score, time, cartype);
+    }
 }

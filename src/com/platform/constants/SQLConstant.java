@@ -32,4 +32,8 @@ public final class SQLConstant {
 	public static final String SCHOOL_LOGIN = "select id from schoolcard where number = ? and password = ?";
 
 
+	/**
+	 * 考试成绩
+	 */
+	public static final String EXAMSCORE_SAVE = "insert into examscore(id,studentId,score,time,cartype,createtime) values(?,?,?,?,?,?)";
 }

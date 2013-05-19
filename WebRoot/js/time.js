@@ -40,7 +40,11 @@ Timer.prototype = {
 	},
 	timeOver : function(){
 		//倒计时结束执行
-		alert("倒计时结束");
+		this.complete();
+		clearInterval(this.inId);
+	},
+	stop : function(){
 		clearInterval(this.inId);
 	}
+	
 }

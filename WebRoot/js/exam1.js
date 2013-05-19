@@ -1,4 +1,4 @@
-/********科目一练习模式********/
+/********科目一模拟考试********/
 
 /**问题对象**/
 function Question(num,id,question,answer_a,answer_b,answer_c,answer_d,answer,img,vedio) {

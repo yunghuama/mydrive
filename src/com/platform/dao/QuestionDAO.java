@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.platform.constants.SQLConstant;
 import com.platform.domain.Question;
+import com.platform.util.UUIDGenerator;
 import com.platform.vo.QuestionVO;
 
 /**
@@ -152,6 +153,25 @@ public class QuestionDAO extends GenericDAO{
 				vo.setVideo(rs.getString("question_video"));
 				return vo;
 			}
+		});
+	}
+	
+	/**
+	 * 保存考试成绩
+	 * @param studentId
+	 * @param score
+	 * @param time
+	 * @param cartype
+	 * @return
+	 */
+	public int saveExamScore(String studentId,int score,String time,String cartype){
+		return jdbcTemplate.update(SQLConstant.EXAMSCORE_SAVE, new Object[]{
+				UUIDGenerator.generate(),
+				studentId,
+				score,
+				time,
+				cartype,
+				new Date()
 		});
 	}
 }
