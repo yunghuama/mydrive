@@ -12,5 +12,11 @@
       <result>/subject1/simulation.jsp</result>
       <result name="noquestion">/share/blank.jsp</result>
     </action>
+    <action name="section1" class="questionAction" method="section1">
+      <result>/subject1/section.jsp</result>
+    </action>
+    <action name="roderQuestion1" class="questionAction" method="roderQuestion1">
+      <result>/subject1/orderquestion.jsp</result>
+    </action>
   </package>
 </struts>

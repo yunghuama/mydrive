@@ -10,13 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 import com.platform.constants.StringConstant;
 import com.platform.dao.QuestionDAO;
 import com.platform.domain.Question;
+import com.platform.domain.Section;
+import com.platform.vo.Page;
 import com.platform.vo.QuestionVO;
 
 @Service
 public class QuestionService implements IService {
 
     private QuestionDAO questionDAO;
-
+    
     @Autowired
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
     	questionDAO = QuestionDAO.getInstance(jdbcTemplate);
@@ -75,6 +77,44 @@ public class QuestionService implements IService {
     			questionDAO.saveErrorQuestion(array[i], studentId, StringConstant.questionType.get(cartype));
     		}
     	}
+    	//剩余次数-1
+    	questionDAO.countDownOne(studentId);
     	return questionDAO.saveExamScore(studentId, score, time, cartype);
+    }
+    
+    
+    /**
+     * 获得章节
+     */
+    public List<Section> getSection(String type){
+    	return questionDAO.getSection(type);
+    }
+    
+    /**
+     * 根据类型分页获取小汽车
+     */
+    public Page<QuestionVO> listQuestionOrder_car(Page<QuestionVO> page,String category){
+    	return questionDAO.listQuestionOrder_car(page,category);
+    }
+    
+    /**
+     * 根据类型分页获取小汽车
+     */
+    public Page<QuestionVO> listQuestionOrder_bus(Page<QuestionVO> page,String category){
+    	return questionDAO.listQuestionOrder_car(page,category);
+    }
+    
+    /**
+     * 根据类型分页获取小汽车
+     */
+    public Page<QuestionVO> listQuestionOrder_truck(Page<QuestionVO> page,String category){
+    	return questionDAO.listQuestionOrder_car(page,category);
+    }
+    
+    /**
+     * 根据类型分页获取小汽车
+     */
+    public Page<QuestionVO> listQuestionOrder_moto(Page<QuestionVO> page,String category){
+    	return questionDAO.listQuestionOrder_car(page,category);
     }
 }

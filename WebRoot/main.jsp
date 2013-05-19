@@ -28,6 +28,10 @@ if(session.getAttribute("LoginBean")==null) {
 			$("a[name='id_1_2']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/exam/subject1/initSimulationQuestion.d");
 			});
+			
+			$("a[name='id_1_3']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/subject1/section1.d");
+			});
 		});
 	
 	</script>

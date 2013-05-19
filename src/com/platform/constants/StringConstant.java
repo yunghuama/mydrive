@@ -21,6 +21,10 @@ public final class StringConstant {
 	public static final int questionType_bus = 1;
 	public static final int questionType_truck = 2;
 	public static final int questionType_moto = 3;
+	
+	public static final String SECTION_TYPE_1 = "1";//科目1
+	public static final String SECTION_TYPE_3 = "3";//科目3
+	
 	public static Map<String,Integer> questionType = new HashMap<String,Integer>();
 	
 	public static final String NO_LOGIN = "nologin";

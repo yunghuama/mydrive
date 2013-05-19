@@ -12,9 +12,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 import com.platform.constants.StringConstant;
 import com.platform.domain.Question;
+import com.platform.domain.Section;
 import com.platform.domain.Users;
 import com.platform.service.QuestionService;
 import com.platform.service.UsersService;
@@ -24,7 +24,7 @@ import com.platform.vo.QuestionVO;
 
 @Controller
 @Scope("prototype")
-public class QuestionAction extends ActionSupport {
+public class QuestionAction extends GenericAction {
 
 	private static final long serialVersionUID = 1797119564459862667L;
 	private String message;
@@ -33,7 +33,8 @@ public class QuestionAction extends ActionSupport {
 	@Autowired
 	private QuestionService questionService;
 	private List<QuestionVO> list;
-	
+	private List<Section> sectionList;
+	private String categoryId;
 	/**
 	 * 初始化练习模式试题
 	 * @return
@@ -90,6 +91,42 @@ public class QuestionAction extends ActionSupport {
 		return SUCCESS;
 	}
 
+	/**
+	 * 
+	 * 获得章节科目一
+	 */
+	public String section1(){
+		sectionList = questionService.getSection(StringConstant.SECTION_TYPE_1);
+		return SUCCESS;
+	}
+	
+	/**
+	 * 
+	 * 获得章节科目一
+	 */
+	public String section3(){
+		sectionList = questionService.getSection(StringConstant.SECTION_TYPE_3);
+		return SUCCESS;
+	}
+	
+	public String roderQuestion1(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		Users users = loginBean.getUser();
+		if(StringConstant.questionType_car == StringConstant.questionType.get(users.getCartype()))
+			page = questionService.listQuestionOrder_car(page,categoryId);
+		if(StringConstant.questionType_bus == StringConstant.questionType.get(users.getCartype()))
+			page = questionService.listQuestionOrder_bus(page,categoryId);
+		if(StringConstant.questionType_truck == StringConstant.questionType.get(users.getCartype()))
+			page = questionService.listQuestionOrder_truck(page,categoryId);
+		if(StringConstant.questionType_moto == StringConstant.questionType.get(users.getCartype()))
+			page = questionService.listQuestionOrder_moto(page,categoryId);
+		if(list==null||list.size()==0){
+			message = "暂无 "+users.getCartype()+" 类型的题库";
+			return "noquestion";
+		}
+		return SUCCESS;
+	}
+	
 	public void importXls(){
 		System.out.println("导入");
 		try{
@@ -143,6 +180,14 @@ public class QuestionAction extends ActionSupport {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public List<Section> getSectionList() {
+		return sectionList;
+	}
+
+	public void setSectionList(List<Section> sectionList) {
+		this.sectionList = sectionList;
 	}
 
 }

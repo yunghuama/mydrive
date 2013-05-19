@@ -117,6 +117,13 @@ create table question_wrong (
     updatetime datetime
 );
 
+drop table if exists section;
+create table section (
+    id char(32) not null primary key,
+    name  varchar(60) not null,
+    category char(1) not null,
+    updatetime datetime
+);
 
 alter table questions_car drop column question_vedio;
 alter table questions_car add column question_video varchar(20);
@@ -130,3 +137,8 @@ alter table studentcard drop column remidtimes;
 alter table studentcard add column remindtimes int;
 
 insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50043','123','123','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
+
+insert into section(id,name,category) values('4028813518f35feb0118f392eee50045','section1',1);
+insert into section(id,name,category) values('4028813518f35feb0118f392eee50046','section2',1);
+insert into section(id,name,category) values('4028813518f35feb0118f392eee50047','section3',1);
+

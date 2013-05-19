@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.platform.domain.Score;
+import com.platform.domain.Users;
 import com.platform.service.QuestionService;
 import com.platform.util.LoginBean;
 
@@ -24,8 +25,11 @@ public class QuestionAjaxAction {
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		if(loginBean!=null){
 			int r = questionService.saveExamScore(loginBean.getUser().getId(), score.getScore(), score.getTime(), loginBean.getUser().getCartype(),score.getErrorQuestion());
-			if(r==1)
+			if(r==1){
 				result = "success";
+				Users users = loginBean.getUser();
+				users.setRemindtimes(users.getReminddays()-1);
+			}
 			else 
 				result = "error";
 		}else

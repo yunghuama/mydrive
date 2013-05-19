@@ -10,7 +10,10 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.platform.constants.SQLConstant;
 import com.platform.domain.Question;
+import com.platform.domain.Section;
+import com.platform.util.PageHelper;
 import com.platform.util.UUIDGenerator;
+import com.platform.vo.Page;
 import com.platform.vo.QuestionVO;
 
 /**
@@ -82,6 +85,40 @@ public class QuestionDAO extends GenericDAO{
 				return vo;
 			}
 		});
+	}
+	
+	
+	/**
+	 * 从小车题库根据类型分页获取题目
+	 * @return
+	 */
+	public Page<QuestionVO> listQuestionOrder_car(Page<QuestionVO> page,String category){
+		List<QuestionVO> list =  jdbcTemplate.query(SQLConstant.QUESTION_CAR_QUERY_PAGE,new Object[]{category,(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<QuestionVO>(){
+			@Override
+			public QuestionVO mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				QuestionVO vo = new QuestionVO();
+				vo.setId(rs.getInt("id"));
+				vo.setAnswer(rs.getString("answer"));
+				vo.setAnswer_a(rs.getString("answer_a"));
+				vo.setAnswer_b(rs.getString("answer_b"));
+				vo.setAnswer_c(rs.getString("answer_c"));
+				vo.setAnswer_d(rs.getString("answer_d"));
+				vo.setQuestion(rs.getString("question"));
+				vo.setImage(rs.getString("question_img"));
+				vo.setVideo(rs.getString("question_video"));
+				return vo;
+			}
+		});
+		int rowCount = queryForInt(SQLConstant.QUESTION_CAR_QUERY_ROWCOUNT,category);
+		page.setRowCount(rowCount);
+		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
+		
+		return page;
+	}
+	
+	public int queryForInt(String sql,Object args){
+		return jdbcTemplate.queryForInt(sql,args);
 	}
 	
 	/**
@@ -175,6 +212,13 @@ public class QuestionDAO extends GenericDAO{
 		});
 	}
 	
+	/**
+	 * 保存错误的题目
+	 * @param questionId
+	 * @param studentId
+	 * @param questiontype
+	 * @return
+	 */
 	public int saveErrorQuestion(String questionId,String studentId,int questiontype){
 		return jdbcTemplate.update(SQLConstant.ERRORQUESTION_SAVE, new Object[]{
 				UUIDGenerator.generate(),
@@ -182,6 +226,32 @@ public class QuestionDAO extends GenericDAO{
 				studentId,
 				questiontype,
 				new Date()
+		});
+	}
+	
+	/**
+	 * 使用次数减一
+	 * @param id
+	 * @return
+	 */
+	public int countDownOne(String id){
+		return jdbcTemplate.update(SQLConstant.STUDENT_COUNTDOWN,id);
+	}
+	
+	/**
+	 * 获得章节
+	 * @param type
+	 * @return
+	 */
+	public List<Section> getSection(String type){
+		return jdbcTemplate.query(SQLConstant.SECTION_QUERY_BY_TYPE,new Object[]{type}, new RowMapper<Section>(){
+			@Override
+			public Section mapRow(ResultSet rs, int arg1) throws SQLException {
+				Section section = new Section();
+				section.setId(rs.getString("id"));
+				section.setName(rs.getString("name"));
+				return section;
+			}
 		});
 	}
 }

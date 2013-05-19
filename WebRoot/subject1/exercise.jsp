@@ -40,15 +40,19 @@ $(document).ready(function(){
 		 exam.setClickBorder(exam.getNum(question.num));
 	 });
  	$("#reexam").bind("click",function(){
- 		location.reload();
+ 		if(confirm("您确定要重新考试吗?")){
+ 			location.reload();
+ 		}
 	 });
  	var timer = new Timer({"time":45*60,"renderTo":"timeDiv","complete":function(){
  		exam.score();
  	}});
  	timer.start();
  	$("#commitexam").bind("click",function(){
- 		exam.score();
- 		timer.stop();
+ 		if(confirm("您确定要交卷吗?")){
+ 			exam.score();
+ 			timer.stop();
+ 		}
 	 });
 });
 </script>
