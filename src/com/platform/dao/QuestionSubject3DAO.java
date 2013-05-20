@@ -126,7 +126,7 @@ public class QuestionSubject3DAO extends GenericDAO{
 	 * @param questiontype
 	 * @return
 	 */
-	public int saveErrorQuestion(String questionId,String studentId,int questiontype){
+	public int saveErrorQuestion(String questionId,String studentId){
 		return jdbcTemplate.update(SQLConstant.ERRORQUESTION3_SAVE, new Object[]{
 				UUIDGenerator.generate(),
 				questionId,
@@ -164,7 +164,7 @@ public class QuestionSubject3DAO extends GenericDAO{
 	/**
 	 * 保存标记的题目
 	 */
-	public int saveMarkQuestion(int questionId,String studentId,int questionType){
+	public int saveMarkQuestion(int questionId,String studentId){
 		return jdbcTemplate.update(SQLConstant.MARK3_QUESTION_SAVE, new Object[]{
 			UUIDGenerator.generate(),
 			questionId,

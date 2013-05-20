@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.platform.domain.Score;
 import com.platform.domain.Users;
 import com.platform.service.QuestionService;
+import com.platform.service.QuestionSubject3Service;
 import com.platform.util.LoginBean;
 
 @Controller
@@ -17,6 +18,8 @@ public class QuestionAjaxAction {
 
     @Autowired
     private QuestionService questionService;
+    @Autowired
+    private QuestionSubject3Service questionSubject3Service;
     
     private Score score;
     private String result;
@@ -51,6 +54,44 @@ public class QuestionAjaxAction {
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		if(loginBean!=null){
 			int flag = 	questionService.saveMarkQuestion(questionId, loginBean.getUser().getId(), loginBean.getUser().getCartype());
+			if(flag==1)
+				result = "success";
+			else 
+				result = "error";
+		}
+		return  Action.SUCCESS;
+	}
+	
+	/***************************科目三*******************************/
+	
+	  /**
+     * 保存成绩
+     * @return
+     */
+	public String saveScore3(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		if(loginBean!=null){
+			int r = questionSubject3Service.saveExamScore(loginBean.getUser().getId(), score.getScore(), score.getTime(), loginBean.getUser().getCartype());
+			if(r==1){
+				result = "success";
+				Users users = loginBean.getUser();
+				users.setRemindtimes(users.getReminddays()-1);
+			}
+			else 
+				result = "error";
+		}else
+			result = "error";
+		return Action.SUCCESS;
+	}
+	
+	/**
+	 * 标记题目
+	 * @return
+	 */
+	public String saveMarkQuestion3(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		if(loginBean!=null){
+			int flag = 	questionSubject3Service.saveMarkQuestion(questionId, loginBean.getUser().getId());
 			if(flag==1)
 				result = "success";
 			else 

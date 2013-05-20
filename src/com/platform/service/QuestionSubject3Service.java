@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.platform.constants.StringConstant;
 import com.platform.dao.QuestionSubject3DAO;
 import com.platform.domain.Section;
 import com.platform.vo.Page;
@@ -38,16 +37,16 @@ public class QuestionSubject3Service implements IService {
      * 保存考试成绩
      */
     @Transactional(rollbackFor={Exception.class,RuntimeException.class})
-    public int saveExamScore(String studentId,int score,String time,String cartype,String errorQuestions){
+    public int saveExamScore(String studentId,int score,String time,String errorQuestions){
     	if(errorQuestions!=null&&!errorQuestions.equals("")){
     		String array[] = errorQuestions.split("@");
     		for(int i=0;i<array.length;i++){
-    			questionDAO.saveErrorQuestion(array[i], studentId, StringConstant.questionType.get(cartype));
+    			questionDAO.saveErrorQuestion(array[i], studentId);
     		}
     	}
     	//剩余次数-1
     	questionDAO.countDownOne(studentId);
-    	return questionDAO.saveExamScore(studentId, score, time, cartype);
+    	return questionDAO.saveExamScore(studentId, score, time);
     }
     
     /*****************************练习模式|模拟考试结束*********************************/
@@ -73,11 +72,11 @@ public class QuestionSubject3Service implements IService {
      * 保存标记问题
      * @return
      */
-    public int saveMarkQuestion(int questionId,String studentId,String cartype){
+    public int saveMarkQuestion(int questionId,String studentId){
     	//首先判断该记录是否存在
-    	if(questionDAO.hasMarkQuestion(questionId, studentId, StringConstant.questionType.get(cartype)))
+    	if(questionDAO.hasMarkQuestion(questionId, studentId))
     		return 1;
-    	return questionDAO.saveMarkQuestion(questionId, studentId, StringConstant.questionType.get(cartype));
+    	return questionDAO.saveMarkQuestion(questionId, studentId);
     }
     
     /*****************************顺序练习开始结束*********************************/
@@ -87,18 +86,16 @@ public class QuestionSubject3Service implements IService {
     /**
      * 查询已标记题car
      */
-    public Page<QuestionVO> listMarkQuestion(Page<QuestionVO> page,String studentId,String cartype){
-    	if(StringConstant.questionType_car==StringConstant.questionType.get(cartype))
-    		return questionDAO.listMarkQuestion(page,studentId,StringConstant.questionType.get(cartype));
-    	return page;
+    public Page<QuestionVO> listMarkQuestion(Page<QuestionVO> page,String studentId){
+    	return questionDAO.listMarkQuestion(page,studentId);
     }
     
     
     /**
      * 删除已标记问题
      */
-    public int delMarkQuestion(int questionId,String studentId,String cartype){
-    	return questionDAO.delMarkQuestion(questionId,studentId,StringConstant.questionType.get(cartype));
+    public int delMarkQuestion(int questionId,String studentId){
+    	return questionDAO.delMarkQuestion(questionId,studentId);
     }
     
     /*****************************已标记题结束*********************************/
@@ -106,10 +103,8 @@ public class QuestionSubject3Service implements IService {
     
     /*****************************错题练习开始*********************************/
     
-    public Page<QuestionVO> listWrongQuestion(Page<QuestionVO> page,String studentId,String cartype){
-    	if(StringConstant.questionType_car==StringConstant.questionType.get(cartype))
-    		return questionDAO.listWrongQuestion(page,studentId,StringConstant.questionType.get(cartype));
-    	return page;
+    public Page<QuestionVO> listWrongQuestion(Page<QuestionVO> page,String studentId){
+    	 return questionDAO.listWrongQuestion(page,studentId);
     }
     
     /*****************************错题练习结束*********************************/

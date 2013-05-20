@@ -38,7 +38,7 @@ $(document).ready(function(){
 		$("form").submit();
 	})
 	$(".mark a").bind("click",function(){
-		$("form").attr("action","<%=path %>/exam/subject1/delMarkQuestion.d");
+		$("form").attr("action","<%=path %>/exam/subject3/delMarkQuestion.d");
 		$("#questionId").val($(this).attr("id"));
 		$("form").submit();
 	});
@@ -47,7 +47,7 @@ $(document).ready(function(){
 </head>
 <body style="overflow:auto">
 	 <div id="main">
-			<div id="title"><span>已标记题:科目一</span></div>
+			<div id="title"><span>已标记题:科目三</span></div>
 			<div id="sectionContent">
 			 <s:iterator id="question" value="page.list" status="i">
 			<div class="question">
@@ -73,7 +73,7 @@ $(document).ready(function(){
 			</div>
 			</s:iterator>
 			<div id="pageBar">
-			<form action="<%=path %>/exam/subject1/markQuestion1.d">
+			<form action="<%=path %>/exam/subject3/markQuestion.d">
 			<s:hidden name="categoryId"/>
 			<s:hidden name="questionId" id="questionId"/>
 			<s:hidden id="maxPage" name="page.maxPage"/>

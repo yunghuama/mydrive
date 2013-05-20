@@ -69,7 +69,7 @@ $(document).ready(function(){
 	 <div id="infoTitle"><span>考生信息</span></div>
 	 <div id="info">
 	 	<table id="infoTable" align="center" width="100%">
-	 		<tr><td>题型：</td><td>科目一</td></tr>
+	 		<tr><td>题型：</td><td>科目三</td></tr>
 	 		<tr><td>模式：</td><td>练习模式</td></tr>
 	 		<tr><td>姓名：</td><td><s:property value="#session['LoginBean'].user.name"/></td></tr>
 	 		<tr><td>车型：</td><td><s:property value="#session['LoginBean'].user.cartype"/></td></tr>

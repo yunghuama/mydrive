@@ -20,7 +20,7 @@ if(session.getAttribute("LoginBean")==null) {
 			//初始化菜单
 			initNav();
 			//添加点击效果
-			
+			//科目一
 			$("a[name='id_1_1']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/exam/subject1/initExerciseQuestion.d");
 			});
@@ -41,6 +41,26 @@ if(session.getAttribute("LoginBean")==null) {
 				$("#mainFrame").attr("src","<%=path%>/exam/subject1/listWrongQuestion.d");
 			});
 			
+			//科目三
+			$("a[name='id_3_1']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/subject3/initExerciseQuestion.d");
+			});
+			
+			$("a[name='id_3_2']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/subject3/initSimulationQuestion.d");
+			});
+			
+			$("a[name='id_3_3']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/subject3/section.d");
+			});
+			
+			$("a[name='id_3_4']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/subject3/markQuestion.d");
+			});
+			
+			$("a[name='id_3_5']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/subject3/listWrongQuestion.d");
+			});
 		});
 	
 	</script>

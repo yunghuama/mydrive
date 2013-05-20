@@ -14,7 +14,7 @@
 <script type="text/javascript" src="<%=path%>/js/time.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	var exam = new Exam({'selectGridRenderTo':'questionnumber','questionRenderTo':'questionContent','richMediaRenderTo':'questionImage','postUrl':'<%=path%>/system/ajax/saveScore.d'});
+	var exam = new Exam({'selectGridRenderTo':'questionnumber','questionRenderTo':'questionContent','richMediaRenderTo':'questionImage','postUrl':'<%=path%>/system/ajax/saveScore3.d'});
 	//添加题目
 	 <s:iterator id="question" value="list" status="i">
 	 var question = new Question('<s:property value="#i.index"/>','<s:property value="#question.id"/>','<s:property value="#question.question"/>','<s:property value="#question.answer_a"/>','<s:property value="#question.answer_b"/>','<s:property value="#question.answer_c"/>','<s:property value="#question.answer_d"/>','<s:property value="#question.answer"/>','<s:property value="#question.image"/>','<s:property value="#question.vedio"/>');
@@ -69,7 +69,7 @@ $(document).ready(function(){
 	 <div id="infoTitle"><span>考生信息</span></div>
 	 <div id="info">
 	 	<table id="infoTable" align="center" width="100%">
-	 		<tr><td>题型：</td><td>科目一</td></tr>
+	 		<tr><td>题型：</td><td>科目三</td></tr>
 	 		<tr><td>模式：</td><td>模拟模式</td></tr>
 	 		<tr><td>姓名：</td><td><s:property value="#session['LoginBean'].user.name"/></td></tr>
 	 		<tr><td>车型：</td><td><s:property value="#session['LoginBean'].user.cartype"/></td></tr>

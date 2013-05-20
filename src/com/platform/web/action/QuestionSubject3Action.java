@@ -17,7 +17,7 @@ import com.platform.constants.StringConstant;
 import com.platform.domain.Question;
 import com.platform.domain.Section;
 import com.platform.domain.Users;
-import com.platform.service.QuestionService;
+import com.platform.service.QuestionSubject3Service;
 import com.platform.service.UsersService;
 import com.platform.util.LoginBean;
 import com.platform.vo.QuestionVO;
@@ -32,7 +32,7 @@ public class QuestionSubject3Action extends GenericAction {
 	@Autowired
 	private UsersService usersService;
 	@Autowired
-	private QuestionService questionService;
+	private QuestionSubject3Service questionService;
 	private List<QuestionVO> list;
 	private List<Section> sectionList;
 	private String categoryId;
@@ -43,20 +43,9 @@ public class QuestionSubject3Action extends GenericAction {
 	 */
 	public String initExerciseQuestion(){
 		try{
-		long t = System.currentTimeMillis();
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		Users users = loginBean.getUser();
-		if(StringConstant.questionType_car == StringConstant.questionType.get(users.getCartype()))
-			list = questionService.listQuestionRandom_car();
-		if(StringConstant.questionType_bus == StringConstant.questionType.get(users.getCartype()))
-			list = questionService.listQuestionRandom_bus();
-		if(StringConstant.questionType_truck == StringConstant.questionType.get(users.getCartype()))
-			list = questionService.listQuestionRandom_truck();
-		if(StringConstant.questionType_moto == StringConstant.questionType.get(users.getCartype()))
-			list = questionService.listQuestionRandom_moto();
-		System.out.println(System.currentTimeMillis()-t);
+			list = questionService.listQuestionRandom();
 		if(list==null||list.size()==0){
-			message = "暂无 "+users.getCartype()+" 类型的题库";
+			message = "暂无该类型的题库";
 			return "noquestion";
 		}
 		}catch(Exception e){
@@ -66,25 +55,14 @@ public class QuestionSubject3Action extends GenericAction {
 	}
 	
 	/**
-	 * 初始化练习模式试题
+	 * 初始化模拟考试
 	 * @return
 	 */
 	public String initSimulationQuestion(){
 		try{
-		long t = System.currentTimeMillis();
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		Users users = loginBean.getUser();
-		if(StringConstant.questionType_car == StringConstant.questionType.get(users.getCartype()))
-			list = questionService.listQuestionRandom_car();
-		if(StringConstant.questionType_bus == StringConstant.questionType.get(users.getCartype()))
-			list = questionService.listQuestionRandom_bus();
-		if(StringConstant.questionType_truck == StringConstant.questionType.get(users.getCartype()))
-			list = questionService.listQuestionRandom_truck();
-		if(StringConstant.questionType_moto == StringConstant.questionType.get(users.getCartype()))
-			list = questionService.listQuestionRandom_moto();
-		System.out.println(System.currentTimeMillis()-t);
+			list = questionService.listQuestionRandom();
 		if(list==null||list.size()==0){
-			message = "暂无 "+users.getCartype()+" 类型的题库";
+			message = "暂无该类型的题库";
 			return "noquestion";
 		}
 		}catch(Exception e){
@@ -97,32 +75,15 @@ public class QuestionSubject3Action extends GenericAction {
 	 * 
 	 * 获得章节科目一
 	 */
-	public String section1(){
-		sectionList = questionService.getSection(StringConstant.SECTION_TYPE_1);
-		return SUCCESS;
-	}
-	
-	/**
-	 * 
-	 * 获得章节科目一
-	 */
-	public String section3(){
+	public String section(){
 		sectionList = questionService.getSection(StringConstant.SECTION_TYPE_3);
 		return SUCCESS;
 	}
 	
-	public String orderQuestion1(){
+	
+	public String orderQuestion(){
 		try{
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		Users users = loginBean.getUser();
-		if(StringConstant.questionType_car == StringConstant.questionType.get(users.getCartype()))
-			page = questionService.listQuestionOrder_car(page,categoryId);
-		if(StringConstant.questionType_bus == StringConstant.questionType.get(users.getCartype()))
-			page = questionService.listQuestionOrder_bus(page,categoryId);
-		if(StringConstant.questionType_truck == StringConstant.questionType.get(users.getCartype()))
-			page = questionService.listQuestionOrder_truck(page,categoryId);
-		if(StringConstant.questionType_moto == StringConstant.questionType.get(users.getCartype()))
-			page = questionService.listQuestionOrder_moto(page,categoryId);
+			page = questionService.listQuestionOrder(page,categoryId);
 		
 		}catch(Exception e){
 			e.printStackTrace();
@@ -136,7 +97,7 @@ public class QuestionSubject3Action extends GenericAction {
 	 */
 	public String markQuestion1(){
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		page = questionService.listMarkQuestion(page, loginBean.getUser().getId(), loginBean.getUser().getCartype());
+		page = questionService.listMarkQuestion(page, loginBean.getUser().getId());
 		return SUCCESS;
 	}
 	
@@ -147,7 +108,7 @@ public class QuestionSubject3Action extends GenericAction {
 	 */
 	public String delMarkQuestion(){
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		questionService.delMarkQuestion(questionId,loginBean.getUser().getId(),loginBean.getUser().getCartype());
+		questionService.delMarkQuestion(questionId,loginBean.getUser().getId());
 		return  Action.SUCCESS;
 	}
 	
@@ -156,7 +117,7 @@ public class QuestionSubject3Action extends GenericAction {
 	 */
 	public String listWrongQuestion(){
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		page = questionService.listWrongQuestion(page, loginBean.getUser().getId(), loginBean.getUser().getCartype());
+		page = questionService.listWrongQuestion(page, loginBean.getUser().getId());
 		return Action.SUCCESS;
 	}
 	
@@ -191,7 +152,7 @@ public class QuestionSubject3Action extends GenericAction {
 				q.setAnswer(answer.getStringCellValue());
 				q.setCategory(category==null? "":category.getStringCellValue());
 				q.setQuestion_img(image==null?"":image.getStringCellValue());
-				questionService.saveQuestion_car(q);
+//				questionService.saveQuestion_car(q);
 			}
 			
 		}catch(Exception e){

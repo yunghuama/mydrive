@@ -41,7 +41,7 @@ $(document).ready(function(){
 		var id = $(this).attr("id");
 		$.ajax({
 		type: "POST",
-		url: "<%=path%>/system/ajax/saveMarkQuestion.d",
+		url: "<%=path%>/system/ajax/saveMarkQuestion3.d",
 		data: "questionId="+id,
 		success: function(msg){
 		     alert( "Data Saved: " + msg );
@@ -53,7 +53,7 @@ $(document).ready(function(){
 </head>
 <body style="overflow:auto">
 	 <div id="main">
-			<div id="title"><span>顺序练习:科目一</span></div>
+			<div id="title"><span>顺序练习:科目三</span></div>
 			<div id="sectionContent">
 			 <s:iterator id="question" value="page.list" status="i">
 			<div class="question">
@@ -79,7 +79,7 @@ $(document).ready(function(){
 			</div>
 			</s:iterator>
 			<div id="pageBar">
-			<form action="<%=path %>/exam/subject1/orderQuestion1.d">
+			<form action="<%=path %>/exam/subject3/orderQuestion.d">
 			<s:hidden name="categoryId"/>
 			<s:hidden id="maxPage" name="page.maxPage"/>
 			<s:hidden id="currPage" name="page.currPage"/>
