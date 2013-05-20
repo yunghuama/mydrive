@@ -70,6 +70,23 @@ create table questions_motorcycle(
 	createtime datetime
 );
 
+drop table if exists questions3;
+create table questions3(
+	id char(32) not null primary key,
+	code varchar(10) not null,
+	question varchar(150) not null,
+	answer_a varchar(80) not null,
+	answer_b varchar(80) not null,
+	answer_c varchar(80),
+	answer_d varchar(80),
+	answer varchar(4) not null,
+	question_img varchar(20),
+	question_video varchar(20),
+	tips varchar(80),
+	category varchar(50),
+	createtime datetime
+);
+
 drop table if exists studentcard;
 create table studentcard (
     id char(32) not null primary key,
@@ -107,8 +124,28 @@ create table examscore (
     createtime datetime
 );
 
+drop table if exists examscore3;
+create table examscore3 (
+    id char(32) not null primary key,
+    studentId char(32) not null,
+    score int,
+    time varchar(5),
+    cartype char(2),
+    createtime datetime
+);
+
 drop table if exists question_wrong;
 create table question_wrong (
+    id char(32) not null primary key,
+    questionId  int not null,
+    studentId char(32) not null,
+    questiontype char(1),
+    count int,
+    updatetime datetime
+);
+
+drop table if exists question_wrong3;
+create table question_wrong3 (
     id char(32) not null primary key,
     questionId  int not null,
     studentId char(32) not null,
@@ -127,6 +164,15 @@ create table section (
 
 drop table if exists markQuestion;
 create table markQuestion (
+    id char(32) not null primary key,
+    questionId int not null,
+    studentId char(32) not null,
+    questiontype char(1) not null,
+    createtime datetime
+);
+
+drop table if exists markQuestion3;
+create table markQuestion3 (
     id char(32) not null primary key,
     questionId int not null,
     studentId char(32) not null,

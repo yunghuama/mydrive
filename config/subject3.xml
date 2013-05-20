@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+  <package name="subjct3" extends="role-default" namespace="/exam/subject3">
+  	<action name="initExerciseQuestion" class="questionSubject3Action" method="initExerciseQuestion">
+      <result>/subject3/exercise.jsp</result>
+      <result name="noquestion">/share/blank.jsp</result>
+    </action>
+    <action name="initSimulationQuestion" class="questionSubject3Action" method="initSimulationQuestion">
+      <result>/subject3/simulation.jsp</result>
+      <result name="noquestion">/share/blank.jsp</result>
+    </action>
+    <action name="section" class="questionSubject3Action" method="section">
+      <result>/subject3/section.jsp</result>
+    </action>
+    <action name="orderQuestion" class="questionSubject3Action" method="orderQuestion">
+      <result>/subject3/orderquestion.jsp</result>
+    </action>
+    <action name="markQuestion" class="questionSubject3Action" method="markQuestion">
+      <result>/subject3/markquestion.jsp</result>
+    </action>
+    <action name="delMarkQuestion" class="questionSubject3Action" method="delMarkQuestion">
+      <result type="redirect">/exam/subject3/markQuestion1.d</result>
+    </action>
+    <action name="listWrongQuestion" class="questionSubject3Action" method="listWrongQuestion">
+      <result>/subject3/wrongquestion.jsp</result>
+    </action>
+  </package>
+</struts>

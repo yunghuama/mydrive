@@ -11,7 +11,7 @@ public final class SQLConstant {
 	private SQLConstant(){}
 	
 	/**
-	 * 题库
+	 * 题库 科目一
 	 */
 	public static final String QUESTION_CAR_SAVE = "insert into questions_car(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,createtime) values(?,?,?,?,?,?,?,?,?,?,?)";
 	
@@ -29,7 +29,15 @@ public final class SQLConstant {
 	public static final String QUESTION_MOTO_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_moto where category = ? limit ?,?";
 	public static final String QUESTION_MOTO_QUERY_ROWCOUNT = "select count(id) from questions_moto where category = ?";
 
-	public static final String QUESTION_CAR_QUERY_IDS = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_car where id in (?)";
+	
+	/**
+	 * 题库 科目三
+	 */
+	public static final String QUESTION3_QUERY_RANDOM = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions3 order by rand() limit ?";
+	public static final String QUESTION3_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions3 where category = ? limit ?,?";
+	public static final String QUESTION3_QUERY_ROWCOUNT = "select count(id) from questions3 where category = ?";
+
+	
 	
 	/**
 	 * 学员
@@ -37,6 +45,7 @@ public final class SQLConstant {
 	public static final String STUDENT_LOGIN = "select id,name,remindtimes,begindate,identity,cartype from studentcard where number = ? and password = ?";
 	public static final String STUDENT_UPDATEINFO = "update studentcard set name=?,identity=?,age=?,sex=?,cartype=?,phonenumber=? where id=?";
 	public static final String STUDENT_COUNTDOWN = "update studentcard set remindtimes = remindtimes-1 where id = ?";
+	
 	/**
 	 * 学校
 	 */
@@ -47,6 +56,11 @@ public final class SQLConstant {
 	 * 考试成绩
 	 */
 	public static final String EXAMSCORE_SAVE = "insert into examscore(id,studentId,score,time,cartype,createtime) values(?,?,?,?,?,?)";
+
+	/**
+	 * 考试成绩 科目三
+	 */
+	public static final String EXAMSCORE3_SAVE = "insert into examscore3(id,studentId,score,time,createtime) values(?,?,?,?,?)";
 
 	
 	/**
@@ -60,9 +74,17 @@ public final class SQLConstant {
 	public static final String WRONG_QUESTION_TRUCK_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_truck where id in (select questionid from question_wrong where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";	
 	public static final String WRONG_QUESTION_MOTO_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_moto where id in (select questionid from question_wrong where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";	
 	
+	/**
+	 * 错题 科目三
+	 */
+	public static final String ERRORQUESTION3_SAVE = "insert question_wrong3(id,questionId,studentId,updateTime) values(?,?,?,?)";
+	public static final String WRONG_QUESTION3_QUERY_ROWCOUNT = "select count(id) from question_wrong3 where studentid = ?";
+	public static final String WRONG_QUESTION3_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions3 where id in (select questionid from question_wrong3 where studentid = ?  order by createtime desc ) limit ?,?";	
+
+	
 	
 	/**
-	 * 章节
+	 * 章节科目一
 	 */
 	public static final String SECTION_QUERY_BY_TYPE = "select * from section where category = ?";
 	
@@ -74,13 +96,21 @@ public final class SQLConstant {
 	public static final String MARK_QUESTION_DEL = "delete from markquestion where questionid = ? and studentid = ? and questiontype = ?";
 	public static final String MARK_QUESTION_ISEXISTS = "select count(id) from markquestion where questionid = ? and studentid = ? and questiontype = ?";
 	public static final String MARK_QUESTION_QUERY_ROWCOUNT = "select count(id) from markquestion where studentid = ? and questiontype = ?";
-	
+
 	
 	public static final String MARK_QUESTION_CAR_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_car where id in (select questionid from markquestion where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";	
 	public static final String MARK_QUESTION_BUS_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_bus where id in (select questionid from markquestion where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";	
 	public static final String MARK_QUESTION_TRUCK_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_truck where id in (select questionid from markquestion where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";	
 	public static final String MARK_QUESTION_MOTO_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_moto where id in (select questionid from markquestion where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";	
 	
-	
+	/**
+	 * 标记题科目三
+	 */
+	public static final String MARK3_QUESTION_SAVE = "insert into markquestion3(id,questionid,studentid,createtime) values(?,?,?,?)";
+	public static final String MARK3_QUESTION_DEL = "delete from markquestion3 where questionid = ? and studentid = ?";
+	public static final String MARK3_QUESTION_ISEXISTS = "select count(id) from markquestion3 where questionid = ? and studentid = ?";
+	public static final String MARK3_QUESTION_QUERY_ROWCOUNT = "select count(id) from markquestion3 where studentid = ?";
+
+	public static final String MARK3_QUESTION_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions3 where id in (select questionid from markquestion3 where studentid = ?  order by createtime desc ) limit ?,?";
 	
 }
