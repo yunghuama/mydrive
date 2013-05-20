@@ -11,7 +11,16 @@
         <param name="root">result</param>
       </result>
     </action>
-
+	<action name="saveMarkQuestion" class="questionAjaxAction" method="saveMarkQuestion">
+      <result type="json">
+        <param name="root">result</param>
+      </result>
+    </action>
+    <action name="delMarkQuestion" class="questionAjaxAction" method="delMarkQuestion">
+      <result type="json">
+        <param name="root">result</param>
+      </result>
+    </action>
   </package>
   
 </struts>

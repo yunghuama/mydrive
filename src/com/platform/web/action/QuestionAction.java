@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.platform.constants.StringConstant;
 import com.platform.domain.Question;
@@ -35,6 +36,7 @@ public class QuestionAction extends GenericAction {
 	private List<QuestionVO> list;
 	private List<Section> sectionList;
 	private String categoryId;
+	private int questionId;
 	/**
 	 * 初始化练习模式试题
 	 * @return
@@ -109,9 +111,8 @@ public class QuestionAction extends GenericAction {
 		return SUCCESS;
 	}
 	
-	public String roderQuestion1(){
+	public String orderQuestion1(){
 		try{
-		
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		Users users = loginBean.getUser();
 		if(StringConstant.questionType_car == StringConstant.questionType.get(users.getCartype()))
@@ -127,6 +128,36 @@ public class QuestionAction extends GenericAction {
 			e.printStackTrace();
 		}
 		return SUCCESS;
+	}
+	
+	/**
+	 * 获得已标记题
+	 * @return
+	 */
+	public String markQuestion1(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		page = questionService.listMarkQuestion(page, loginBean.getUser().getId(), loginBean.getUser().getCartype());
+		return SUCCESS;
+	}
+	
+	
+	/*
+	 * 
+	 * 删除标记题目
+	 */
+	public String delMarkQuestion(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		questionService.delMarkQuestion(questionId,loginBean.getUser().getId(),loginBean.getUser().getCartype());
+		return  Action.SUCCESS;
+	}
+	
+	/**
+	 * 获得错题
+	 */
+	public String listWrongQuestion(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		page = questionService.listWrongQuestion(page, loginBean.getUser().getId(), loginBean.getUser().getCartype());
+		return Action.SUCCESS;
 	}
 	
 	public void importXls(){
@@ -199,5 +230,14 @@ public class QuestionAction extends GenericAction {
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
+
+	public int getQuestionId() {
+		return questionId;
+	}
+
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
+	}
+
 
 }

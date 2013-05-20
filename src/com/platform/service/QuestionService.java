@@ -7,8 +7,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.platform.constants.SQLConstant;
 import com.platform.constants.StringConstant;
+import com.platform.dao.QuestionBusDAO;
+import com.platform.dao.QuestionCarDAO;
 import com.platform.dao.QuestionDAO;
+import com.platform.dao.QuestionMotoDAO;
+import com.platform.dao.QuestionTruckDAO;
 import com.platform.domain.Question;
 import com.platform.domain.Section;
 import com.platform.vo.Page;
@@ -18,10 +23,18 @@ import com.platform.vo.QuestionVO;
 public class QuestionService implements IService {
 
     private QuestionDAO questionDAO;
+    private QuestionBusDAO questionBusDAO;
+    private QuestionCarDAO questionCarDAO;
+    private QuestionTruckDAO questionTruckDAO;
+    private QuestionMotoDAO questionMotoDAO;
     
     @Autowired
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
     	questionDAO = QuestionDAO.getInstance(jdbcTemplate);
+    	questionBusDAO = QuestionBusDAO.getInstance(jdbcTemplate);
+    	questionCarDAO = QuestionCarDAO.getInstance(jdbcTemplate);
+    	questionTruckDAO = QuestionTruckDAO.getInstance(jdbcTemplate);
+    	questionMotoDAO = QuestionMotoDAO.getInstance(jdbcTemplate);
     }
 
     /**
@@ -31,15 +44,18 @@ public class QuestionService implements IService {
      */
     @Transactional(rollbackFor={Exception.class,RuntimeException.class})
     public int saveQuestion_car(Question question){
-    	return questionDAO.saveQuestion_Car(question);
+    	return questionCarDAO.saveQuestion_Car(question);
     }
    
+    
+    /*****************************练习模式|模拟考试开始*********************************/
+    
     /**
      * 随机获得小车的题目
      * @return
      */
     public List<QuestionVO> listQuestionRandom_car(){
-    	return questionDAO.listQuestionRandom_Car();
+    	return questionCarDAO.listQuestionRandom_Car();
     }
     
     /**
@@ -47,7 +63,7 @@ public class QuestionService implements IService {
      * 
      */
     public List<QuestionVO> listQuestionRandom_bus(){
-    	return questionDAO.listQuestionRandom_bus();
+    	return questionBusDAO.listQuestionRandom_bus();
     }
     
     /**
@@ -55,7 +71,7 @@ public class QuestionService implements IService {
      * 
      */
     public List<QuestionVO> listQuestionRandom_truck(){
-    	return questionDAO.listQuestionRandom_truck();
+    	return questionTruckDAO.listQuestionRandom_truck();
     }
     
     /**
@@ -63,7 +79,7 @@ public class QuestionService implements IService {
      * 
      */
     public List<QuestionVO> listQuestionRandom_moto(){
-    	return questionDAO.listQuestionRandom_moto();
+    	return questionMotoDAO.listQuestionRandom_moto();
     }
     
     /**
@@ -82,39 +98,100 @@ public class QuestionService implements IService {
     	return questionDAO.saveExamScore(studentId, score, time, cartype);
     }
     
+    /*****************************练习模式|模拟考试结束*********************************/
     
+    
+    /*****************************顺序练习开始*********************************/
     /**
      * 获得章节
      */
     public List<Section> getSection(String type){
     	return questionDAO.getSection(type);
     }
-    
+ 
     /**
      * 根据类型分页获取小汽车
      */
     public Page<QuestionVO> listQuestionOrder_car(Page<QuestionVO> page,String category){
-    	return questionDAO.listQuestionOrder_car(page,category);
+    	return questionCarDAO.listQuestionOrder_car(page,category);
     }
     
     /**
-     * 根据类型分页获取小汽车
+     * 根据类型分页获取客车
      */
     public Page<QuestionVO> listQuestionOrder_bus(Page<QuestionVO> page,String category){
-    	return questionDAO.listQuestionOrder_car(page,category);
+    	return questionBusDAO.listQuestionOrder_bus(page,category);
     }
     
     /**
-     * 根据类型分页获取小汽车
+     * 根据类型分页获取卡车
      */
     public Page<QuestionVO> listQuestionOrder_truck(Page<QuestionVO> page,String category){
-    	return questionDAO.listQuestionOrder_car(page,category);
+    	return questionTruckDAO.listQuestionOrder_truck(page,category);
     }
     
     /**
-     * 根据类型分页获取小汽车
+     * 根据类型分页获取摩托车
      */
     public Page<QuestionVO> listQuestionOrder_moto(Page<QuestionVO> page,String category){
-    	return questionDAO.listQuestionOrder_car(page,category);
+    	return questionMotoDAO.listQuestionOrder_moto(page,category);
     }
+    
+    /**
+     * 保存标记问题
+     * @return
+     */
+    public int saveMarkQuestion(int questionId,String studentId,String cartype){
+    	//首先判断该记录是否存在
+    	if(questionDAO.hasMarkQuestion(questionId, studentId, StringConstant.questionType.get(cartype)))
+    		return 1;
+    	return questionDAO.saveMarkQuestion(questionId, studentId, StringConstant.questionType.get(cartype));
+    }
+    
+    /*****************************顺序练习开始结束*********************************/
+    
+    
+    /*****************************已标记题开始*********************************/
+    /**
+     * 查询已标记题car
+     */
+    public Page<QuestionVO> listMarkQuestion(Page<QuestionVO> page,String studentId,String cartype){
+    	if(StringConstant.questionType_car==StringConstant.questionType.get(cartype))
+    		return questionCarDAO.listMarkQuestionCar(page,studentId,StringConstant.questionType.get(cartype));
+    	else if(StringConstant.questionType_bus==StringConstant.questionType.get(cartype))
+    		return questionBusDAO.listMarkQuestionBus(page,studentId,StringConstant.questionType.get(cartype));
+    		else if(StringConstant.questionType_bus==StringConstant.questionType.get(cartype))
+    			return questionTruckDAO.listMarkQuestionTruck(page,studentId,StringConstant.questionType.get(cartype));
+    			else if(StringConstant.questionType_bus==StringConstant.questionType.get(cartype))
+    				return questionMotoDAO.listMarkQuestionMoto(page,studentId,StringConstant.questionType.get(cartype));
+    	return page;
+    }
+    
+    
+    /**
+     * 删除已标记问题
+     */
+    public int delMarkQuestion(int questionId,String studentId,String cartype){
+    	return questionDAO.delMarkQuestion(questionId,studentId,StringConstant.questionType.get(cartype));
+    }
+    
+    /*****************************已标记题结束*********************************/
+    
+    
+    /*****************************错题练习开始*********************************/
+    
+    public Page<QuestionVO> listWrongQuestion(Page<QuestionVO> page,String studentId,String cartype){
+    	if(StringConstant.questionType_car==StringConstant.questionType.get(cartype))
+    		return questionCarDAO.listWrongQuestionCar(page,studentId,StringConstant.questionType.get(cartype));
+    	else if(StringConstant.questionType_bus==StringConstant.questionType.get(cartype))
+    		return questionBusDAO.listWrongQuestionBus(page,studentId,StringConstant.questionType.get(cartype));
+    		else if(StringConstant.questionType_bus==StringConstant.questionType.get(cartype))
+    			return questionTruckDAO.listWrongQuestionTruck(page,studentId,StringConstant.questionType.get(cartype));
+    			else if(StringConstant.questionType_bus==StringConstant.questionType.get(cartype))
+    				return questionMotoDAO.listWrongQuestionMoto(page,studentId,StringConstant.questionType.get(cartype));
+    	return page;
+    }
+    
+    /*****************************错题练习结束*********************************/
+    
 }

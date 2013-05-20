@@ -37,23 +37,12 @@ $(document).ready(function(){
 		$("#currPage").val(parseInt(currentPage+1));
 		$("form").submit();
 	})
-	$(".mark a").bind("click",function(){
-		var id = $(this).attr("id");
-		$.ajax({
-		type: "POST",
-		url: "<%=path%>/system/ajax/saveMarkQuestion.d",
-		data: "questionId="+id,
-		success: function(msg){
-		     alert( "Data Saved: " + msg );
-		   }
-		});
-	});
 });
 </script>
 </head>
 <body style="overflow:auto">
 	 <div id="main">
-			<div id="title"><span>顺序练习:科目一</span></div>
+			<div id="title"><span>错题练习:科目一</span></div>
 			<div id="sectionContent">
 			 <s:iterator id="question" value="page.list" status="i">
 			<div class="question">
@@ -68,7 +57,6 @@ $(document).ready(function(){
 					<span>提示：<s:property value="#question.tips"/> </span>
 					</s:if>
 					</div>
-					<div class="mark"><a href="javascript:void(0);" id="<s:property value='#question.id'/>">标记该题</a> </div>
 				 </div>
 				<div class="richmedia">
 					<s:if test='#question.image!=""&&#question.image!=null'>
@@ -79,7 +67,7 @@ $(document).ready(function(){
 			</div>
 			</s:iterator>
 			<div id="pageBar">
-			<form action="<%=path %>/exam/subject1/orderQuestion1.d">
+			<form action="<%=path %>/exam/subject1/listWrongQuestion.d">
 			<s:hidden name="categoryId"/>
 			<s:hidden id="maxPage" name="page.maxPage"/>
 			<s:hidden id="currPage" name="page.currPage"/>

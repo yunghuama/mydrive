@@ -15,8 +15,17 @@
     <action name="section1" class="questionAction" method="section1">
       <result>/subject1/section.jsp</result>
     </action>
-    <action name="roderQuestion1" class="questionAction" method="roderQuestion1">
+    <action name="orderQuestion1" class="questionAction" method="orderQuestion1">
       <result>/subject1/orderquestion.jsp</result>
+    </action>
+    <action name="markQuestion1" class="questionAction" method="markQuestion1">
+      <result>/subject1/markquestion.jsp</result>
+    </action>
+    <action name="delMarkQuestion" class="questionAction" method="delMarkQuestion">
+      <result type="redirect">/exam/subject1/markQuestion1.d</result>
+    </action>
+    <action name="listWrongQuestion" class="questionAction" method="listWrongQuestion">
+      <result>/subject1/wrongquestion.jsp</result>
     </action>
   </package>
 </struts>

@@ -32,6 +32,15 @@ if(session.getAttribute("LoginBean")==null) {
 			$("a[name='id_1_3']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/exam/subject1/section1.d");
 			});
+			
+			$("a[name='id_1_4']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/subject1/markQuestion1.d");
+			});
+			
+			$("a[name='id_1_5']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/subject1/listWrongQuestion.d");
+			});
+			
 		});
 	
 	</script>

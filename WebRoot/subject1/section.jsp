@@ -33,7 +33,7 @@ $(document).ready(function(){
 					<tr id='<s:property value="#section.id"/>'>
 						<td><s:property value="#i.index+1"/> </td>
 						<td><s:property value="#section.name"/> </td>
-						<td><a href='<%=path%>/exam/subject1/roderQuestion1.d?categoryId=<s:property value="#section.id"/>'>进入</a> </td>
+						<td><a href='<%=path%>/exam/subject1/orderQuestion1.d?categoryId=<s:property value="#section.id"/>'>进入</a> </td>
 					</tr>
 					</s:iterator>
 				</table>

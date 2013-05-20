@@ -20,7 +20,13 @@ public class QuestionAjaxAction {
     
     private Score score;
     private String result;
-
+    private int questionId;
+    private String remarkQuestionId;
+    
+    /**
+     * 保存成绩
+     * @return
+     */
 	public String saveScore(){
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		if(loginBean!=null){
@@ -36,6 +42,23 @@ public class QuestionAjaxAction {
 			result = "error";
 		return Action.SUCCESS;
 	}
+	
+	/**
+	 * 标记题目
+	 * @return
+	 */
+	public String saveMarkQuestion(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		if(loginBean!=null){
+			int flag = 	questionService.saveMarkQuestion(questionId, loginBean.getUser().getId(), loginBean.getUser().getCartype());
+			if(flag==1)
+				result = "success";
+			else 
+				result = "error";
+		}
+		return  Action.SUCCESS;
+	}
+	
 
 	public QuestionService getQuestionService() {
 		return questionService;
@@ -59,6 +82,22 @@ public class QuestionAjaxAction {
 
 	public void setResult(String result) {
 		this.result = result;
+	}
+
+	public int getQuestionId() {
+		return questionId;
+	}
+
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
+	}
+
+	public String getRemarkQuestionId() {
+		return remarkQuestionId;
+	}
+
+	public void setRemarkQuestionId(String remarkQuestionId) {
+		this.remarkQuestionId = remarkQuestionId;
 	}
 	
 }

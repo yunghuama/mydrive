@@ -125,6 +125,15 @@ create table section (
     updatetime datetime
 );
 
+drop table if exists markQuestion;
+create table markQuestion (
+    id char(32) not null primary key,
+    questionId int not null,
+    studentId char(32) not null,
+    questiontype char(1) not null,
+    createtime datetime
+);
+
 alter table questions_car drop column question_vedio;
 alter table questions_car add column question_video varchar(20);
 alter table questions_bus drop column question_vedio;
@@ -147,3 +156,5 @@ update questions_car set category = '4028813518f35feb0118f392eee50045' where cat
 update questions_car set category = '4028813518f35feb0118f392eee50046' where category = '交通信号';
 update questions_car set category = '4028813518f35feb0118f392eee50047' where category = '安全行车、文明驾驶基础知识';
 update questions_car set category = '4028813518f35feb0118f392eee50048' where category = '机动车驾驶操作相关基础知识';
+
+select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_car where id in (select questionid from markquestion  order by createtime desc)  limit 0,10;
