@@ -69,9 +69,12 @@ public class QuestionAjaxAction {
      * @return
      */
 	public String saveScore3(){
+		try{
+			
+		
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		if(loginBean!=null){
-			int r = questionSubject3Service.saveExamScore(loginBean.getUser().getId(), score.getScore(), score.getTime(), loginBean.getUser().getCartype());
+			int r = questionSubject3Service.saveExamScore(loginBean.getUser().getId(), score.getScore(), score.getTime(), score.getErrorQuestion());
 			if(r==1){
 				result = "success";
 				Users users = loginBean.getUser();
@@ -81,6 +84,9 @@ public class QuestionAjaxAction {
 				result = "error";
 		}else
 			result = "error";
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return Action.SUCCESS;
 	}
 	
@@ -89,14 +95,19 @@ public class QuestionAjaxAction {
 	 * @return
 	 */
 	public String saveMarkQuestion3(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		if(loginBean!=null){
-			int flag = 	questionSubject3Service.saveMarkQuestion(questionId, loginBean.getUser().getId());
-			if(flag==1)
-				result = "success";
-			else 
-				result = "error";
-		}
+		try{
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			if(loginBean!=null){
+				int flag = 	questionSubject3Service.saveMarkQuestion(questionId, loginBean.getUser().getId());
+				if(flag==1)
+					result = "success";
+				else 
+					result = "error";
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			}
+		
 		return  Action.SUCCESS;
 	}
 	

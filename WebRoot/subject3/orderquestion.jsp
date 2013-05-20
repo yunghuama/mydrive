@@ -44,7 +44,9 @@ $(document).ready(function(){
 		url: "<%=path%>/system/ajax/saveMarkQuestion3.d",
 		data: "questionId="+id,
 		success: function(msg){
-		     alert( "Data Saved: " + msg );
+			if(msg=='success'){
+	    		alert("标记成功");
+	    	}
 		   }
 		});
 	});

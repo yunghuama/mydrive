@@ -84,7 +84,6 @@ public class QuestionSubject3Action extends GenericAction {
 	public String orderQuestion(){
 		try{
 			page = questionService.listQuestionOrder(page,categoryId);
-		
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -95,7 +94,7 @@ public class QuestionSubject3Action extends GenericAction {
 	 * 获得已标记题
 	 * @return
 	 */
-	public String markQuestion1(){
+	public String markQuestion(){
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		page = questionService.listMarkQuestion(page, loginBean.getUser().getId());
 		return SUCCESS;

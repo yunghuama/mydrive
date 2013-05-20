@@ -14,11 +14,11 @@
   
   <!-- 系统管理 -->
   <include file="struts-default.xml"/>
-  <include file="subject1.xml"/>
   <include file="role-plugin.xml"/>
   <include file="system-ajax.xml"/>
   <include file="users.xml"/>
-
+  <include file="subject1.xml"/>
+  <include file="subject3.xml"/>
   
   <package name="sysLogin" extends="struts-default">
     <action name="login" class="loginAction" method="login">

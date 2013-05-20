@@ -22,7 +22,7 @@
       <result>/subject3/markquestion.jsp</result>
     </action>
     <action name="delMarkQuestion" class="questionSubject3Action" method="delMarkQuestion">
-      <result type="redirect">/exam/subject3/markQuestion1.d</result>
+      <result type="redirect">/exam/subject3/markQuestion.d</result>
     </action>
     <action name="listWrongQuestion" class="questionSubject3Action" method="listWrongQuestion">
       <result>/subject3/wrongquestion.jsp</result>
