@@ -66,6 +66,14 @@ if(session.getAttribute("LoginBean")==null) {
 			$("a[name='id_3_5']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/exam/subject3/listWrongQuestion.d");
 			});
+			
+			
+			$("a[name='id_5_3']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/system/listscore1.d");
+			});
+			$("a[name='id_5_4']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/system/listscore3.d");
+			});
 		});
 	
 	</script>
@@ -102,7 +110,23 @@ if(session.getAttribute("LoginBean")==null) {
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_3_5">错题练习</a></li>
   					</ul>
   				    </li>
-  				<li class="menu-item"><a href="javascript:void(0);" name="id_4_1">个人中心</a></li>
+  				<li class="menu-item">
+  					<a href="javascript:void(0);">个人中心</a>
+  					 <ul class="sub-nav">
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_4_1">个人资料修改</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_4_2">密码修改</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_4_3">续费</a></li>
+  					</ul>
+  				</li>
+  				<li class="menu-item">
+  					<a href="javascript:void(0);">驾校公告</a>
+  					 <ul class="sub-nav">
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_1">驾校公告</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_2">公告管理</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_3">学员成绩1</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_4">学员成绩3</a></li>
+  					</ul>
+  				</li>
   			</ul>
   		</div>
   		<div id="userInfo">

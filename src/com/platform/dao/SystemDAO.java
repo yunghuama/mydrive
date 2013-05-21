@@ -47,7 +47,7 @@ public class SystemDAO extends GenericDAO{
 	
 
 	/**
-	 * 保存考试成绩
+	 * 保存驾校通知
 	 * @param studentId
 	 * @param score
 	 * @param time

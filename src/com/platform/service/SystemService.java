@@ -22,7 +22,7 @@ public class SystemService implements IService {
    }
    
    /**
-    * 
+    * 查询驾校公告
     * @param page
     * @param schoolcard
     * @return
@@ -32,4 +32,23 @@ public class SystemService implements IService {
    }
    
    
+   /**
+    * 查询学员科目1成绩
+    * @param page
+    * @param schoolcard
+    * @return
+    */
+   public Page listScore1(Page page,String schoolcard){
+	   return systemDAO.listScore1(page, schoolcard);
+   }
+   
+   /**
+    * 查询学员科目3成绩
+    * @param page
+    * @param schoolcard
+    * @return
+    */
+   public Page listScore3(Page page,String schoolcard){
+	   return systemDAO.listScore3(page, schoolcard);
+   }
 }

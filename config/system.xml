@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+  <package name="examSystem" extends="role-default" namespace="/exam/system">
+  	<action name="listScore1" class="systemAction" method="listScore1">
+      <result>/school/list_score1.jsp</result>
+    </action>
+    <action name="listScore3" class="systemAction" method="listScore3">
+      <result>/school/list_score3.jsp</result>
+    </action>
+  </package>
+</struts>

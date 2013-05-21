@@ -19,6 +19,7 @@
   <include file="users.xml"/>
   <include file="subject1.xml"/>
   <include file="subject3.xml"/>
+  <include file="system.xml"/>
   
   <package name="sysLogin" extends="struts-default">
     <action name="login" class="loginAction" method="login">
