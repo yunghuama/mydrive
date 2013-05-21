@@ -116,4 +116,12 @@ public final class SQLConstant {
 
 	public static final String MARK3_QUESTION_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions3 where id in (select questionid from markquestion3 where studentid = ?  order by createtime desc ) limit ?,?";
 	
+	
+	/**
+	 * 驾校公告
+	 */
+	public static final String ANNOUNCEMENT_SAVE = "insert into announcement(id,title,content,schoolcard,createtime) values(?,?,?,?,?)";
+	public static final String ANNOUNCEMENT_DEL =  "delete from announcement where id = ?";
+	public static final String ANNOUNCEMENT_QUERY = "select * from announcement where schoolcard = ? order by createtime desc limit ?,?";
+	public static final String ANNOUNCEMENT_ROWCOUNT = "select count(id) from announcement where schoolcard = ?";
 }

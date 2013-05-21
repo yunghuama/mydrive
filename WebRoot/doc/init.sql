@@ -177,6 +177,15 @@ create table markQuestion3 (
     createtime datetime
 );
 
+drop table if exists announcement;
+create table announcement (
+    id char(32) not null primary key,
+    title varchar(100),
+    content varchar(8000) not null,
+    schoolcard char(32) not null,
+    createtime datetime
+);
+
 alter table questions_car drop column question_vedio;
 alter table questions_car add column question_video varchar(20);
 alter table questions_bus drop column question_vedio;
