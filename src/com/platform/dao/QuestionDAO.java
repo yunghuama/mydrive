@@ -15,6 +15,8 @@ import com.platform.util.PageHelper;
 import com.platform.util.UUIDGenerator;
 import com.platform.vo.Page;
 import com.platform.vo.QuestionVO;
+import com.platform.vo.ScoreVO;
+import com.platform.vo.StatisticVO;
 
 /**
  * <p>程序名称：       UsersDAO.java</p>
@@ -137,5 +139,48 @@ public class QuestionDAO extends GenericDAO{
 	 */
 	public int delMarkQuestion(int questionId,String studentId,int questionType){
 		return jdbcTemplate.update(SQLConstant.MARK_QUESTION_DEL, questionId,studentId,questionType);
+	}
+	
+	
+	/**
+	 * 查询分数汇总
+	 * @param studentId
+	 * @return
+	 */
+	public StatisticVO statistic(String studentId,String carType){
+		List<StatisticVO> list = jdbcTemplate.query(SQLConstant.STATISTISC_SCORE,new Object[]{studentId,carType},new RowMapper<StatisticVO>(){
+			@Override
+			public StatisticVO mapRow(ResultSet rs, int arg1) throws SQLException {
+				StatisticVO vo  = new StatisticVO();
+				vo.setMaxscore(rs.getInt("maxscore"));
+				vo.setMinscore(rs.getInt("minscore"));
+				vo.setPasscount(rs.getInt("passcount"));
+				vo.setAvgscore(rs.getInt("avgscore"));
+				vo.setScorecounts(rs.getInt("scorecounts"));
+				return vo;
+			}
+		});
+		
+		if(list!=null&&list.size()>0)
+			return list.get(0);
+		return null;
+	}
+	
+	/**
+	 * 查询分数
+	 * @param studentId
+	 * @return
+	 */
+	public List<ScoreVO> getScores(String studentId,String cartype){
+		return jdbcTemplate.query(SQLConstant.EXAMSCORE_QUERY,new Object[]{studentId,cartype},new RowMapper<ScoreVO>(){
+			@Override
+			public ScoreVO mapRow(ResultSet rs, int arg1) throws SQLException {
+				ScoreVO vo  = new ScoreVO();
+				vo.setScore(rs.getInt("score"));
+				vo.setTime(rs.getString("time"));
+				vo.setCreatetime(rs.getDate("createtime")+ " "+rs.getTime("createtime"));
+				return vo;
+			}
+		});
 	}
 }

@@ -217,3 +217,7 @@ select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,quest
 
 insert into questions3(id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,createtime) select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,createtime from questions_car;
 
+select max(score) as maxscore, min(score) as minscore, count(id) as scorecounts ,avg(score) as avgscore,(select count(id)  from examscore where studentid = '4028813518f35feb0118f392eee50043' and cartype = 'c2' and score >=90 ) as passcount ,time,createtime from examscore where studentid = '4028813518f35feb0118f392eee50043' and cartype = 'c2'
+
+
+

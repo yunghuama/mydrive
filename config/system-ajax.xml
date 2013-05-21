@@ -26,6 +26,26 @@
         <param name="root">result</param>
       </result>
     </action>
+    <action name="statisticsSub1" class="questionAjaxAction" method="statisticsSub1">
+      <result type="json">
+        <param name="root">statisticVO</param>
+      </result>
+    </action>
+    <action name="statisticsSub3" class="questionAjaxAction" method="statisticsSub3">
+      <result type="json">
+        <param name="root">statisticVO</param>
+      </result>
+    </action>
+    <action name="scoreListSub1" class="questionAjaxAction" method="scoreListSub1">
+      <result type="json">
+        <param name="root">scoreVoList</param>
+      </result>
+    </action>
+    <action name="scoreListSub3" class="questionAjaxAction" method="scoreListSub3">
+      <result type="json">
+        <param name="root">scoreVoList</param>
+      </result>
+    </action>
   </package>
   
 </struts>

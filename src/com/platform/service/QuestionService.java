@@ -18,6 +18,8 @@ import com.platform.domain.Question;
 import com.platform.domain.Section;
 import com.platform.vo.Page;
 import com.platform.vo.QuestionVO;
+import com.platform.vo.ScoreVO;
+import com.platform.vo.StatisticVO;
 
 @Service
 public class QuestionService implements IService {
@@ -194,4 +196,15 @@ public class QuestionService implements IService {
     
     /*****************************错题练习结束*********************************/
     
+    
+    /******************************个人考试信息分析开始**************************/
+    public StatisticVO getStatistic(String studentId,String cartype){
+    	return questionDAO.statistic(studentId, cartype);
+    }
+    
+    public List<ScoreVO> getScores(String studentId,String cartype){
+    	return questionDAO.getScores(studentId,cartype);
+    }
+    
+    /******************************个人考试信息分析结束**************************/
 }

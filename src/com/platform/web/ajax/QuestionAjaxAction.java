@@ -1,5 +1,7 @@
 package com.platform.web.ajax;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,8 @@ import com.platform.domain.Users;
 import com.platform.service.QuestionService;
 import com.platform.service.QuestionSubject3Service;
 import com.platform.util.LoginBean;
+import com.platform.vo.ScoreVO;
+import com.platform.vo.StatisticVO;
 
 @Controller
 @Scope("prototype")
@@ -25,7 +29,8 @@ public class QuestionAjaxAction {
     private String result;
     private int questionId;
     private String remarkQuestionId;
-    
+    private StatisticVO statisticVO;
+    private List<ScoreVO> scoreVoList;
     /**
      * 保存成绩
      * @return
@@ -70,8 +75,6 @@ public class QuestionAjaxAction {
      */
 	public String saveScore3(){
 		try{
-			
-		
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		if(loginBean!=null){
 			int r = questionSubject3Service.saveExamScore(loginBean.getUser().getId(), score.getScore(), score.getTime(), score.getErrorQuestion());
@@ -111,7 +114,47 @@ public class QuestionAjaxAction {
 		return  Action.SUCCESS;
 	}
 	
+	/**
+	 * 获得科目一考试的统计信息
+	 * @return
+	 */
+	public String statisticsSub1(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		statisticVO = questionService.getStatistic(loginBean.getUser().getId(), loginBean.getUser().getCartype());
+		return Action.SUCCESS;
+	}
+	
+	/**
+	 * 获得科目一的成绩
+	 * @return
+	 */
+	public String scoreListSub1(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		scoreVoList = questionService.getScores(loginBean.getUser().getId(), loginBean.getUser().getCartype());
+		return Action.SUCCESS;
+	}
+	
+	
+	/**
+	 * 获得科目三考试的统计信息
+	 * @return
+	 */
+	public String statisticsSub3(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		statisticVO = questionSubject3Service.getStatistic(loginBean.getUser().getId());
+		return Action.SUCCESS;
+	}
 
+	/**
+	 * 获得科目三的成绩
+	 * @return
+	 */
+	public String scoreListSub3(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		scoreVoList = questionSubject3Service.getScores(loginBean.getUser().getId());
+		return Action.SUCCESS;
+	}
+	
 	public QuestionService getQuestionService() {
 		return questionService;
 	}

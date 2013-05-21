@@ -11,6 +11,8 @@ import com.platform.dao.QuestionSubject3DAO;
 import com.platform.domain.Section;
 import com.platform.vo.Page;
 import com.platform.vo.QuestionVO;
+import com.platform.vo.ScoreVO;
+import com.platform.vo.StatisticVO;
 
 @Service
 public class QuestionSubject3Service implements IService {
@@ -109,4 +111,15 @@ public class QuestionSubject3Service implements IService {
     
     /*****************************错题练习结束*********************************/
     
+    
+    /******************************个人考试信息分析开始**************************/
+    public StatisticVO getStatistic(String studentId){
+    	return questionDAO.statistic(studentId);
+    }
+   
+    public List<ScoreVO> getScores(String studentId){
+    	return questionDAO.getScores(studentId);
+    }
+    
+    /******************************个人考试信息分析结束**************************/
 }
