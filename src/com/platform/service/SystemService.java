@@ -27,8 +27,8 @@ public class SystemService implements IService {
     * @param schoolcard
     * @return
     */
-   public Page list(Page page,String schoolcard){
-	   return systemDAO.list(page, schoolcard);
+   public Page listAnnouncement(Page page,String schoolcard){
+	   return systemDAO.listAnnouncement(page, schoolcard);
    }
    
    

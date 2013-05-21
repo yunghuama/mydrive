@@ -11,16 +11,99 @@
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#next").click(function(){
-			if($("#name").val()==""){
-				alert("请填写姓名");
-				return;
-			}
-			if($("#identity").val()==""){
-				alert("请填写姓名");
-				return;
-			}
-			$("#infoForm").submit();
+		//载入科目一统计
+		$.ajax({
+		   type: "POST",
+		   url: "<%=path%>/system/ajax/statisticsSub1.d",
+		   success: function(msg){
+		     if(msg!=null){
+		    	 var array = [];
+		    	 array.push('<tr align="center">');
+		    	 array.push("<td>"+msg.maxscore+"</td>");
+		    	 array.push("<td>"+msg.minscore+"</td>");
+		    	 array.push("<td>"+msg.scorecounts+"</td>");
+		    	 array.push("<td>"+msg.avgscore+"</td>");
+		    	 array.push("<td>"+msg.passcount+"</td>");
+		    	 var passcount = parseInt(msg.passcount);
+		    	 var scorecounts = parseInt(msg.scorecounts);
+		    	 if(passcount==0)
+		    	 array.push("<td>"+"0%"+"</td>");
+		    	 else if(passcount>0)
+		         array.push("<td>"+(parseInt((passcount/scorecounts)*100))+"%"+"</td>");
+		    	 array.push("</tr>")
+		    	 $(array.join("")).appendTo($("#sub1 .statistic .contents table"));
+		     }else {
+		    	 $("<tr><td colspan=6>暂无相关数据</td></tr>").appendTo($("#sub1 .statistic .contents table"));
+		     }
+		   }
+		});
+		//载入科目一成绩
+		$.ajax({
+		   type: "POST",
+		   url: "<%=path%>/system/ajax/scoreListSub1.d",
+		   success: function(msg){
+		    if(msg!=null){
+		    	 var array = [];
+		    	for(var i=0;i<msg.length;i++){
+		    		array.push('<tr align="center">');
+			    	 array.push("<td>"+(i+1)+"</td>");
+			    	 array.push("<td>"+msg[i].score+"</td>");
+			    	 array.push("<td>"+msg[i].time+"</td>");
+			    	 array.push("<td>"+msg[i].createtime+"</td>");
+			    	 array.push("</tr>");
+		    	}
+		    	 $(array.join("")).appendTo($("#sub1 .score .contents table"));
+		    }else {
+		    	$("<tr><td colspan=4>暂无相关数据</td></tr>").appendTo($("#sub1 .score .contents table"));
+		    }
+		   }
+		});
+		//载入科目二统计
+		$.ajax({
+		   type: "POST",
+		   url: "<%=path%>/system/ajax/statisticsSub3.d",
+		   success: function(msg){
+			   if(msg!=null){
+			    	 var array = [];
+			    	 array.push('<tr align="center">');
+			    	 array.push("<td>"+msg.maxscore+"</td>");
+			    	 array.push("<td>"+msg.minscore+"</td>");
+			    	 array.push("<td>"+msg.scorecounts+"</td>");
+			    	 array.push("<td>"+msg.avgscore+"</td>");
+			    	 array.push("<td>"+msg.passcount+"</td>");
+			    	 var passcount = parseInt(msg.passcount);
+			    	 var scorecounts = parseInt(msg.scorecounts);
+			    	 if(passcount==0)
+			    	 array.push("<td>"+"0%"+"</td>");
+			    	 else if(passcount>0)
+			         array.push("<td>"+(parseInt((passcount/scorecounts)*100))+"%"+"</td>");
+			    	 array.push("</tr>")
+			    	 $(array.join("")).appendTo($("#sub2 .statistic .contents table"));
+			     }else {
+			    	 $("<tr><td colspan=6>暂无相关数据</td></tr>").appendTo($("#sub2 .statistic .contents table"));
+			     }
+		   }
+		});
+		//载入科目二成绩
+		$.ajax({
+		   type: "POST",
+		   url: "<%=path%>/system/ajax/scoreListSub3.d",
+		   success: function(msg){
+			   if(msg!=null){
+			    	 var array = [];
+			    	for(var i=0;i<msg.length;i++){
+			    		array.push('<tr align="center">');
+				    	 array.push("<td>"+i+"</td>");
+				    	 array.push("<td>"+msg[i].score+"</td>");
+				    	 array.push("<td>"+msg[i].time+"</td>");
+				    	 array.push("<td>"+msg[i].createtime+"</td>");
+				    	 array.push("</tr>");
+			    	}
+			    	 $(array.join("")).appendTo($("#sub2 .score .contents table"));
+			    }else {
+			    	$("<tr><td colspan=4>暂无相关数据</td></tr>").appendTo($("#sub2 .score .contents table"));
+			    }
+		   }
 		});
 	});
 
@@ -29,29 +112,66 @@
 </head>
 <body>
 		<div id="main">
-		
-			<div id="ads">
-			<div class="title"></div>
-			<div class="contents"></div>
+			<div id="sub1">
+			<div class="statistic">
+			<div class="title"><span>科目一考试统计</span></div>
+			<div class="contents">
+				<table align="center">
+						<tr>
+							<th>最高分</th>
+							<th>最低分</th>
+							<th>考试次数</th>
+							<th>平均成绩</th>
+							<th>通过次数</th>
+							<th>通过率</th>
+						</tr>
+				</table>
+			</div>
+			</div>
+			<div class="score">
+			<div class="title"><span>科目一考试成绩</span></div>
+			<div class="contents">
+				<table>
+						<tr>
+							<th>序号</th>
+							<th>分数</th>
+							<th>考试耗时</th>
+							<th>考试时间</th>
+						</tr>
+				</table>
+			</div>
+			</div>
+			</div>
+			<div id="sub2">
+			<div class="statistic">
+			<div class="title"><span>科目二考试统计</span></div>
+			<div class="contents">
+			<table>
+						<tr>
+							<th>最高分</th>
+							<th>最低分</th>
+							<th>考试次数</th>
+							<th>平均成绩</th>
+							<th>通过次数</th>
+							<th>通过率</th>
+						</tr>
+				</table>
+			</div>
 			</div>
 			
-			<div id="statistic_sub1">
-			<div class="title"></div>
-			<div class="contents"></div>
+			<div class="score">
+			<div class="title"><span>科目二考试成绩</span></div>
+			<div class="contents">
+			<table>
+						<tr>
+							<th>序号</th>
+							<th>分数</th>
+							<th>考试耗时</th>
+							<th>考试时间</th>
+						</tr>
+				</table>
 			</div>
-			<div id="score_sub1">
-			<div class="title"></div>
-			<div class="contents"></div>
 			</div>
-			
-			<div id="statistic_sub2">
-			<div class="title"></div>
-			<div class="contents"></div>
-			</div>
-			
-			<div id="score_sub2">
-			<div class="title"></div>
-			<div class="contents"></div>
 			</div>
 		</div>
 </body>

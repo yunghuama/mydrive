@@ -70,7 +70,7 @@ public class SystemDAO extends GenericDAO{
 	 * @param schoolcard
 	 * @return
 	 */
-	public Page<Announcement> list(Page<Announcement> page,String schoolcard){
+	public Page<Announcement> listAnnouncement(Page<Announcement> page,String schoolcard){
 		List<Announcement> list =  jdbcTemplate.query(SQLConstant.ANNOUNCEMENT_QUERY,new Object[]{schoolcard,(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<Announcement>(){
 			@Override
 			public Announcement mapRow(ResultSet rs, int arg1)
@@ -89,6 +89,7 @@ public class SystemDAO extends GenericDAO{
 		page.setList(list);
 		return page;
 	}
+	
 	
 	/**
 	 * 根据驾校查询成绩1

@@ -12,6 +12,7 @@ import com.platform.domain.Score;
 import com.platform.domain.Users;
 import com.platform.service.QuestionService;
 import com.platform.service.QuestionSubject3Service;
+import com.platform.service.SystemService;
 import com.platform.util.LoginBean;
 import com.platform.vo.ScoreVO;
 import com.platform.vo.StatisticVO;
@@ -24,6 +25,8 @@ public class QuestionAjaxAction {
     private QuestionService questionService;
     @Autowired
     private QuestionSubject3Service questionSubject3Service;
+    @Autowired
+    private SystemService systemService;
     
     private Score score;
     private String result;
@@ -114,13 +117,18 @@ public class QuestionAjaxAction {
 		return  Action.SUCCESS;
 	}
 	
+	
 	/**
 	 * 获得科目一考试的统计信息
 	 * @return
 	 */
 	public String statisticsSub1(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		statisticVO = questionService.getStatistic(loginBean.getUser().getId(), loginBean.getUser().getCartype());
+		try{
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			statisticVO = questionService.getStatistic(loginBean.getUser().getId(), loginBean.getUser().getCartype());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return Action.SUCCESS;
 	}
 	
@@ -129,8 +137,12 @@ public class QuestionAjaxAction {
 	 * @return
 	 */
 	public String scoreListSub1(){
+		try{
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		scoreVoList = questionService.getScores(loginBean.getUser().getId(), loginBean.getUser().getCartype());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return Action.SUCCESS;
 	}
 	
@@ -140,8 +152,12 @@ public class QuestionAjaxAction {
 	 * @return
 	 */
 	public String statisticsSub3(){
+		try{
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		statisticVO = questionSubject3Service.getStatistic(loginBean.getUser().getId());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return Action.SUCCESS;
 	}
 
@@ -150,8 +166,12 @@ public class QuestionAjaxAction {
 	 * @return
 	 */
 	public String scoreListSub3(){
+		try{
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		scoreVoList = questionSubject3Service.getScores(loginBean.getUser().getId());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return Action.SUCCESS;
 	}
 	
@@ -193,6 +213,22 @@ public class QuestionAjaxAction {
 
 	public void setRemarkQuestionId(String remarkQuestionId) {
 		this.remarkQuestionId = remarkQuestionId;
+	}
+
+	public StatisticVO getStatisticVO() {
+		return statisticVO;
+	}
+
+	public void setStatisticVO(StatisticVO statisticVO) {
+		this.statisticVO = statisticVO;
+	}
+
+	public List<ScoreVO> getScoreVoList() {
+		return scoreVoList;
+	}
+
+	public void setScoreVoList(List<ScoreVO> scoreVoList) {
+		this.scoreVoList = scoreVoList;
 	}
 	
 }

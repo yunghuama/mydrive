@@ -4,4 +4,41 @@
 	height:100%;
 	margin:0px auto;
 	border : 1px solid red;
+	padding-top:30px;
 }
+
+#sub1 {
+	width:500px;
+	float:left;
+}
+
+#sub2 {
+	width:500px;
+	float:left;
+	margin-left:10px;
+}
+
+.title {
+	text-align:center;
+}
+
+.score {
+	margin-top:30px;
+}
+
+table{
+	width:100%;
+	border : 1px solid #7d7d7d;
+	border-collapse:collapse;
+}
+
+table td{
+	border-collapse:collapse;
+	border : 1px solid #7d7d7d;
+}
+
+table th{
+	border-collapse:collapse;
+	border : 1px solid #7d7d7d;
+}
+
