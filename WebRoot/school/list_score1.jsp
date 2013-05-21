@@ -16,6 +16,29 @@ $(document).ready(function(){
 	}).bind("mouseout",function(){
 		$(this).removeClass("mouseover");
 	});
+	//构造分页
+	var maxPage = parseInt($("#maxPage").val());
+	var currentPage = parseInt($("#currPage").val());
+	var optionArray = [];
+	for(var i=1;i<=maxPage;i++){
+		if(currentPage==i)
+		optionArray.push('<option value="'+i+'" selected="selected">'+i+'</option>');
+		else 
+		optionArray.push('<option value="'+i+'">'+i+'</option>');
+	}
+	$("#jump").append(optionArray.join(""));
+	$("#jump").bind("change",function(){
+		$("#currPage").val($(this).val());
+		$("form").submit();
+	});
+	$("#prev").bind("click",function(){
+		$("#currPage").val(parseInt(currentPage-1));
+		$("form").submit();
+	});
+	$("#next").bind("click",function(){
+		$("#currPage").val(parseInt(currentPage+1));
+		$("form").submit();
+	});
 });
 </script>
 </head>
@@ -43,11 +66,23 @@ $(document).ready(function(){
 						<td><s:property value="#score.scorecounts"/> </td>
 						<td><s:property value="#score.avgscore"/> </td>
 						<td><s:property value="#score.passcount"/> </td>
-						<td><s:property value="#score.passcount/#score.passcount*100"/> </td>
+						<td><s:property value="#score.rate"/>%</td>
 					</tr>
 					</s:iterator>
 				</table>
-			
+				
+			</div>
+			<div id="pageBar">
+			<form action="<%=path %>/exam/system/listScore1.d">
+			<s:hidden name="categoryId"/>
+			<s:hidden name="questionId" id="questionId"/>
+			<s:hidden id="maxPage" name="page.maxPage"/>
+			<s:hidden id="currPage" name="page.currPage"/>
+			<button id="prev">上一页</button>
+			<select id="jump">
+			</select>
+			<button id="next">下一页</button>
+			</form>
 			</div>
 	 </div>
 	 

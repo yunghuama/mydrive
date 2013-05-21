@@ -8,8 +8,15 @@ public class ScoreSchoolVO {
 	private int avgscore;
 	private int passcount;
 	private String name;
+	private int rate;
 	
 	
+	
+	public int getRate() {
+		double d = passcount*100/scorecounts;
+		System.out.println(d);
+		return (int)d;
+	}
 	public String getName() {
 		return name;
 	}

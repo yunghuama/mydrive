@@ -11,8 +11,10 @@
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$(".answer a").bind("click",function(){
-		$(this).siblings("span").show();		
+	$("table tr").bind("mouseover",function(){
+		$(this).addClass("mouseover");
+	}).bind("mouseout",function(){
+		$(this).removeClass("mouseover");
 	});
 	//构造分页
 	var maxPage = parseInt($("#maxPage").val());
@@ -37,43 +39,40 @@ $(document).ready(function(){
 		$("#currPage").val(parseInt(currentPage+1));
 		$("form").submit();
 	});
-	$(".mark a").bind("click",function(){
-		$("form").attr("action","<%=path %>/exam/subject1/delMarkQuestion.d");
-		$("#questionId").val($(this).attr("id"));
-		$("form").submit();
-	});
 });
 </script>
 </head>
 <body style="overflow:auto">
 	 <div id="main">
-			<div id="title"><span>已标记题:科目一</span></div>
+			<div id="title"><span>学员考试成绩列表</span></div>
 			<div id="sectionContent">
-			 <s:iterator id="question" value="page.list" status="i">
-			<div class="question">
-			    <div class="quesntinContent">
-					<div class="questionTitle"><span><s:property value="#question.id"/>. <s:property value="#question.question"/> </span></div>
-					<div class="answera"><span><s:property value="#question.answer_a"/> </span></div>
-					<div class="answerb"><span><s:property value="#question.answer_b"/> </span></div>
-					<div class="answerc"><span><s:property value="#question.answer_c"/> </span></div>
-					<div class="answerd"><span><s:property value="#question.answer_d"/> </span></div>
-					<div class="answer"><a href="javascript:void(0);">显示答案</a><span>正确答案：<s:property value="#question.answer"/> </span>
-					<s:if test='#question.tips!=""&&#question.tips!=null'>
-					<span>提示：<s:property value="#question.tips"/> </span>
-					</s:if>
-					</div>
-					<div class="mark"><a href="javascript:void(0);" id="<s:property value='#question.id'/>">删除该题目</a> </div>
-				 </div>
-				<div class="richmedia">
-					<s:if test='#question.image!=""&&#question.image!=null'>
-						<img src='<%=path %>/upload/image/<s:property value="#question.image"/>'/><br/><br/>
-						<a href='<%=path %>/upload/image/<s:property value="#question.image"/>' target="_blank">查看大图</a>
-					</s:if>
-				</div>
+				<table>
+					<tr>
+						<th width="10%">序号</th>
+						<th>学员名称</th>
+						<th>最高分</th>
+						<th>最低分</th>
+						<th>考试次数</th>
+						<th>平均成绩</th>
+						<th>通过次数</th>
+						<th>通过率</th>
+					</tr>
+					 <s:iterator id="score" value="page.list" status="i">
+					<tr>
+						<td><s:property value="#i.index+1"/> </td>
+						<td><s:property value="#score.name"/> </td>
+						<td><s:property value="#score.maxscore"/> </td>
+						<td><s:property value="#score.minscore"/> </td>
+						<td><s:property value="#score.scorecounts"/> </td>
+						<td><s:property value="#score.avgscore"/> </td>
+						<td><s:property value="#score.passcount"/> </td>
+						<td><s:property value="#score.rate"/>%</td>
+					</tr>
+					</s:iterator>
+				</table>
 			</div>
-			</s:iterator>
 			<div id="pageBar">
-			<form action="<%=path %>/exam/subject1/markQuestion1.d">
+			<form action="<%=path %>/exam/system/listScore3.d">
 			<s:hidden name="categoryId"/>
 			<s:hidden name="questionId" id="questionId"/>
 			<s:hidden id="maxPage" name="page.maxPage"/>
@@ -83,7 +82,6 @@ $(document).ready(function(){
 			</select>
 			<button id="next">下一页</button>
 			</form>
-			</div>
 			</div>
 	 </div>
 	 

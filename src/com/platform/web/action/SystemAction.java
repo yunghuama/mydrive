@@ -24,7 +24,12 @@ public class SystemAction extends GenericAction {
 	 */
 	public String listScore1(){
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		page = systemService.listScore1(page, loginBean.getUser().getId());
+		try{
+			page = systemService.listScore1(page, "4028813518f35feb0118f392eee50046");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		return SUCCESS;
 	}
 
@@ -34,7 +39,11 @@ public class SystemAction extends GenericAction {
 	 */
 	public String listScore3(){
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		page = systemService.listScore3(page, loginBean.getUser().getId());
+		try{
+			page = systemService.listScore3(page, "4028813518f35feb0118f392eee50046");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 

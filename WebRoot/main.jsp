@@ -69,10 +69,10 @@ if(session.getAttribute("LoginBean")==null) {
 			
 			
 			$("a[name='id_5_3']").bind("click",function(){
-				$("#mainFrame").attr("src","<%=path%>/exam/system/listscore1.d");
+				$("#mainFrame").attr("src","<%=path%>/exam/system/listScore1.d");
 			});
 			$("a[name='id_5_4']").bind("click",function(){
-				$("#mainFrame").attr("src","<%=path%>/exam/system/listscore3.d");
+				$("#mainFrame").attr("src","<%=path%>/exam/system/listScore3.d");
 			});
 		});
 	
