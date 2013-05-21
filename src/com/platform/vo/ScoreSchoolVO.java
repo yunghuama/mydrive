@@ -1,14 +1,21 @@
 package com.platform.vo;
 
-public class StatisticVO {
+public class ScoreSchoolVO {
 
 	private int maxscore;
 	private int minscore;
 	private int scorecounts;
 	private int avgscore;
 	private int passcount;
+	private String name;
 	
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public int getMaxscore() {
 		return maxscore;
 	}

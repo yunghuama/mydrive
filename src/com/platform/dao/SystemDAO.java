@@ -13,7 +13,7 @@ import com.platform.domain.Announcement;
 import com.platform.util.PageHelper;
 import com.platform.util.UUIDGenerator;
 import com.platform.vo.Page;
-import com.platform.vo.QuestionVO;
+import com.platform.vo.ScoreSchoolVO;
 
 /**
  * <p>程序名称：       UsersDAO.java</p>
@@ -64,23 +64,79 @@ public class SystemDAO extends GenericDAO{
 		});
 	}
 	
-		public Page<Announcement> listQuestionOrder_moto(Page<Announcement> page,String schoolcard){
-			List<Announcement> list =  jdbcTemplate.query(SQLConstant.ANNOUNCEMENT_QUERY,new Object[]{schoolcard,(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<Announcement>(){
-				@Override
-				public Announcement mapRow(ResultSet rs, int arg1)
-						throws SQLException {
-					Announcement vo = new Announcement();
-					vo.setId(rs.getString("id"));
-					vo.setContent(rs.getString("content"));
-					vo.setTitle(rs.getString("title"));
-					vo.setCreateTime(rs.getDate("createtime") +" "+rs.getTime("createtime"));
-					return vo;
-				}
-			});
-			int rowCount = queryForInt(SQLConstant.ANNOUNCEMENT_ROWCOUNT,schoolcard);
-			page.setRowCount(rowCount);
-			page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
-			page.setList(list);
-			return page;
+	/**
+	 * 查询公告
+	 * @param page
+	 * @param schoolcard
+	 * @return
+	 */
+	public Page<Announcement> list(Page<Announcement> page,String schoolcard){
+		List<Announcement> list =  jdbcTemplate.query(SQLConstant.ANNOUNCEMENT_QUERY,new Object[]{schoolcard,(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<Announcement>(){
+			@Override
+			public Announcement mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				Announcement vo = new Announcement();
+				vo.setId(rs.getString("id"));
+				vo.setContent(rs.getString("content"));
+				vo.setTitle(rs.getString("title"));
+				vo.setCreateTime(rs.getDate("createtime") +" "+rs.getTime("createtime"));
+				return vo;
+			}
+		});
+		int rowCount = queryForInt(SQLConstant.ANNOUNCEMENT_ROWCOUNT,schoolcard);
+		page.setRowCount(rowCount);
+		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
+		page.setList(list);
+		return page;
+	}
+	
+	/**
+	 * 根据驾校查询成绩1
+	 */
+	public Page<ScoreSchoolVO> listScore1(Page<ScoreSchoolVO> page,String schoolcard){
+		List<ScoreSchoolVO> list =  jdbcTemplate.query(SQLConstant.STATISTISC_BY_SCHOOL_SCORE,new Object[]{schoolcard,(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<ScoreSchoolVO>(){
+			@Override
+			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				ScoreSchoolVO vo = new ScoreSchoolVO();
+				vo.setMaxscore(rs.getInt("maxscore"));
+				vo.setMinscore(rs.getInt("minscore"));
+				vo.setPasscount(rs.getInt("passcount"));
+				vo.setAvgscore(rs.getInt("avgscore"));
+				vo.setScorecounts(rs.getInt("scorecounts"));
+				vo.setName(rs.getString("name"));
+				return vo;
+			}
+		});
+		int rowCount = queryForInt(SQLConstant.STATISTISC_BY_SCHOOL_ROWCOUNT,schoolcard);
+		page.setRowCount(rowCount);
+		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
+		page.setList(list);
+		return page;
+	}
+	
+	/**
+	 * 根据驾校查询成绩3
+	 */
+	public Page<ScoreSchoolVO> listScore3(Page<ScoreSchoolVO> page,String schoolcard){
+		List<ScoreSchoolVO> list =  jdbcTemplate.query(SQLConstant.STATISTISC_BY_SCHOOL_SCORE3,new Object[]{schoolcard,(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<ScoreSchoolVO>(){
+			@Override
+			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				ScoreSchoolVO vo = new ScoreSchoolVO();
+				vo.setMaxscore(rs.getInt("maxscore"));
+				vo.setMinscore(rs.getInt("minscore"));
+				vo.setPasscount(rs.getInt("passcount"));
+				vo.setAvgscore(rs.getInt("avgscore"));
+				vo.setScorecounts(rs.getInt("scorecounts"));
+				vo.setName(rs.getString("name"));
+				return vo;
+			}
+		});
+		int rowCount = queryForInt(SQLConstant.STATISTISC_BY_SCHOOL_ROWCOUNT3,schoolcard);
+		page.setRowCount(rowCount);
+		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
+		page.setList(list);
+		return page;
 	}
 }

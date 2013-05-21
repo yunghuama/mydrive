@@ -1,43 +1,35 @@
 package com.platform.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.platform.constants.SQLConstant;
-import com.platform.constants.StringConstant;
-import com.platform.dao.QuestionBusDAO;
-import com.platform.dao.QuestionCarDAO;
-import com.platform.dao.QuestionDAO;
-import com.platform.dao.QuestionMotoDAO;
-import com.platform.dao.QuestionTruckDAO;
-import com.platform.domain.Question;
-import com.platform.domain.Section;
+import com.platform.dao.SystemDAO;
+import com.platform.domain.Announcement;
 import com.platform.vo.Page;
-import com.platform.vo.QuestionVO;
-import com.platform.vo.ScoreVO;
-import com.platform.vo.StatisticVO;
 
 @Service
 public class SystemService implements IService {
 
-    private QuestionDAO questionDAO;
-    private QuestionBusDAO questionBusDAO;
-    private QuestionCarDAO questionCarDAO;
-    private QuestionTruckDAO questionTruckDAO;
-    private QuestionMotoDAO questionMotoDAO;
-    
+    private SystemDAO systemDAO;
     @Autowired
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-    	questionDAO = QuestionDAO.getInstance(jdbcTemplate);
-    	questionBusDAO = QuestionBusDAO.getInstance(jdbcTemplate);
-    	questionCarDAO = QuestionCarDAO.getInstance(jdbcTemplate);
-    	questionTruckDAO = QuestionTruckDAO.getInstance(jdbcTemplate);
-    	questionMotoDAO = QuestionMotoDAO.getInstance(jdbcTemplate);
+    	systemDAO = SystemDAO.getInstance(jdbcTemplate);
     }
 
+   public int save(Announcement ann){
+	   return systemDAO.saveAnnouncement(ann.getSchoolcard(), ann.getTitle(), ann.getContent());
+   }
+   
+   /**
+    * 
+    * @param page
+    * @param schoolcard
+    * @return
+    */
+   public Page list(Page page,String schoolcard){
+	   return systemDAO.list(page, schoolcard);
+   }
+   
    
 }
