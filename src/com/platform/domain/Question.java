@@ -17,12 +17,19 @@ public class Question extends BaseDomain {
 	private String answer_c ;
 	private String answer_d ;
 	private String answer;
-	private String question_img;
-	private String question_video;
+	private String image;
+	private String video;
 	private String category ;
 	private String tips;
+	private String type;
 	
 	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getCode() {
 		return code;
 	}
@@ -71,12 +78,6 @@ public class Question extends BaseDomain {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-	public String getQuestion_img() {
-		return question_img;
-	}
-	public void setQuestion_img(String question_img) {
-		this.question_img = question_img;
-	}
 	
 	public String getCategory() {
 		return category;
@@ -84,10 +85,17 @@ public class Question extends BaseDomain {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getQuestion_video() {
-		return question_video;
+	public String getImage() {
+		return image;
 	}
-	public void setQuestion_video(String question_video) {
-		this.question_video = question_video;
+	public void setImage(String image) {
+		this.image = image;
 	}
+	public String getVideo() {
+		return video;
+	}
+	public void setVideo(String video) {
+		this.video = video;
+	}
+	
 }

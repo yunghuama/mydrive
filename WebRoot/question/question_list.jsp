@@ -22,7 +22,8 @@ $(document).ready(function(){
 		$("input[name='type']").val(type);
 		$("form").submit();
 	});
-	$("#<s:property value='type'/>").addClass(".click");
+	$("#<s:property value='type'/>").addClass("click");
+	
 	
 	//构造分页
 	var maxPage = parseInt($("#maxPage").val());

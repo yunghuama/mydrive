@@ -56,8 +56,8 @@ public class QuestionCarDAO extends GenericDAO{
 				question.getAnswer_c(),
 				question.getAnswer_d(),
 				question.getAnswer(),
-				question.getQuestion_img(),
-				question.getQuestion_video(),
+				question.getImage(),
+				question.getVideo(),
 				question.getCategory(),
 				new Date()
 		});

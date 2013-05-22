@@ -23,6 +23,8 @@ import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.zip.ZipEntry;
 import org.apache.tools.zip.ZipFile;
 
+import com.platform.constants.StringConstant;
+
 /**
  * 文件名：FileHelper.java<br>
  * 说明：用于XXX的类 <br>
@@ -443,5 +445,39 @@ public class FileHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    /**
+     * 
+     * @param type 题库类型
+     * @param flag 附件类型
+     * @return
+     */
+    public static String getPath(int type,int fileType){
+    	//如果是图片
+    	if(fileType==0){
+    		if(StringConstant.questionType_car == type)
+    			return StringConstant.PATH_IMAGE_CAR;
+    		else if(StringConstant.questionType_bus == type)
+    			return StringConstant.PATH_IMAGE_BUS;
+    		else if(StringConstant.questionType_truck == type)
+    			return StringConstant.PATH_IMAGE_TRUCK;
+    		else if(StringConstant.questionType_moto == type)
+    			return StringConstant.PATH_IMAGE_MOTO;
+    		else if(StringConstant.questionType_3 == type)
+    			return StringConstant.PATH_IMAGE_SUB3;
+    	}else if(fileType==1){//如果是视频
+    		if(StringConstant.questionType_car == type)
+    			return StringConstant.PATH_VIDEO_CAR;
+    		else if(StringConstant.questionType_bus == type)
+    			return StringConstant.PATH_VIDEO_BUS;
+    		else if(StringConstant.questionType_truck == type)
+    			return StringConstant.PATH_VIDEO_TRUCK;
+    		else if(StringConstant.questionType_moto == type)
+    			return StringConstant.PATH_VIDEO_MOTO;
+    		else if(StringConstant.questionType_3 == type)
+    			return StringConstant.PATH_VIDEO_SUB3;
+    	}
+    	return null;
     }
 }

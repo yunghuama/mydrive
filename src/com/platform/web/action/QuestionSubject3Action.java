@@ -120,44 +120,6 @@ public class QuestionSubject3Action extends GenericAction {
 		return Action.SUCCESS;
 	}
 	
-	public void importXls(){
-		System.out.println("导入");
-		try{
-
-		FileInputStream f = new FileInputStream("/home/cheney/question_car.xls");
-		HSSFWorkbook wb = new HSSFWorkbook(f);
-		HSSFSheet sheet = wb.getSheetAt(0);
-		int rowNum = sheet.getLastRowNum();
-		//如果没有错误,则进行导入
-			for(int i=1;i<=rowNum;i++){
-				HSSFRow row = sheet.getRow(i);
-				HSSFCell code = row.getCell((short)0);
-				HSSFCell question = row.getCell((short)1);
-				HSSFCell a = row.getCell((short)2);
-				HSSFCell b = row.getCell((short)3);
-				HSSFCell c = row.getCell((short)4);
-				HSSFCell d = row.getCell((short)5);
-				HSSFCell answer = row.getCell((short)6);
-				HSSFCell image = row.getCell((short)7);
-				HSSFCell category = row.getCell((short)8);
-				
-				Question q = new Question();
-				q.setCode(code.getStringCellValue());
-				q.setQuestion(question.getStringCellValue());
-				q.setAnswer_a(a.getStringCellValue());
-				q.setAnswer_b(b.getStringCellValue());
-				q.setAnswer_c(c==null? "" : c.getStringCellValue());
-				q.setAnswer_d(d==null? "" :d.getStringCellValue());
-				q.setAnswer(answer.getStringCellValue());
-				q.setCategory(category==null? "":category.getStringCellValue());
-				q.setQuestion_img(image==null?"":image.getStringCellValue());
-//				questionService.saveQuestion_car(q);
-			}
-			
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	}
 
 	public List<QuestionVO> getList() {
 		return list;

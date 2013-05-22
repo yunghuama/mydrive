@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.platform.constants.SQLConstant;
 import com.platform.constants.StringConstant;
 import com.platform.dao.QuestionBusDAO;
 import com.platform.dao.QuestionCarDAO;
@@ -214,4 +213,18 @@ public class QuestionService implements IService {
     	return page;
     }
     
+    
+    public int saveQuestion(Question question,int cartype){
+    	if(StringConstant.questionType_car== cartype)
+    		return questionCarDAO.saveQuestion_Car(question);
+    	else if(StringConstant.questionType_bus== cartype)
+    		return questionBusDAO.saveQuestion_Bus(question);
+    		else if(StringConstant.questionType_truck== cartype)
+    			return questionTruckDAO.saveQuestion_Truck(question);
+    			else if(StringConstant.questionType_moto== cartype)
+    				return questionMotoDAO.saveQuestion_Moto(question);
+    				else if(StringConstant.questionType_3 == cartype)
+    					return questionSubject3DAO.saveQuestion3(question);
+    	return 0;
+    }
 }

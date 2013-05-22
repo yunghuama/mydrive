@@ -1,6 +1,7 @@
 package com.platform.web.action;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -14,12 +15,15 @@ import org.springframework.stereotype.Controller;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.platform.constants.StringConstant;
+import com.platform.domain.AttachedFile;
 import com.platform.domain.Question;
 import com.platform.domain.Section;
 import com.platform.domain.Users;
 import com.platform.service.QuestionService;
 import com.platform.service.UsersService;
+import com.platform.util.FileHelper;
 import com.platform.util.LoginBean;
+import com.platform.util.UploadHelper;
 import com.platform.vo.QuestionVO;
 
 
@@ -37,7 +41,9 @@ public class QuestionAction extends GenericAction {
 	private List<Section> sectionList;
 	private String categoryId;
 	private int questionId;
-	private int type;
+	private int type;//题库类型
+	private Question question;
+	private int fileType;//上传文件类型
 	/**
 	 * 初始化练习模式试题
 	 * @return
@@ -170,6 +176,26 @@ public class QuestionAction extends GenericAction {
 		return Action.SUCCESS;
 	}
 	
+	public String saveQuestion() throws IOException{
+		//如果有附件
+		if(upload!=null&&upload.size()>0){
+			String path = FileHelper.getPath(type, fileType);
+			UploadHelper helper = new UploadHelper(upload, uploadFileName, uploadTitle, uploadContentType, path, UploadHelper.NAME);
+			List<AttachedFile> list = helper.getAttachedFiles();
+			if(list!=null&&list.size()>0){
+				AttachedFile af = list.get(0);
+				if(fileType==0)
+				question.setImage(af.getFileName());
+				else if(fileType==1)
+				question.setVideo(af.getFileName());	
+			}
+				
+		}
+		
+		
+		return Action.SUCCESS;
+	}
+	
 	public void importXls(){
 		System.out.println("导入");
 		try{
@@ -200,7 +226,7 @@ public class QuestionAction extends GenericAction {
 				q.setAnswer_d(d==null? "" :d.getStringCellValue());
 				q.setAnswer(answer.getStringCellValue());
 				q.setCategory(category==null? "":category.getStringCellValue());
-				q.setQuestion_img(image==null?"":image.getStringCellValue());
+				q.setImage(image==null?"":image.getStringCellValue());
 				questionService.saveQuestion_car(q);
 			}
 			

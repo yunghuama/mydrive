@@ -19,9 +19,17 @@ $(document).ready(function(){
 	 <div id="main">
 			<div id="title"><span>公告管理:添加公告</span></div>
 			<div id="sectionContent">
-				<form action="<%=path%>/exam/system/saveAnnouncement.d" method="post">
-				标题:<input type="text" name="announcement.title"><br/>
-				内容:<textarea rows="30" cols="20" name="announcement.content"></textarea><br/>
+				<form action="<%=path%>/exam/subject1/saveAnnouncement.d" method="post">
+				问题:<input type="text" name="announcement.title"><br/>
+				答案a:<input type="text" name="announcement.title"><br/>
+				答案b:<input type="text" name="announcement.title"><br/>
+				答案c:<input type="text" name="announcement.title"><br/>
+				答案d:<input type="text" name="announcement.title"><br/>
+				所属题库:<input type="text" name="announcement.title"><br/>
+				图片:<input type="text" name="announcement.title"><br/>
+				视频:<input type="text" name="announcement.title"><br/>
+				所属章节:<input type="text" name="announcement.title"><br/>
+				提示:<input type="text" name="announcement.title"><br/>
 				<input type="submit" value="保存">
 				</form>
 			</div>

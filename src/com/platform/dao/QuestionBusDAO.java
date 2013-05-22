@@ -47,6 +47,27 @@ public class QuestionBusDAO extends GenericDAO{
 	}
 	
 	/**
+	 * 保存客车
+	 * @param question
+	 * @return
+	 */
+	public int saveQuestion_Bus(Question question){
+		return jdbcTemplate.update(SQLConstant.QUESTION_BUS_SAVE, new Object[]{
+				question.getCode(),
+				question.getQuestion(),
+				question.getAnswer_a(),
+				question.getAnswer_b(),
+				question.getAnswer_c(),
+				question.getAnswer_d(),
+				question.getAnswer(),
+				question.getImage(),
+				question.getVideo(),
+				question.getCategory(),
+				new Date()
+		});
+	}
+	
+	/**
 	 * 从客车题库获得指定数量的题目
 	 * @return
 	 */

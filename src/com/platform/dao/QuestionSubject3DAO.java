@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.platform.constants.SQLConstant;
+import com.platform.domain.Question;
 import com.platform.domain.Section;
 import com.platform.util.PageHelper;
 import com.platform.util.UUIDGenerator;
@@ -43,6 +44,26 @@ public class QuestionSubject3DAO extends GenericDAO{
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
+	/**
+	 * 保存小车
+	 * @param question
+	 * @return
+	 */
+	public int saveQuestion3(Question question){
+		return jdbcTemplate.update(SQLConstant.QUESTION_3_SAVE, new Object[]{
+				question.getCode(),
+				question.getQuestion(),
+				question.getAnswer_a(),
+				question.getAnswer_b(),
+				question.getAnswer_c(),
+				question.getAnswer_d(),
+				question.getAnswer(),
+				question.getImage(),
+				question.getVideo(),
+				question.getCategory(),
+				new Date()
+		});
+	}
 	
 	/**
 	 * 从小车题库获得指定数量的题目

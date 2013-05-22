@@ -4,7 +4,7 @@ use  drivers;
 
 drop table if exists questions_car;
 create table questions_car(
-	id char(32) not null primary key,
+	id int not null primary key,
 	code varchar(10) not null,
 	question varchar(150) not null,
 	answer_a varchar(80) not null,
@@ -21,7 +21,7 @@ create table questions_car(
 
 drop table if exists questions_bus;
 create table questions_bus(
-	id char(32) not null primary key,
+	id int not null primary key,
 	code varchar(10) not null,
 	question varchar(150) not null,
 	answer_a varchar(80) not null,
@@ -38,7 +38,7 @@ create table questions_bus(
 
 drop table if exists questions_truck;
 create table questions_truck(
-	id char(32) not null primary key,
+	id int not null primary key,
 	code varchar(10) not null,
 	question varchar(150) not null,
 	answer_a varchar(80) not null,
@@ -55,7 +55,7 @@ create table questions_truck(
 
 drop table if exists questions_motorcycle;
 create table questions_motorcycle(
-	id char(32) not null primary key,
+	id int not null primary key,
 	code varchar(10) not null,
 	question varchar(150) not null,
 	answer_a varchar(80) not null,
@@ -72,7 +72,7 @@ create table questions_motorcycle(
 
 drop table if exists questions3;
 create table questions3(
-	id char(32) not null primary key,
+	id int not null primary key,
 	code varchar(10) not null,
 	question varchar(150) not null,
 	answer_a varchar(80) not null,
@@ -230,6 +230,5 @@ select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,quest
 insert into questions3(id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,createtime) select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,createtime from questions_car;
 
 select max(score) as maxscore, min(score) as minscore, count(id) as scorecounts ,avg(score) as avgscore,(select count(id)  from examscore where studentid = '4028813518f35feb0118f392eee50043' and cartype = 'c2' and score >=90 ) as passcount ,time,createtime from examscore where studentid = '4028813518f35feb0118f392eee50043' and cartype = 'c2'
-
 
 
