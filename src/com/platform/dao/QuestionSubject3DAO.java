@@ -118,6 +118,7 @@ public class QuestionSubject3DAO extends GenericDAO{
 				vo.setImage(rs.getString("question_img"));
 				vo.setVideo(rs.getString("question_video"));
 				vo.setTips(rs.getString("tips"));
+				vo.setCategory(rs.getString("sname"));
 				return vo;
 			}
 		});

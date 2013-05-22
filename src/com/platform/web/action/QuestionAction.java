@@ -249,5 +249,13 @@ public class QuestionAction extends GenericAction {
 		this.questionId = questionId;
 	}
 
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
 
 }
