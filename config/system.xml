@@ -4,6 +4,21 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
   <package name="examSystem" extends="role-default" namespace="/exam/system">
+    <action name="saveAnnouncement" class="systemAction" method="saveAnnouncement">
+      <result type="redirect">/exam/system/listAnnouncement.d</result>
+    </action>
+    <action name="viewAnnouncement" class="systemAction" method="viewAnnouncement">
+      <result>/school/ann_view.jsp</result>
+    </action>
+    <action name="delAnnouncement" class="systemAction" method="delAnnouncement">
+      <result type="redirect">/exam/system/listAnnouncement.d</result>
+    </action>
+    <action name="listAnnouncement" class="systemAction" method="listAnnouncement">
+      <result>/school/ann_list.jsp</result>
+    </action>
+    <action name="listAnnouncementStu" class="systemAction" method="listAnnouncementStu">
+      <result>/school/ann_list_stu.jsp</result>
+    </action>
   	<action name="listScore1" class="systemAction" method="listScore1">
       <result>/school/list_score1.jsp</result>
     </action>

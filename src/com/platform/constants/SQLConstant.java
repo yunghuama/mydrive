@@ -42,7 +42,7 @@ public final class SQLConstant {
 	/**
 	 * 学员
 	 */
-	public static final String STUDENT_LOGIN = "select id,name,remindtimes,begindate,identity,cartype from studentcard where number = ? and password = ?";
+	public static final String STUDENT_LOGIN = "select id,name,remindtimes,begindate,identity,cartype,schoolid from studentcard where number = ? and password = ?";
 	public static final String STUDENT_UPDATEINFO = "update studentcard set name=?,identity=?,age=?,sex=?,cartype=?,phonenumber=? where id=?";
 	public static final String STUDENT_COUNTDOWN = "update studentcard set remindtimes = remindtimes-1 where id = ?";
 	
@@ -50,7 +50,7 @@ public final class SQLConstant {
 	 * 学校
 	 */
 	public static final String SCHOOL_LOGIN = "select id from schoolcard where number = ? and password = ?";
-
+	
 
 	/**
 	 * 考试成绩
@@ -127,4 +127,5 @@ public final class SQLConstant {
 	public static final String ANNOUNCEMENT_DEL =  "delete from announcement where id = ?";
 	public static final String ANNOUNCEMENT_QUERY = "select * from announcement where schoolcard = ? order by createtime desc limit ?,?";
 	public static final String ANNOUNCEMENT_ROWCOUNT = "select count(id) from announcement where schoolcard = ?";
+	public static final String ANNOUNCEMENT_GET = "select * from announcement where id = ?";
 }

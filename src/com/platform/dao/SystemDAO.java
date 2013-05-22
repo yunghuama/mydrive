@@ -91,6 +91,7 @@ public class SystemDAO extends GenericDAO{
 	}
 	
 	
+	
 	/**
 	 * 根据驾校查询成绩1
 	 */
@@ -139,5 +140,25 @@ public class SystemDAO extends GenericDAO{
 		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
 		page.setList(list);
 		return page;
+	}
+	
+	public Announcement getAnnouncementById(String id){
+		List<Announcement> list = jdbcTemplate.query(SQLConstant.ANNOUNCEMENT_GET,new Object[]{id},new RowMapper<Announcement>(){
+			@Override
+			public Announcement mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				Announcement vo = new Announcement();
+				vo.setId(rs.getString("id"));
+				vo.setContent(rs.getString("content"));
+				vo.setTitle(rs.getString("title"));
+				vo.setCreateTime(rs.getDate("createtime") +" "+rs.getTime("createtime"));
+				return vo;
+			}
+		});
+		
+		if(list!=null&&list.size()>0){
+			return list.get(0);
+		}
+		return null;
 	}
 }

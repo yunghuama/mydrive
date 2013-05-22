@@ -16,14 +16,6 @@ $(document).ready(function(){
 	}).bind("mouseout",function(){
 		$(this).removeClass("mouseover");
 	});
-	
-	$(".data").bind("click",function(){
-		var id = $(this).attr("id");
-		$("#annId").val(id);
-		$("form").attr("action","<%=path%>/exam/system/viewAnnouncement.d");
-		$("form").submit();
-	});
-	
 	//构造分页
 	var maxPage = parseInt($("#maxPage").val());
 	var currentPage = parseInt($("#currPage").val());
@@ -61,7 +53,7 @@ $(document).ready(function(){
 						<th>操作</th>
 					</tr>
 					 <s:iterator id="ann" value="page.list" status="i">
-					<tr class="data" id=<s:property value="#ann.id"/>>
+					<tr>
 						<td><s:property value="#i.index+1"/> </td>
 						<td><s:property value="#ann.title"/> </td>
 						<td><a href='<%=path%>/exam/system/delAnnouncement.d?annId=<s:property value="#ann.id"/>'>删除</a> </td>
@@ -70,8 +62,9 @@ $(document).ready(function(){
 				</table>
 			</div>
 			<div id="pageBar">
-			<form action="<%=path %>/exam/system/listAnnouncement.d">
-			<s:hidden name="annId" id="annId"/>
+			<form action="<%=path %>/exam/system/listAnnouncementStu.d">
+			<s:hidden name="categoryId"/>
+			<s:hidden name="questionId" id="questionId"/>
 			<s:hidden id="maxPage" name="page.maxPage"/>
 			<s:hidden id="currPage" name="page.currPage"/>
 			<button id="prev">上一页</button>

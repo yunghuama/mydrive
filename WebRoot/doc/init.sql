@@ -198,6 +198,9 @@ alter table studentcard drop column remidtimes;
 alter table studentcard add column remindtimes int;
 
 insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50043','123','123','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
+insert into schoolcard(id,number,password,createtime) values('4028813518f35feb0118f392eee50046','222','222','2013-05-18');
+
+
 
 insert into section(id,name,category) values('4028813518f35feb0118f392eee50045','道路交通安全法律、法规和规章',1);
 insert into section(id,name,category) values('4028813518f35feb0118f392eee50046','交通信号',1);

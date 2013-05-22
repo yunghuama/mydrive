@@ -57,7 +57,7 @@ $(document).ready(function(){
 						<th>通过次数</th>
 						<th>通过率</th>
 					</tr>
-					 <s:iterator id="score" value="page.list" status="i">
+					<s:iterator id="score" value="page.list" status="i">
 					<tr>
 						<td><s:property value="#i.index+1"/> </td>
 						<td><s:property value="#score.name"/> </td>

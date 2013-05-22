@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import com.platform.constants.SQLConstant;
 import com.platform.dao.SystemDAO;
 import com.platform.domain.Announcement;
 import com.platform.vo.Page;
@@ -17,8 +18,8 @@ public class SystemService implements IService {
     	systemDAO = SystemDAO.getInstance(jdbcTemplate);
     }
 
-   public int save(Announcement ann){
-	   return systemDAO.saveAnnouncement(ann.getSchoolcard(), ann.getTitle(), ann.getContent());
+   public int saveAnnouncement(String schoolcard,String title,String content){
+	   return systemDAO.saveAnnouncement(schoolcard, title, content);
    }
    
    /**
@@ -51,4 +52,21 @@ public class SystemService implements IService {
    public Page listScore3(Page page,String schoolcard){
 	   return systemDAO.listScore3(page, schoolcard);
    }
+   
+   
+   /**
+    * 删除公告
+    * 
+    */
+   public int delAnn(String id){
+	  return systemDAO.deleteByProperty(SQLConstant.ANNOUNCEMENT_DEL, id);
+   }
+   
+   /**
+    * 查看公告
+    */
+   public Announcement getAnnouncementById(String id){
+	   return systemDAO.getAnnouncementById(id);
+   }
+   
 }

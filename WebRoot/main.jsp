@@ -68,6 +68,12 @@ if(session.getAttribute("LoginBean")==null) {
 			});
 			
 			
+			$("a[name='id_5_1']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/system/listAnnouncementStu.d");
+			});
+			$("a[name='id_5_2']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/system/listAnnouncement.d");
+			});
 			$("a[name='id_5_3']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/exam/system/listScore1.d");
 			});
