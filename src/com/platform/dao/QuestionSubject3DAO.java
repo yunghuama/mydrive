@@ -98,6 +98,36 @@ public class QuestionSubject3DAO extends GenericDAO{
 		return page;
 	}
 	
+	/**
+	 * 从科目三题库根据类型分页获取题目
+	 * @return
+	 */
+	public Page<QuestionVO> listQuestionAll(Page<QuestionVO> page){
+		List<QuestionVO> list =  jdbcTemplate.query(SQLConstant.QUESTION3_QUERY_PAGE_ALL,new Object[]{(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<QuestionVO>(){
+			@Override
+			public QuestionVO mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				QuestionVO vo = new QuestionVO();
+				vo.setId(rs.getInt("id"));
+				vo.setAnswer(rs.getString("answer"));
+				vo.setAnswer_a(rs.getString("answer_a"));
+				vo.setAnswer_b(rs.getString("answer_b"));
+				vo.setAnswer_c(rs.getString("answer_c"));
+				vo.setAnswer_d(rs.getString("answer_d"));
+				vo.setQuestion(rs.getString("question"));
+				vo.setImage(rs.getString("question_img"));
+				vo.setVideo(rs.getString("question_video"));
+				vo.setTips(rs.getString("tips"));
+				return vo;
+			}
+		});
+		int rowCount = queryForInt(SQLConstant.QUESTION3_QUERY_ROWCOUNT_ALL);
+		page.setRowCount(rowCount);
+		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
+		page.setList(list);
+		return page;
+	}
+	
 	public int queryForInt(String sql,Object args){
 		return jdbcTemplate.queryForInt(sql,args);
 	}
@@ -209,6 +239,7 @@ public class QuestionSubject3DAO extends GenericDAO{
 				vo.setQuestion(rs.getString("question"));
 				vo.setImage(rs.getString("question_img"));
 				vo.setVideo(rs.getString("question_video"));
+				vo.setTips(rs.getString("tips"));
 				return vo;
 			}
 		});
@@ -237,6 +268,7 @@ public class QuestionSubject3DAO extends GenericDAO{
 				vo.setQuestion(rs.getString("question"));
 				vo.setImage(rs.getString("question_img"));
 				vo.setVideo(rs.getString("question_video"));
+				vo.setTips(rs.getString("tips"));
 				return vo;
 			}
 		});

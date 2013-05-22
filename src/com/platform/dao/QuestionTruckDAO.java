@@ -91,10 +91,41 @@ public class QuestionTruckDAO extends GenericDAO{
 				vo.setQuestion(rs.getString("question"));
 				vo.setImage(rs.getString("question_img"));
 				vo.setVideo(rs.getString("question_video"));
+				vo.setTips(rs.getString("tips"));
 				return vo;
 			}
 		});
 		int rowCount = queryForInt(SQLConstant.QUESTION_TRUCK_QUERY_ROWCOUNT,category);
+		page.setRowCount(rowCount);
+		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
+		page.setList(list);
+		return page;
+	}
+	
+	/**
+	 * 从卡车题库根据类型分页获取题目
+	 * @return
+	 */
+	public Page<QuestionVO> listQuestionOrderAll_truck(Page<QuestionVO> page){
+		List<QuestionVO> list =  jdbcTemplate.query(SQLConstant.QUESTION_TRUCK_QUERY_PAGE_ALL,new Object[]{(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<QuestionVO>(){
+			@Override
+			public QuestionVO mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				QuestionVO vo = new QuestionVO();
+				vo.setId(rs.getInt("id"));
+				vo.setAnswer(rs.getString("answer"));
+				vo.setAnswer_a(rs.getString("answer_a"));
+				vo.setAnswer_b(rs.getString("answer_b"));
+				vo.setAnswer_c(rs.getString("answer_c"));
+				vo.setAnswer_d(rs.getString("answer_d"));
+				vo.setQuestion(rs.getString("question"));
+				vo.setImage(rs.getString("question_img"));
+				vo.setVideo(rs.getString("question_video"));
+				vo.setTips(rs.getString("tips"));
+				return vo;
+			}
+		});
+		int rowCount = queryForInt(SQLConstant.QUESTION_TRUCK_QUERY_ROWCOUNT_ALL);
 		page.setRowCount(rowCount);
 		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
 		page.setList(list);
@@ -119,6 +150,7 @@ public class QuestionTruckDAO extends GenericDAO{
 				vo.setQuestion(rs.getString("question"));
 				vo.setImage(rs.getString("question_img"));
 				vo.setVideo(rs.getString("question_video"));
+				vo.setTips(rs.getString("tips"));
 				return vo;
 			}
 		});
@@ -147,6 +179,7 @@ public class QuestionTruckDAO extends GenericDAO{
 				vo.setQuestion(rs.getString("question"));
 				vo.setImage(rs.getString("question_img"));
 				vo.setVideo(rs.getString("question_video"));
+				vo.setTips(rs.getString("tips"));
 				return vo;
 			}
 		});

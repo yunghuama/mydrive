@@ -37,6 +37,7 @@ public class QuestionAction extends GenericAction {
 	private List<Section> sectionList;
 	private String categoryId;
 	private int questionId;
+	private int type;
 	/**
 	 * 初始化练习模式试题
 	 * @return
@@ -157,6 +158,15 @@ public class QuestionAction extends GenericAction {
 	public String listWrongQuestion(){
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		page = questionService.listWrongQuestion(page, loginBean.getUser().getId(), loginBean.getUser().getCartype());
+		return Action.SUCCESS;
+	}
+	
+	/**
+	 * 问题列表查询
+	 * @return
+	 */
+	public String listQuestion(){
+		page = questionService.listQuestion(page, type);
 		return Action.SUCCESS;
 	}
 	

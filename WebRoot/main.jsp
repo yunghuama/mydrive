@@ -67,7 +67,7 @@ if(session.getAttribute("LoginBean")==null) {
 				$("#mainFrame").attr("src","<%=path%>/exam/subject3/listWrongQuestion.d");
 			});
 			
-			
+			//驾校管理
 			$("a[name='id_5_1']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/exam/system/listAnnouncementStu.d");
 			});
@@ -79,6 +79,11 @@ if(session.getAttribute("LoginBean")==null) {
 			});
 			$("a[name='id_5_4']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/exam/system/listScore3.d");
+			});
+			
+			//系统设置
+			$("a[name='id_6_1']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/subject1/listQuestion.d");
 			});
 		});
 	
@@ -131,6 +136,12 @@ if(session.getAttribute("LoginBean")==null) {
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_2">公告管理</a></li>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_3">学员成绩1</a></li>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_4">学员成绩3</a></li>
+  					</ul>
+  				</li>
+  				<li class="menu-item">
+  					<a href="javascript:void(0);">题库管理</a>
+  					 <ul class="sub-nav">
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_6_1">题库管理</a></li>
   					</ul>
   				</li>
   			</ul>

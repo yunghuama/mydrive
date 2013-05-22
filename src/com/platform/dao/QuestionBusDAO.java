@@ -72,7 +72,7 @@ public class QuestionBusDAO extends GenericDAO{
 	
 	
 	/**
-	 * 从小车题库根据类型分页获取题目
+	 * 从客车题库根据类型分页获取题目
 	 * @return
 	 */
 	public Page<QuestionVO> listQuestionOrder_bus(Page<QuestionVO> page,String category){
@@ -90,6 +90,7 @@ public class QuestionBusDAO extends GenericDAO{
 				vo.setQuestion(rs.getString("question"));
 				vo.setImage(rs.getString("question_img"));
 				vo.setVideo(rs.getString("question_video"));
+				vo.setTips(rs.getString("tips"));
 				return vo;
 			}
 		});
@@ -100,6 +101,36 @@ public class QuestionBusDAO extends GenericDAO{
 		return page;
 	}
 	
+	
+	/**
+	 * 从客车题库根据类型分页获取题目
+	 * @return
+	 */
+	public Page<QuestionVO> listQuestionOrderAll_bus(Page<QuestionVO> page){
+		List<QuestionVO> list =  jdbcTemplate.query(SQLConstant.QUESTION_BUS_QUERY_PAGE_ALL,new Object[]{(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<QuestionVO>(){
+			@Override
+			public QuestionVO mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				QuestionVO vo = new QuestionVO();
+				vo.setId(rs.getInt("id"));
+				vo.setAnswer(rs.getString("answer"));
+				vo.setAnswer_a(rs.getString("answer_a"));
+				vo.setAnswer_b(rs.getString("answer_b"));
+				vo.setAnswer_c(rs.getString("answer_c"));
+				vo.setAnswer_d(rs.getString("answer_d"));
+				vo.setQuestion(rs.getString("question"));
+				vo.setImage(rs.getString("question_img"));
+				vo.setVideo(rs.getString("question_video"));
+				vo.setTips(rs.getString("tips"));
+				return vo;
+			}
+		});
+		int rowCount = queryForInt(SQLConstant.QUESTION_BUS_QUERY_ROWCOUNT_ALL);
+		page.setRowCount(rowCount);
+		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
+		page.setList(list);
+		return page;
+	}
 	
 	/**
 	 * 查询已标记题目
@@ -118,6 +149,7 @@ public class QuestionBusDAO extends GenericDAO{
 				vo.setQuestion(rs.getString("question"));
 				vo.setImage(rs.getString("question_img"));
 				vo.setVideo(rs.getString("question_video"));
+				vo.setTips(rs.getString("tips"));
 				return vo;
 			}
 		});
@@ -146,6 +178,7 @@ public class QuestionBusDAO extends GenericDAO{
 				vo.setQuestion(rs.getString("question"));
 				vo.setImage(rs.getString("question_img"));
 				vo.setVideo(rs.getString("question_video"));
+				vo.setTips(rs.getString("tips"));
 				return vo;
 			}
 		});

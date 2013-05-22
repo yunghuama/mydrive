@@ -27,5 +27,8 @@
     <action name="listWrongQuestion" class="questionAction" method="listWrongQuestion">
       <result>/subject1/wrongquestion.jsp</result>
     </action>
+    <action name="listQuestion" class="questionAction" method="listQuestion">
+      <result>/question/question_list.jsp</result>
+    </action>
   </package>
 </struts>

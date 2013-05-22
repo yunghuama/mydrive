@@ -12,7 +12,17 @@ public class QuestionVO {
 	private String image;
 	private String video;
 	private String tips;
+	private String category;
 	
+	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public int getId() {
 		return id;
 	}

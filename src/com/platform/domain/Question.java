@@ -10,7 +10,7 @@ public class Question extends BaseDomain {
 
     private static final long serialVersionUID = -7094766838338441306L;
     
-	private String code ;
+    private String code;//章节编码
 	private String question;
 	private String answer_a;
 	private String answer_b ;
@@ -20,6 +20,7 @@ public class Question extends BaseDomain {
 	private String question_img;
 	private String question_video;
 	private String category ;
+	private String tips;
 	
 	
 	public String getCode() {
@@ -27,6 +28,12 @@ public class Question extends BaseDomain {
 	}
 	public void setCode(String code) {
 		this.code = code;
+	}
+	public String getTips() {
+		return tips;
+	}
+	public void setTips(String tips) {
+		this.tips = tips;
 	}
 	public String getQuestion() {
 		return question;

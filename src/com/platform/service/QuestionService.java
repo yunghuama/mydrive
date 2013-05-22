@@ -13,6 +13,7 @@ import com.platform.dao.QuestionBusDAO;
 import com.platform.dao.QuestionCarDAO;
 import com.platform.dao.QuestionDAO;
 import com.platform.dao.QuestionMotoDAO;
+import com.platform.dao.QuestionSubject3DAO;
 import com.platform.dao.QuestionTruckDAO;
 import com.platform.domain.Question;
 import com.platform.domain.Section;
@@ -29,6 +30,7 @@ public class QuestionService implements IService {
     private QuestionCarDAO questionCarDAO;
     private QuestionTruckDAO questionTruckDAO;
     private QuestionMotoDAO questionMotoDAO;
+    private QuestionSubject3DAO questionSubject3DAO;
     
     @Autowired
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
@@ -37,6 +39,7 @@ public class QuestionService implements IService {
     	questionCarDAO = QuestionCarDAO.getInstance(jdbcTemplate);
     	questionTruckDAO = QuestionTruckDAO.getInstance(jdbcTemplate);
     	questionMotoDAO = QuestionMotoDAO.getInstance(jdbcTemplate);
+    	questionSubject3DAO = QuestionSubject3DAO.getInstance(jdbcTemplate);
     }
 
     /**
@@ -48,8 +51,6 @@ public class QuestionService implements IService {
     public int saveQuestion_car(Question question){
     	return questionCarDAO.saveQuestion_Car(question);
     }
-   
-    
     /*****************************练习模式|模拟考试开始*********************************/
     
     /**
@@ -100,9 +101,6 @@ public class QuestionService implements IService {
     	return questionDAO.saveExamScore(studentId, score, time, cartype);
     }
     
-    /*****************************练习模式|模拟考试结束*********************************/
-    
-    
     /*****************************顺序练习开始*********************************/
     /**
      * 获得章节
@@ -150,8 +148,6 @@ public class QuestionService implements IService {
     	return questionDAO.saveMarkQuestion(questionId, studentId, StringConstant.questionType.get(cartype));
     }
     
-    /*****************************顺序练习开始结束*********************************/
-    
     
     /*****************************已标记题开始*********************************/
     /**
@@ -162,9 +158,9 @@ public class QuestionService implements IService {
     		return questionCarDAO.listMarkQuestionCar(page,studentId,StringConstant.questionType.get(cartype));
     	else if(StringConstant.questionType_bus==StringConstant.questionType.get(cartype))
     		return questionBusDAO.listMarkQuestionBus(page,studentId,StringConstant.questionType.get(cartype));
-    		else if(StringConstant.questionType_bus==StringConstant.questionType.get(cartype))
+    		else if(StringConstant.questionType_truck==StringConstant.questionType.get(cartype))
     			return questionTruckDAO.listMarkQuestionTruck(page,studentId,StringConstant.questionType.get(cartype));
-    			else if(StringConstant.questionType_bus==StringConstant.questionType.get(cartype))
+    			else if(StringConstant.questionType_moto==StringConstant.questionType.get(cartype))
     				return questionMotoDAO.listMarkQuestionMoto(page,studentId,StringConstant.questionType.get(cartype));
     	return page;
     }
@@ -177,8 +173,6 @@ public class QuestionService implements IService {
     	return questionDAO.delMarkQuestion(questionId,studentId,StringConstant.questionType.get(cartype));
     }
     
-    /*****************************已标记题结束*********************************/
-    
     
     /*****************************错题练习开始*********************************/
     
@@ -187,17 +181,16 @@ public class QuestionService implements IService {
     		return questionCarDAO.listWrongQuestionCar(page,studentId,StringConstant.questionType.get(cartype));
     	else if(StringConstant.questionType_bus==StringConstant.questionType.get(cartype))
     		return questionBusDAO.listWrongQuestionBus(page,studentId,StringConstant.questionType.get(cartype));
-    		else if(StringConstant.questionType_bus==StringConstant.questionType.get(cartype))
+    		else if(StringConstant.questionType_truck==StringConstant.questionType.get(cartype))
     			return questionTruckDAO.listWrongQuestionTruck(page,studentId,StringConstant.questionType.get(cartype));
-    			else if(StringConstant.questionType_bus==StringConstant.questionType.get(cartype))
+    			else if(StringConstant.questionType_moto==StringConstant.questionType.get(cartype))
     				return questionMotoDAO.listWrongQuestionMoto(page,studentId,StringConstant.questionType.get(cartype));
     	return page;
     }
     
-    /*****************************错题练习结束*********************************/
-    
     
     /******************************个人考试信息分析开始**************************/
+    
     public StatisticVO getStatistic(String studentId,String cartype){
     	return questionDAO.statistic(studentId, cartype);
     }
@@ -206,5 +199,19 @@ public class QuestionService implements IService {
     	return questionDAO.getScores(studentId,cartype);
     }
     
-    /******************************个人考试信息分析结束**************************/
+    /*******************************题库管理开始***********************************/
+    public Page<QuestionVO> listQuestion(Page<QuestionVO> page,int cartype){
+    	if(StringConstant.questionType_car== cartype)
+    		return questionCarDAO.listQuestionOrderAll_car(page);
+    	else if(StringConstant.questionType_bus== cartype)
+    		return questionBusDAO.listQuestionOrderAll_bus(page);
+    		else if(StringConstant.questionType_truck== cartype)
+    			return questionTruckDAO.listQuestionOrderAll_truck(page);
+    			else if(StringConstant.questionType_moto== cartype)
+    				return questionMotoDAO.listQuestionOrderAll_moto(page);
+    				else if(StringConstant.questionType_3 == cartype)
+    					return questionSubject3DAO.listQuestionAll(page);
+    	return page;
+    }
+    
 }
