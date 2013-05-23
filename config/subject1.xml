@@ -30,5 +30,18 @@
     <action name="listQuestion" class="questionAction" method="listQuestion">
       <result>/question/question_list.jsp</result>
     </action>
+    <action name="saveQuestion" class="questionAction" method="saveQuestion">
+      <result>/share/blank.jsp</result>
+    </action>
+    <action name="toUpdateQuestion" class="questionAction" method="toUpdateQuestion">
+      <result>/question/question_modify.jsp</result>
+    </action>
+    <action name="updateQuestion" class="questionAction" method="updateQuestion">
+      <result>/share/blank.jsp</result>
+    </action>
+    <action name="deleteQuestion" class="questionAction" method="deleteQuestion">
+      <result type="redirect">/exam/subject1/listQuestion.d?type=${type}</result>
+    </action>
+    
   </package>
 </struts>

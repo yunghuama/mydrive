@@ -6,10 +6,11 @@ import java.util.Set;
 
 import org.apache.struts2.json.annotations.JSON;
 
-public class Question extends BaseDomain {
+public class Question  {
 
     private static final long serialVersionUID = -7094766838338441306L;
     
+    private int id;
     private String code;//章节编码
 	private String question;
 	private String answer_a;
@@ -23,7 +24,12 @@ public class Question extends BaseDomain {
 	private String tips;
 	private String type;
 	
-	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getType() {
 		return type;
 	}

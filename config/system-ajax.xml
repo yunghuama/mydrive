@@ -46,6 +46,11 @@
         <param name="root">scoreVoList</param>
       </result>
     </action>
+    <action name="getCategory" class="questionAjaxAction" method="getCategory">
+      <result type="json">
+        <param name="root">sectionList</param>
+      </result>
+    </action>
   </package>
   
 </struts>

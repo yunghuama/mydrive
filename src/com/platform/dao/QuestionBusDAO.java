@@ -10,9 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.platform.constants.SQLConstant;
 import com.platform.domain.Question;
-import com.platform.domain.Section;
 import com.platform.util.PageHelper;
-import com.platform.util.UUIDGenerator;
 import com.platform.vo.Page;
 import com.platform.vo.QuestionVO;
 
@@ -63,9 +61,11 @@ public class QuestionBusDAO extends GenericDAO{
 				question.getImage(),
 				question.getVideo(),
 				question.getCategory(),
+				question.getTips(),
 				new Date()
 		});
 	}
+	
 	
 	/**
 	 * 从客车题库获得指定数量的题目
@@ -152,6 +152,59 @@ public class QuestionBusDAO extends GenericDAO{
 		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
 		page.setList(list);
 		return page;
+	}
+	
+	/**
+	 * 根据ID 查询问题
+	 * @return
+	 */
+	public Question findQuestionById(int id){
+		List<Question> list =  jdbcTemplate.query(SQLConstant.QUESTION_BUS_QUERY_BY_ID,new Object[]{id},new RowMapper<Question>(){
+			@Override
+			public Question mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				Question vo = new Question();
+				vo.setId(rs.getInt("id"));
+				vo.setCode(rs.getString("code"));
+				vo.setAnswer(rs.getString("answer"));
+				vo.setAnswer_a(rs.getString("answer_a"));
+				vo.setAnswer_b(rs.getString("answer_b"));
+				vo.setAnswer_c(rs.getString("answer_c"));
+				vo.setAnswer_d(rs.getString("answer_d"));
+				vo.setQuestion(rs.getString("question"));
+				vo.setImage(rs.getString("question_img"));
+				vo.setVideo(rs.getString("question_video"));
+				vo.setTips(rs.getString("tips"));
+				vo.setCategory(rs.getString("category"));
+				return vo;
+			}
+		});
+		
+		if(list!=null&&list.size()>0){
+			return list.get(0);
+		}
+		return null;
+	}
+	
+	/**
+	 * 根据ID 更新问题
+	 * @return
+	 */
+	public int updateQuestion(Question question){
+		return jdbcTemplate.update(SQLConstant.QUESTION_BUS_UPDATE_BY_ID, new Object[]{
+				question.getCode(),
+				question.getQuestion(),
+				question.getAnswer_a(),
+				question.getAnswer_b(),
+				question.getAnswer_c(),
+				question.getAnswer_d(),
+				question.getAnswer(),
+				question.getImage(),
+				question.getVideo(),
+				question.getCategory(),
+				question.getTips(),
+				question.getId()
+		});
 	}
 	
 	/**

@@ -13,11 +13,11 @@ public final class SQLConstant {
 	/**
 	 * 题库 科目一
 	 */
-	public static final String QUESTION_CAR_SAVE = "insert into questions_car(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,createtime) values(?,?,?,?,?,?,?,?,?,?,?)";
-	public static final String QUESTION_BUS_SAVE = "insert into questions_bus(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,createtime) values(?,?,?,?,?,?,?,?,?,?,?)";
-	public static final String QUESTION_TRUCK_SAVE = "insert into questions_truck(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,createtime) values(?,?,?,?,?,?,?,?,?,?,?)";
-	public static final String QUESTION_MOTO_SAVE = "insert into questions_motorcycle(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,createtime) values(?,?,?,?,?,?,?,?,?,?,?)";
-	public static final String QUESTION_3_SAVE = "insert into questions3(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,createtime) values(?,?,?,?,?,?,?,?,?,?,?)";
+	public static final String QUESTION_CAR_SAVE = "insert into questions_car(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,tips,createtime) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+	public static final String QUESTION_BUS_SAVE = "insert into questions_bus(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,tips,createtime) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+	public static final String QUESTION_TRUCK_SAVE = "insert into questions_truck(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,tips,createtime) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+	public static final String QUESTION_MOTO_SAVE = "insert into questions_motorcycle(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,tips,createtime) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+	public static final String QUESTION_3_SAVE = "insert into questions3(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,tips,createtime) values(?,?,?,?,?,?,?,?,?,?,?,?)";
 	
 	
 	
@@ -47,6 +47,29 @@ public final class SQLConstant {
 	public static final String QUESTION_MOTO_QUERY_ROWCOUNT_ALL = "select count(id) from questions_motorcycle";
 	
 	/**
+	 * 题库 科目一 根据ID 查询
+	 */
+	public static final String 	QUESTION_CAR_QUERY_BY_ID = "select * from questions_car where id = ?";
+	public static final String 	QUESTION_BUS_QUERY_BY_ID = "select * from questions_bus where id = ?";
+	public static final String 	QUESTION_TRUCK_QUERY_BY_ID = "select * from questions_truck where id = ?";
+	public static final String 	QUESTION_MOTO_QUERY_BY_ID = "select * from questions_motorcycle where id = ?";
+	
+	/**
+	 * 更新 科目一
+	 */
+	public static final String QUESTION_CAR_UPDATE_BY_ID = "update questions_car set code = ?,question = ?,answer_a = ?,answer_b = ?,answer_c = ?,answer_d = ?,answer = ?,question_img = ?,question_video = ?,category = ?,tips = ? where id = ?";
+	public static final String QUESTION_BUS_UPDATE_BY_ID = "update questions_bus set code = ?,question = ?,answer_a = ?,answer_b = ?,answer_c = ?,answer_d = ?,answer = ?,question_img = ?,question_video = ?,category = ?,tips = ? where id = ?";
+	public static final String QUESTION_TRUCK_UPDATE_BY_ID = "update questions_truck set code = ?,question = ?,answer_a = ?,answer_b = ?,answer_c = ?,answer_d = ?,answer = ?,question_img = ?,question_video = ?,category = ?,tips = ? where id = ?";
+	public static final String QUESTION_MOTO_UPDATE_BY_ID = "update questions_motorcycle set code = ?,question = ?,answer_a = ?,answer_b = ?,answer_c = ?,answer_d = ?,answer = ?,question_img = ?,question_video = ?,category = ?,tips = ? where id = ?";
+	
+	/**
+	 * 删除 科目一
+	 */
+	public static final String QUESTION_CAR_DELETE_BY_ID = "delete from questions_car where id = ?";
+	public static final String QUESTION_BUS_DELETE_BY_ID = "delete from questions_bus where id = ?";
+	public static final String QUESTION_TRUCK_DELETE_BY_ID = "delete from questions_truck where id = ?";
+	public static final String QUESTION_MOTO_DELETE_BY_ID = "delete from questions_motorcycle where id = ?";
+	/**
 	 * 题库 科目三
 	 */
 	public static final String QUESTION3_QUERY_RANDOM = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions3 order by rand() limit ?";
@@ -54,8 +77,9 @@ public final class SQLConstant {
 	public static final String QUESTION3_QUERY_ROWCOUNT = "select count(id) from questions3 where category = ?";
 	public static final String QUESTION3_QUERY_PAGE_ALL = "select c.id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips,s.name as sname from questions3 c left join section s on c.category = s.id order by c.id limit ?,?";
 	public static final String QUESTION3_QUERY_ROWCOUNT_ALL = "select count(id) from questions3";
-
-	
+	public static final String QUESTION3_QUERY_BY_ID = "select * from questions3 where id = ?";
+	public static final String QUESTION3_UPDATE_BY_ID = "update questions3 set code = ?,question = ?,answer_a = ?,answer_b = ?,answer_c = ?,answer_d = ?,answer = ?,question_img = ?,question_video = ?,category = ?,tips = ? where id = ?";
+	public static final String QUESTION3_DELETE_BY_ID = "delete from questions3 where id = ?";
 	
 	/**
 	 * 学员

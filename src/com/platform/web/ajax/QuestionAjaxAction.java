@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.platform.domain.Score;
+import com.platform.domain.Section;
 import com.platform.domain.Users;
 import com.platform.service.QuestionService;
 import com.platform.service.QuestionSubject3Service;
@@ -34,6 +35,9 @@ public class QuestionAjaxAction {
     private String remarkQuestionId;
     private StatisticVO statisticVO;
     private List<ScoreVO> scoreVoList;
+    private List<Section> sectionList;
+    private int type;
+    
     /**
      * 保存成绩
      * @return
@@ -175,6 +179,15 @@ public class QuestionAjaxAction {
 		return Action.SUCCESS;
 	}
 	
+	/**
+	 * 根据类型获得章节
+	 * @return
+	 */
+	public String getCategory(){
+		sectionList = questionService.getSection(type+"");
+		return Action.SUCCESS;
+	}
+	
 	public QuestionService getQuestionService() {
 		return questionService;
 	}
@@ -229,6 +242,22 @@ public class QuestionAjaxAction {
 
 	public void setScoreVoList(List<ScoreVO> scoreVoList) {
 		this.scoreVoList = scoreVoList;
+	}
+
+	public List<Section> getSectionList() {
+		return sectionList;
+	}
+
+	public void setSectionList(List<Section> sectionList) {
+		this.sectionList = sectionList;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
 	}
 	
 }

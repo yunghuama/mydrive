@@ -4,7 +4,7 @@ use  drivers;
 
 drop table if exists questions_car;
 create table questions_car(
-	id int not null primary key,
+	id int not null auto_increment primary key,
 	code varchar(10) not null,
 	question varchar(150) not null,
 	answer_a varchar(80) not null,
@@ -21,7 +21,7 @@ create table questions_car(
 
 drop table if exists questions_bus;
 create table questions_bus(
-	id int not null primary key,
+	id int not null auto_increment primary key,
 	code varchar(10) not null,
 	question varchar(150) not null,
 	answer_a varchar(80) not null,
@@ -38,7 +38,7 @@ create table questions_bus(
 
 drop table if exists questions_truck;
 create table questions_truck(
-	id int not null primary key,
+	id int not null auto_increment primary key,
 	code varchar(10) not null,
 	question varchar(150) not null,
 	answer_a varchar(80) not null,
@@ -55,7 +55,7 @@ create table questions_truck(
 
 drop table if exists questions_motorcycle;
 create table questions_motorcycle(
-	id int not null primary key,
+	id int not null auto_increment primary key,
 	code varchar(10) not null,
 	question varchar(150) not null,
 	answer_a varchar(80) not null,
@@ -72,7 +72,7 @@ create table questions_motorcycle(
 
 drop table if exists questions3;
 create table questions3(
-	id int not null primary key,
+	id int not null auto_increment primary key,
 	code varchar(10) not null,
 	question varchar(150) not null,
 	answer_a varchar(80) not null,

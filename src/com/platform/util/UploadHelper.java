@@ -139,10 +139,10 @@ public class UploadHelper {
                         fileName = realNames.get(i);
 
                     // 创建文件夹
-                    String realFolder = ServletActionContext.getServletContext().getRealPath(savePath);
+                    String realFolder = savePath;
                     File folder = new File(realFolder);
                     if (!folder.exists())
-                        folder.mkdir();
+                        folder.mkdirs();
                     
                     FileOutputStream fos = null;
                     FileInputStream fis = null;
@@ -157,6 +157,7 @@ public class UploadHelper {
                         fos.write(buffer, 0, len);
                     }
                     }catch(IOException e){
+                    	e.printStackTrace();
                     	System.out.println("上传出错或上传了一个空文件!");
                     }finally{
                     	if(fos!=null){

@@ -1,5 +1,6 @@
 package com.platform.web.action;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
@@ -44,6 +45,8 @@ public class QuestionAction extends GenericAction {
 	private int type;//题库类型
 	private Question question;
 	private int fileType;//上传文件类型
+	private QuestionVO questionVO;
+	private int isDelImage;//是否删除图片
 	/**
 	 * 初始化练习模式试题
 	 * @return
@@ -78,7 +81,6 @@ public class QuestionAction extends GenericAction {
 	 */
 	public String initSimulationQuestion(){
 		try{
-		long t = System.currentTimeMillis();
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		Users users = loginBean.getUser();
 		if(StringConstant.questionType_car == StringConstant.questionType.get(users.getCartype()))
@@ -89,7 +91,6 @@ public class QuestionAction extends GenericAction {
 			list = questionService.listQuestionRandom_truck();
 		if(StringConstant.questionType_moto == StringConstant.questionType.get(users.getCartype()))
 			list = questionService.listQuestionRandom_moto();
-		System.out.println(System.currentTimeMillis()-t);
 		if(list==null||list.size()==0){
 			message = "暂无 "+users.getCartype()+" 类型的题库";
 			return "noquestion";
@@ -137,7 +138,7 @@ public class QuestionAction extends GenericAction {
 		return SUCCESS;
 	}
 	
-	/**
+	/**fileType
 	 * 获得已标记题
 	 * @return
 	 */
@@ -176,8 +177,16 @@ public class QuestionAction extends GenericAction {
 		return Action.SUCCESS;
 	}
 	
+	
+	/**
+	 * 添加新问题
+	 * @return
+	 * @throws IOException
+	 */
 	public String saveQuestion() throws IOException{
 		//如果有附件
+		try{
+		
 		if(upload!=null&&upload.size()>0){
 			String path = FileHelper.getPath(type, fileType);
 			UploadHelper helper = new UploadHelper(upload, uploadFileName, uploadTitle, uploadContentType, path, UploadHelper.NAME);
@@ -187,12 +196,70 @@ public class QuestionAction extends GenericAction {
 				if(fileType==0)
 				question.setImage(af.getFileName());
 				else if(fileType==1)
-				question.setVideo(af.getFileName());	
+				question.setVideo(af.getFileName());
 			}
-				
 		}
-		
-		
+		//保存
+		questionService.saveQuestion(question, type);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return Action.SUCCESS;
+	}
+	
+	/**
+	 * 预更新问题
+	 * @return
+	 */
+	public String toUpdateQuestion(){
+		try{
+			question = questionService.findQuestionById(questionId, type);
+			int t = type==4?3:1;
+			sectionList = questionService.getSection(t+"");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	
+	public String  updateQuestion() throws IOException{
+		//如果有附件
+		try{
+		if(isDelImage==1){
+			String path = FileHelper.getPath(type, fileType);
+			if(question.getImage()!=null){
+			 File f = new File(path+"/"+question.getImage());
+			 if(f.exists())
+				 f.delete();
+			}else if(question.getVideo()!=null){
+			 File f = new File(path+"/"+question.getVideo());
+			 if(f.exists())
+				 f.delete();
+			}
+		}
+		if(upload!=null&&upload.size()>0){
+			String path = FileHelper.getPath(type, fileType);
+			UploadHelper helper = new UploadHelper(upload, uploadFileName, uploadTitle, uploadContentType, path, UploadHelper.NAME);
+			List<AttachedFile> list = helper.getAttachedFiles();
+			if(list!=null&&list.size()>0){
+				AttachedFile af = list.get(0);
+				if(fileType==0)
+				question.setImage(af.getFileName());
+				else if(fileType==1)
+				question.setVideo(af.getFileName());
+			}
+		}
+		//保存
+		questionService.updateQuestion(question, type);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return Action.SUCCESS;
+	}
+	
+	public String deleteQuestion(){
+		questionService.deleteQuestion(questionId+"", type);
 		return Action.SUCCESS;
 	}
 	
@@ -283,5 +350,36 @@ public class QuestionAction extends GenericAction {
 		this.type = type;
 	}
 
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+
+	public int getFileType() {
+		return fileType;
+	}
+
+	public void setFileType(int fileType) {
+		this.fileType = fileType;
+	}
+
+	public QuestionVO getQuestionVO() {
+		return questionVO;
+	}
+
+	public void setQuestionVO(QuestionVO questionVO) {
+		this.questionVO = questionVO;
+	}
+
+	public int getIsDelImage() {
+		return isDelImage;
+	}
+
+	public void setIsDelImage(int isDelImage) {
+		this.isDelImage = isDelImage;
+	}
 
 }

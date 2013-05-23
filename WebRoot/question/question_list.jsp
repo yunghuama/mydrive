@@ -23,7 +23,11 @@ $(document).ready(function(){
 		$("form").submit();
 	});
 	$("#<s:property value='type'/>").addClass("click");
-	
+	//添加新题
+	$(".addNew").click(function(){
+		$("form").attr("action","<%=path%>/question/question_save.jsp");
+		$("form").submit();
+	});
 	
 	//构造分页
 	var maxPage = parseInt($("#maxPage").val());
@@ -82,6 +86,9 @@ $(document).ready(function(){
 				<div class="type" id="4">
 					<span>科目三</span>
 				</div>
+				<div class="addNew" id="0">
+					<span>添加新题</span>
+				</div>
 			</div>
 			<div id="sectionContent">
 			<s:iterator id="question" value="page.list" status="i">
@@ -106,8 +113,8 @@ $(document).ready(function(){
 					</s:elseif>
 				</div>
 				<div class="operate">
-				<a href="#">修改该题</a><br/><br/>
-				<a href="#">删除该题</a><br/>
+				<a href="<%=path %>/exam/subject1/toUpdateQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>"> 修改该题</a><br/><br/>
+				<a href="<%=path %>/exam/subject1/deleteQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>">删除该题</a><br/>
 				</div>
 			</div>
 			</s:iterator>

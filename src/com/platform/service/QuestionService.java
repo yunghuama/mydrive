@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.platform.constants.SQLConstant;
 import com.platform.constants.StringConstant;
 import com.platform.dao.QuestionBusDAO;
 import com.platform.dao.QuestionCarDAO;
@@ -213,7 +214,12 @@ public class QuestionService implements IService {
     	return page;
     }
     
-    
+    /**
+     * 
+     * @param question
+     * @param cartype
+     * @return
+     */
     public int saveQuestion(Question question,int cartype){
     	if(StringConstant.questionType_car== cartype)
     		return questionCarDAO.saveQuestion_Car(question);
@@ -225,6 +231,66 @@ public class QuestionService implements IService {
     				return questionMotoDAO.saveQuestion_Moto(question);
     				else if(StringConstant.questionType_3 == cartype)
     					return questionSubject3DAO.saveQuestion3(question);
+    	return 0;
+    }
+    
+    /**
+     * 根据ID 查询问题类型
+     * @param id
+     * @param cartype
+     * @return
+     */
+    public Question findQuestionById(int id,int cartype){
+    	if(StringConstant.questionType_car== cartype)
+    		return questionCarDAO.findQuestionById(id);
+    	else if(StringConstant.questionType_bus== cartype)
+    		return questionBusDAO.findQuestionById(id);
+    		else if(StringConstant.questionType_truck== cartype)
+    			return questionTruckDAO.findQuestionById(id);
+    			else if(StringConstant.questionType_moto== cartype)
+    				return questionMotoDAO.findQuestionById(id);
+    				else if(StringConstant.questionType_3 == cartype)
+    					return questionSubject3DAO.findQuestionById(id);
+    	return null;
+    }
+    
+    /**
+     * 根据ID 更新问题
+     * @param id
+     * @param cartype
+     * @return
+     */
+    public int updateQuestion(Question question,int cartype){
+    	if(StringConstant.questionType_car== cartype)
+    		return questionCarDAO.updateQuestion(question);
+    	else if(StringConstant.questionType_bus== cartype)
+    		return questionBusDAO.updateQuestion(question);
+    		else if(StringConstant.questionType_truck== cartype)
+    			return questionTruckDAO.updateQuestion(question);
+    			else if(StringConstant.questionType_moto== cartype)
+    				return questionMotoDAO.updateQuestion(question);
+    				else if(StringConstant.questionType_3 == cartype)
+    					return questionSubject3DAO.updateQuestion(question);
+    	return 0;
+    }
+    
+    /**
+     * 根据ID 更新问题
+     * @param id
+     * @param cartype
+     * @return
+     */
+    public int deleteQuestion(String id,int cartype){
+    	if(StringConstant.questionType_car== cartype)
+    		return questionCarDAO.deleteByProperty(SQLConstant.QUESTION_CAR_DELETE_BY_ID, id);
+    	else if(StringConstant.questionType_bus== cartype)
+    		return questionBusDAO.deleteByProperty(SQLConstant.QUESTION_BUS_DELETE_BY_ID, id);
+    		else if(StringConstant.questionType_truck== cartype)
+    			return questionTruckDAO.deleteByProperty(SQLConstant.QUESTION_TRUCK_DELETE_BY_ID, id);
+    			else if(StringConstant.questionType_moto== cartype)
+    				return questionMotoDAO.deleteByProperty(SQLConstant.QUESTION_MOTO_DELETE_BY_ID, id);
+    				else if(StringConstant.questionType_3 == cartype)
+    					return questionSubject3DAO.deleteByProperty(SQLConstant.QUESTION3_DELETE_BY_ID, id);
     	return 0;
     }
 }
