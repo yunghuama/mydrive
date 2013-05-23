@@ -16,7 +16,7 @@
 		   type: "POST",
 		   url: "<%=path%>/system/ajax/statisticsSub1.d",
 		   success: function(msg){
-		     if(msg!=null){
+		     if(msg!=null&&msg.scorecounts>0){
 		    	 var array = [];
 		    	 array.push('<tr align="center">');
 		    	 array.push("<td>"+msg.maxscore+"</td>");
@@ -33,7 +33,7 @@
 		    	 array.push("</tr>")
 		    	 $(array.join("")).appendTo($("#sub1 .statistic .contents table"));
 		     }else {
-		    	 $("<tr><td colspan=6>暂无相关数据</td></tr>").appendTo($("#sub1 .statistic .contents table"));
+		    	 $("<tr><td colspan=6 align=center>暂无相关数据</td></tr>").appendTo($("#sub1 .statistic .contents table"));
 		     }
 		   }
 		});
@@ -42,7 +42,7 @@
 		   type: "POST",
 		   url: "<%=path%>/system/ajax/scoreListSub1.d",
 		   success: function(msg){
-		    if(msg!=null){
+		    if(msg!=null&&msg.length>0){
 		    	 var array = [];
 		    	for(var i=0;i<msg.length;i++){
 		    		array.push('<tr align="center">');
@@ -54,7 +54,7 @@
 		    	}
 		    	 $(array.join("")).appendTo($("#sub1 .score .contents table"));
 		    }else {
-		    	$("<tr><td colspan=4>暂无相关数据</td></tr>").appendTo($("#sub1 .score .contents table"));
+		    	$("<tr><td colspan=4 align=center>暂无相关数据</td></tr>").appendTo($("#sub1 .score .contents table"));
 		    }
 		   }
 		});
@@ -63,7 +63,7 @@
 		   type: "POST",
 		   url: "<%=path%>/system/ajax/statisticsSub3.d",
 		   success: function(msg){
-			   if(msg!=null){
+			   if(msg!=null&&msg.scorecounts>0){
 			    	 var array = [];
 			    	 array.push('<tr align="center">');
 			    	 array.push("<td>"+msg.maxscore+"</td>");
@@ -80,7 +80,7 @@
 			    	 array.push("</tr>")
 			    	 $(array.join("")).appendTo($("#sub2 .statistic .contents table"));
 			     }else {
-			    	 $("<tr><td colspan=6>暂无相关数据</td></tr>").appendTo($("#sub2 .statistic .contents table"));
+			    	 $("<tr><td colspan=6 align=center>暂无相关数据</td></tr>").appendTo($("#sub2 .statistic .contents table"));
 			     }
 		   }
 		});
@@ -89,7 +89,7 @@
 		   type: "POST",
 		   url: "<%=path%>/system/ajax/scoreListSub3.d",
 		   success: function(msg){
-			   if(msg!=null){
+			   if(msg!=null&&msg.length>0){
 			    	 var array = [];
 			    	for(var i=0;i<msg.length;i++){
 			    		array.push('<tr align="center">');
@@ -101,7 +101,7 @@
 			    	}
 			    	 $(array.join("")).appendTo($("#sub2 .score .contents table"));
 			    }else {
-			    	$("<tr><td colspan=4>暂无相关数据</td></tr>").appendTo($("#sub2 .score .contents table"));
+			    	$("<tr><td colspan=4 align=center>暂无相关数据</td></tr>").appendTo($("#sub2 .score .contents table"));
 			    }
 		   }
 		});
@@ -110,7 +110,7 @@
 </script>
 <title></title>
 </head>
-<body>
+<body style="overflow:auto;">
 		<div id="main">
 			<div id="sub1">
 			<div class="statistic">
@@ -142,9 +142,10 @@
 			</div>
 			</div>
 			</div>
+			<div class="line"></div>
 			<div id="sub2">
 			<div class="statistic">
-			<div class="title"><span>科目二考试统计</span></div>
+			<div class="title"><span>科目三考试统计</span></div>
 			<div class="contents">
 			<table>
 						<tr>
@@ -160,7 +161,7 @@
 			</div>
 			
 			<div class="score">
-			<div class="title"><span>科目二考试成绩</span></div>
+			<div class="title"><span>科目三考试成绩</span></div>
 			<div class="contents">
 			<table>
 						<tr>

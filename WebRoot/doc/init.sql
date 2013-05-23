@@ -120,7 +120,7 @@ create table examscore (
     studentId char(32) not null,
     score int,
     time varchar(5),
-    cartype char(2),
+    cartype int,
     createtime datetime
 );
 

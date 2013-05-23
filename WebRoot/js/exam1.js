@@ -28,7 +28,7 @@ var Num = function(config){
 
 Num.defaults = {
 	width : 25,
-	height: 25
+	height: 28
 }
 
 Num.prototype = {

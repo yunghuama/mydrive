@@ -98,11 +98,11 @@ String path = request.getContextPath();
     $(document).ready(function(){
       var defaultVal = "帐号";
       var defaultPass = "密码";
-      $("input:visible").eq(0).val(defaultVal).bind("click",function(){
+      $("input:visible").eq(0).val(defaultVal).bind("focus",function(){
 			$(this).val("");
 			$(this).unbind("click");
       });
-      $("input:visible").eq(1).val(defaultPass).bind("click",function(){
+      $("input:visible").eq(1).val(defaultPass).bind("focus",function(){
 			$(this).unbind("click");
     	    $(this).remove();
 			$("#password").show();

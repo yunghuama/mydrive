@@ -98,7 +98,7 @@ public class QuestionService implements IService {
     	}
     	//剩余次数-1
     	questionDAO.countDownOne(studentId);
-    	return questionDAO.saveExamScore(studentId, score, time, cartype);
+    	return questionDAO.saveExamScore(studentId, score, time, StringConstant.questionType.get(cartype));
     }
     
     /*****************************顺序练习开始*********************************/
@@ -192,11 +192,11 @@ public class QuestionService implements IService {
     /******************************个人考试信息分析开始**************************/
     
     public StatisticVO getStatistic(String studentId,String cartype){
-    	return questionDAO.statistic(studentId, cartype);
+    	return questionDAO.statistic(studentId, StringConstant.questionType.get(cartype));
     }
     
     public List<ScoreVO> getScores(String studentId,String cartype){
-    	return questionDAO.getScores(studentId,cartype);
+    	return questionDAO.getScores(studentId,StringConstant.questionType.get(cartype));
     }
     
     /*******************************题库管理开始***********************************/

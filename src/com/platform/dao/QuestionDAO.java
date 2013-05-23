@@ -56,7 +56,7 @@ public class QuestionDAO extends GenericDAO{
 	 * @param cartype
 	 * @return
 	 */
-	public int saveExamScore(String studentId,int score,String time,String cartype){
+	public int saveExamScore(String studentId,int score,String time,int cartype){
 		return jdbcTemplate.update(SQLConstant.EXAMSCORE_SAVE, new Object[]{
 				UUIDGenerator.generate(),
 				studentId,
@@ -147,7 +147,7 @@ public class QuestionDAO extends GenericDAO{
 	 * @param studentId
 	 * @return
 	 */
-	public StatisticVO statistic(String studentId,String carType){
+	public StatisticVO statistic(String studentId,int carType){
 		List<StatisticVO> list = jdbcTemplate.query(SQLConstant.STATISTISC_SCORE,new Object[]{studentId,carType},new RowMapper<StatisticVO>(){
 			@Override
 			public StatisticVO mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -171,7 +171,7 @@ public class QuestionDAO extends GenericDAO{
 	 * @param studentId
 	 * @return
 	 */
-	public List<ScoreVO> getScores(String studentId,String cartype){
+	public List<ScoreVO> getScores(String studentId,int cartype){
 		return jdbcTemplate.query(SQLConstant.EXAMSCORE_QUERY,new Object[]{studentId,cartype},new RowMapper<ScoreVO>(){
 			@Override
 			public ScoreVO mapRow(ResultSet rs, int arg1) throws SQLException {
