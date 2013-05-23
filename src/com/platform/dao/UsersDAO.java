@@ -209,7 +209,7 @@ public class UsersDAO extends GenericDAO{
 	}
 	
 	public Users getUsersTime(String id){
-		List<Users> list =  jdbcTemplate.query(SQLConstant.STUDENT_GET_BY_ID,new Object[]{id}, new RowMapper<Users>(){
+		List<Users> list =  jdbcTemplate.query(SQLConstant.STUDENT_TIMES_GET,new Object[]{id}, new RowMapper<Users>(){
 			@Override
 			public Users mapRow(ResultSet rs, int arg1) throws SQLException {
 				Users user = new Users();

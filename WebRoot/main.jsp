@@ -22,7 +22,7 @@ if(session.getAttribute("LoginBean")==null) {
 			//添加点击效果
 			//科目一
 			$("a[name='id_1_1']").bind("click",function(){
-				$("#mainFrame").attr("src","<%=path%>/exam/subject1/initExerciseQuestion.d");
+				$("#mainFrame").attr("src","<%=path%>/subject1/toExercise.jsp");
 			});
 			
 			$("a[name='id_1_2']").bind("click",function(){
