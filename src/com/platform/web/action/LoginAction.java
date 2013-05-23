@@ -1,11 +1,8 @@
 package com.platform.web.action;
 
-import java.io.FileInputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -13,8 +10,6 @@ import org.springframework.stereotype.Controller;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.platform.constants.StringConstant;
-import com.platform.domain.BaseRole;
-import com.platform.domain.Question;
 import com.platform.domain.Users;
 import com.platform.service.QuestionService;
 import com.platform.service.UsersService;
@@ -55,6 +50,16 @@ public class LoginAction extends ActionSupport {
 			errorMes = "用户名或密码错误，请重新登录";
 			return PASSWORD_WRONG;
 		} 
+		//计算剩余时间
+		try{
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date stDate = sdf.parse(users.getBegindate());
+			int days = (int)(new Date().getTime()-stDate.getTime())/(24*60*60*1000);
+			users.setReminddays(users.getReminddays()-days<0?0:users.getReminddays()-days);
+		}catch(Exception e){
+			System.out.println("计算剩余天数失败...");
+			users.setReminddays(0);
+		}
 		
 		LoginBean loginBean = new LoginBean();
 		loginBean.setUser(users);
@@ -90,8 +95,8 @@ public class LoginAction extends ActionSupport {
 	public String firstInit(){
 		try{
 			usersService.update(users);
-			Users user = (Users)ActionContext.getContext().getSession().get("LoginBean");
-			user.setCartype(users.getCartype());
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			loginBean.getUser().setCartype(users.getCartype());
 		}catch(Exception e){
 			e.printStackTrace();
 		}

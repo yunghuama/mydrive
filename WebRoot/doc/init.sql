@@ -198,6 +198,8 @@ alter table studentcard drop column remidtimes;
 alter table studentcard add column remindtimes int;
 
 insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50043','123','123','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
+insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50043','111','111','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
+
 insert into schoolcard(id,number,password,createtime) values('4028813518f35feb0118f392eee50046','222','222','2013-05-18');
 
 

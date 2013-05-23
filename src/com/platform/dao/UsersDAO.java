@@ -56,6 +56,7 @@ public class UsersDAO extends GenericDAO{
 				user.setCartype(rs.getString("cartype"));
 				user.SetRole(StringConstant.ROLE_STUDENT);
 				user.setSchoolId(rs.getString("schoolid"));
+				user.setReminddays(rs.getInt("reminddays"));
 				return user;
 			}
 		});
@@ -127,5 +128,100 @@ public class UsersDAO extends GenericDAO{
 			users.getPhonenumber(),
 			users.getId()
 		});
+	}
+	
+	/**
+	 * 更新密码
+	 */
+	public int updatePass(String id,String oldPass,String newPass){
+		return jdbcTemplate.update(SQLConstant.STUDENT_UPDATE_PASS,new Object[]{
+			newPass,
+			id,
+			oldPass
+		});
+	}
+	
+	/**
+	 * 续费
+	 */
+	public int updateTime(String id,int remindtimes,int reminddays,String begindate){
+		return jdbcTemplate.update(SQLConstant.STUDENT_UPDATE_TIME,new Object[]{
+				remindtimes,
+				begindate,
+				reminddays,
+				id
+		});
+	}
+	
+	public Users getTimes(String number,String password){
+		List<Users> list = jdbcTemplate.query(SQLConstant.STUDENT_TIME_GET, new Object[]{number,password},new RowMapper<Users>(){
+			@Override
+			public Users mapRow(ResultSet rs, int arg1) throws SQLException {
+				Users user = new Users();
+				user.setReminddays(rs.getInt("reminddays"));
+				user.setRemindtimes(rs.getInt("remindtimes"));
+				user.setBegindate(rs.getDate("begindate")+" "+rs.getTime("begindate"));
+				return user;
+			}
+		});
+		
+		if(list!=null&&list.size()>0){
+			return list.get(0);
+		}
+		return null;
+	}
+	
+	/**
+	 * 销毁学生卡
+	 */
+	public int updateTo0(String number,String password){
+		return jdbcTemplate.update(SQLConstant.STUDENT_TIME0, new Object[]{
+				number,
+				password
+		});
+	}
+	
+	/**
+	 * 获得个人信息
+	 * @param id
+	 * @return
+	 */
+	public Users getUsersById(String id){
+		List<Users> list =  jdbcTemplate.query(SQLConstant.STUDENT_GET_BY_ID,new Object[]{id}, new RowMapper<Users>(){
+			@Override
+			public Users mapRow(ResultSet rs, int arg1) throws SQLException {
+				Users user = new Users();
+				user.setId(rs.getString("id"));
+				user.setAge(rs.getString("age"));
+				user.setSex(rs.getString("sex"));
+				user.setName(rs.getString("name"));
+				user.setCartype(rs.getString("cartype"));
+				user.setIdentity(rs.getString("identity"));
+				user.setPhonenumber(rs.getString("phonenumber"));
+				return user;
+			}
+		});
+		
+		if(list!=null&&list.size()>0){
+			return list.get(0);
+		}
+		return null;
+	}
+	
+	public Users getUsersTime(String id){
+		List<Users> list =  jdbcTemplate.query(SQLConstant.STUDENT_GET_BY_ID,new Object[]{id}, new RowMapper<Users>(){
+			@Override
+			public Users mapRow(ResultSet rs, int arg1) throws SQLException {
+				Users user = new Users();
+				user.setBegindate(rs.getDate("begindate")+"");
+				user.setRemindtimes(rs.getInt("remindtimes"));
+				user.setReminddays(rs.getInt("reminddays"));
+				return user;
+			}
+		});
+		if(list!=null&&list.size()>0){
+			return list.get(0);
+		}
+		return null;
 	}
 }

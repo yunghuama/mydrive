@@ -1,5 +1,7 @@
 package com.platform.web.ajax;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import com.platform.domain.Users;
 import com.platform.service.QuestionService;
 import com.platform.service.QuestionSubject3Service;
 import com.platform.service.SystemService;
+import com.platform.service.UsersService;
 import com.platform.util.LoginBean;
 import com.platform.vo.ScoreVO;
 import com.platform.vo.StatisticVO;
@@ -28,6 +31,8 @@ public class QuestionAjaxAction {
     private QuestionSubject3Service questionSubject3Service;
     @Autowired
     private SystemService systemService;
+    @Autowired
+    private UsersService usersService;
     
     private Score score;
     private String result;
@@ -37,7 +42,7 @@ public class QuestionAjaxAction {
     private List<ScoreVO> scoreVoList;
     private List<Section> sectionList;
     private int type;
-    
+    private String oldPass,newPass;
     /**
      * 保存成绩
      * @return
@@ -188,6 +193,66 @@ public class QuestionAjaxAction {
 		return Action.SUCCESS;
 	}
 	
+	
+	/**
+	 * 修改密码
+	 * @return
+	 */
+	public String updatePass(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		int re = usersService.updatePass(loginBean.getUser().getId(), oldPass, newPass);
+		if(re==1){
+			result = "success";
+		}
+		return Action.SUCCESS;
+	}
+	
+	/**
+	 * 续费
+	 * @return
+	 */
+	public String updateTime(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		int re = usersService.updateTime(loginBean.getUser().getId(), oldPass, newPass);
+		if(re==1){
+			result = "success";
+		}
+		return Action.SUCCESS;
+	}
+	
+	/**
+	 * 判断能否进行测试
+	 * @return
+	 */
+	public String canExam(){
+		try{
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		Users users = usersService.getUsersTime(loginBean.getUser().getId());
+		if(users!=null){
+			//计算剩余次数
+			if(users.getRemindtimes()==0){
+				result = "error";
+				return Action.SUCCESS;
+			}
+			//计算剩余天数
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date stDate = sdf.parse(users.getBegindate());
+			int days = (int)(new Date().getTime()-stDate.getTime())/(24*60*60*1000);
+			if((users.getReminddays()-days)<0){
+				result = "error";
+				return Action.SUCCESS;
+			}
+			result = "success";
+		}else{
+			result = "error";
+		}
+		}catch(Exception e){
+			e.printStackTrace();
+			result = "error";
+		}
+		return Action.SUCCESS;
+	}
+	
 	public QuestionService getQuestionService() {
 		return questionService;
 	}
@@ -258,6 +323,22 @@ public class QuestionAjaxAction {
 
 	public void setType(int type) {
 		this.type = type;
+	}
+
+	public String getOldPass() {
+		return oldPass;
+	}
+
+	public void setOldPass(String oldPass) {
+		this.oldPass = oldPass;
+	}
+
+	public String getNewPass() {
+		return newPass;
+	}
+
+	public void setNewPass(String newPass) {
+		this.newPass = newPass;
 	}
 	
 }

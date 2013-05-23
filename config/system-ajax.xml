@@ -51,6 +51,21 @@
         <param name="root">sectionList</param>
       </result>
     </action>
+    <action name="updatePass" class="questionAjaxAction" method="updatePass">
+      <result type="json">
+        <param name="root">result</param>
+      </result>
+    </action>
+    <action name="updateTime" class="questionAjaxAction" method="updateTime">
+      <result type="json">
+        <param name="root">result</param>
+      </result>
+    </action>
+     <action name="canExam" class="questionAjaxAction" method="canExam">
+      <result type="json">
+        <param name="root">result</param>
+      </result>
+    </action>
   </package>
   
 </struts>

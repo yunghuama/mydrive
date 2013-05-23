@@ -67,6 +67,17 @@ if(session.getAttribute("LoginBean")==null) {
 				$("#mainFrame").attr("src","<%=path%>/exam/subject3/listWrongQuestion.d");
 			});
 			
+			//个人资料修改
+			$("a[name='id_4_1']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/system/toUpdateUsers.d");
+			});
+			$("a[name='id_4_2']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/system/updatePass.jsp");
+			});
+			$("a[name='id_4_3']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/system/updateTime.jsp");
+			});
+			
 			//驾校管理
 			$("a[name='id_5_1']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/exam/system/listAnnouncementStu.d");

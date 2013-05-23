@@ -25,5 +25,11 @@
     <action name="listScore3" class="systemAction" method="listScore3">
       <result>/school/list_score3.jsp</result>
     </action>
+    <action name="toUpdateUsers" class="systemAction" method="toUpdateUsers">
+      <result>/system/updateInfo.jsp</result>
+    </action>
+    <action name="updateUsers" class="systemAction" method="updateUsers">
+      <result>/share/blank.jsp</result>
+    </action>
   </package>
 </struts>
