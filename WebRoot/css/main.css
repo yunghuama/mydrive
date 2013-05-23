@@ -1,13 +1,9 @@
 #head {
 	position:relative;
 	width:100%;
-	height:50px;
-	background-color:#2d89ef;
+	height:45px;
+	background-image : url("../image/nav.png");
 	margin:0px auto;
-}
-
-#logo {
-	width:200px;
 }
 
 #userInfo {
@@ -23,25 +19,27 @@
 }
 
 #nav-div{
-	position:absolute;
-	height:26px;
-	left:200px;
-	top:12px;
+	height:45px;
+	width:1024px;
+	margin:0px auto;
+	
 }
 
 .nav{
 	list-style : none;
+	background-image : url(../image/bg.gif) repeat;
 }
 
 .sub-nav{
 	position:absolute;
 	list-style : none;
-	background-color:#fff;
-	width:120px;
+	background-color:#6e6e6e;
+	width:200px;
 	display:block;
 	z-index:1001;
 	display:none;
 	left:0px;
+	top:45px;
 }
 
 .menu-item{
@@ -49,16 +47,14 @@
 	float:left;
 	height:25px;
 	line-height: 25px;
-	padding:0px 20px;
+	padding:0px 40px;
+	height:45px;
 }
 
-.active{
-    color: #43669F;
+.bgover {
+	background-color:#6e6e6e;
 }
 
-.active a{
-    color: #43669F;
-}
 
 .sub-menu-item {
 	height:22px;
@@ -67,19 +63,20 @@
 	margin:5px 0px;
 }
 
-.menu-item a {
+.menu-item a.title {
 	font-size:14px;
 	text-decoration: none;
-	display:block;
 	color:#FFFFFF;
+	display:block;
+	margin-top:10px;
+	font-weight:700;
 }
 
 .sub-menu-item a {
-	font-size:12px;
-	color:#1e1e1e;
+	font-size:14px;
+	color:#FFFFFF;
 	text-decoration: none;
-	margin-left:20px;
-	display:block;
+	margin-left:40px;
 }
 
 .blue{

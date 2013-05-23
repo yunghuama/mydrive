@@ -60,13 +60,13 @@ body{
 }
 
 .answered{
-	background-color:#4169E1;
+	background-color:#97f360;
 }
 .error{
-	background-color:#FF0000;
+	background-color:#ce2d2d;
 }
 .click-border{
-	border-color:#FF0000;
+	border-color:#20a8f2;
 }
 .normal-border{
 	border-color:#7d7d7d;

@@ -14,111 +14,103 @@ String path = request.getContextPath();
       margin:0;
       width:100%;
       height:100%;
-      background-color:#081733;
       overflow:hidden;
     }
-    body { background-image:url(image/login/login_bg.png); background-repeat:repeat-x;}
-    form {
-      padding:0;
-      margin:0;
-      height:347px;
-      width:378px;
-      margin:0 auto;
+    div {
+    }
+    #main{
+      width:1010px;
       position:relative;
-      background-image:url(image/login/login.png);
-      z-index:2;
+      margin:0px auto;
+     
     }
-    input {position:absolute;}
-    .textInput {
-      color:#4E4E4E;
-      font-size:22px;
-      font-family:verdana,simsun,sans-serif;
-      font-weight:700;
-      width:150px;
-      height:30px;
-      line-height:30px;
-      background:transparent;
-      border:none;
-    }
-    .acnDiv { left:148px; top:145px;}
-    .pwdDiv { left:148px; top:205px;}
-    .sbtDiv {
-      left:225px;
-      top:260px;
-      cursor:pointer;
-      width:80px;
-      height:40px;
-      background-color:#FFFFFF;
-      border:none;
-      filter:alpha(opacity = 0);
-      -moz-opacity:0;
-      opacity:0;
-    }
-    .noRemember {
-      position:absolute;
-      top:260px;
-      left:73px;
-      display:block;
-      width:140px;
-      height:40px;
-      background:transparent url(image/login/no_remember.gif) no-repeat;
-      cursor:pointer;
-    }
-    .remember {
-      background:transparent url(image/login/remember.gif) no-repeat;
-    }
-    #loginBack {
-      height:200px;
-      width:100%;
-      background:transparent url(image/login/login_back.png) center;
-      position:absolute;
-      left:0;
-      z-index:1;
-    }
+	#logo {
+		width:500px;
+		height:86px;
+		position:relative;
+	}
+	
+	#logo img{
+		position:absolute;
+		right:30px;
+	}
+	
+	#car {
+		float:left;
+		width:500px;
+		text-align:center;
+		padding:40px 0px;
+	}
+	#loginDiv {
+		float:left;
+		text-align:center;
+		width:500px;
+		padding:70px 0px;
+		border-left : 1px solid #7d7d7d;
+	}
+	#loginDiv input {
+		background-image:url("image/input.png");
+		border : none;
+		color:#FFFFFF;
+      	font-size:16px;
+      	font-family:verdana,simsun,sans-serif;
+     	width:235px;
+     	height:45px;
+     	line-height:30px;
+        border:none;
+        margin-top:10px;
+        text-align:center;
+	}
+	
+	#loginDiv a {
+		 margin-top:10px;
+		 text-decoration : none;
+		 display : block;
+	}
+	
+	#center{
+		height:320px;
+		margin-top:30px;
+	}
+	#password {
+		display:none;
+	}
     </style>
   </head>
 
   <body>
-    <form id="loginForm" method="post" action="<%=path%>/login.d">
-      <input type="hidden" id="remember" name="remember" value="${cookie.remember.value}"/>
-      <input type="text" id="accountName" name="accountName" class="acnDiv textInput" value="${cookie.accountName.value}"/>
-      <input type="password" id="passwd" name="password" class="pwdDiv textInput" value="${cookie.password.value}"/>
-      <input id="submitButton" type="submit" value="" class="sbtDiv"/>
-      <a id="rememberTrigger" class="noRemember"></a>
-    </form>
-    <div id="loginBack"></div>
+    <div id="main">
+    	<div id="logo"><img src="<%=path %>/image/logo.png" alt="" /></div>
+    	<div id="center">
+    	<div id="car"><img src="<%=path %>/image/car.png" alt="" /> </div>
+    	<div id="loginDiv">
+    	<form id="loginForm" method="post" action="<%=path%>/login.d">
+    		<input id="accountName" name="accountName" type="text"/><br/>
+    		<input id="title" type="text"/><input id="password" name="password" type="password" /><br/>
+    		<a href="javascript:void(0);"><img src="image/loginButton.png" alt="" id="submitImg"/></a>
+    	</form>
+    	</div>
+    	</div>
+    </div>
+
     <script src="<%=path%>/js/jquery.js" type="text/javascript"></script>
     <script type="text/javascript">
-    var remember = $('#remember');
     $(document).ready(function(){
-      if(remember.val()=='T') {
-        $('#rememberTrigger').addClass('remember');
-        $('#loginForm').submit();
-      }
-      $('#loginForm').css('margin-top', ($(document.body).height()/2)-173);
-      $('#loginBack').css('top', ($(document.body).height()/2)-100);
-      $('#submitButton').hover(function(){
-        $(this).css({
-          'filter' : 'alpha(opacity = 20)',
-          'opacity' : '0.2'
-        });
-      },function(){
-        $(this).css({
-          'filter' : 'alpha(opacity = 0)',
-          'opacity' : '0'
-        });
+      var defaultVal = "帐号";
+      var defaultPass = "密码";
+      $("input:visible").eq(0).val(defaultVal).bind("click",function(){
+			$(this).val("");
+			$(this).unbind("click");
       });
-      $('#rememberTrigger').click(function(){
-        if(remember.val()=='T') {
-          remember.val('F');
-          $(this).removeClass('remember');
-        } else {
-          remember.val('T');
-          $(this).addClass('remember');
-        }
+      $("input:visible").eq(1).val(defaultPass).bind("click",function(){
+			$(this).unbind("click");
+    	    $(this).remove();
+			$("#password").show();
+			$("#password").focus();
       });
+      $("#main").css('margin-top',($("body").height()-$("#main").height())/2-30);
       $(window).resize(function(){
-        $('#loginForm').css('margin-top', ($(this).height()/2)-173);
+    	  $("#main").css('margin-top',($("body").height()-$("#main").height())/2-30);
       });
       if('${param.PW}'=='1') {
         alert('用户名或密码错误，请重新登录');
@@ -128,6 +120,19 @@ String path = request.getContextPath();
       if('${param.PW}'=='2') {
         alert('该用户已被禁用，无法登录');
       }
+      $("#submitImg").click(function(){
+    	  var accountName = $("#accountName").val();
+    	  var password = $("#password").val();
+    	  if(accountName==defaultVal||accountName==""){
+    		  alert("请输入帐号");
+    		  return;
+    	  }
+    	  if(password==defaultPass||password==""){
+    		  alert("请输入密码");
+    		  return;
+    	  }
+    	  $("#loginForm").submit();
+      });
     });
     </script>
   </body>

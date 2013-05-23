@@ -102,11 +102,10 @@ if(session.getAttribute("LoginBean")==null) {
   </head>
   <body>
   <div id="head">
-  		<div id="logo"></div>
   		<div id="nav-div">
   			<ul id="nav" class="nav">
   				<li class="menu-item">
-  					<a href="javascript:void(0);">科目一</a>
+  					<a href="javascript:void(0);" class="title">科目一</a>
   					<ul class="sub-nav">
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_1_1">练习模式</a></li>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_1_2">模拟考试</a></li>
@@ -116,14 +115,14 @@ if(session.getAttribute("LoginBean")==null) {
   					</ul>
   					</li>
   				<li class="menu-item">
-  				    <a href="javascript:void(0);">科目二</a>
+  				    <a href="javascript:void(0);" class="title">科目二</a>
   				    <ul class="sub-nav">
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_2_1">考试须知</a></li>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_2_2" >场地仿真动画</a></li>
   					</ul>
   				    </li>
   				<li class="menu-item">
-  				    <a href="javascript:void(0);">科目三</a>
+  				    <a href="javascript:void(0);" class="title">科目三</a>
   				    <ul class="sub-nav">
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_3_1">练习模式</a></li>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_3_2">模拟考试</a></li>
@@ -133,7 +132,7 @@ if(session.getAttribute("LoginBean")==null) {
   					</ul>
   				    </li>
   				<li class="menu-item">
-  					<a href="javascript:void(0);">个人中心</a>
+  					<a href="javascript:void(0);" class="title">个人中心</a>
   					 <ul class="sub-nav">
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_4_1">个人资料修改</a></li>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_4_2">密码修改</a></li>
@@ -141,7 +140,7 @@ if(session.getAttribute("LoginBean")==null) {
   					</ul>
   				</li>
   				<li class="menu-item">
-  					<a href="javascript:void(0);">驾校公告</a>
+  					<a href="javascript:void(0);" class="title">驾校公告</a>
   					 <ul class="sub-nav">
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_1">驾校公告</a></li>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_2">公告管理</a></li>
@@ -150,7 +149,7 @@ if(session.getAttribute("LoginBean")==null) {
   					</ul>
   				</li>
   				<li class="menu-item">
-  					<a href="javascript:void(0);">题库管理</a>
+  					<a href="javascript:void(0);" class="title">题库管理</a>
   					 <ul class="sub-nav">
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_6_1">题库管理</a></li>
   					</ul>

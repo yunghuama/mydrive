@@ -3,18 +3,16 @@
 	width:1024px;
 	height:100%;
 	margin:0px auto;
-	border : 1px solid red;
 	padding-top:30px;
+	background-color:#FFFFFF;
 }
 
 #sub1 {
 	width:500px;
-	float:left;
 }
 
 #sub2 {
 	width:500px;
-	float:left;
 	margin-left:10px;
 }
 
