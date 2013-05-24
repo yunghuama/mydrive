@@ -12,6 +12,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("table tr").bind("mouseover",function(){
+		if($(,this))
 		$(this).addClass("mouseover");
 	}).bind("mouseout",function(){
 		$(this).removeClass("mouseover");
@@ -21,7 +22,7 @@ $(document).ready(function(){
 </head>
 <body style="overflow:auto">
 	 <div id="main">
-			<div id="title"><span>顺序练习:科目一</span></div>
+			<div id="title"><span>科目一顺序练习</span></div>
 			<div id="sectionContent">
 				<table>
 					<tr>
@@ -33,7 +34,7 @@ $(document).ready(function(){
 					<tr id='<s:property value="#section.id"/>'>
 						<td><s:property value="#i.index+1"/> </td>
 						<td><s:property value="#section.name"/> </td>
-						<td><a href='<%=path%>/exam/subject1/orderQuestion1.d?categoryId=<s:property value="#section.id"/>'>进入</a> </td>
+						<td><a href='<%=path%>/exam/subject1/orderQuestion1.d?categoryId=<s:property value="#section.id"/>'>开始练习</a> </td>
 					</tr>
 					</s:iterator>
 				</table>

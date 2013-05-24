@@ -9,6 +9,12 @@ body{
 	margin-bottom:100px;
 }
 
+#title span{
+	font-size:23px;
+	color:#7d7d7d;
+	font-weight:700;
+}
+
 #sectionContent {
 	position:relative;
 	text-align:center;

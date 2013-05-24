@@ -82,7 +82,7 @@ $(document).ready(function(){
 			<div id="button">
 				<a href="javascript:void(0);"><img src="<%=path%>/image/startExam.png"/></a>
 			</div>
-			<form action="<%=path%>/exam/subject1/initExerciseQuestion.d"></form>
+			<form action="<%=path%>/exam/subject3/initSimulationQuestion.d"></form>
 	 </div>
 	 
 </body>
