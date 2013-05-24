@@ -12,3 +12,9 @@ img{vertical-align:middle;}
 body{
 	background-image:url("../image/bg.gif");
 }
+a {
+	blr:expression(this.onfocus=this.blur());
+	outline:none;
+	text-decoration: none;
+}
+

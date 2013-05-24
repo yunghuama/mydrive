@@ -75,6 +75,11 @@ String path = request.getContextPath();
 	#password {
 		display:none;
 	}
+	a {
+		blr:expression(this.onfocus=this.blur());
+		outline:none;
+	}
+	
     </style>
   </head>
 

@@ -42,6 +42,9 @@
     <action name="deleteQuestion" class="questionAction" method="deleteQuestion">
       <result type="redirect">/exam/subject1/listQuestion.d?type=${type}</result>
     </action>
+    <action name="delWrongQuestion" class="questionAction" method="delWrongQuestion">
+      <result type="redirect">/exam/subject1/listWrongQuestion.d</result>
+    </action>
     
   </package>
 </struts>

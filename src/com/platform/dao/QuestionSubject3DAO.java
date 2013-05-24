@@ -298,7 +298,12 @@ public class QuestionSubject3DAO extends GenericDAO{
 		return jdbcTemplate.update(SQLConstant.MARK3_QUESTION_DEL, questionId,studentId);
 	}
 	
-	
+	/**
+	 * 删除错题
+	 */
+	public int delWrongQuestion(int questionId,String studentId){
+		return jdbcTemplate.update(SQLConstant.WRONG_QUESTION3_DEL, questionId,studentId);
+	}
 	/**
 	 * 查询已标记题目
 	 */

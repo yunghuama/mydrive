@@ -174,6 +174,14 @@ public class QuestionService implements IService {
     }
     
     
+    /**
+     * 删除错题问题
+     */
+    public int delWrongQuestion(int questionId,String studentId,String cartype){
+    	return questionDAO.delWrongQuestion(questionId,studentId,StringConstant.questionType.get(cartype));
+    }
+    
+    
     /*****************************错题练习开始*********************************/
     
     public Page<QuestionVO> listWrongQuestion(Page<QuestionVO> page,String studentId,String cartype){

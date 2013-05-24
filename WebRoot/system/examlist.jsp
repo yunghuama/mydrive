@@ -114,7 +114,7 @@
 		<div id="main">
 			<div id="sub1">
 			<div class="statistic">
-			<div class="title"><span>科目一考试统计</span></div>
+			<div class="title"><img alt="" src="<%=path%>/image/blue.png"> <span>科目一考试统计</span></div>
 			<div class="contents">
 				<table align="center">
 						<tr>
@@ -129,7 +129,7 @@
 			</div>
 			</div>
 			<div class="score">
-			<div class="title"><span>科目一考试成绩</span></div>
+			<div class="title"><img alt="" src="<%=path%>/image/blue.png"><span>科目一考试成绩</span></div>
 			<div class="contents">
 				<table>
 						<tr>
@@ -145,7 +145,7 @@
 			<div class="line"></div>
 			<div id="sub2">
 			<div class="statistic">
-			<div class="title"><span>科目三考试统计</span></div>
+			<div class="title"><img alt="" src="<%=path%>/image/blue.png"><span>科目三考试统计</span></div>
 			<div class="contents">
 			<table>
 						<tr>
@@ -161,7 +161,7 @@
 			</div>
 			
 			<div class="score">
-			<div class="title"><span>科目三考试成绩</span></div>
+			<div class="title"><img alt="" src="<%=path%>/image/blue.png"><span>科目三考试成绩</span></div>
 			<div class="contents">
 			<table>
 						<tr>

@@ -12,7 +12,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("table tr").bind("mouseover",function(){
-		if($(,this))
+		if($("th",this).size()>0){
+			return;
+		}
 		$(this).addClass("mouseover");
 	}).bind("mouseout",function(){
 		$(this).removeClass("mouseover");
@@ -22,7 +24,7 @@ $(document).ready(function(){
 </head>
 <body style="overflow:auto">
 	 <div id="main">
-			<div id="title"><span>科目一顺序练习</span></div>
+			<div id="title"><span>科目一章节</span></div>
 			<div id="sectionContent">
 				<table>
 					<tr>

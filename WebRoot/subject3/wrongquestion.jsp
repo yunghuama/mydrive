@@ -36,13 +36,20 @@ $(document).ready(function(){
 	$("#next").bind("click",function(){
 		$("#currPage").val(parseInt(currentPage+1));
 		$("form").submit();
-	})
+	});
+	$(".mark a").bind("click",function(){
+		if(confirm("确定删除该题目?")){
+		$("form").attr("action","<%=path %>/exam/subject3/delWrongQuestion.d");
+		$("#questionId").val($(this).attr("id"));
+		$("form").submit();
+		}
+	});
 });
 </script>
 </head>
 <body style="overflow:auto">
 	 <div id="main">
-			<div id="title"><span>错题练习:科目三</span></div>
+			<div id="title"><span>科目三错题练习</span></div>
 			<div id="sectionContent">
 			 <s:iterator id="question" value="page.list" status="i">
 			<div class="question">
@@ -52,11 +59,12 @@ $(document).ready(function(){
 					<div class="answerb"><span><s:property value="#question.answer_b"/> </span></div>
 					<div class="answerc"><span><s:property value="#question.answer_c"/> </span></div>
 					<div class="answerd"><span><s:property value="#question.answer_d"/> </span></div>
-					<div class="answer"><a href="javascript:void(0);">显示答案</a><span>正确答案：<s:property value="#question.answer"/> </span>
+					<div class="answer"><a href="javascript:void(0);"><img alt="" src="<%=path%>/image/showquestion.png"/></a><span>正确答案：<s:property value="#question.answer"/> </span>
 					<s:if test='#question.tips!=""&&#question.tips!=null'>
 					<span>提示：<s:property value="#question.tips"/> </span>
 					</s:if>
 					</div>
+					<div class="mark"><a href="javascript:void(0);" id="<s:property value='#question.id'/>"><img alt="" src="<%=path%>/image/del.png"/></a> </div>
 				 </div>
 				<div class="richmedia">
 					<s:if test='#question.image!=""&&#question.image!=null'>
@@ -68,7 +76,7 @@ $(document).ready(function(){
 			</s:iterator>
 			<div id="pageBar">
 			<form action="<%=path %>/exam/subject3/listWrongQuestion.d">
-			<s:hidden name="categoryId"/>
+			<s:hidden name="questionId"/>
 			<s:hidden id="maxPage" name="page.maxPage"/>
 			<s:hidden id="currPage" name="page.currPage"/>
 			<button id="prev">上一页</button>

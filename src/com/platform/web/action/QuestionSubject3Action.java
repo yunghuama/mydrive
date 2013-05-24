@@ -111,6 +111,16 @@ public class QuestionSubject3Action extends GenericAction {
 		return  Action.SUCCESS;
 	}
 	
+	/*
+	 * 
+	 * 删除错题
+	 */
+	public String delWrongQuestion(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		questionService.delWrongQuestion(questionId,loginBean.getUser().getId());
+		return  Action.SUCCESS;
+	}
+	
 	/**
 	 * 获得错题
 	 */

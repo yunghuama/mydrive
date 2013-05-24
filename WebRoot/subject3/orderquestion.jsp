@@ -55,7 +55,7 @@ $(document).ready(function(){
 </head>
 <body style="overflow:auto">
 	 <div id="main">
-			<div id="title"><span>顺序练习:科目三</span></div>
+			<div id="title"><span>科目三顺序练习</span></div>
 			<div id="sectionContent">
 			 <s:iterator id="question" value="page.list" status="i">
 			<div class="question">
@@ -65,12 +65,12 @@ $(document).ready(function(){
 					<div class="answerb"><span><s:property value="#question.answer_b"/> </span></div>
 					<div class="answerc"><span><s:property value="#question.answer_c"/> </span></div>
 					<div class="answerd"><span><s:property value="#question.answer_d"/> </span></div>
-					<div class="answer"><a href="javascript:void(0);">显示答案</a><span>正确答案：<s:property value="#question.answer"/> </span>
+					<div class="answer"><a href="javascript:void(0);"><img alt="" src="<%=path%>/image/showquestion.png"/></a><span>正确答案：<s:property value="#question.answer"/> </span>
 					<s:if test='#question.tips!=""&&#question.tips!=null'>
 					<span>提示：<s:property value="#question.tips"/> </span>
 					</s:if>
 					</div>
-					<div class="mark"><a href="javascript:void(0);" id="<s:property value='#question.id'/>">标记该题</a> </div>
+					<div class="mark"><a href="javascript:void(0);" id="<s:property value='#question.id'/>"><img alt="" src="<%=path%>/image/markquestion.png"/></a> </div>
 				 </div>
 				<div class="richmedia">
 					<s:if test='#question.image!=""&&#question.image!=null'>

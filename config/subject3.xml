@@ -27,5 +27,8 @@
     <action name="listWrongQuestion" class="questionSubject3Action" method="listWrongQuestion">
       <result>/subject3/wrongquestion.jsp</result>
     </action>
+    <action name="delWrongQuestion" class="questionSubject3Action" method="delWrongQuestion">
+      <result type="redirect">/exam/subject3/listWrongQuestion.d</result>
+    </action>
   </package>
 </struts>

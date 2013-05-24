@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.platform.constants.StringConstant;
 import com.platform.dao.QuestionSubject3DAO;
 import com.platform.domain.Section;
 import com.platform.vo.Page;
@@ -107,6 +108,13 @@ public class QuestionSubject3Service implements IService {
     
     public Page<QuestionVO> listWrongQuestion(Page<QuestionVO> page,String studentId){
     	 return questionDAO.listWrongQuestion(page,studentId);
+    }
+    
+    /**
+     * 删除错题问题
+     */
+    public int delWrongQuestion(int questionId,String studentId){
+    	return questionDAO.delWrongQuestion(questionId,studentId);
     }
     
     /*****************************错题练习结束*********************************/

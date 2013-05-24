@@ -21,7 +21,7 @@ $(document).ready(function(){
 </head>
 <body style="overflow:auto">
 	 <div id="main">
-			<div id="title"><span>科目三顺序练习</span></div>
+			<div id="title"><span>科目三章节</span></div>
 			<div id="sectionContent">
 				<table>
 					<tr>

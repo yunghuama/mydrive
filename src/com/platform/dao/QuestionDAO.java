@@ -141,6 +141,12 @@ public class QuestionDAO extends GenericDAO{
 		return jdbcTemplate.update(SQLConstant.MARK_QUESTION_DEL, questionId,studentId,questionType);
 	}
 	
+	/**
+	 * 删除错题
+	 */
+	public int delWrongQuestion(int questionId,String studentId,int questionType){
+		return jdbcTemplate.update(SQLConstant.WRONG_QUESTION_DEL, questionId,studentId,questionType);
+	}
 	
 	/**
 	 * 查询分数汇总

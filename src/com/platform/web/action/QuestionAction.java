@@ -151,11 +151,21 @@ public class QuestionAction extends GenericAction {
 	
 	/*
 	 * 
-	 * 删除标记题目
+	 * 删除标记题
 	 */
 	public String delMarkQuestion(){
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		questionService.delMarkQuestion(questionId,loginBean.getUser().getId(),loginBean.getUser().getCartype());
+		return  Action.SUCCESS;
+	}
+	
+	/*
+	 * 
+	 * 删除错题
+	 */
+	public String delWrongQuestion(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		questionService.delWrongQuestion(questionId,loginBean.getUser().getId(),loginBean.getUser().getCartype());
 		return  Action.SUCCESS;
 	}
 	

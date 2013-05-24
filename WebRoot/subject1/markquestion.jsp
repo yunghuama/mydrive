@@ -38,9 +38,11 @@ $(document).ready(function(){
 		$("form").submit();
 	});
 	$(".mark a").bind("click",function(){
+		if(confirm("确定要删除该题？")){
 		$("form").attr("action","<%=path %>/exam/subject1/delMarkQuestion.d");
 		$("#questionId").val($(this).attr("id"));
 		$("form").submit();
+		}
 	});
 });
 </script>
@@ -57,12 +59,12 @@ $(document).ready(function(){
 					<div class="answerb"><span><s:property value="#question.answer_b"/> </span></div>
 					<div class="answerc"><span><s:property value="#question.answer_c"/> </span></div>
 					<div class="answerd"><span><s:property value="#question.answer_d"/> </span></div>
-					<div class="answer"><a href="javascript:void(0);">显示答案</a><span>正确答案：<s:property value="#question.answer"/> </span>
+					<div class="answer"><a href="javascript:void(0);"><img alt="" src="<%=path%>/image/showquestion.png"/></a><span>正确答案：<s:property value="#question.answer"/> </span>
 					<s:if test='#question.tips!=""&&#question.tips!=null'>
 					<span>提示：<s:property value="#question.tips"/> </span>
 					</s:if>
 					</div>
-					<div class="mark"><a href="javascript:void(0);" id="<s:property value='#question.id'/>">删除该题目</a> </div>
+					<div class="mark"><a href="javascript:void(0);" id="<s:property value='#question.id'/>"><img alt="" src="<%=path%>/image/del.png"/></a> </div>
 				 </div>
 				<div class="richmedia">
 					<s:if test='#question.image!=""&&#question.image!=null'>

@@ -122,6 +122,8 @@ public final class SQLConstant {
 	 */
 	public static final String ERRORQUESTION_SAVE = "insert question_wrong(id,questionId,studentId,questiontype,updateTime) values(?,?,?,?,?)";
 	public static final String WRONG_QUESTION_QUERY_ROWCOUNT = "select count(id) from question_wrong where studentid = ? and questiontype = ?";
+	public static final String WRONG_QUESTION_DEL = "delete from question_wrong where questionid = ? and studentid = ? and questiontype = ?";
+
 	
 	public static final String WRONG_QUESTION_CAR_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_car where id in (select questionid from question_wrong where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";	
 	public static final String WRONG_QUESTION_BUS_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_bus where id in (select questionid from question_wrong where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";	
@@ -134,6 +136,7 @@ public final class SQLConstant {
 	public static final String ERRORQUESTION3_SAVE = "insert question_wrong3(id,questionId,studentId,updateTime) values(?,?,?,?)";
 	public static final String WRONG_QUESTION3_QUERY_ROWCOUNT = "select count(id) from question_wrong3 where studentid = ?";
 	public static final String WRONG_QUESTION3_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions3 where id in (select questionid from question_wrong3 where studentid = ?  order by createtime desc ) limit ?,?";	
+	public static final String WRONG_QUESTION3_DEL = "delete from question_wrong3 where questionid = ? and studentid = ?";
 
 	
 	
