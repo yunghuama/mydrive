@@ -49,7 +49,7 @@ $(document).ready(function(){
 </head>
 <body style="overflow:auto">
 	 <div id="main">
-			<div id="title"><span>已标记题:科目一</span></div>
+			<div id="title"><span>科目一已标记题</span></div>
 			<div id="sectionContent">
 			 <s:iterator id="question" value="page.list" status="i">
 			<div class="question">
