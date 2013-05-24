@@ -68,13 +68,18 @@ public class QuestionAjaxAction {
 	 * @return
 	 */
 	public String saveMarkQuestion(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		if(loginBean!=null){
-			int flag = 	questionService.saveMarkQuestion(questionId, loginBean.getUser().getId(), loginBean.getUser().getCartype());
-			if(flag==1)
-				result = "success";
-			else 
-				result = "error";
+		try {
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			if(loginBean!=null){
+				int flag = 	questionService.saveMarkQuestion(questionId, loginBean.getUser().getId(), loginBean.getUser().getCartype());
+				if(flag==1)
+					result = "success";
+				else 
+					result = "error";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return  Action.SUCCESS;
 	}
@@ -189,7 +194,12 @@ public class QuestionAjaxAction {
 	 * @return
 	 */
 	public String getCategory(){
-		sectionList = questionService.getSection(type+"");
+		try {
+			sectionList = questionService.getSection(type+"");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return Action.SUCCESS;
 	}
 	
@@ -199,10 +209,15 @@ public class QuestionAjaxAction {
 	 * @return
 	 */
 	public String updatePass(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		int re = usersService.updatePass(loginBean.getUser().getId(), oldPass, newPass);
-		if(re==1){
-			result = "success";
+		try {
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			int re = usersService.updatePass(loginBean.getUser().getId(), oldPass, newPass);
+			if(re==1){
+				result = "success";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return Action.SUCCESS;
 	}
@@ -212,10 +227,15 @@ public class QuestionAjaxAction {
 	 * @return
 	 */
 	public String updateTime(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		int re = usersService.updateTime(loginBean.getUser().getId(), oldPass, newPass);
-		if(re==1){
-			result = "success";
+		try {
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			int re = usersService.updateTime(loginBean.getUser().getId(), oldPass, newPass);
+			if(re==1){
+				result = "success";
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return Action.SUCCESS;
 	}

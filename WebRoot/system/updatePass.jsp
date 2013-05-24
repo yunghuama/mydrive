@@ -61,12 +61,13 @@ form span {
 }
 #content{
 	width:300px;
-	height:300px;
+	height:200px;
 	margin:0px auto;
 	margin-top:100px;
 }
 fieldset {
 	padding:20px;
+	border : 1px solid #7d7d7d;
 }
 #barDiv{
 	text-align:center;
@@ -76,28 +77,28 @@ fieldset {
 <body>
 	<div id="content">
 	<fieldset>
-	<legend>个人资料</legend>
+	<legend>密码修改</legend>
 	<form name="infoForm" id="infoForm" action="<%=path%>/exam/system/updatePass.d" class="form" method="post">
 	<s:hidden name="users.id"></s:hidden>
       <table class="form-table" cellspacing="0" cellpadding="0">
         <tr>
           <td class="form-left"><span class="form-required">*</span>旧密码</td>
-          <td class="form-right"><s:password id="oldPass" name="oldPass" theme="simple"/> </td>
+          <td class="form-right"><s:password id="oldPass" name="oldPass" theme="simple" cssClass="text"/> </td>
         </tr>
         <tr>
           <td class="form-left"><span class="form-required">*</span>新密码</td>
-          <td class="form-right"><s:password id="newPass" name="newPass" theme="simple"/></td>
+          <td class="form-right"><s:password id="newPass" name="newPass" theme="simple" cssClass="text"/></td>
         </tr>
         <tr>
           <td class="form-left"><span class="form-required">*</span>重复新密码</td>
-          <td class="form-right"><s:password id="newPass1" name="newPass1" theme="simple"/></td>
+          <td class="form-right"><s:password id="newPass1" name="newPass1" theme="simple" cssClass="text"/></td>
         </tr>
       </table>
     </form>
     </fieldset>
 	</div>
 	<div id="barDiv">
-			<button id="next">下一步</button>
+			<a id="next" href="javascript:void(0);"><img alt="" src="<%=path%>/image/save.png"> </a>
 	</div>
 </body>
 </html>

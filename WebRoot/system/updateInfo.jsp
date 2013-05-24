@@ -36,18 +36,7 @@
 	text-align:center;
 	padding-top:15px;
 }
-
-span {
-	font-size:20px;
-	color:#FFFFFF;
-	height:20px;
-	line-height:20px;
-}
-
-form span {
-	color:#000000;
-}
-#content{
+#infoContent{
 	width:300px;
 	height:300px;
 	margin:0px auto;
@@ -55,6 +44,7 @@ form span {
 }
 fieldset {
 	padding:20px;
+	border : 1px solid #7d7d7d;
 }
 #barDiv{
 	text-align:center;
@@ -62,7 +52,7 @@ fieldset {
 </style>
 </head>
 <body>
-	<div id="content">
+	<div id="infoContent">
 	<fieldset>
 	<legend>个人资料</legend>
 	<form name="infoForm" id="infoForm" action="<%=path%>/exam/system/updateUsers.d" class="form" method="post">
@@ -70,38 +60,38 @@ fieldset {
       <table class="form-table" cellspacing="0" cellpadding="0">
         <tr>
           <td class="form-left"><span class="form-required">*</span>真实姓名</td>
-          <td class="form-right"><s:textfield name="users.name" theme="simple"/> </td>
+          <td class="form-right"><s:textfield name="users.name" theme="simple" cssClass="text"/> </td>
         </tr>
         <tr>
           <td class="form-left"><span class="form-required">*</span>身份证</td>
-          <td class="form-right"><s:textfield name="users.identity" theme="simple"/></td>
+          <td class="form-right"><s:textfield name="users.identity" theme="simple" cssClass="text"/></td>
         </tr>
         <tr>
           <td class="form-left">年龄</td>
-          <td class="form-right"><s:textfield name="users.age" theme="simple"/></td>
+          <td class="form-right"><s:textfield name="users.age" theme="simple" cssClass="text"/></td>
         </tr>
         <tr>
           <td class="form-left"></span>性别</td>
           <td class="form-right">
-          		<s:select list="#{'0':'男','1':'女'}" name="users.sex"></s:select>
+          		<s:select list="#{'0':'男','1':'女'}" name="users.sex" cssClass="select"></s:select>
           </td>
         </tr>
         <tr>
           <td class="form-left"><span class="form-required">*</span>车型</td>
           <td class="form-right">
-          <s:select name="users.cartype" list="#{'c1':'C1','c2':'C2','c3':'C3','c4':'C4','c5':'C5','a1':'A1','a2':'A2','a3':'A3','b1':'B1','b2':'B2','d':'D','e':'E','f':'F'}"></s:select>
+          <s:select cssClass="select" name="users.cartype" list="#{'c1':'C1','c2':'C2','c3':'C3','c4':'C4','c5':'C5','a1':'A1','a2':'A2','a3':'A3','b1':'B1','b2':'B2','d':'D','e':'E','f':'F'}"></s:select>
            </td>
         </tr>
         <tr>
           <td class="form-left">手机号</td>
-          <td class="form-right"><s:textfield name="users.phonenumber" theme="simple"/></td>
+          <td class="form-right"><s:textfield name="users.phonenumber" theme="simple" cssClass="text"/></td>
         </tr>
       </table>
     </form>
     </fieldset>
 	</div>
 	<div id="barDiv">
-			<button id="next">下一步</button>
+			<a id="next" href="javascript:void(0);"><img alt="" src="<%=path%>/image/save.png"> </a>
 	</div>
 </body>
 </html>

@@ -106,7 +106,12 @@ public class QuestionAction extends GenericAction {
 	 * 获得章节科目一
 	 */
 	public String section1(){
-		sectionList = questionService.getSection(StringConstant.SECTION_TYPE_1);
+		try {
+			sectionList = questionService.getSection(StringConstant.SECTION_TYPE_1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
@@ -115,7 +120,12 @@ public class QuestionAction extends GenericAction {
 	 * 获得章节科目一
 	 */
 	public String section3(){
-		sectionList = questionService.getSection(StringConstant.SECTION_TYPE_3);
+		try {
+			sectionList = questionService.getSection(StringConstant.SECTION_TYPE_3);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
@@ -143,8 +153,12 @@ public class QuestionAction extends GenericAction {
 	 * @return
 	 */
 	public String markQuestion1(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		page = questionService.listMarkQuestion(page, loginBean.getUser().getId(), loginBean.getUser().getCartype());
+		try{
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			page = questionService.listMarkQuestion(page, loginBean.getUser().getId(), loginBean.getUser().getCartype());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
@@ -154,8 +168,13 @@ public class QuestionAction extends GenericAction {
 	 * 删除标记题
 	 */
 	public String delMarkQuestion(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		questionService.delMarkQuestion(questionId,loginBean.getUser().getId(),loginBean.getUser().getCartype());
+		
+		try {
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			questionService.delMarkQuestion(questionId,loginBean.getUser().getId(),loginBean.getUser().getCartype());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return  Action.SUCCESS;
 	}
 	
@@ -164,8 +183,13 @@ public class QuestionAction extends GenericAction {
 	 * 删除错题
 	 */
 	public String delWrongQuestion(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		questionService.delWrongQuestion(questionId,loginBean.getUser().getId(),loginBean.getUser().getCartype());
+		try {
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			questionService.delWrongQuestion(questionId,loginBean.getUser().getId(),loginBean.getUser().getCartype());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return  Action.SUCCESS;
 	}
 	
@@ -173,8 +197,13 @@ public class QuestionAction extends GenericAction {
 	 * 获得错题
 	 */
 	public String listWrongQuestion(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		page = questionService.listWrongQuestion(page, loginBean.getUser().getId(), loginBean.getUser().getCartype());
+		try {
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			page = questionService.listWrongQuestion(page, loginBean.getUser().getId(), loginBean.getUser().getCartype());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return Action.SUCCESS;
 	}
 	
@@ -183,7 +212,12 @@ public class QuestionAction extends GenericAction {
 	 * @return
 	 */
 	public String listQuestion(){
-		page = questionService.listQuestion(page, type);
+		try {
+			page = questionService.listQuestion(page, type);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return Action.SUCCESS;
 	}
 	

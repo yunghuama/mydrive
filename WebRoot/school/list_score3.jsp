@@ -12,6 +12,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("table tr").bind("mouseover",function(){
+		if($("th",this).size()>0){
+			return;
+		}
 		$(this).addClass("mouseover");
 	}).bind("mouseout",function(){
 		$(this).removeClass("mouseover");
@@ -57,6 +60,7 @@ $(document).ready(function(){
 						<th>通过次数</th>
 						<th>通过率</th>
 					</tr>
+					<s:if test="page.list!=null&&page.list.size>0">
 					 <s:iterator id="score" value="page.list" status="i">
 					<tr>
 						<td><s:property value="#i.index+1"/> </td>
@@ -69,6 +73,10 @@ $(document).ready(function(){
 						<td><s:property value="#score.rate"/>%</td>
 					</tr>
 					</s:iterator>
+					</s:if>
+					<s:else>
+					<tr><td colspan="8">暂无数据</td></tr>
+					</s:else>
 				</table>
 			</div>
 			<div id="pageBar">

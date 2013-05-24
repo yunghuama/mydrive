@@ -12,6 +12,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("table tr").bind("mouseover",function(){
+		if($("th",this).size()>0){
+			return;
+		}
 		$(this).addClass("mouseover");
 	}).bind("mouseout",function(){
 		$(this).removeClass("mouseover");
@@ -44,21 +47,24 @@ $(document).ready(function(){
 </head>
 <body style="overflow:auto">
 	 <div id="main">
-			<div id="title"><span>驾校公告</span><a href="<%=path%>/school/ann_save.jsp">添加公告</a></div>
+			<div id="title"><span>驾校公告</span></div>
 			<div id="sectionContent">
 				<table>
 					<tr>
 						<th width="10%">序号</th>
 						<th>标题</th>
-						<th>操作</th>
 					</tr>
+					<s:if test="page.list!=null&&page.list.size>0">
 					 <s:iterator id="ann" value="page.list" status="i">
 					<tr>
 						<td><s:property value="#i.index+1"/> </td>
 						<td><s:property value="#ann.title"/> </td>
-						<td><a href='<%=path%>/exam/system/delAnnouncement.d?annId=<s:property value="#ann.id"/>'>删除</a> </td>
 					</tr>
 					</s:iterator>
+					</s:if>
+					<s:else>
+					<tr><td colspan="2">暂无数据</td></tr>
+					</s:else>
 				</table>
 			</div>
 			<div id="pageBar">

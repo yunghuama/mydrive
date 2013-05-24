@@ -185,6 +185,7 @@ public class QuestionService implements IService {
     /*****************************错题练习开始*********************************/
     
     public Page<QuestionVO> listWrongQuestion(Page<QuestionVO> page,String studentId,String cartype){
+    	if(cartype==null) return null;
     	if(StringConstant.questionType_car==StringConstant.questionType.get(cartype))
     		return questionCarDAO.listWrongQuestionCar(page,studentId,StringConstant.questionType.get(cartype));
     	else if(StringConstant.questionType_bus==StringConstant.questionType.get(cartype))

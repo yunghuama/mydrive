@@ -9,9 +9,25 @@
 <link href="<%=path%>/css/section.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="<%=path%>/js/core.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
+<style type="text/css">
+	#addDiv {
+		text-align:left;
+	}
+	#addDiv img {
+		width:84px;
+		height:33px;
+	}
+	#sectionContent {
+		width:600px;
+		margin:0px auto;
+	}
+</style>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("table tr").bind("mouseover",function(){
+		if($("th",this).size()>0){
+			return;
+		}
 		$(this).addClass("mouseover");
 	}).bind("mouseout",function(){
 		$(this).removeClass("mouseover");
@@ -23,6 +39,16 @@ $(document).ready(function(){
 		$("form").attr("action","<%=path%>/exam/system/viewAnnouncement.d");
 		$("form").submit();
 	});
+	
+	$(".data a").bind("click",function(){
+		if(!confirm("确定删除?"))
+			return false;
+		var id = $(this).attr("id");
+		$("#annId").val(id);
+		$("form").attr("action","<%=path%>/exam/system/delAnnouncement.d");
+		$("form").submit();
+	});
+	
 	
 	//构造分页
 	var maxPage = parseInt($("#maxPage").val());
@@ -52,8 +78,12 @@ $(document).ready(function(){
 </head>
 <body style="overflow:auto">
 	 <div id="main">
-			<div id="title"><span>驾校公告</span><a href="<%=path%>/school/ann_save.jsp">添加公告</a></div>
+			<div id="title"><span>驾校公告管理</span></div>
 			<div id="sectionContent">
+			<div id="addDiv">
+			<a href="<%=path%>/school/ann_save.jsp"><img alt="" src="<%=path%>/image/add.png"> </a>
+			</div>
+			
 				<table>
 					<tr>
 						<th width="10%">序号</th>
@@ -64,7 +94,7 @@ $(document).ready(function(){
 					<tr class="data" id=<s:property value="#ann.id"/>>
 						<td><s:property value="#i.index+1"/> </td>
 						<td><s:property value="#ann.title"/> </td>
-						<td><a href='<%=path%>/exam/system/delAnnouncement.d?annId=<s:property value="#ann.id"/>'>删除</a> </td>
+						<td><a href="javascript:void(0);" id='<s:property value="#ann.id"/>'><img alt="" src="<%=path%>/image/dd.png"></a> </td>
 					</tr>
 					</s:iterator>
 				</table>

@@ -1,6 +1,6 @@
 package com.platform.constants;
 
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 
@@ -38,7 +38,7 @@ public final class StringConstant {
 	public static final String PATH_VIDEO_MOTO = "/home/cheney/driver/video/moto";
 	public static final String PATH_VIDEO_SUB3 = "/home/cheney/driver/video/sub3";
 	
-	public static Map<String,Integer> questionType = new HashMap<String,Integer>();
+	public static Map<String,Integer> questionType = new Hashtable<String,Integer>();
 	
 	public static final String NO_LOGIN = "nologin";
 	

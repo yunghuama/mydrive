@@ -9,23 +9,64 @@
 <link href="<%=path%>/css/form.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="<%=path%>/js/core.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
+<style type="text/css">
+
+span {
+	font-size:20px;
+	color:#FFFFFF;
+	height:20px;
+	line-height:20px;
+}
+
+form span {
+	color:#000000;
+}
+#content{
+	width:600px;
+	height:400px;
+	margin:0px auto;
+	margin-top:50px;
+}
+fieldset {
+	padding:20px;
+	border : 1px solid #7d7d7d;
+}
+#barDiv{
+	text-align:center;
+}
+</style>
 <script type="text/javascript">
 $(document).ready(function(){
-	
+	$("#barDiv a").click(function(){
+		if($("#aTitle").val()==""){
+			alert("请输入标题");
+			return;
+		}
+		if($("#aContent").val()==""){
+			alert("请输入内容");
+			return;
+		}
+		$("form").submit();
+	});
 });
 </script>
 </head>
-<body style="overflow:auto">
-	 <div id="main">
-			<div id="title"><span>公告管理:添加公告</span></div>
+<body>
+		<div id="content">
+			<fieldset>
+			<legend>添加公告</legend>
 			<div id="sectionContent">
 				<form action="<%=path%>/exam/system/saveAnnouncement.d" method="post">
-				标题:<input type="text" name="announcement.title"><br/>
-				内容:<textarea rows="30" cols="20" name="announcement.content"></textarea><br/>
-				<input type="submit" value="保存">
+		          <span class="form-required">*</span>标题
+		          <s:textfield id="aTitle" name="announcement.title" theme="simple" style="width:400px;" cssClass="text"/><br/>
+		          <span class="form-required">*</span>内容
+		          <s:textarea  id="aContent" name="announcement.content" theme="simple" style="height:250px;" cssClass="textarea"/>
 				</form>
 			</div>
+			</fieldset>
 	 </div>
-	 
+	 <div id="barDiv">
+			<a id="next" href="javascript:void(0);"><img alt="" src="<%=path%>/image/save.png"> </a>
+	</div>
 </body>
 </html>

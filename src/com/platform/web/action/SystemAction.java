@@ -32,8 +32,13 @@ public class SystemAction extends GenericAction {
 	 * @return
 	 */
 	public String saveAnnouncement(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		systemService.saveAnnouncement(loginBean.getUser().getId(),announcement.getTitle(),announcement.getContent());
+		try {
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			systemService.saveAnnouncement(loginBean.getUser().getId(),announcement.getTitle(),announcement.getContent());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
@@ -43,8 +48,13 @@ public class SystemAction extends GenericAction {
 	 * @return
 	 */
 	public String listAnnouncement(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		page = systemService.listAnnouncement(page, loginBean.getUser().getId());
+		try {
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			page = systemService.listAnnouncement(page, loginBean.getUser().getId());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
@@ -53,8 +63,13 @@ public class SystemAction extends GenericAction {
 	 * @return
 	 */
 	public String listAnnouncementStu(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		page = systemService.listAnnouncement(page, loginBean.getUser().getSchoolId());
+		try {
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			page = systemService.listAnnouncement(page, loginBean.getUser().getSchoolId());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
@@ -62,7 +77,12 @@ public class SystemAction extends GenericAction {
 	 * 删除驾校公告
 	 */
 	public String delAnnouncement(){
-		systemService.delAnn(annId);
+		try {
+			systemService.delAnn(annId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
@@ -71,7 +91,12 @@ public class SystemAction extends GenericAction {
 	 * 
 	 */
 	public String viewAnnouncement(){
-		announcement = systemService.getAnnouncementById(annId);
+		try {
+			announcement = systemService.getAnnouncementById(annId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
@@ -110,8 +135,13 @@ public class SystemAction extends GenericAction {
 	 * @return
 	 */
 	public String toUpdateUsers(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		users = usersService.getUsersById(loginBean.getUser().getId());
+		try {
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			users = usersService.getUsersById(loginBean.getUser().getId());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	

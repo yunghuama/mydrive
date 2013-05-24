@@ -76,7 +76,12 @@ public class QuestionSubject3Action extends GenericAction {
 	 * 获得章节科目一
 	 */
 	public String section(){
-		sectionList = questionService.getSection(StringConstant.SECTION_TYPE_3);
+		try {
+			sectionList = questionService.getSection(StringConstant.SECTION_TYPE_3);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
@@ -95,8 +100,13 @@ public class QuestionSubject3Action extends GenericAction {
 	 * @return
 	 */
 	public String markQuestion(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		page = questionService.listMarkQuestion(page, loginBean.getUser().getId());
+		try {
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			page = questionService.listMarkQuestion(page, loginBean.getUser().getId());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
@@ -106,8 +116,13 @@ public class QuestionSubject3Action extends GenericAction {
 	 * 删除标记题目
 	 */
 	public String delMarkQuestion(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		questionService.delMarkQuestion(questionId,loginBean.getUser().getId());
+		try {
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			questionService.delMarkQuestion(questionId,loginBean.getUser().getId());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return  Action.SUCCESS;
 	}
 	
@@ -116,8 +131,13 @@ public class QuestionSubject3Action extends GenericAction {
 	 * 删除错题
 	 */
 	public String delWrongQuestion(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		questionService.delWrongQuestion(questionId,loginBean.getUser().getId());
+		try {
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			questionService.delWrongQuestion(questionId,loginBean.getUser().getId());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return  Action.SUCCESS;
 	}
 	
@@ -125,8 +145,13 @@ public class QuestionSubject3Action extends GenericAction {
 	 * 获得错题
 	 */
 	public String listWrongQuestion(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		page = questionService.listWrongQuestion(page, loginBean.getUser().getId());
+		try {
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			page = questionService.listWrongQuestion(page, loginBean.getUser().getId());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return Action.SUCCESS;
 	}
 	

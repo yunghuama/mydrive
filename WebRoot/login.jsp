@@ -105,10 +105,10 @@ String path = request.getContextPath();
       var defaultPass = "密码";
       $("input:visible").eq(0).val(defaultVal).bind("focus",function(){
 			$(this).val("");
-			$(this).unbind("click");
+			$(this).unbind("focus");
       });
       $("input:visible").eq(1).val(defaultPass).bind("focus",function(){
-			$(this).unbind("click");
+			$(this).unbind("focus");
     	    $(this).remove();
 			$("#password").show();
 			$("#password").focus();
