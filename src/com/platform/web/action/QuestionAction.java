@@ -1,5 +1,6 @@
 package com.platform.web.action;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
@@ -303,8 +304,14 @@ public class QuestionAction extends GenericAction {
 	}
 	
 	public void importExcel(){
-		System.out.println("导入");
-		String path = "";
+		try{
+
+			System.out.println("导入");
+			String path = "/home/cheney/driver/db/q3.xlsx";
+			importXlsx(path);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -338,7 +345,9 @@ public class QuestionAction extends GenericAction {
 					q.setAnswer(answer.getStringCellValue());
 					q.setCategory(category==null? "":category.getStringCellValue());
 					q.setImage(image==null?"":image.getStringCellValue());
-					questionService.saveQuestion_car(q);
+					questionService.saveQuestion_moto(q);
+					
+					System.out.println(q.getCode());
 				}
 				
 			}catch(Exception e){
@@ -348,6 +357,8 @@ public class QuestionAction extends GenericAction {
 	
 	public void importXlsx(String path){
 		try{
+			File f1 = new File(path);
+			System.out.print(f1.getAbsolutePath());
 			FileInputStream f = new FileInputStream(path);
 			XSSFWorkbook hssfWorkbook = new XSSFWorkbook(f);
 			XSSFSheet hssfSheet = hssfWorkbook.getSheetAt(0);
@@ -375,11 +386,12 @@ public class QuestionAction extends GenericAction {
 				q.setCategory(category==null? "":category.getStringCellValue().trim());
 				q.setImage(image==null?"":image.getStringCellValue().trim());
 				//导入
-				questionService.saveQuestion_car(q);
+				questionService.saveQuestion3(q);
+				System.out.println(q.getCode());
 			}
 			
 		}catch(Exception e){
-			
+			e.printStackTrace();
 		}
 		
 	}

@@ -13,7 +13,7 @@ public class Users extends BaseDomain{
 	private String nickname;
 	private String cartype;
 	private String phonenumber;
-	private String age;
+	private int age;
 	private String sex;
 	private String role;
 	
@@ -78,10 +78,12 @@ public class Users extends BaseDomain{
 	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
-	public String getAge() {
+	
+	
+	public int getAge() {
 		return age;
 	}
-	public void setAge(String age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 	public String getSex() {

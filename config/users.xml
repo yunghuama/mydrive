@@ -6,6 +6,7 @@
   <package name="users" extends="role-default" namespace="/system/users">
   	<action name="firstInit" class="loginAction" method="firstInit">
       <result type="redirect">/main.jsp</result>
+      <result type="redirect" name="error">/login.d</result>
     </action>
   </package>
 </struts>

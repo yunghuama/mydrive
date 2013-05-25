@@ -81,6 +81,16 @@ public class QuestionService implements IService {
     public int saveQuestion_moto(Question question){
     	return questionMotoDAO.saveQuestion_Moto(question);
     }
+    
+    /**
+     * 保存摩托车类型题库
+     * @param question
+     * @return
+     */
+    @Transactional(rollbackFor={Exception.class,RuntimeException.class})
+    public int saveQuestion3(Question question){
+    	return questionSubject3DAO.saveQuestion3(question);
+    }
     /*****************************练习模式|模拟考试开始*********************************/
     
     /**

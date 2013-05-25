@@ -192,7 +192,7 @@ public class UsersDAO extends GenericDAO{
 			public Users mapRow(ResultSet rs, int arg1) throws SQLException {
 				Users user = new Users();
 				user.setId(rs.getString("id"));
-				user.setAge(rs.getString("age"));
+				user.setAge(rs.getInt("age"));
 				user.setSex(rs.getString("sex"));
 				user.setName(rs.getString("name"));
 				user.setCartype(rs.getString("cartype"));

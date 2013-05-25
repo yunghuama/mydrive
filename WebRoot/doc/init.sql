@@ -209,6 +209,8 @@ insert into section(id,name,category) values('4028813518f35feb0118f392eee50046',
 insert into section(id,name,category) values('4028813518f35feb0118f392eee50047','安全行车、文明驾驶基础知识',1);
 insert into section(id,name,category) values('4028813518f35feb0118f392eee50048','机动车驾驶操作相关基础知识',1);
 
+
+
 insert into section(id,name,category) values('4028813518f35feb0118f392eee50049','违法行为综合判断与案例分析',3);
 insert into section(id,name,category) values('4028813518f35feb0118f392eee50050','安全行车常识',3);
 insert into section(id,name,category) values('4028813518f35feb0118f392eee50051','常见交通标志、标线和交警手势信号辨识',3);
@@ -216,16 +218,27 @@ insert into section(id,name,category) values('4028813518f35feb0118f392eee50052',
 insert into section(id,name,category) values('4028813518f35feb0118f392eee50053','恶劣气候和复杂道路条件下驾驶常识',3);
 insert into section(id,name,category) values('4028813518f35feb0118f392eee50054','紧急情况下避险常识',3);
 insert into section(id,name,category) values('4028813518f35feb0118f392eee50055','交通事故救护及常见危化品处置常识',3);
+insert into section(id,name,category) values('4028813518f35feb0118f392eee50056','摩托车',1);
+insert into section(id,name,category) values('4028813518f35feb0118f392eee50057','安全文明驾驶常识',3);
 
 update questions_car set category = '4028813518f35feb0118f392eee50045' where category = '道路交通安全法律、法规和规章';
 update questions_car set category = '4028813518f35feb0118f392eee50046' where category = '交通信号';
 update questions_car set category = '4028813518f35feb0118f392eee50047' where category = '安全行车、文明驾驶基础知识';
 update questions_car set category = '4028813518f35feb0118f392eee50048' where category = '机动车驾驶操作相关基础知识';
 
-update questions3 set category = '4028813518f35feb0118f392eee50049' where category = '4028813518f35feb0118f392eee50045';
-update questions3 set category = '4028813518f35feb0118f392eee50050' where category = '4028813518f35feb0118f392eee50046';
-update questions3 set category = '4028813518f35feb0118f392eee50051' where category = '4028813518f35feb0118f392eee50047';
-update questions3 set category = '4028813518f35feb0118f392eee50052' where category = '4028813518f35feb0118f392eee50048';
+update questions_bus set category = '4028813518f35feb0118f392eee50045' where category = '道路交通安全法律、法规和规章';
+update questions_bus set category = '4028813518f35feb0118f392eee50046' where category = '交通信号';
+update questions_bus set category = '4028813518f35feb0118f392eee50047' where category = '安全行车、文明驾驶基础知识';
+update questions_bus set category = '4028813518f35feb0118f392eee50048' where category = '机动车驾驶操作相关基础知识';
+
+update questions_truck set category = '4028813518f35feb0118f392eee50045' where category = '道路交通安全法律、法规和规章';
+update questions_truck set category = '4028813518f35feb0118f392eee50046' where category = '交通信号';
+update questions_truck set category = '4028813518f35feb0118f392eee50047' where category = '安全行车、文明驾驶基础知识';
+update questions_truck set category = '4028813518f35feb0118f392eee50048' where category = '机动车驾驶操作相关基础知识';
+
+update questions_motorcycle set category = '4028813518f35feb0118f392eee50056' where category = '摩托车';
+
+update questions3 set category = '4028813518f35feb0118f392eee50057' where category = '安全文明驾驶常识';
 
 select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_car where id in (select questionid from markquestion  order by createtime desc)  limit 0,10;
 

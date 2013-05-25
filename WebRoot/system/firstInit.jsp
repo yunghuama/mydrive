@@ -12,13 +12,19 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#next").click(function(){
-			if($("#name").val()==""){
-				alert("请填写姓名");
+			if($("#name").val()==""||$("#name").val().length>10){
+				alert("请填写正确姓名");
 				return;
 			}
-			if($("#identity").val()==""){
-				alert("请填写姓名");
+			if($("#identity").val()==""||$("#identity").val().length>18){
+				alert("请填写正确的身份证号");
 				return;
+			}
+			if($("#age").val()!=""){
+			if($("#age").val()<10||$("#age").val()>60){
+				alert("请输入正确的年龄");
+				return;
+			}
 			}
 			$("#infoForm").submit();
 		});
@@ -121,7 +127,7 @@ fieldset {
     </fieldset>
 	</div>
 	<div id="barDiv">
-			<button id="next">下一步</button>
+			<a id="next" href="javascript:void(0);"><img alt="" src="<%=path%>/image/save.png"> </a>
 	</div>
 </body>
 </html>

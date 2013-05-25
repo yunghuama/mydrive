@@ -97,8 +97,10 @@ public class LoginAction extends ActionSupport {
 			usersService.update(users);
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 			loginBean.getUser().setCartype(users.getCartype());
+			loginBean.getUser().setName(users.getName());
 		}catch(Exception e){
 			e.printStackTrace();
+			return "error";
 		}
 		
 		return SUCCESS;

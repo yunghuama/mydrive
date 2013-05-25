@@ -22,7 +22,7 @@ if(session.getAttribute("LoginBean")==null) {
 			//添加点击效果
 			$("a[name='id_0_0']").bind("click",function(){
 				//$("#mainFrame").attr("src","<%=path%>/system/examlist.jsp");
-				$("#mainFrame").attr("src","<%=path%>/system/examlist.jsp");
+				$("#mainFrame").attr("src","<%=path%>/exam/subject1/importExcel.d");
 			});
 			
 			//科目一
@@ -152,8 +152,8 @@ if(session.getAttribute("LoginBean")==null) {
   					 <ul class="sub-nav">
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_1">驾校公告</a></li>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_2">公告管理</a></li>
-  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_3">学员成绩1</a></li>
-  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_4">学员成绩3</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_3">学员成绩科目一</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_4">学员成绩科目三</a></li>
   					</ul>
   				</li>
   				<li class="menu-item">
