@@ -270,28 +270,20 @@ public class QuestionAction extends GenericAction {
 	public String  updateQuestion() throws IOException{
 		//如果有附件
 		try{
-		if(isDelImage==1){
-			String path = FileHelper.getPath(type, fileType);
-			if(question.getImage()!=null){
-			 File f = new File(path+"/"+question.getImage());
-			 if(f.exists())
-				 f.delete();
-			}else if(question.getVideo()!=null){
-			 File f = new File(path+"/"+question.getVideo());
-			 if(f.exists())
-				 f.delete();
-			}
-		}
 		if(upload!=null&&upload.size()>0){
 			String path = FileHelper.getPath(type, fileType);
 			UploadHelper helper = new UploadHelper(upload, uploadFileName, uploadTitle, uploadContentType, path, UploadHelper.NAME);
 			List<AttachedFile> list = helper.getAttachedFiles();
 			if(list!=null&&list.size()>0){
 				AttachedFile af = list.get(0);
-				if(fileType==0)
+				if(fileType==0){
 				question.setImage(af.getFileName());
-				else if(fileType==1)
+				question.setVideo("");
+				}
+				else if(fileType==1){
 				question.setVideo(af.getFileName());
+				question.setImage("");
+				}
 			}
 		}
 		//保存

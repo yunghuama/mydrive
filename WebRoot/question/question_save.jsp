@@ -9,6 +9,27 @@
 <link href="<%=path%>/css/form.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="<%=path%>/js/core.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
+<style type="text/css">
+#infoContent{
+	width:600px;
+	height:450px;
+	margin:0px auto;
+	margin-top:20px;
+}
+fieldset {
+	padding:20px;
+	border : 1px solid #7d7d7d;
+}
+#barDiv{
+	text-align:center;
+}
+.text {
+	width:300px;
+}
+.select {
+	width:300px;
+}
+</style>
 <script type="text/javascript">
 $(document).ready(function(){
 	loadCategory(1);
@@ -19,9 +40,31 @@ $(document).ready(function(){
 				loadCategory(1);
 			}	
 	});
-	
-	$("input[type='button']").eq(0).click(function(){
-				$("form").submit();
+	$("#next").click(function(){
+		if($("input[name='question.code']").val()==""){
+			alert("章节名称不能为空");
+			return;
+		}
+		if($("input[name='question.question']").val()==""){
+			alert("问题不能为空");
+			return;
+		}
+		if($("input[name='question.answer_a']").val()==""){
+			alert("答案a不能为空");
+			return;
+		}
+		
+		if($("input[name='question.answer_b']").val()==""){
+			alert("答案b不能为空");
+			return;
+		}
+		if($("input[name='question.answer']").val()==""){
+			alert("正确答案不能为空");
+			return;
+		}
+		if(confirm("确认添加该题目吗?")){
+			$("#infoForm").submit();
+		}
 	});
 });
 
@@ -44,34 +87,79 @@ function loadCategory(type){
 </script>
 </head>
 <body style="overflow:auto">
-	 <div id="main">
-			<div id="title"><span>添加新问题</span></div>
+	 <div id="infoContent">
+			<fieldset>
+			<legend>添加题库</legend>
 			<div id="sectionContent">
-				<form action="<%=path%>/exam/subject1/saveQuestion.d" method="post" enctype="multipart/form-data">
-				章节编号:<input type="text" name="question.code"><br/>
-				问题:<input type="text" name="question.question"><br/>
-				答案a:<input type="text" name="question.answer_a"><br/>
-				答案b:<input type="text" name="question.answer_b"><br/>
-				答案c:<input type="text" name="question.answer_c"><br/>
-				答案d:<input type="text" name="question.answer_d"><br/>
-				正确答案:<input type="text" name="question.answer"><br/>
-				所属题库:<select name="type">
-						<option value="0">小汽车</option>
-						<option value="1">大客车</option>
-						<option value="2">小货车</option>
-						<option value="3">摩托车</option>
-						<option value="4">科目三</option>
-				</select> <br/>
-				附件类型:<input type="radio" name="fileType" value="0">图片&nbsp;&nbsp;<input type="radio" name="fileType" value="1">视频
-				附件:<input type="file" name="upload"><br/>
-				所属章节:<select name="question.category">
-								
-				</select> <br/>
-				提示:<input type="text" name="question.tips"><br/>
-				<input type="button" value="保存">
+				<form  name="infoForm" id="infoForm" action="<%=path%>/exam/subject1/saveQuestion.d" method="post" enctype="multipart/form-data">
+				<table class="form-table" cellspacing="0" cellpadding="0">
+		        <tr>
+		          <td class="form-left"><span class="form-required">*</span>章节编号</td>
+		          <td class="form-right"><s:textfield name="question.code" theme="simple" cssClass="text"/> </td>
+		        </tr>
+		        <tr>
+		          <td class="form-left"><span class="form-required">*</span>问题</td>
+		          <td class="form-right"><s:textfield name="question.question" theme="simple" cssClass="text"/></td>
+		        </tr>
+		        <tr>
+		          <td class="form-left"><span class="form-required">*</span>答案a</td>
+		          <td class="form-right"><s:textfield name="question.answer_a" theme="simple" cssClass="text"/></td>
+		        </tr>
+		        <tr>
+		          <td class="form-left"><span class="form-required">*</span>答案b</td>
+		          <td class="form-right"><s:textfield name="question.answer_b" theme="simple" cssClass="text"/></td>
+		        </tr>
+		        <tr>
+		          <td class="form-left">答案c</td>
+		          <td class="form-right"><s:textfield name="question.answer_c" theme="simple" cssClass="text"/></td>
+		        </tr>
+		        <tr>
+		          <td class="form-left">答案d</td>
+		          <td class="form-right"><s:textfield name="question.answer_d" theme="simple" cssClass="text"/></td>
+		        </tr>
+		        <tr>
+		          <td class="form-left"><span class="form-required">*</span>正确答案</td>
+		          <td class="form-right"><s:textfield name="question.answer" theme="simple" cssClass="text"/></td>
+		        </tr>
+		        <tr>
+		          <td class="form-left"></span>题库类型</td>
+		          <td class="form-right">
+		         		 <select name="type" class="select">
+								<option value="0">小汽车</option>
+								<option value="1">大客车</option>
+								<option value="2">小货车</option>
+								<option value="3">摩托车</option>
+								<option value="4">科目三</option>
+						</select>
+		          </td>
+		        </tr>
+		         <tr>
+		          <td class="form-left">附件类型</td>
+		          <td class="form-right"><input type="radio" class="radio" name="fileType" value="0">图片&nbsp;&nbsp;<input type="radio" class="radio" name="fileType" value="1">视频</td>
+		        </tr>
+		        <tr>
+		          <td class="form-left">附件</td>
+		          <td class="form-right"><input type="file" name="upload" class="file"></td>
+		        </tr>
+		        <tr>
+		          <td class="form-left"><span class="form-required">*</span>所属章节</td>
+		          <td class="form-right">
+		         		<select name="question.category" class="select">
+										
+						</select>
+		           </td>
+		        </tr>
+		        <tr>
+		          <td class="form-left">答题提示</td>
+		          <td class="form-right"><s:textfield name="question.tips" theme="simple" cssClass="text"/></td>
+		        </tr>
+     			 </table>
 				</form>
 			</div>
+			</fieldset>
 	 </div>
-	 
+	 <div id="barDiv">
+			<a id="next" href="javascript:void(0);"><img alt="" src="<%=path%>/image/save.png"> </a>
+	</div>
 </body>
 </html>

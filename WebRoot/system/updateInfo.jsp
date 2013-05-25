@@ -25,7 +25,7 @@
 	});
 
 </script>
-<title>首次登录，完善个人信息</title>
+<title></title>
 <style type="text/css">
 #head {
 	position:relative;

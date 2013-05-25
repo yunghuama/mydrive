@@ -27,26 +27,29 @@ body{
 .type {
 	float : left;
 	width:80px;
-	border : 1px solid red;
+	border : 1px solid #7d7d7d;
 	margin: 0 1px;
 	padding : 2px 0px;
 	cursor:pointer;
 }
 
-.addNew {
-	float : left;
-	width:80px;
-	border : 1px solid red;
-	margin: 0 1px;
-	padding : 2px 0px;
-	cursor:pointer;
-}
 
 
 .click {
-	background-color:blue;
+	background-color:#97f360;
 	
 }
+
+.addDiv {
+	width:800px;
+	margin:0px auto;
+	text-align:left;
+}
+
+.addDiv img {
+		width:84px;
+		height:33px;
+	}
 
 /***问题***/
 

@@ -24,7 +24,7 @@ $(document).ready(function(){
 	});
 	$("#<s:property value='type'/>").addClass("click");
 	//添加新题
-	$(".addNew").click(function(){
+	$(".addDiv img").click(function(){
 		$("form").attr("action","<%=path%>/question/question_save.jsp");
 		$("form").submit();
 	});
@@ -86,11 +86,9 @@ $(document).ready(function(){
 				<div class="type" id="4">
 					<span>科目三</span>
 				</div>
-				<div class="addNew" id="0">
-					<span>添加新题</span>
-				</div>
 			</div>
 			<div id="sectionContent">
+			<div class="addDiv"><a href="javascript:void(0);"><img src="<%=path%>/image/add.png"/></a></div>
 			<s:iterator id="question" value="page.list" status="i">
 			<div class="question">
 			    <div class="quesntinContent">
@@ -114,7 +112,7 @@ $(document).ready(function(){
 				</div>
 				<div class="operate">
 				<a href="<%=path %>/exam/subject1/toUpdateQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>"> 修改该题</a><br/><br/>
-				<a href="<%=path %>/exam/subject1/deleteQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>">删除该题</a><br/>
+				<a href="<%=path %>/exam/subject1/deleteQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>"><img alt="" src="<%=path%>/image/del.png"> </a><br/>
 				</div>
 			</div>
 			</s:iterator>
