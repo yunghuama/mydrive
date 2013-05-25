@@ -20,6 +20,11 @@ if(session.getAttribute("LoginBean")==null) {
 			//初始化菜单
 			initNav();
 			//添加点击效果
+			$("a[name='id_0_0']").bind("click",function(){
+				//$("#mainFrame").attr("src","<%=path%>/system/examlist.jsp");
+				$("#mainFrame").attr("src","<%=path%>/system/examlist.jsp");
+			});
+			
 			//科目一
 			$("a[name='id_1_1']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/subject1/toExercise.jsp");
@@ -105,6 +110,9 @@ if(session.getAttribute("LoginBean")==null) {
   		<div id="nav-div">
   			<ul id="nav" class="nav">
   				<li class="menu-item">
+  					<a href="javascript:void(0);" class="title" name="id_0_0">首页</a>
+  				</li>
+  				<li class="menu-item">
   					<a href="javascript:void(0);" class="title">科目一</a>
   					<ul class="sub-nav">
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_1_1">练习模式</a></li>
@@ -113,7 +121,7 @@ if(session.getAttribute("LoginBean")==null) {
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_1_4">标记练习</a></li>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_1_5">错题练习</a></li>
   					</ul>
-  					</li>
+  				</li>
   				<li class="menu-item">
   				    <a href="javascript:void(0);" class="title">科目二</a>
   				    <ul class="sub-nav">

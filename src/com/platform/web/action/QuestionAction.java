@@ -1,6 +1,5 @@
 package com.platform.web.action;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
@@ -9,6 +8,10 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -299,43 +302,86 @@ public class QuestionAction extends GenericAction {
 		return Action.SUCCESS;
 	}
 	
-	public void importXls(){
+	public void importExcel(){
 		System.out.println("导入");
+		String path = "";
+		
+	}
+	
+	public void importXls(String path){
 		try{
-
-		FileInputStream f = new FileInputStream("/home/cheney/question_car.xls");
-		HSSFWorkbook wb = new HSSFWorkbook(f);
-		HSSFSheet sheet = wb.getSheetAt(0);
-		int rowNum = sheet.getLastRowNum();
-		//如果没有错误,则进行导入
+			//如果是xls
+			FileInputStream f = new FileInputStream(path);
+			HSSFWorkbook wb = new HSSFWorkbook(f);
+			HSSFSheet sheet = wb.getSheetAt(0);
+			int rowNum = sheet.getLastRowNum();
+			//如果没有错误,则进行导入
+				for(int i=1;i<=rowNum;i++){
+					HSSFRow row = sheet.getRow(i);
+					HSSFCell code = row.getCell((short)0);
+					HSSFCell question = row.getCell((short)1);
+					HSSFCell a = row.getCell((short)2);
+					HSSFCell b = row.getCell((short)3);
+					HSSFCell c = row.getCell((short)4);
+					HSSFCell d = row.getCell((short)5);
+					HSSFCell answer = row.getCell((short)6);
+					HSSFCell image = row.getCell((short)7);
+					HSSFCell category = row.getCell((short)8);
+					
+					Question q = new Question();
+					q.setCode(code.getStringCellValue());
+					q.setQuestion(question.getStringCellValue());
+					q.setAnswer_a(a.getStringCellValue());
+					q.setAnswer_b(b.getStringCellValue());
+					q.setAnswer_c(c==null? "" : c.getStringCellValue());
+					q.setAnswer_d(d==null? "" :d.getStringCellValue());
+					q.setAnswer(answer.getStringCellValue());
+					q.setCategory(category==null? "":category.getStringCellValue());
+					q.setImage(image==null?"":image.getStringCellValue());
+					questionService.saveQuestion_car(q);
+				}
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+	}
+	
+	public void importXlsx(String path){
+		try{
+			FileInputStream f = new FileInputStream(path);
+			XSSFWorkbook hssfWorkbook = new XSSFWorkbook(f);
+			XSSFSheet hssfSheet = hssfWorkbook.getSheetAt(0);
+			int rowNum = hssfSheet.getLastRowNum();
 			for(int i=1;i<=rowNum;i++){
-				HSSFRow row = sheet.getRow(i);
-				HSSFCell code = row.getCell((short)0);
-				HSSFCell question = row.getCell((short)1);
-				HSSFCell a = row.getCell((short)2);
-				HSSFCell b = row.getCell((short)3);
-				HSSFCell c = row.getCell((short)4);
-				HSSFCell d = row.getCell((short)5);
-				HSSFCell answer = row.getCell((short)6);
-				HSSFCell image = row.getCell((short)7);
-				HSSFCell category = row.getCell((short)8);
+				XSSFRow row = hssfSheet.getRow(i);
+				XSSFCell code = row.getCell(0);
+				XSSFCell question = row.getCell((short)1);
+				XSSFCell a = row.getCell((short)2);
+				XSSFCell b = row.getCell((short)3);
+				XSSFCell c = row.getCell((short)4);
+				XSSFCell d = row.getCell((short)5);
+				XSSFCell answer = row.getCell((short)6);
+				XSSFCell image = row.getCell((short)7);
+				XSSFCell category = row.getCell((short)8);
 				
 				Question q = new Question();
-				q.setCode(code.getStringCellValue());
-				q.setQuestion(question.getStringCellValue());
-				q.setAnswer_a(a.getStringCellValue());
-				q.setAnswer_b(b.getStringCellValue());
-				q.setAnswer_c(c==null? "" : c.getStringCellValue());
-				q.setAnswer_d(d==null? "" :d.getStringCellValue());
-				q.setAnswer(answer.getStringCellValue());
-				q.setCategory(category==null? "":category.getStringCellValue());
-				q.setImage(image==null?"":image.getStringCellValue());
+				q.setCode(code.getStringCellValue().trim());
+				q.setQuestion(question.getStringCellValue().trim());
+				q.setAnswer_a(a.getStringCellValue().trim());
+				q.setAnswer_b(b.getStringCellValue().trim());
+				q.setAnswer_c(c==null? "" : c.getStringCellValue().trim());
+				q.setAnswer_d(d==null? "" :d.getStringCellValue().trim());
+				q.setAnswer(answer.getStringCellValue().trim());
+				q.setCategory(category==null? "":category.getStringCellValue().trim());
+				q.setImage(image==null?"":image.getStringCellValue().trim());
+				//导入
 				questionService.saveQuestion_car(q);
 			}
 			
 		}catch(Exception e){
-			e.printStackTrace();
+			
 		}
+		
 	}
 
 	public List<QuestionVO> getList() {

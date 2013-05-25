@@ -6,11 +6,9 @@
   <package name="subjct3" extends="role-default" namespace="/exam/subject3">
   	<action name="initExerciseQuestion" class="questionSubject3Action" method="initExerciseQuestion">
       <result>/subject3/exercise.jsp</result>
-      <result name="noquestion">/share/blank.jsp</result>
     </action>
     <action name="initSimulationQuestion" class="questionSubject3Action" method="initSimulationQuestion">
       <result>/subject3/simulation.jsp</result>
-      <result name="noquestion">/share/blank.jsp</result>
     </action>
     <action name="section" class="questionSubject3Action" method="section">
       <result>/subject3/section.jsp</result>

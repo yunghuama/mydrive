@@ -26,17 +26,12 @@ public final class StringConstant {
 	public static final String SECTION_TYPE_1 = "1";//科目1
 	public static final String SECTION_TYPE_3 = "3";//科目3
 	
-	public static final String PATH_IMAGE_CAR = "/home/cheney/driver/image/car";
-	public static final String PATH_IMAGE_BUS = "/home/cheney/driver/image/bus";
-	public static final String PATH_IMAGE_TRUCK = "/home/cheney/driver/image/truck";
-	public static final String PATH_IMAGE_MOTO = "/home/cheney/driver/image/moto";
-	public static final String PATH_IMAGE_SUB3 = "/home/cheney/driver/image/sub3";
-	
-	public static final String PATH_VIDEO_CAR = "/home/cheney/driver/video/car";
-	public static final String PATH_VIDEO_BUS = "/home/cheney/driver/video/bus";
-	public static final String PATH_VIDEO_TRUCK = "/home/cheney/driver/video/truck";
-	public static final String PATH_VIDEO_MOTO = "/home/cheney/driver/video/moto";
-	public static final String PATH_VIDEO_SUB3 = "/home/cheney/driver/video/sub3";
+	public static final String PATH_IMAGE_CAR = "/home/cheney/driver/image/0";
+	public static final String PATH_IMAGE_BUS = "/home/cheney/driver/image/1";
+	public static final String PATH_IMAGE_TRUCK = "/home/cheney/driver/image/2";
+	public static final String PATH_IMAGE_MOTO = "/home/cheney/driver/image/3";
+	public static final String PATH_IMAGE_SUB3 = "/home/cheney/driver/image/4";
+	public static final String PATH_IMAGE_SUB2 = "/home/cheney/driver/image/5";
 	
 	public static Map<String,Integer> questionType = new Hashtable<String,Integer>();
 	

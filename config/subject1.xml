@@ -4,13 +4,15 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
   <package name="subjct1" extends="role-default" namespace="/exam/subject1">
+      
+    <action name="importExcel" class="questionAction" method="importExcel">
+      <result>/share/blank.jsp</result>
+    </action>
   	<action name="initExerciseQuestion" class="questionAction" method="initExerciseQuestion">
       <result>/subject1/exercise.jsp</result>
-      <result name="noquestion">/share/blank.jsp</result>
     </action>
     <action name="initSimulationQuestion" class="questionAction" method="initSimulationQuestion">
       <result>/subject1/simulation.jsp</result>
-      <result name="noquestion">/share/blank.jsp</result>
     </action>
     <action name="section1" class="questionAction" method="section1">
       <result>/subject1/section.jsp</result>
