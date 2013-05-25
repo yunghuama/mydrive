@@ -1,7 +1,7 @@
 /********科目一模拟考试********/
 
 /**问题对象**/
-function Question(num,id,question,answer_a,answer_b,answer_c,answer_d,answer,img,vedio) {
+function Question(num,id,question,answer_a,answer_b,answer_c,answer_d,answer,img,vedio,video) {
 	this.num = num;
 	this.id = id;
 	this.question = question;
@@ -11,7 +11,8 @@ function Question(num,id,question,answer_a,answer_b,answer_c,answer_d,answer,img
 	this.answer_d = answer_d;
 	this.answer = answer;
 	this.img = img;
-	this.vedio = vedio;
+	this.video = video;
+	this.type = type;
 }
 
 /**回答错误的问题**/
@@ -70,7 +71,7 @@ var Exam = function(config){
 };
 //默认设置
 Exam.defaults = {
-    
+	qScore : 1
 };
 
 Exam.prototype = {
@@ -113,8 +114,8 @@ Exam.prototype = {
 		var score = 0;
 		for(var i=0;i<qa.length;i++){
 			var question = qa[i];
-			if(question.answer==question.myanswer){
-				score+=1;
+			if(question.answer.toLowerCase()==question.myanswer){
+				score+=this.qScore;
 			}else {
 //				var errorQuestion = new ErrorQuestion(question.num,question.id,question.myanswer);
 				if(question.myanswer!=null&&question.myanswer!=undefined){
@@ -234,12 +235,13 @@ Exam.prototype = {
 		this.questionRenderTo.prepend(content.join(''));
 		//如果有图片就显示图片
 		if(question.img!=""&&question.img!=null){
-			var img = '<img src='+projectName+"/upload/image/"+question.img+'>';
+			var img = '<img src='+projectImage+"/"+question.type+"/"+question.img.toLowerCase()+'>';
 			this.richMediaRenderTo.append(img);
 		}
 		//如果有视频则显示视频
 		if(question.video!=""&&question.video!=null){
-			
+			var video = '<embed src="'+projectName+'/js/ckplayer/ckplayer.swf" flashvars="f='+projectImage+"/6/"+question.video.toLowerCase()+'&p=0" quality="high" width="700" height="300" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>';
+			this.richMediaRenderTo.append(video);
 		}
 		
 		//如果有答案就将答案选中

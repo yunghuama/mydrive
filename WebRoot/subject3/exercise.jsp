@@ -1,5 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<% String path = request.getContextPath(); %>
+<% String path = request.getContextPath(); 
+	String server = request.getRemoteHost();
+%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,12 +14,13 @@
 <script type="text/javascript" src="<%=path%>/js/mask.js"></script>
 <script type="text/javascript" src="<%=path%>/js/exam.js"></script>
 <script type="text/javascript" src="<%=path%>/js/time.js"></script>
+<script type="text/javascript" src="<%=path%>/js/ckplayer/ckplayer.js" charset="utf-8"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	var exam = new Exam({'selectGridRenderTo':'questionnumber','questionRenderTo':'questionContent','richMediaRenderTo':'questionImage'});
+	var exam = new Exam({'selectGridRenderTo':'questionnumber','questionRenderTo':'questionContent','richMediaRenderTo':'questionImage','qScore':2});
 	//添加题目
 	 <s:iterator id="question" value="list" status="i">
-	 var question = new Question('<s:property value="#i.index"/>','<s:property value="#question.id"/>','<s:property value="#question.question"/>','<s:property value="#question.answer_a"/>','<s:property value="#question.answer_b"/>','<s:property value="#question.answer_c"/>','<s:property value="#question.answer_d"/>','<s:property value="#question.answer"/>','<s:property value="#question.image"/>','<s:property value="#question.vedio"/>');
+	 var question = new Question('<s:property value="#i.index"/>','<s:property value="#question.id"/>','<s:property value="#question.question"/>','<s:property value="#question.answer_a"/>','<s:property value="#question.answer_b"/>','<s:property value="#question.answer_c"/>','<s:property value="#question.answer_d"/>','<s:property value="#question.answer"/>','<s:property value="#question.image"/>','<s:property value="#question.video"/>','4');
 	 exam.add(question);
 	 </s:iterator>
 	//绘制表格

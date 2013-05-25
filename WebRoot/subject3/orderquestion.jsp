@@ -9,6 +9,7 @@
 <link href="<%=path%>/css/section.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="<%=path%>/js/core.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
+<script type="text/javascript" src="<%=path%>/js/ckplayer/ckplayer.js" charset="utf-8"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$(".answer a").bind("click",function(){
@@ -77,6 +78,9 @@ $(document).ready(function(){
 						<img src='<%=path %>/upload/image/<s:property value="#question.image"/>'/><br/><br/>
 						<a href='<%=path %>/upload/image/<s:property value="#question.image"/>' target="_blank">查看大图</a>
 					</s:if>
+					<s:elseif test='#question.video!=""&&#question.video!=null'>
+					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/6/<s:property value='#question.video'/>&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+					</s:elseif>
 				</div>
 			</div>
 			</s:iterator>

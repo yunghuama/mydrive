@@ -10,46 +10,71 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/js/flowplayer/skin/minimalist.css" />
 <script type="text/javascript" src="<%=path%>/js/core.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
-<script type="text/javascript" src="<%=path%>/js/flowplayer/embed.min.js"></script>
-<script type="text/javascript" src="<%=path%>/js/flowplayer/flowplayer.min.js"></script>
+<script type="text/javascript" src="<%=path%>/js/ckplayer/ckplayer.js" charset="utf-8"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
 });
 </script>
+<style type="text/css">
+#des{
+	margin: 40px 0px;
+}
+#des span {
+	color:#7d7d7d;
+	font-size:28px;
+	font-weight:700;
+}
+embed {
+	z-index:100;
+}
+</style>
 </head>
 <body style="overflow:auto">
 	 <div id="main">
 			<div id="divcontent">
+				<div id="des"><span>场地仿真动画</span></div>
 				<div class="videoDiv">
-					<div class="title"><span>视频</span></div>
+					<div class="title"><span>考试须知</span></div>
 					<div class="video">
-					<div class="flowplayer" data-swf="<%=path%>/js/flowplayer/flowplayer.swf" data-ratio="0.417">
-						<video>
-        		 		<source type="video/flv" src="http://stream.flowplayer.org/bauhaus/624x260.mp4"/>
-     		  			</video>
-     		  		</div>
+					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/5/0.flv&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
 					</div>
 				</div>
 				<div class="videoDiv">
-					<div class="title"></div>
-					<div class="video"></div>
+					<div class="title"><span>1号车侧方停车</span></div>
+					<div class="video">
+					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/5/1.flv&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+					</div>
 				</div>
 				<div class="videoDiv">
-					<div class="title"></div>
-					<div class="video"></div>
+					<div class="title"><span>1号车倒库</span></div>
+					<div class="video">
+					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/5/2.flv&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+					</div>
 				</div>
 				<div class="videoDiv">
-					<div class="title"></div>
-					<div class="video"></div>
+					<div class="title"><span>1号车模拟考试</span></div>
+					<div class="video">
+					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/5/3.flv&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+					</div>
 				</div>
 				<div class="videoDiv">
-					<div class="title"></div>
-					<div class="video"></div>
+					<div class="title"><span>1号车坡道起步	</span></div>
+					<div class="video">
+					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/5/4.flv&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+					</div>
 				</div>
 				<div class="videoDiv">
-					<div class="title"></div>
-					<div class="video"></div>
+					<div class="title"><span>1号车曲线行驶</span></div>
+					<div class="video">
+					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/5/5.flv&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+					</div>
+				</div>
+				<div class="videoDiv">
+					<div class="title"><span>1号车直角转弯</span></div>
+					<div class="video">
+					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/5/6.flv&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+					</div>
 				</div>
 			</div>
 	 </div>

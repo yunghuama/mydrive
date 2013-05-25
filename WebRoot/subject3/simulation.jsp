@@ -14,10 +14,10 @@
 <script type="text/javascript" src="<%=path%>/js/time.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	var exam = new Exam({'selectGridRenderTo':'questionnumber','questionRenderTo':'questionContent','richMediaRenderTo':'questionImage','postUrl':'<%=path%>/system/ajax/saveScore3.d'});
+	var exam = new Exam({'selectGridRenderTo':'questionnumber','questionRenderTo':'questionContent','richMediaRenderTo':'questionImage','postUrl':'<%=path%>/system/ajax/saveScore3.d','qScore':2});
 	//添加题目
 	 <s:iterator id="question" value="list" status="i">
-	 var question = new Question('<s:property value="#i.index"/>','<s:property value="#question.id"/>','<s:property value="#question.question"/>','<s:property value="#question.answer_a"/>','<s:property value="#question.answer_b"/>','<s:property value="#question.answer_c"/>','<s:property value="#question.answer_d"/>','<s:property value="#question.answer"/>','<s:property value="#question.image"/>','<s:property value="#question.vedio"/>');
+	 var question = new Question('<s:property value="#i.index"/>','<s:property value="#question.id"/>','<s:property value="#question.question"/>','<s:property value="#question.answer_a"/>','<s:property value="#question.answer_b"/>','<s:property value="#question.answer_c"/>','<s:property value="#question.answer_d"/>','<s:property value="#question.answer"/>','<s:property value="#question.image"/>','<s:property value="#question.video"/>','4');
 	 exam.add(question);
 	 </s:iterator>
 	//绘制表格

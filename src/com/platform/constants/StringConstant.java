@@ -22,6 +22,7 @@ public final class StringConstant {
 	public static final int questionType_truck = 2;
 	public static final int questionType_moto = 3;
 	public static final int questionType_3 = 4;
+	public static final int questionType_2 =5;//科目二视频
 	
 	public static final String SECTION_TYPE_1 = "1";//科目1
 	public static final String SECTION_TYPE_3 = "3";//科目3

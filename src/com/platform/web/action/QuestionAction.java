@@ -60,19 +60,16 @@ public class QuestionAction extends GenericAction {
 		long t = System.currentTimeMillis();
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		Users users = loginBean.getUser();
-		if(StringConstant.questionType_car == StringConstant.questionType.get(users.getCartype()))
+		type = StringConstant.questionType.get(users.getCartype());
+		if(StringConstant.questionType_car == type)
 			list = questionService.listQuestionRandom_car();
-		if(StringConstant.questionType_bus == StringConstant.questionType.get(users.getCartype()))
+		if(StringConstant.questionType_bus == type)
 			list = questionService.listQuestionRandom_bus();
-		if(StringConstant.questionType_truck == StringConstant.questionType.get(users.getCartype()))
+		if(StringConstant.questionType_truck == type)
 			list = questionService.listQuestionRandom_truck();
-		if(StringConstant.questionType_moto == StringConstant.questionType.get(users.getCartype()))
+		if(StringConstant.questionType_moto == type)
 			list = questionService.listQuestionRandom_moto();
 		System.out.println(System.currentTimeMillis()-t);
-		if(list==null||list.size()==0){
-			message = "暂无 "+users.getCartype()+" 类型的题库";
-			return "noquestion";
-		}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -87,18 +84,15 @@ public class QuestionAction extends GenericAction {
 		try{
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		Users users = loginBean.getUser();
-		if(StringConstant.questionType_car == StringConstant.questionType.get(users.getCartype()))
+		type = StringConstant.questionType.get(users.getCartype());
+		if(StringConstant.questionType_car == type)
 			list = questionService.listQuestionRandom_car();
-		if(StringConstant.questionType_bus == StringConstant.questionType.get(users.getCartype()))
+		if(StringConstant.questionType_bus == type)
 			list = questionService.listQuestionRandom_bus();
-		if(StringConstant.questionType_truck == StringConstant.questionType.get(users.getCartype()))
+		if(StringConstant.questionType_truck == type)
 			list = questionService.listQuestionRandom_truck();
-		if(StringConstant.questionType_moto == StringConstant.questionType.get(users.getCartype()))
+		if(StringConstant.questionType_moto == type)
 			list = questionService.listQuestionRandom_moto();
-		if(list==null||list.size()==0){
-			message = "暂无 "+users.getCartype()+" 类型的题库";
-			return "noquestion";
-		}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -137,13 +131,14 @@ public class QuestionAction extends GenericAction {
 		try{
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		Users users = loginBean.getUser();
-		if(StringConstant.questionType_car == StringConstant.questionType.get(users.getCartype()))
+		type = StringConstant.questionType.get(users.getCartype());
+		if(StringConstant.questionType_car == type)
 			page = questionService.listQuestionOrder_car(page,categoryId);
-		if(StringConstant.questionType_bus == StringConstant.questionType.get(users.getCartype()))
+		if(StringConstant.questionType_bus == type)
 			page = questionService.listQuestionOrder_bus(page,categoryId);
-		if(StringConstant.questionType_truck == StringConstant.questionType.get(users.getCartype()))
+		if(StringConstant.questionType_truck == type)
 			page = questionService.listQuestionOrder_truck(page,categoryId);
-		if(StringConstant.questionType_moto == StringConstant.questionType.get(users.getCartype()))
+		if(StringConstant.questionType_moto == type)
 			page = questionService.listQuestionOrder_moto(page,categoryId);
 		
 		}catch(Exception e){
@@ -159,6 +154,7 @@ public class QuestionAction extends GenericAction {
 	public String markQuestion1(){
 		try{
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			type = StringConstant.questionType.get(loginBean.getUser().getCartype());
 			page = questionService.listMarkQuestion(page, loginBean.getUser().getId(), loginBean.getUser().getCartype());
 		}catch(Exception e){
 			e.printStackTrace();
@@ -203,6 +199,7 @@ public class QuestionAction extends GenericAction {
 	public String listWrongQuestion(){
 		try {
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			type = StringConstant.questionType.get(loginBean.getUser().getCartype());
 			page = questionService.listWrongQuestion(page, loginBean.getUser().getId(), loginBean.getUser().getCartype());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -384,7 +381,15 @@ public class QuestionAction extends GenericAction {
 				q.setAnswer_d(d==null? "" :d.getStringCellValue().trim());
 				q.setAnswer(answer.getStringCellValue().trim());
 				q.setCategory(category==null? "":category.getStringCellValue().trim());
-				q.setImage(image==null?"":image.getStringCellValue().trim());
+				if(image!=null){
+					String img = image.getStringCellValue();
+					if(img.endsWith("flv")){
+						q.setVideo(img);
+					}else{
+						q.setImage(img);
+					}
+				}
+//				q.setImage(image==null?"":image.getStringCellValue().trim());
 				//导入
 				questionService.saveQuestion3(q);
 				System.out.println(q.getCode());

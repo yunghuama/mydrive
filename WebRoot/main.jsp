@@ -47,7 +47,7 @@ if(session.getAttribute("LoginBean")==null) {
 			});
 			
 			//科目二
-			$("a[name='id_2_2']").bind("click",function(){
+			$("a[name='id_2_1']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/subject2/subject2video.jsp");
 			});
 			
@@ -125,8 +125,7 @@ if(session.getAttribute("LoginBean")==null) {
   				<li class="menu-item">
   				    <a href="javascript:void(0);" class="title">科目二</a>
   				    <ul class="sub-nav">
-  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_2_1">考试须知</a></li>
-  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_2_2" >场地仿真动画</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_2_1">场地仿真动画</a></li>
   					</ul>
   				    </li>
   				<li class="menu-item">

@@ -44,10 +44,6 @@ public class QuestionSubject3Action extends GenericAction {
 	public String initExerciseQuestion(){
 		try{
 			list = questionService.listQuestionRandom();
-		if(list==null||list.size()==0){
-			message = "暂无该类型的题库";
-			return "noquestion";
-		}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -61,10 +57,6 @@ public class QuestionSubject3Action extends GenericAction {
 	public String initSimulationQuestion(){
 		try{
 			list = questionService.listQuestionRandom();
-		if(list==null||list.size()==0){
-			message = "暂无该类型的题库";
-			return "noquestion";
-		}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
