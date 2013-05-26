@@ -146,7 +146,6 @@ public final class StringConstant {
 	}
 	
 	public static String getAdvPage(String type){
-		System.out.println("type:"+type);
 		if(type==null||"".equals(type))
 			return "";
 		return advPage.get(type);
@@ -160,7 +159,6 @@ public final class StringConstant {
 	
 	//判断操作权限
 	public static String getOperate(String operateId){
-		System.out.println("type:"+operateId);
 		String op = "F";
 		try{
 			LoginBean loginBean = LoginBean.getLoginBean();

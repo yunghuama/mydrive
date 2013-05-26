@@ -80,6 +80,21 @@ String path = request.getContextPath();
 		outline:none;
 	}
 	
+	#adsLeft {
+		position:absolute;
+		left:10px;
+		top:200px;
+		width:100px;
+		height:200px;
+	}
+	
+	#adsRight {
+		position:absolute;
+		right:10px;
+		top:200px;
+		width:100px;
+		height:200px;
+	}
     </style>
   </head>
 
@@ -97,8 +112,11 @@ String path = request.getContextPath();
     	</div>
     	</div>
     </div>
-
+	<div id="adsLeft"></div>
+	<div id="adsRight"></div>
     <script src="<%=path%>/js/jquery.js" type="text/javascript"></script>
+    <script src="<%=path%>/js/core.js" type="text/javascript"></script>
+    <script src="<%=path%>/js/adver.js" type="text/javascript"></script>
     <script type="text/javascript">
     var defaultVal = "帐号";
     var defaultPass = "密码";
@@ -135,6 +153,18 @@ String path = request.getContextPath();
       $("#submitImg").click(function(){
     	  postSubmit();
       });
+      
+      new Adver({
+      	  "renderTo":$("#adsLeft"),
+      	   "page":0,
+      	   "position":0
+        });
+      
+      new Adver({
+      	  "renderTo":$("#adsRight"),
+      	   "page":0,
+      	   "position":1
+        });
     });
     
     function postSubmit(){

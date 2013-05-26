@@ -47,7 +47,7 @@ public class AdverAction extends GenericAction {
 			if(upload!=null&&upload.size()>0){
 				ConfigureUtil configure = new ConfigureUtil();
 				String path = configure.get(StringConstant.PATH_IMAGE_ADVER);
-				UploadHelper helper = new UploadHelper(upload, uploadFileName, uploadTitle, uploadContentType, path, UploadHelper.NAME_UNIX_TIME);
+				UploadHelper helper = new UploadHelper(upload, uploadFileName, uploadTitle, uploadContentType, path, UploadHelper.UID);
 				List<AttachedFile> list = helper.getAttachedFiles();
 				if(list!=null&&list.size()>0){
 					AttachedFile af = list.get(0);

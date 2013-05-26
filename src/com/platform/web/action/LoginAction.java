@@ -52,13 +52,16 @@ public class LoginAction extends ActionSupport {
 		} 
 		//计算剩余时间
 		try{
+			if(StringConstant.ROLE_STUDENT.equals(users.getRole())){
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date stDate = sdf.parse(users.getBegindate());
 			int days = (int)(new Date().getTime()-stDate.getTime())/(24*60*60*1000);
 			users.setReminddays(users.getReminddays()-days<0?0:users.getReminddays()-days);
+			}
 		}catch(Exception e){
 			System.out.println("计算剩余天数失败...");
 			users.setReminddays(0);
+			e.printStackTrace();
 		}
 		LoginBean loginBean = new LoginBean();
 		loginBean.setUser(users);

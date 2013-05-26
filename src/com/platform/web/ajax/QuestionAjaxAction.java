@@ -47,7 +47,7 @@ public class QuestionAjaxAction {
     private List<Section> sectionList;
     private int type;
     private String oldPass,newPass;
-    private int page,position;
+    private Adver adver;
     private List<Adver> adverList;
     /**
      * 保存成绩
@@ -301,7 +301,7 @@ public class QuestionAjaxAction {
 	
 	public String getAdvers(){
 		try{
-			adverList = adverService.listAdver(page, position);
+			adverList = adverService.listAdver(adver.getPage(), adver.getPosition());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -395,6 +395,24 @@ public class QuestionAjaxAction {
 
 	public void setNewPass(String newPass) {
 		this.newPass = newPass;
+	}
+
+	
+
+	public Adver getAdver() {
+		return adver;
+	}
+
+	public void setAdver(Adver adver) {
+		this.adver = adver;
+	}
+
+	public List<Adver> getAdverList() {
+		return adverList;
+	}
+
+	public void setAdverList(List<Adver> adverList) {
+		this.adverList = adverList;
 	}
 	
 }

@@ -15,6 +15,25 @@ if(session.getAttribute("LoginBean")==null) {
     <link href="<%=path%>/css/main.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
 	<script type="text/javascript" src="<%=path%>/js/nav.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/core.js"></script>
+	<script type="text/javascript" src="<%=path%>/js/adver.js"></script>
+	<style type="text/css">
+	#adsLeft {
+		position:absolute;
+		left:10px;
+		top:200px;
+		width:100px;
+		height:200px;
+	}
+	
+	#adsRight {
+		position:absolute;
+		right:10px;
+		top:200px;
+		width:100px;
+		height:200px;
+	}
+	</style>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			//初始化菜单
@@ -104,6 +123,18 @@ if(session.getAttribute("LoginBean")==null) {
 			$("a[name='id_6_2']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/system/adver/list.d");
 			});
+			
+			new Adver({
+		      	  "renderTo":$("#adsLeft"),
+		      	   "page":1,
+		      	   "position":0
+		        });
+		      
+		      new Adver({
+		      	  "renderTo":$("#adsRight"),
+		      	   "page":1,
+		      	   "position":1
+		        });
 		});
 	
 	</script>
@@ -232,4 +263,8 @@ if(session.getAttribute("LoginBean")==null) {
   </div>
   <div id="content">
   	<iframe id="mainFrame" class="mainFrame" src="system/examlist.jsp"></iframe>
+  </div>
+  	<div id="adsLeft"></div>
+	<div id="adsRight"></div>
+	</body>
 </html>
