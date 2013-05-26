@@ -219,6 +219,7 @@ alter table studentcard drop column remidtimes;
 alter table studentcard add column remindtimes int;
 
 insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50043','123','123','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
+insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50022','333','333','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
 insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50041','111','111','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
 
 insert into schoolcard(id,number,password,createtime) values('4028813518f35feb0118f392eee50046','222','222','2013-05-18');
@@ -267,4 +268,4 @@ insert into questions3(id,question,answer_a,answer_b,answer_c,answer_d,answer,qu
 
 select max(score) as maxscore, min(score) as minscore, count(id) as scorecounts ,avg(score) as avgscore,(select count(id)  from examscore where studentid = '4028813518f35feb0118f392eee50043' and cartype = 'c2' and score >=90 ) as passcount ,time,createtime from examscore where studentid = '4028813518f35feb0118f392eee50043' and cartype = 'c2'
 
-
+select max(exam.score) as maxscore, min(exam.score) as minscore, count(exam.id) as scorecounts ,avg(exam.score) as avgscore,sum(exam.score>=90) as passcount,stu.name  from examscore exam , studentcard stu where exam.studentid = stu.id and stu.schoolid = '4028813518f35feb0118f392eee50046'

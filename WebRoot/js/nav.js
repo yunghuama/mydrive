@@ -2,7 +2,6 @@
 //初始化菜单操作
 function initNav(){
 	$(".menu-item").hover(function(){
-		console.debug("in");
 	$(".menu-item:visible").removeClass("bgover");
 	if($('.sub-nav', this).length === 0) {
 	      return;
@@ -16,7 +15,6 @@ function initNav(){
 	});
 	$('.sub-nav',$(this)).show();
 	},function(){
-		console.debug("out");
 		$(".sub-nav",$(this)).hide();
 		$(this).removeClass("bgover");
 	});

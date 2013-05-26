@@ -6,7 +6,6 @@ body{
 
 #main{
 	margin-top:30px;
-	margin-bottom:100px;
 }
 
 #title span{
@@ -19,6 +18,12 @@ body{
 	position:relative;
 	text-align:center;
 	margin-top:30px;
+	margin-bottom:20px;
+}
+
+#pageBar {
+	margin-bottom:30px;
+	margin-top:10px;
 }
 
 #sectionContent table {

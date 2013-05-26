@@ -32,10 +32,9 @@ Adver.prototype = {
 			 var img = $("<img>");
 			 img.css({"max-height":this.height,"max-width":this.width});
 			 img.attr("src",projectImage+"/adver/"+adv.pathName);
-			 console.debug();
 			 if(adv.url!=null&&adv.url!=""){
 				 img.click(function(){
-					 window.open(img.url);
+					 window.open(adv.url);
 				 });
 			 }
 			 div.append(img);
@@ -60,7 +59,6 @@ Adver.prototype = {
 			   success: function(data){
 				   if(data!=null&&data.length>0){
 					   var img = data[0];
-					   console.debug(img.pathName);
 					   adv = new Adv(img.pathName,img.url,img.time);
 				   }
 			   }

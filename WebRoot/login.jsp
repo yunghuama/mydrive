@@ -7,7 +7,8 @@ String path = request.getContextPath();
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Platform</title>
+    <title>驾考之家</title>
+     <link href="<%=path%>/css/core.css" rel="stylesheet" type="text/css"/>
     <style type="text/css">
     html,body {
       padding:0;
@@ -57,15 +58,9 @@ String path = request.getContextPath();
      	width:235px;
      	height:45px;
      	line-height:30px;
-        border:none;
+        outline:none;
         margin-top:10px;
         text-align:center;
-	}
-	
-	#loginDiv a {
-		 margin-top:10px;
-		 text-decoration : none;
-		 display : block;
 	}
 	
 	#center{
@@ -75,11 +70,10 @@ String path = request.getContextPath();
 	#password {
 		display:none;
 	}
-	a {
-		blr:expression(this.onfocus=this.blur());
-		outline:none;
+	#submitA {
+		margin-top:10px;
+		display:block;
 	}
-	
 	#adsLeft {
 		position:absolute;
 		left:10px;
@@ -107,7 +101,7 @@ String path = request.getContextPath();
     	<form id="loginForm" method="post" action="<%=path%>/login.d">
     		<input id="accountName" name="accountName" type="text"/><br/>
     		<input id="title" type="text"/><input id="password" name="password" type="password" /><br/>
-    		<a href="javascript:void(0);"><img src="image/loginButton.png" alt="" id="submitImg"/></a>
+    		<a href="javascript:void(0);" id="submitA"><img src="image/loginButton.png" alt="" id="submitImg"/></a>
     	</form>
     	</div>
     	</div>
@@ -129,7 +123,11 @@ String path = request.getContextPath();
 			$(this).unbind("focus");
     	    $(this).remove();
 			$("#password").show();
-			$("#password").focus();
+			if($.browser.msie){
+			setTimeout(function(){$("#password").focus();},50);
+			}else {
+				$("#password").focus();
+			}
       });
       $("#password").bind("keydown",function(e){
     	  var key = e.which;

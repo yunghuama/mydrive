@@ -128,8 +128,6 @@ Exam.prototype = {
 		}
 		//将错题和分数提交到服务器
 		var entity = this;
-		console.debug(entity.ea.join('@'));
-		console.debug(entity.postUrl);
 		var isSuccess =false;
 		mask.refreshMessage("正在提交分数..请稍后...");
 		$.ajax({
@@ -263,7 +261,6 @@ Exam.prototype = {
 			var numObj = entity.getNum(question.num);
 			numObj.find("#result").text(question.myanswer);
 			numObj.addClass("answered");
-			console.debug(question.myanswer);
 		});
 	},
 	//绘制数字选题格子

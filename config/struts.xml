@@ -32,8 +32,10 @@
     <action name="logout" class="loginAction" method="logout">
       <result type="redirect">/login.jsp</result>
     </action>
-     <action name="showDeskTop" class="loginAction" method="showDeskTop">
-      <result>/system/workspace/index.jsp</result>
+     <action name="workspace" class="loginAction" method="workspace">
+      <result name="student">/system/examlist.jsp</result>
+      <result name="admin">/system/adminworkspace.jsp</result>
+      <result name="school">/system/schoolworkspace.jsp</result>
     </action>
   </package>
   

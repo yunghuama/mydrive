@@ -53,12 +53,12 @@ $(document).ready(function(){
 });
 </script>
 </head>
-<body style="overflow:auto">
+<body>
 	 <div id="main">
 			<div id="title"><span>科目一顺序练习</span></div>
 			<div id="sectionContent">
 			 <s:iterator id="question" value="page.list" status="i">
-			<div class="question">
+				<div class="question">
 			    <div class="quesntinContent">
 					<div class="questionTitle"><span><s:property value="#question.id"/>. <s:property value="#question.question"/> </span></div>
 					<div class="answera"><span><s:property value="#question.answer_a"/> </span></div>

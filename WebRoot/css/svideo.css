@@ -6,13 +6,12 @@ body{
 
 #main{
 	margin-top:30px;
-	margin-bottom:100px;
 }
 
 #divcontent {
 	width:920px;
 	margin:0px auto;
-	height:750px;
+	height:850px;
 }
 
 .videoDiv {

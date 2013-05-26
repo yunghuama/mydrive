@@ -255,7 +255,6 @@ Exam.prototype = {
 			var numObj = entity.getNum(question.num);
 			numObj.find("#result").text(question.myanswer);
 			numObj.addClass("answered");
-			console.debug(question.myanswer);
 		});
 	},
 	//绘制数字选题格子

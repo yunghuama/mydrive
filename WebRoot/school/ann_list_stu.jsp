@@ -19,6 +19,14 @@ $(document).ready(function(){
 	}).bind("mouseout",function(){
 		$(this).removeClass("mouseover");
 	});
+	
+	$(".data").bind("click",function(){
+		var id = $(this).attr("id");
+		$("#annId").val(id);
+		$("form").attr("action","<%=path%>/exam/system/viewAnnouncement.d");
+		$("form").submit();
+	});
+	
 	//构造分页
 	var maxPage = parseInt($("#maxPage").val());
 	var currentPage = parseInt($("#currPage").val());
@@ -56,7 +64,7 @@ $(document).ready(function(){
 					</tr>
 					<s:if test="page.list!=null&&page.list.size>0">
 					 <s:iterator id="ann" value="page.list" status="i">
-					<tr>
+					<tr class="data" id=<s:property value="#ann.id"/>>
 						<td><s:property value="#i.index+1"/> </td>
 						<td><s:property value="#ann.title"/> </td>
 					</tr>
@@ -69,8 +77,7 @@ $(document).ready(function(){
 			</div>
 			<div id="pageBar">
 			<form action="<%=path %>/exam/system/listAnnouncementStu.d">
-			<s:hidden name="categoryId"/>
-			<s:hidden name="questionId" id="questionId"/>
+			<s:hidden name="annId" id="annId"/>
 			<s:hidden id="maxPage" name="page.maxPage"/>
 			<s:hidden id="currPage" name="page.currPage"/>
 			<button id="prev">上一页</button>

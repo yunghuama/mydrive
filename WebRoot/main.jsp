@@ -7,7 +7,7 @@ if(session.getAttribute("LoginBean")==null) {
 }
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html >
   <head>
     <title></title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -40,8 +40,8 @@ if(session.getAttribute("LoginBean")==null) {
 			initNav();
 			//添加点击效果
 			$("a[name='id_0_0']").bind("click",function(){
-				//$("#mainFrame").attr("src","<%=path%>/system/examlist.jsp");
-				$("#mainFrame").attr("src","<%=path%>/exam/subject1/importExcel.d");
+				$("#mainFrame").attr("src","<%=path%>/system/examlist.jsp");
+				//$("#mainFrame").attr("src","<%=path%>/workspace.d");
 			});
 			
 			//科目一
@@ -262,7 +262,7 @@ if(session.getAttribute("LoginBean")==null) {
   		</div>
   </div>
   <div id="content">
-  	<iframe id="mainFrame" class="mainFrame" src="system/examlist.jsp"></iframe>
+  	<iframe id="mainFrame" frameborder="0"  class="mainFrame" src="<%=path%>/workspace.d"></iframe>
   </div>
   	<div id="adsLeft"></div>
 	<div id="adsRight"></div>

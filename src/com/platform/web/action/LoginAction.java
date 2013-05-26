@@ -105,10 +105,17 @@ public class LoginAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
-	public String workpace(){
+	public String workspace(){
 		LoginBean bean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		users = bean.getUser();
-		return SUCCESS;
+		String role  = bean.getUser().getRole();
+		if(StringConstant.ROLE_ADMIN.equals(role)){
+			return "admin";
+		}else if(StringConstant.ROLE_SCHOOL.equals(role)){
+			return  "school";
+		}else if(StringConstant.ROLE_STUDENT.equals(role)){
+			return  "student";
+		}
+		return null;
 	}
 
 	public String getAccountName() {
