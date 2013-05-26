@@ -10,9 +10,11 @@ import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
+import com.platform.domain.Adver;
 import com.platform.domain.Score;
 import com.platform.domain.Section;
 import com.platform.domain.Users;
+import com.platform.service.AdverService;
 import com.platform.service.QuestionService;
 import com.platform.service.QuestionSubject3Service;
 import com.platform.service.SystemService;
@@ -33,6 +35,8 @@ public class QuestionAjaxAction {
     private SystemService systemService;
     @Autowired
     private UsersService usersService;
+    @Autowired
+    private AdverService adverService;
     
     private Score score;
     private String result;
@@ -43,6 +47,8 @@ public class QuestionAjaxAction {
     private List<Section> sectionList;
     private int type;
     private String oldPass,newPass;
+    private int page,position;
+    private List<Adver> adverList;
     /**
      * 保存成绩
      * @return
@@ -289,6 +295,17 @@ public class QuestionAjaxAction {
 			e.printStackTrace();
 			result = "error";
 		}
+		return Action.SUCCESS;
+	}
+	
+	
+	public String getAdvers(){
+		try{
+			adverList = adverService.listAdver(page, position);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		return Action.SUCCESS;
 	}
 	

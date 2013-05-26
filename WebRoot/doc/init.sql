@@ -194,6 +194,18 @@ create table announcement (
     createtime datetime
 );
 
+drop table if exists advertisement;
+create table advertisement (
+    id char(32) not null primary key,
+    url varchar(300),
+    page int,
+    position int,
+    stime int,
+    image varchar(50),
+    pathName varchar(50),
+    createtime datetime
+);
+
 alter table questions_car drop column question_vedio;
 alter table questions_car add column question_video varchar(20);
 alter table questions_bus drop column question_vedio;

@@ -71,6 +71,11 @@
         <param name="root">result</param>
       </result>
     </action>
+    <action name="getAdvers" class="questionAjaxAction" method="getAdvers">
+      <result type="json">
+        <param name="root">adverList</param>
+      </result>
+    </action>
   </package>
   
 </struts>
