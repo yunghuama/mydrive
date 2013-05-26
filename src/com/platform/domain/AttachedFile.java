@@ -9,6 +9,7 @@ public class AttachedFile {
 	private String title; // 自定义标题
 	private String fileName; // 文件原名
 	private String filePath; // 保存路径
+	private String extendName;//扩展文件名
 	private String fileType; // 后缀名
 	private String contentType; // 文件流类型
 	private Date createTime;
@@ -17,6 +18,20 @@ public class AttachedFile {
 	
 	public AttachedFile(){}
 	
+	
+	
+	public String getExtendName() {
+		return extendName;
+	}
+
+
+
+	public void setExtendName(String extendName) {
+		this.extendName = extendName;
+	}
+
+
+
 	public String getFileName() {
 		return fileName;
 	}

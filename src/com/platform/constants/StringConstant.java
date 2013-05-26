@@ -31,12 +31,10 @@ public final class StringConstant {
 	public static final String SECTION_TYPE_3 = "3";//科目3
 	
 	//图片存储目录
-	public static final String PATH_IMAGE_CAR = "/home/cheney/driver/image/0";
-	public static final String PATH_IMAGE_BUS = "/home/cheney/driver/image/1";
-	public static final String PATH_IMAGE_TRUCK = "/home/cheney/driver/image/2";
-	public static final String PATH_IMAGE_MOTO = "/home/cheney/driver/image/3";
-	public static final String PATH_IMAGE_SUB3 = "/home/cheney/driver/image/4";
-	public static final String PATH_IMAGE_SUB2 = "/home/cheney/driver/image/5";
+	public static final String PATH_IMAGE_SUB1 = "sub1Image";
+	public static final String PATH_IMAGE_SUB2 = "sub2Image";
+	public static final String PATH_IMAGE_SUB3 = "sub3Image";
+	public static final String PATH_IMAGE_ADVER = "adverImage";
 	
 	//权限菜单
 	public static final String NAV_INDEX = "index";
@@ -72,9 +70,16 @@ public final class StringConstant {
 	public static final String NAV_QUESTION = "question";
 	public static final String NAV_QUESTION_ADMIN = "question_admin";
 	
+	//广告管理
+	public static final String NAV_ADS = "ads";
+	
 	public static Map<String,Integer> questionType = new Hashtable<String,Integer>();
 	public static Map<String,String> operate = new HashMap<String,String>();
 	public static Map<String,String> loginInfo = new HashMap<String,String>();
+	
+	//广告相关
+	public static Map<String,String> advPage = new HashMap<String,String>();
+	public static Map<String,String> advPosition = new HashMap<String,String>();
 	
 	public static final String NO_LOGIN = "nologin";
 	
@@ -132,14 +137,34 @@ public final class StringConstant {
 		operate.put(ROLE_ADMIN+NAV_USER_PASS, "T");
 		operate.put(ROLE_ADMIN+NAV_QUESTION, "T");
 		operate.put(ROLE_ADMIN+NAV_QUESTION_ADMIN, "T");
+		operate.put(ROLE_ADMIN+NAV_ADS, "T");
 		
+		advPage.put("0", "登录页面");
+		advPage.put("1", "工作台页面");
+		advPosition.put("0","左边");
+		advPosition.put("1","右边");
+	}
+	
+	public static String getAdvPage(String type){
+		System.out.println("type:"+type);
+		if(type==null||"".equals(type))
+			return "";
+		return advPage.get(type);
+	}
+	
+	public static String getPosition(String type){
+		if(type==null||"".equals(type))
+			return "";
+		return advPosition.get(type);
 	}
 	
 	//判断操作权限
 	public static String getOperate(String operateId){
+		System.out.println("type:"+operateId);
 		String op = "F";
 		try{
 			LoginBean loginBean = LoginBean.getLoginBean();
+			if(loginBean==null) return op;
 			op = operate.get(loginBean.getUser().getRole()+operateId);
 		}catch(Exception e){
 			e.printStackTrace();

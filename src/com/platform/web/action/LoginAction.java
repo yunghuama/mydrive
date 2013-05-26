@@ -60,19 +60,15 @@ public class LoginAction extends ActionSupport {
 			System.out.println("计算剩余天数失败...");
 			users.setReminddays(0);
 		}
-		
 		LoginBean loginBean = new LoginBean();
 		loginBean.setUser(users);
-		
 		ActionContext.getContext().getSession().put("LoginBean", loginBean);
-
 		//判断学员需不需要改资料
 		if(StringConstant.ROLE_STUDENT.equals(users.getRole())){
 			if(users.getIdentity()==null||users.getName()==null){
 				return FIRST_INIT;
 			}
 		}
-		
 		return SUCCESS;
 	}
 

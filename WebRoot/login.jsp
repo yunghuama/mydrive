@@ -100,9 +100,9 @@ String path = request.getContextPath();
 
     <script src="<%=path%>/js/jquery.js" type="text/javascript"></script>
     <script type="text/javascript">
+    var defaultVal = "帐号";
+    var defaultPass = "密码";
     $(document).ready(function(){
-      var defaultVal = "帐号";
-      var defaultPass = "密码";
       $("input:visible").eq(0).val(defaultVal).bind("focus",function(){
 			$(this).val("");
 			$(this).unbind("focus");
@@ -112,6 +112,13 @@ String path = request.getContextPath();
     	    $(this).remove();
 			$("#password").show();
 			$("#password").focus();
+      });
+      $("#password").bind("keydown",function(e){
+    	  var key = e.which;
+          if (key == 13) {
+        	  e.preventDefault();
+        	  postSubmit();
+          }
       });
       $("#main").css('margin-top',($("body").height()-$("#main").height())/2-30);
       $(window).resize(function(){
@@ -126,19 +133,23 @@ String path = request.getContextPath();
         alert('该用户已被禁用，无法登录');
       }
       $("#submitImg").click(function(){
-    	  var accountName = $("#accountName").val();
-    	  var password = $("#password").val();
-    	  if(accountName==defaultVal||accountName==""){
-    		  alert("请输入帐号");
-    		  return;
-    	  }
-    	  if(password==defaultPass||password==""){
-    		  alert("请输入密码");
-    		  return;
-    	  }
-    	  $("#loginForm").submit();
+    	  postSubmit();
       });
     });
+    
+    function postSubmit(){
+      var accountName = $("#accountName").val();
+  	  var password = $("#password").val();
+  	  if(accountName==defaultVal||accountName==""){
+  		  alert("请输入帐号");
+  		  return;
+  	  }
+  	  if(password==defaultPass||password==""){
+  		  alert("请输入密码");
+  		  return;
+  	  }
+  	  $("#loginForm").submit();
+    }
     </script>
   </body>
 </html>

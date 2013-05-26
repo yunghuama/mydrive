@@ -51,11 +51,13 @@ public class AdverDAO extends GenericDAO{
 			@Override
 			public Adver mapRow(ResultSet rs, int arg1) throws SQLException {
 				Adver adver = new Adver();
+				adver.setName(rs.getString("name"));
 				adver.setId(rs.getString("id"));
 				adver.setPage(rs.getInt("page"));
 				adver.setPosition(rs.getInt("position"));
-				adver.setTime(rs.getInt("time"));
+				adver.setTime(rs.getInt("stime"));
 				adver.setUrl(rs.getString("url"));
+				adver.setImage(rs.getString("image"));
 				adver.setCreateTime(rs.getDate("createtime")+" "+rs.getTime("createtime"));
 				return adver;
 			}
@@ -70,6 +72,7 @@ public class AdverDAO extends GenericDAO{
 	public int saveAdver(Adver adver){
 		return jdbcTemplate.update(SQLConstant.ADVER_SAVE,new Object[]{
 				UUIDGenerator.generate(),
+				adver.getName(),
 				adver.getUrl(),
 				adver.getPage(),
 				adver.getPosition(),
@@ -88,8 +91,9 @@ public class AdverDAO extends GenericDAO{
 				adver.setId(rs.getString("id"));
 				adver.setPage(rs.getInt("page"));
 				adver.setPosition(rs.getInt("position"));
-				adver.setTime(rs.getInt("time"));
+				adver.setTime(rs.getInt("stime"));
 				adver.setUrl(rs.getString("url"));
+				adver.setPathName(rs.getString("pathname"));
 				adver.setCreateTime(rs.getDate("createtime")+" "+rs.getTime("createtime"));
 				return adver;
 			}

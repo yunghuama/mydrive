@@ -26,6 +26,7 @@ public class LoginBean {
      */
     public static LoginBean getLoginBean() {
         LoginBean loginBean = (LoginBean) ActionContext.getContext().getSession().get("LoginBean");
+        if(loginBean == null) return null;
         synchronized (loginBean) {
             if (loginBean == null) {
                 loginBean = new LoginBean();

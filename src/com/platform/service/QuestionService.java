@@ -202,6 +202,7 @@ public class QuestionService implements IService {
      * 查询已标记题car
      */
     public Page<QuestionVO> listMarkQuestion(Page<QuestionVO> page,String studentId,String cartype){
+    	if(cartype==null||"".equals(cartype)) return null;
     	if(StringConstant.questionType_car==StringConstant.questionType.get(cartype))
     		return questionCarDAO.listMarkQuestionCar(page,studentId,StringConstant.questionType.get(cartype));
     	else if(StringConstant.questionType_bus==StringConstant.questionType.get(cartype))
@@ -249,11 +250,13 @@ public class QuestionService implements IService {
     /******************************个人考试信息分析开始**************************/
     
     public StatisticVO getStatistic(String studentId,String cartype){
+    	if(cartype==null||"".equals(cartype)) return null;
     	return questionDAO.statistic(studentId, StringConstant.questionType.get(cartype));
     }
     
     public List<ScoreVO> getScores(String studentId,String cartype){
-    	return questionDAO.getScores(studentId,StringConstant.questionType.get(cartype));
+    	if(cartype==null||"".equals(cartype)) return null;
+     	return questionDAO.getScores(studentId,StringConstant.questionType.get(cartype));
     }
     
     /*******************************题库管理开始***********************************/

@@ -454,17 +454,18 @@ public class FileHelper {
      * @return
      */
     public static String getPath(int type,int fileType){
+    	ConfigureUtil configure = new ConfigureUtil();
     	//如果是图片
     		if(StringConstant.questionType_car == type)
-    			return StringConstant.PATH_IMAGE_CAR;
+    			return configure.get(StringConstant.PATH_IMAGE_SUB1);
     		else if(StringConstant.questionType_bus == type)
-    			return StringConstant.PATH_IMAGE_BUS;
+    			return configure.get(StringConstant.PATH_IMAGE_SUB1);
     		else if(StringConstant.questionType_truck == type)
-    			return StringConstant.PATH_IMAGE_TRUCK;
+    			return configure.get(StringConstant.PATH_IMAGE_SUB1);
     		else if(StringConstant.questionType_moto == type)
-    			return StringConstant.PATH_IMAGE_MOTO;
+    			return configure.get(StringConstant.PATH_IMAGE_SUB1);
     		else if(StringConstant.questionType_3 == type)
-    			return StringConstant.PATH_IMAGE_SUB3;
+    			return configure.get(StringConstant.PATH_IMAGE_SUB3);
     	return null;
     }
 }

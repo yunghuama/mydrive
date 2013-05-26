@@ -97,9 +97,12 @@ if(session.getAttribute("LoginBean")==null) {
 				$("#mainFrame").attr("src","<%=path%>/exam/system/listScore3.d");
 			});
 			
-			//系统设置
+			//题库设置
 			$("a[name='id_6_1']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/exam/subject1/listQuestion.d");
+			});
+			$("a[name='id_6_2']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/system/adver/list.d");
 			});
 		});
 	
@@ -209,6 +212,9 @@ if(session.getAttribute("LoginBean")==null) {
   					 <ul class="sub-nav">
   					 	<s:if test='@com.platform.constants.StringConstant@getOperate(\"question_admin\")=="T"'>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_6_1">题库管理</a></li>
+  						</s:if>
+  						<s:if test='@com.platform.constants.StringConstant@getOperate(\"ads\")=="T"'>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_6_2">广告管理</a></li>
   						</s:if>
   					</ul>
   				</li>

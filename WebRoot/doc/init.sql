@@ -203,6 +203,7 @@ create table advertisement (
     stime int,
     image varchar(50),
     pathName varchar(50),
+    name varchar(100),
     createtime datetime
 );
 

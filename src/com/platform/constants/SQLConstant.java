@@ -191,7 +191,7 @@ public final class SQLConstant {
 	 * 广告
 	 */
 	public static final String ADVER_QUERY_PAGE = "select * from advertisement order by createtime desc limit ?,?";
-	public static final String ADVER_SAVE = "insert into advertisement(id,url,page,position,stime,image,pathname,createtime) values(?,?,?,?,?,?,?,?)";
+	public static final String ADVER_SAVE = "insert into advertisement(id,name,url,page,position,stime,image,pathname,createtime) values(?,?,?,?,?,?,?,?,?)";
 	public static final String ADVER_DEL = "delete from advertisement where id = ?";
 	public static final String ADVER_GET = "select * from advertisement where page = ? and position = ?";
 	public static final String ADVER_COUNT_ROW = "select count(id) from advertisement";

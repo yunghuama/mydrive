@@ -13,8 +13,15 @@ public class Adver {
 	private String image;
 	private String pathName;
 	private String createTime;
+	private String name;//广告名称
 	
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getImage() {
 		return image;
 	}

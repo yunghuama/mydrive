@@ -9,8 +9,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.struts2.ServletActionContext;
-
 import com.platform.domain.AttachedFile;
 
 /**
@@ -28,6 +26,7 @@ public class UploadHelper {
     private List<File> files; // 文件集合
     private List<String> realNames; // 原文件名集合
     private List<String> filePaths; // 上传文件后生成的文件所在服务器的完全路径集合
+    private List<String> extendNames;//扩展文件名集合
     private List<String> titles; // 自定义文件名集合
     private List<String> contentTypes;
     public static final int UID = 0;
@@ -77,6 +76,7 @@ public class UploadHelper {
                     attachedFile.setFileType(splitName[splitName.length - 1]);
                     attachedFile.setFileName(realNames.get(i));
                     attachedFile.setFilePath(filePaths.get(i));
+                    attachedFile.setExtendName(extendNames.get(i));
                     attachedFile.setContentType(contentTypes.get(i));
                     attachedFile.setIsConvert("0");
                     if (Validate.collectionNotNull(titles))
@@ -107,6 +107,7 @@ public class UploadHelper {
      */
     private List<String> upload(List<File> files, List<String> realNames, List<String> contentType, String savePath, int fileNameType) throws IOException {
         List<String> filePaths = new ArrayList<String>();
+        extendNames = new ArrayList<String>();
         if (Validate.collectionNotNull(files)) {
             for (int i = 0; i < files.size(); i++) {
                 String filePath = "";
@@ -137,7 +138,12 @@ public class UploadHelper {
                         fileName = fileOldName.toString() + S + new Date().getTime() + "." + fileType;
                     else if (fileNameType == NAME)
                         fileName = realNames.get(i);
-
+                    
+                    /**
+                     * 保存扩展后的文件名
+                     */
+                    extendNames.add(fileName);
+                    
                     // 创建文件夹
                     String realFolder = savePath;
                     File folder = new File(realFolder);

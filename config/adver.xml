@@ -5,7 +5,7 @@
 <struts>
   <package name="adver" extends="role-default" namespace="/system/adver">
   	<action name="list" class="adverAction" method="list">
-      <result>/ads/ad_list.jsp</result>
+      <result>/adver/ad_list.jsp</result>
     </action>
     <action name="save" class="adverAction" method="save">
       <result type="redirect">/system/adver/list.d</result>
