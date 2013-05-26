@@ -141,6 +141,14 @@ public class QuestionService implements IService {
     	return questionDAO.saveExamScore(studentId, score, time, StringConstant.questionType.get(cartype));
     }
     
+    /**
+     * 剩余次数-1
+     */
+    public int countDownOne(String id){
+    	return questionDAO.countDownOne(id);
+    }
+    
+    
     /*****************************顺序练习开始*********************************/
     /**
      * 获得章节

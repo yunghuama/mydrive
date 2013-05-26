@@ -125,9 +125,23 @@ Exam.prototype = {
 			}
 		}
 		//将错题和分数提交到服务器
+		var isSuccess = false;
+		$.ajax({
+			   type: "POST",
+			   url: projectName+"/system/ajax/countDownOne.d",
+			   async: false,
+			   success: function(msg){
+			    if(msg=='success')
+			    	isSuccess = true;
+			   }
+		});
+		if(isSuccess){
+			mask.refreshMessage("您本次练习得分 : "+score);
+			this.isScore = true;
+		}else {
+			mask.refreshMessage("分数提交失败,您本次模拟考试得分 : "+score);
+		}
 		
-		mask.refreshMessage("您本次练习得分 : "+score);
-		this.isScore = true;
 	},
 	getNext : function(){
 		//获得下一个问题
@@ -214,12 +228,12 @@ Exam.prototype = {
 		this.questionRenderTo.prepend(content.join(''));
 		//如果有图片就显示图片
 		if(question.img!=""&&question.img!=null){
-			var img = '<img src='+projectImage+"/6/"+question.img.toLowerCase()+'>';
+			var img = '<img src='+projectImage+'/'+question.type+'/'+question.img.toLowerCase()+'>';
 			this.richMediaRenderTo.append(img);
 		}
 		//如果有视频则显示视频
 		if(question.video!=""&&question.video!=null){
-			var video = '<embed src="'+projectName+'/js/ckplayer/ckplayer.swf" flashvars="f='+projectImage+"/6/"+question.video.toLowerCase()+'&p=0" quality="high" width="700" height="300" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>';
+			var video = '<embed src="'+projectName+'/js/ckplayer/ckplayer.swf" flashvars="f='+projectImage+'/'+question.type+'/'+question.video.toLowerCase()+'&p=0" quality="high" width="700" height="300" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>';
 			this.richMediaRenderTo.append(video);
 		}
 		

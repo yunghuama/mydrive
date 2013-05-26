@@ -97,8 +97,14 @@ public final class SQLConstant {
 	/**
 	 * 学校
 	 */
-	public static final String SCHOOL_LOGIN = "select id from schoolcard where number = ? and password = ?";
+	public static final String SCHOOL_LOGIN = "select id,number from schoolcard where number = ? and password = ?";
+	public static final String SCHOOL_UPDATE_PASS = "update schoolcard set password = ? where id = ? and password = ?";
 	
+	/**
+	 * 管理员
+	 */
+	public static final String ADMIN_LOGIN = "select id,number from driveradmin where number = ? and password = ?";
+	public static final String ADMIN_UPDATE_PASS = "update driveradmin set password = ? where id = ? and password = ?";
 
 	/**
 	 * 考试成绩

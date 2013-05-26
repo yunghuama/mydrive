@@ -80,6 +80,7 @@ public class UsersDAO extends GenericDAO{
 				Users user = new Users();
 				user.setId(rs.getString("id"));
 				user.SetRole(StringConstant.ROLE_SCHOOL);
+				user.setName(rs.getString("number"));
 				return user;
 			}
 		});
@@ -91,18 +92,19 @@ public class UsersDAO extends GenericDAO{
 	}
 	
 	/**
-	 * 学校登录
+	 * 管理员
 	 * @param number
 	 * @param password
 	 * @return
 	 */
 	public Users login_admin(String number,String password){
-		List<Users> list = jdbcTemplate.query(SQLConstant.SCHOOL_LOGIN, new Object[]{number,password},new RowMapper<Users>(){
+		List<Users> list = jdbcTemplate.query(SQLConstant.ADMIN_LOGIN, new Object[]{number,password},new RowMapper<Users>(){
 			@Override
 			public Users mapRow(ResultSet rs, int arg1) throws SQLException {
 				Users user = new Users();
 				user.setId(rs.getString("id"));
 				user.SetRole(StringConstant.ROLE_ADMIN);
+				user.setName(rs.getString("number"));
 				return user;
 			}
 		});
@@ -131,15 +133,38 @@ public class UsersDAO extends GenericDAO{
 	}
 	
 	/**
-	 * 更新密码
+	 * 更新密码学员
 	 */
-	public int updatePass(String id,String oldPass,String newPass){
+	public int updatePassStu(String id,String oldPass,String newPass){
 		return jdbcTemplate.update(SQLConstant.STUDENT_UPDATE_PASS,new Object[]{
 			newPass,
 			id,
 			oldPass
 		});
 	}
+	
+	/**
+	 * 更新密码驾校
+	 */
+	public int updatePassSch(String id,String oldPass,String newPass){
+		return jdbcTemplate.update(SQLConstant.SCHOOL_UPDATE_PASS,new Object[]{
+			newPass,
+			id,
+			oldPass
+		});
+	}
+	
+	/**
+	 * 更新密码管理员
+	 */
+	public int updatePassAdmin(String id,String oldPass,String newPass){
+		return jdbcTemplate.update(SQLConstant.ADMIN_UPDATE_PASS,new Object[]{
+			newPass,
+			id,
+			oldPass
+		});
+	}
+	
 	
 	/**
 	 * 续费

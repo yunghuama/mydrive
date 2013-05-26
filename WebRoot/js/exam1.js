@@ -1,7 +1,7 @@
 /********科目一模拟考试********/
 
 /**问题对象**/
-function Question(num,id,question,answer_a,answer_b,answer_c,answer_d,answer,img,vedio,video) {
+function Question(num,id,question,answer_a,answer_b,answer_c,answer_d,answer,img,video,type) {
 	this.num = num;
 	this.id = id;
 	this.question = question;
@@ -240,7 +240,8 @@ Exam.prototype = {
 		}
 		//如果有视频则显示视频
 		if(question.video!=""&&question.video!=null){
-			var video = '<embed src="'+projectName+'/js/ckplayer/ckplayer.swf" flashvars="f='+projectImage+"/6/"+question.video.toLowerCase()+'&p=0" quality="high" width="700" height="300" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>';
+			alert(question.video);
+			var video = '<embed src="'+projectName+'/js/ckplayer/ckplayer.swf" flashvars="f='+"/"+question.type+"/"+question.video.toLowerCase()+'&p=0" quality="high" width="700" height="300" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>';
 			this.richMediaRenderTo.append(video);
 		}
 		

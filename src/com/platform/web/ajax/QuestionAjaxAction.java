@@ -54,7 +54,7 @@ public class QuestionAjaxAction {
 			if(r==1){
 				result = "success";
 				Users users = loginBean.getUser();
-				users.setRemindtimes(users.getReminddays()-1);
+				users.setRemindtimes(users.getRemindtimes()-1);
 			}
 			else 
 				result = "error";
@@ -98,12 +98,31 @@ public class QuestionAjaxAction {
 			if(r==1){
 				result = "success";
 				Users users = loginBean.getUser();
-				users.setRemindtimes(users.getReminddays()-1);
+				users.setRemindtimes(users.getRemindtimes()-1);
 			}
 			else 
 				result = "error";
 		}else
 			result = "error";
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return Action.SUCCESS;
+	}
+	
+	/**
+	 * 剩余次数-1
+	 * @return
+	 */
+	public String countDownOne(){
+		try{
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			int rs  = questionService.countDownOne(loginBean.getUser().getId());
+			if(rs==1){
+				result = "success";
+				Users users = loginBean.getUser();
+				users.setRemindtimes(users.getRemindtimes()-1);
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -211,7 +230,7 @@ public class QuestionAjaxAction {
 	public String updatePass(){
 		try {
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-			int re = usersService.updatePass(loginBean.getUser().getId(), oldPass, newPass);
+			int re = usersService.updatePass(loginBean.getUser().getId(), oldPass, newPass,loginBean.getUser().getRole());
 			if(re==1){
 				result = "success";
 			}

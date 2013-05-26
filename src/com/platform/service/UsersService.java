@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.platform.constants.StringConstant;
 import com.platform.dao.UsersDAO;
 import com.platform.domain.Users;
 import com.platform.exception.CRUDException;
@@ -30,13 +31,13 @@ public class UsersService implements IService {
     public Users login(String accountName, String password) throws CRUDException {
     	
     	//先查询学员表
-    	Users user = usersDAO.login_student(accountName.toString(), password.toString());
+    	Users user = usersDAO.login_student(accountName.trim(), password.trim());
     	//再查询学校表
     	if(user==null)
-    		user = usersDAO.login_student(accountName.toString(), password.toString());
+    		user = usersDAO.login_school(accountName.trim(), password.trim());
     	//最后查询管理员表
     	if(user==null)
-    		user = usersDAO.login_admin(accountName.toString(), password.toString());
+    		user = usersDAO.login_admin(accountName.trim(), password.trim());
     	
         return user;
     }
@@ -49,8 +50,14 @@ public class UsersService implements IService {
 	   return usersDAO.getUsersById(id);
    }
    
-   public int updatePass(String id,String oldPass,String newPass){
-	   return usersDAO.updatePass(id, oldPass, newPass);
+   public int updatePass(String id,String oldPass,String newPass,String role){
+	   if(StringConstant.ROLE_STUDENT.equals(role))
+		   return usersDAO.updatePassStu(id, oldPass, newPass);
+	   else if(StringConstant.ROLE_SCHOOL.equals(role))
+		   	return usersDAO.updatePassSch(id, oldPass, newPass);
+	   else if(StringConstant.ROLE_ADMIN.equals(role))
+		   return usersDAO.updatePassAdmin(id, oldPass, newPass);
+	    return 0;
    }
    
    

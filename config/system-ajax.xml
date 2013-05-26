@@ -66,6 +66,11 @@
         <param name="root">result</param>
       </result>
     </action>
+     <action name="countDownOne" class="questionAjaxAction" method="countDownOne">
+      <result type="json">
+        <param name="root">result</param>
+      </result>
+    </action>
   </package>
   
 </struts>

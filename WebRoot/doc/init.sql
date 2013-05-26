@@ -114,6 +114,14 @@ create table schoolcard (
     createtime datetime
 );
 
+drop table if exists driveradmin;
+create table driveradmin (
+    id char(32) not null primary key,
+    number varchar(11) not null,
+    password varchar(16) not null,
+    createtime datetime
+);
+
 drop table if exists examscore;
 create table examscore (
     id char(32) not null primary key,
@@ -198,10 +206,10 @@ alter table studentcard drop column remidtimes;
 alter table studentcard add column remindtimes int;
 
 insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50043','123','123','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
-insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50043','111','111','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
+insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50041','111','111','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
 
 insert into schoolcard(id,number,password,createtime) values('4028813518f35feb0118f392eee50046','222','222','2013-05-18');
-
+insert into driveradmin(id,number,password,createtime) values('4028813518f35feb0118f392eee50040','admin','admin','2013-05-18');
 
 
 insert into section(id,name,category) values('4028813518f35feb0118f392eee50045','道路交通安全法律、法规和规章',1);
