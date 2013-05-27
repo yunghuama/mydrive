@@ -18,7 +18,7 @@ $(document).ready(function(){
 </script>
 <style type="text/css">
 #des{
-	margin: 40px 0px;
+	margin: 10px 0px;
 }
 #des span {
 	color:#7d7d7d;
@@ -37,43 +37,43 @@ embed {
 				<div class="videoDiv">
 					<div class="title"><span>考试须知</span></div>
 					<div class="video">
-					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/5/0.flv&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+						<a href="<%=path%>/subject2/playvideo.jsp?name=0.flv" target="_blank"><img alt="" src="<%=path%>/image/v1.png"></a>
 					</div>
 				</div>
 				<div class="videoDiv">
 					<div class="title"><span>1号车侧方停车</span></div>
 					<div class="video">
-					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/5/1.flv&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+					<a href="<%=path%>/subject2/playvideo.jsp?name=1.flv" target="_blank"><img alt="" src="<%=path%>/image/v2.png"></a>
 					</div>
 				</div>
 				<div class="videoDiv">
 					<div class="title"><span>1号车倒库</span></div>
 					<div class="video">
-					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/5/2.flv&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+					<a href="<%=path%>/subject2/playvideo.jsp?name=2.flv" target="_blank"><img alt="" src="<%=path%>/image/v3.png"></a>
 					</div>
 				</div>
 				<div class="videoDiv">
 					<div class="title"><span>1号车模拟考试</span></div>
 					<div class="video">
-					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/5/3.flv&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+					<a href="<%=path%>/subject2/playvideo.jsp?name=3.flv" target="_blank"><img alt="" src="<%=path%>/image/v4.png"></a>
 					</div>
 				</div>
 				<div class="videoDiv">
 					<div class="title"><span>1号车坡道起步	</span></div>
 					<div class="video">
-					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/5/4.flv&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+					<a href="<%=path%>/subject2/playvideo.jsp?name=4.flv" target="_blank"><img alt="" src="<%=path%>/image/v5.png"></a>
 					</div>
 				</div>
 				<div class="videoDiv">
 					<div class="title"><span>1号车曲线行驶</span></div>
 					<div class="video">
-					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/5/5.flv&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+					<a href="<%=path%>/subject2/playvideo.jsp?name=5.flv" target="_blank"><img alt="" src="<%=path%>/image/v6.png"></a>
 					</div>
 				</div>
 				<div class="videoDiv">
 					<div class="title"><span>1号车直角转弯</span></div>
 					<div class="video">
-					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/5/6.flv&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+					<a href="<%=path%>/subject2/playvideo.jsp?name=6.flv" target="_blank"><img alt="" src="<%=path%>/image/v7.png"></a>
 					</div>
 				</div>
 			</div>

@@ -111,7 +111,7 @@ $(document).ready(function(){
 					</s:elseif>
 				</div>
 				<div class="operate">
-				<a href="<%=path %>/exam/subject1/toUpdateQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>"> 修改该题</a><br/><br/>
+				<a href="<%=path %>/exam/subject1/toUpdateQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>"> <img alt="" src="<%=path%>/image/modifyquestion.png"></a><br/><br/>
 				<a href="<%=path %>/exam/subject1/deleteQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>"><img alt="" src="<%=path%>/image/del.png"> </a><br/>
 				</div>
 			</div>
