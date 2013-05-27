@@ -1,7 +1,7 @@
 /********科目一模拟考试********/
 
 /**问题对象**/
-function Question(num,id,question,answer_a,answer_b,answer_c,answer_d,answer,img,video,type) {
+function Question(num,id,question,answer_a,answer_b,answer_c,answer_d,answer,img,video,path) {
 	this.num = num;
 	this.id = id;
 	this.question = question;
@@ -12,7 +12,7 @@ function Question(num,id,question,answer_a,answer_b,answer_c,answer_d,answer,img
 	this.answer = answer;
 	this.img = img;
 	this.video = video;
-	this.type = type;
+	this.path = path;
 }
 
 /**回答错误的问题**/
@@ -25,12 +25,12 @@ function ErrorQuestion(num,id,answer){
 /****题号对象***/
 var Num = function(config){
 	$.extend(this , Num.defaults , config);
-}
+};
 
 Num.defaults = {
 	width : 25,
 	height: 28
-}
+};
 
 Num.prototype = {
 	 createDiv : function(){
@@ -59,7 +59,7 @@ Num.prototype = {
 		 
 	 }
 	 
-}
+};
 
 /****考试对象***/
 var Exam = function(config){
@@ -233,13 +233,13 @@ Exam.prototype = {
 		this.questionRenderTo.prepend(content.join(''));
 		//如果有图片就显示图片
 		if(question.img!=""&&question.img!=null){
-			var img = '<img src='+projectImage+"/"+question.type+"/"+question.img.toLowerCase()+'>';
+			var img = '<img src='+projectImage+"/"+question.path+"/"+question.img.toLowerCase()+'>';
 			this.richMediaRenderTo.append(img);
 		}
 		//如果有视频则显示视频
 		if(question.video!=""&&question.video!=null){
 			alert(question.video);
-			var video = '<embed src="'+projectName+'/js/ckplayer/ckplayer.swf" flashvars="f='+"/"+question.type+"/"+question.video.toLowerCase()+'&p=0" quality="high" width="700" height="300" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>';
+			var video = '<embed src="'+projectName+'/js/ckplayer/ckplayer.swf" flashvars="f='+"/"+question.path+"/"+question.video.toLowerCase()+'&p=0" quality="high" width="700" height="300" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>';
 			this.richMediaRenderTo.append(video);
 		}
 		
@@ -255,7 +255,7 @@ Exam.prototype = {
 			var rs = "";
 			entity.questionRenderTo.find("input:checked").each(function(){
 				rs = rs+$(this).val();
-			})
+			});
 			//为相应的问题设置回答
 			question.myanswer = rs;
 			var numObj = entity.getNum(question.num);
@@ -266,7 +266,6 @@ Exam.prototype = {
 	//绘制数字选题格子
 	drawSelectGrid : function(){
 		var entity = this;
-		var divarray = [];
 		for(var i=0;i<entity.qa.length;i++){
 			var num = new Num({'num':i+1});
 			var div = num.createDiv();
@@ -279,4 +278,4 @@ Exam.prototype = {
 			this.na.push(div);
 		}
 	}
-}
+};

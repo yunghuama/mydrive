@@ -69,11 +69,11 @@ $(document).ready(function(){
 				 </div>
 				<div class="richmedia">
 					<s:if test='#question.image!=""&&#question.image!=null'>
-						<img src='<%=path %>/upload/image/<s:property value="#question.image"/>'/><br/><br/>
-						<a href='<%=path %>/upload/image/<s:property value="#question.image"/>' target="_blank">查看大图</a>
+						<img src='/image/sub3/<s:property value="#question.image"/>'/><br/><br/>
+						<a href='/image/sub3/<s:property value="#question.image"/>' target="_blank">查看大图</a>
 					</s:if>
 					<s:elseif test='#question.video!=""&&#question.video!=null'>
-					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/6/<s:property value='#question.video'/>&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/sub3/<s:property value='#question.video'/>&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
 					</s:elseif>
 				</div>
 			</div>

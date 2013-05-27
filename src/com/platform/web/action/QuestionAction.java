@@ -233,7 +233,7 @@ public class QuestionAction extends GenericAction {
 		try{
 		
 		if(upload!=null&&upload.size()>0){
-			String path = FileHelper.getPath(type, fileType);
+			String path = FileHelper.getPath(type);
 			UploadHelper helper = new UploadHelper(upload, uploadFileName, uploadTitle, uploadContentType, path, UploadHelper.NAME);
 			List<AttachedFile> list = helper.getAttachedFiles();
 			if(list!=null&&list.size()>0){
@@ -272,7 +272,7 @@ public class QuestionAction extends GenericAction {
 		//如果有附件
 		try{
 		if(upload!=null&&upload.size()>0){
-			String path = FileHelper.getPath(type, fileType);
+			String path = FileHelper.getPath(type);
 			UploadHelper helper = new UploadHelper(upload, uploadFileName, uploadTitle, uploadContentType, path, UploadHelper.NAME);
 			List<AttachedFile> list = helper.getAttachedFiles();
 			if(list!=null&&list.size()>0){

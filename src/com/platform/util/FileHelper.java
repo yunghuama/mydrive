@@ -453,17 +453,17 @@ public class FileHelper {
      * @param flag 附件类型
      * @return
      */
-    public static String getPath(int type,int fileType){
+    public static String getPath(int type){
     	ConfigureUtil configure = new ConfigureUtil();
     	//如果是图片
     		if(StringConstant.questionType_car == type)
-    			return configure.get(StringConstant.PATH_IMAGE_SUB1);
+    			return configure.get(StringConstant.PATH_IMAGE_SUB1) + "/"+type;
     		else if(StringConstant.questionType_bus == type)
-    			return configure.get(StringConstant.PATH_IMAGE_SUB1);
+    			return configure.get(StringConstant.PATH_IMAGE_SUB1) + "/"+type;
     		else if(StringConstant.questionType_truck == type)
-    			return configure.get(StringConstant.PATH_IMAGE_SUB1);
+    			return configure.get(StringConstant.PATH_IMAGE_SUB1) + "/"+type;
     		else if(StringConstant.questionType_moto == type)
-    			return configure.get(StringConstant.PATH_IMAGE_SUB1);
+    			return configure.get(StringConstant.PATH_IMAGE_SUB1) + "/"+type;
     		else if(StringConstant.questionType_3 == type)
     			return configure.get(StringConstant.PATH_IMAGE_SUB3);
     	return null;

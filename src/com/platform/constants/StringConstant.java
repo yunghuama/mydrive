@@ -24,17 +24,17 @@ public final class StringConstant {
 	public static final int questionType_bus = 1;
 	public static final int questionType_truck = 2;
 	public static final int questionType_moto = 3;
-	public static final int questionType_3 = 4;
+	public static final int questionType_3 = 4;//科目三
 	public static final int questionType_2 =5;//科目二视频
 	
 	public static final String SECTION_TYPE_1 = "1";//科目1
 	public static final String SECTION_TYPE_3 = "3";//科目3
 	
 	//图片存储目录
-	public static final String PATH_IMAGE_SUB1 = "sub1Image";
-	public static final String PATH_IMAGE_SUB2 = "sub2Image";
-	public static final String PATH_IMAGE_SUB3 = "sub3Image";
-	public static final String PATH_IMAGE_ADVER = "adverImage";
+	public static final String PATH_IMAGE_SUB1 = "sub1Image";//科目附件片目录
+	public static final String PATH_IMAGE_SUB2 = "sub2Image";//科目二附件目录
+	public static final String PATH_IMAGE_SUB3 = "sub3Image";//科目三附件目录
+	public static final String PATH_IMAGE_ADVER = "adverImage";//广告附件目录
 	
 	//权限菜单
 	public static final String NAV_INDEX = "index";
