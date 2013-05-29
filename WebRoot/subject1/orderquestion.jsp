@@ -53,7 +53,7 @@ $(document).ready(function(){
 });
 </script>
 </head>
-<body>
+<body style="overflow:auto">
 	 <div id="main">
 			<div id="title"><span>科目一顺序练习</span></div>
 			<div id="sectionContent">

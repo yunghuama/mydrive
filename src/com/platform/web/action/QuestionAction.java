@@ -105,7 +105,10 @@ public class QuestionAction extends GenericAction {
 	 */
 	public String section1(){
 		try {
-			sectionList = questionService.getSection(StringConstant.SECTION_TYPE_1);
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			Users users = loginBean.getUser();
+			type = StringConstant.questionType.get(users.getCartype());
+			sectionList = questionService.getSection(type+"");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -304,7 +307,7 @@ public class QuestionAction extends GenericAction {
 		try{
 
 			System.out.println("导入");
-			String path = "/home/cheney/driver/db/q3.xlsx";
+			String path = "/home/cheney/driver/db1/q3.xlsx";
 			importXlsx(path);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -342,11 +345,12 @@ public class QuestionAction extends GenericAction {
 					q.setAnswer(answer.getStringCellValue());
 					q.setCategory(category==null? "":category.getStringCellValue());
 					q.setImage(image==null?"":image.getStringCellValue());
+					
 					questionService.saveQuestion_moto(q);
 					
 					System.out.println(q.getCode());
 				}
-				
+				System.out.println("导入结束");
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -395,6 +399,7 @@ public class QuestionAction extends GenericAction {
 				System.out.println(q.getCode());
 			}
 			
+			System.out.println("导入结束");
 		}catch(Exception e){
 			e.printStackTrace();
 		}

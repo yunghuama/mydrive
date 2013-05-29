@@ -9,6 +9,7 @@
 <link href="<%=path%>/css/question.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="<%=path%>/js/core.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
+<script type="text/javascript" src="<%=path%>/js/ckplayer/ckplayer.js" charset="utf-8"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$(".answer a").bind("click",function(){
@@ -101,19 +102,29 @@ $(document).ready(function(){
 					<div class="answer"><span>提示：<s:property value="#question.tips"/></span></div>
 					<div class="answer"><span>所属章节：<s:property value="#question.category"/> </span></div>
 				 </div>
+				<div id="right">
 				<div class="richmedia">
 					<s:if test='#question.image!=""&&#question.image!=null'>
-						<img src='<%=path %>/upload/image/<s:property value="#question.image"/>'/><br/><br/>
-						<a href='<%=path %>/upload/image/<s:property value="#question.image"/>' target="_blank">查看大图</a>
+						<s:if test="type!=4">
+						<img src='/image/sub1/<s:property value="type"/>/<s:property value="#question.image"/>'/><br/><br/>
+						<a href='/image/sub1/<s:property value="type"/>/<s:property value="#question.image"/>' target="_blank">查看大图</a>
+						</s:if>
+						<s:elseif test="type==4">
+						<img src='/image/sub3/<s:property value="type"/>/<s:property value="#question.image"/>'/><br/><br/>
+						<a href='/image/sub3/<s:property value="type"/>/<s:property value="#question.image"/>' target="_blank">查看大图</a>
+						</s:elseif>
 					</s:if>
-					<s:elseif test='#question.viedo!=""&&#question.video!=null'>
-						<a href='<%=path %>/upload/image/<s:property value="#question.video"/>' target="_blank">查看视频</a>
+					<s:elseif test='#question.video!=""&&#question.video!=null'>
+						<s:if test="type==4">
+						<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/sub3/<s:property value='#question.video'/>&p=0" quality="high" width="300" height="150" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+						</s:if>
 					</s:elseif>
 				</div>
 				<div class="operate">
-				<a href="<%=path %>/exam/subject1/toUpdateQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>"> <img alt="" src="<%=path%>/image/modifyquestion.png"></a><br/><br/>
+				<a href="<%=path %>/exam/subject1/toUpdateQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>"> <img alt="" src="<%=path%>/image/modifyquestion.png"></a><br/>
 				<a href="<%=path %>/exam/subject1/deleteQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>"><img alt="" src="<%=path%>/image/del.png"> </a><br/>
 				</div>
+			</div>
 			</div>
 			</s:iterator>
 			<div id="pageBar">

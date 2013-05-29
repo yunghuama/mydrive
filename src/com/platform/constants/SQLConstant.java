@@ -149,7 +149,7 @@ public final class SQLConstant {
 	/**
 	 * 章节科目一
 	 */
-	public static final String SECTION_QUERY_BY_TYPE = "select * from section where category = ?";
+	public static final String SECTION_QUERY_BY_TYPE = "select * from section where cartype = ? order by sortindex";
 	
 	
 	/**

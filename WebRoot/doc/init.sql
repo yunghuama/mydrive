@@ -147,7 +147,6 @@ create table question_wrong (
     questionId  int not null,
     studentId char(32) not null,
     questiontype char(1),
-    count int,
     updatetime datetime
 );
 
@@ -156,7 +155,6 @@ create table question_wrong3 (
     id char(32) not null primary key,
     questionId  int not null,
     studentId char(32) not null,
-    count int,
     updatetime datetime
 );
 
@@ -164,7 +162,8 @@ drop table if exists section;
 create table section (
     id char(32) not null primary key,
     name  varchar(60) not null,
-    category char(1) not null,
+    carType char(1) not null,
+    sortIndex char(1) not null,
     updatetime datetime
 );
 
@@ -218,30 +217,35 @@ alter table questions_motorcycle add column question_video varchar(20);
 alter table studentcard drop column remidtimes;
 alter table studentcard add column remindtimes int;
 
-insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50043','123','123','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
+insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50043','test1','123','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
 insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50022','333','333','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
-insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50041','111','111','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
+insert into studentcard(id,number,password,schoolid,begindate,remindtimes,reminddays) values('4028813518f35feb0118f392eee50041','test2','123','4028813518f35feb0118f392eee50046','2013-05-18',50,365);
 
 insert into schoolcard(id,number,password,createtime) values('4028813518f35feb0118f392eee50046','222','222','2013-05-18');
 insert into driveradmin(id,number,password,createtime) values('4028813518f35feb0118f392eee50040','admin','admin','2013-05-18');
 
 
-insert into section(id,name,category) values('4028813518f35feb0118f392eee50045','道路交通安全法律、法规和规章',1);
-insert into section(id,name,category) values('4028813518f35feb0118f392eee50046','交通信号',1);
-insert into section(id,name,category) values('4028813518f35feb0118f392eee50047','安全行车、文明驾驶基础知识',1);
-insert into section(id,name,category) values('4028813518f35feb0118f392eee50048','机动车驾驶操作相关基础知识',1);
+insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50001','道路交通安全法律、法规和规章',0,0);
+insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50002','交通信号',0,1);
+insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50003','安全行车、文明驾驶基础知识',0,2);
+insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50004','机动车驾驶操作相关基础知识',0,3);
+
+insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50005','道路交通安全法律、法规和规章',1,0);
+insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50006','交通信号',1,1);
+insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50007','安全行车、文明驾驶基础知识',1,2);
+insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50008','机动车驾驶操作相关基础知识',1,3);
+insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50009','大型客车、城市公交车、中型客车',1,4);
+
+insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50010','道路交通安全法律、法规和规章',2,0);
+insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50011','交通信号',2,1);
+insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50012','安全行车、文明驾驶基础知识',2,2);
+insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50013','机动车驾驶操作相关基础知识',2,3);
+insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50014','牵引车、大型货车',2,4);
 
 
+insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50015','摩托车',3,0);
 
-insert into section(id,name,category) values('4028813518f35feb0118f392eee50049','违法行为综合判断与案例分析',3);
-insert into section(id,name,category) values('4028813518f35feb0118f392eee50050','安全行车常识',3);
-insert into section(id,name,category) values('4028813518f35feb0118f392eee50051','常见交通标志、标线和交警手势信号辨识',3);
-insert into section(id,name,category) values('4028813518f35feb0118f392eee50052','驾驶职业道德和安全驾驶常识',3);
-insert into section(id,name,category) values('4028813518f35feb0118f392eee50053','恶劣气候和复杂道路条件下驾驶常识',3);
-insert into section(id,name,category) values('4028813518f35feb0118f392eee50054','紧急情况下避险常识',3);
-insert into section(id,name,category) values('4028813518f35feb0118f392eee50055','交通事故救护及常见危化品处置常识',3);
-insert into section(id,name,category) values('4028813518f35feb0118f392eee50056','摩托车',1);
-insert into section(id,name,category) values('4028813518f35feb0118f392eee50057','安全文明驾驶常识',3);
+insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50016','安全文明驾驶常识',4,0);
 
 update questions_car set category = '4028813518f35feb0118f392eee50045' where category = '道路交通安全法律、法规和规章';
 update questions_car set category = '4028813518f35feb0118f392eee50046' where category = '交通信号';
@@ -262,10 +266,10 @@ update questions_motorcycle set category = '4028813518f35feb0118f392eee50056' wh
 
 update questions3 set category = '4028813518f35feb0118f392eee50057' where category = '安全文明驾驶常识';
 
+
+
+
 select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_car where id in (select questionid from markquestion  order by createtime desc)  limit 0,10;
-
 insert into questions3(id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,createtime) select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,createtime from questions_car;
-
 select max(score) as maxscore, min(score) as minscore, count(id) as scorecounts ,avg(score) as avgscore,(select count(id)  from examscore where studentid = '4028813518f35feb0118f392eee50043' and cartype = 'c2' and score >=90 ) as passcount ,time,createtime from examscore where studentid = '4028813518f35feb0118f392eee50043' and cartype = 'c2'
-
 select max(exam.score) as maxscore, min(exam.score) as minscore, count(exam.id) as scorecounts ,avg(exam.score) as avgscore,sum(exam.score>=90) as passcount,stu.name  from examscore exam , studentcard stu where exam.studentid = stu.id and stu.schoolid = '4028813518f35feb0118f392eee50046'

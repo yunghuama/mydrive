@@ -6,13 +6,17 @@ body{
 
 #main{
 	margin-top:30px;
-	margin-bottom:100px;
 }
 
 #sectionContent {
 	position:relative;
 	text-align:center;
 	margin-top:30px;
+}
+
+#pageBar {
+	margin-bottom:70px;
+	margin-top:10px;
 }
 
 #type{
@@ -56,7 +60,7 @@ body{
 .question {
 	text-align:left;
 	width:800px;
-	height:200px;
+	height:250px;
 	margin:0px auto;
 	border-bottom : 1px solid #7d7d7d;
 	padding-top:10px;
@@ -85,10 +89,10 @@ body{
 
 
 /*********富媒体**********/
-.richmedia {
+#right {
 	float:left;
 	width:200px;
-	height:100px;
+	height:140px;
 	text-align:center;
 }
 .richmedia img {
@@ -97,8 +101,8 @@ body{
 }
 
 .operate {
-	float : left;
 	width:200px;
 	height:50px;
+	margin-top:10px;
 	text-align:center;
 }

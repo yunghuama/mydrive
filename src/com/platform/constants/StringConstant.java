@@ -27,8 +27,7 @@ public final class StringConstant {
 	public static final int questionType_3 = 4;//科目三
 	public static final int questionType_2 =5;//科目二视频
 	
-	public static final String SECTION_TYPE_1 = "1";//科目1
-	public static final String SECTION_TYPE_3 = "3";//科目3
+	public static final String SECTION_TYPE_3 = "4";//科目3
 	
 	//图片存储目录
 	public static final String PATH_IMAGE_SUB1 = "sub1Image";//科目附件片目录

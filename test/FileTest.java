@@ -19,8 +19,8 @@ public class FileTest {
 
 	@Test
 	public void checkXls(){
-		String xlsPath = "/home/cheney/driver/db/car.xlsx";
-		String picPath = "/home/cheney/driver/image/0";
+		String xlsPath = "/home/cheney/driver/db1/q3.xlsx";
+		String picPath = "/home/cheney/driver/image/4";
 		importQuestion(xlsPath,picPath);
 	}
 	
