@@ -40,9 +40,13 @@ $(document).ready(function(){
 </script>
 <style type="text/css">
 	#main {
-		width:300px;
+		width:701px;
+		height:350px;
 		position:relative;
 		margin:0px auto;
+		border : 1px solid #bfbfbf;
+		margin-top:50px;
+		background-color:#f2f2f2;
 	}
 	#title{
 		width:100%;
@@ -51,25 +55,73 @@ $(document).ready(function(){
 		margin-top:30px;
 	}
 	#title span {
-		font-size:25px;
-		font-weight:700;
+		font-size:16px;
 	}
 	
 	#announce {
-		margin-top:20px;
+		margin-top:16px;
+		margin-left:30px;
 	}
 	
 	#announce li {
-		font-size:18px;
+	font-size:16px;
+	white-space: normal;
+    word-wrap: break-word;
+    word-break: break-all;
 	}
+	
+	#left {
+	  float:left;
+	  width:280px;
+	  height:350px;
+	  border-right:1px solid #bfbfbf;
+	}
+	
+	#right{
+	  float:left;
+	  width:420px;
+	  text-align:center;
+	}
+	
 	#button {
 		text-align:center;
+		margin-top:30px;
+	}
+	
+	fieldset{
+		border : 1px solid #bfbfbf;
+		width:600px;
+	}
+	#name {
 		margin-top:20px;
+		text-align:left;
+		margin-left:100px;
+	}
+	
+	#identity,#cartype {
+		text-align:left;
+		margin-left:100px;
+		margin-top:10px;
+	}
+	
+	#name span,#identity span, #cartype span{
+	font-size:16px;
+	}
+	
+	#t1 {
+		margin-top:60px;
+		font-size:25px;
+		font-weight:700;
+	}
+	#t2 {
+		font-size:18px;
+		font-weight:700;
 	}
 </style>
 </head>
 <body style="overflow:auto">
 	 <div id="main">
+	 		<div id="left">
 			<div id="title"><span>考试须知</span></div>
 			<div id="announce">
 				<ol>
@@ -83,11 +135,21 @@ $(document).ready(function(){
 					<li>爱护公物及考试设备。</li>
 				</ol>
 			</div>
+			</div>
+			<div id="right">
+			<div id="t1">科目一全真模拟</div>
+			<div id="t2">(练习模式)</div>
+			<div id="name"><span>考生姓名:</span>&nbsp;&nbsp;<span><s:property value="#session['LoginBean'].user.name"/></span></div>
+			<div id="identity"><span>证件号码:</span>&nbsp;&nbsp;<span><s:property value="#session['LoginBean'].user.identity"/></span></div>
+			<div id="cartype"><span>考试车型:</span>&nbsp;&nbsp;<span><s:property value="#session['LoginBean'].user.cartype"/></span></div>
+			<div></div>
+			<div></div>
 			<div id="button">
 				<a href="javascript:void(0);"><img src="<%=path%>/image/startExam.png"/></a>
 			</div>
+			</div>
 			<form action="<%=path%>/exam/subject1/initExerciseQuestion.d"></form>
 	 </div>
-	 
+	
 </body>
 </html>

@@ -83,17 +83,33 @@
 	padding-top:15px;
 }
 #infoContent{
-	width:300px;
+	width:500px;
 	height:300px;
 	margin:0px auto;
-	margin-top:100px;
+	margin-top:70px;
+	position:relative;
 }
 fieldset {
-	padding:20px;
-	border : 1px solid #7d7d7d;
+	border : 1px solid #bfbfbf;
+	background-color:#FFFFFF;
+	padding:10px 0;
+}
+#infoForm {
+	width:500px;
+	height:250px;
 }
 #barDiv{
 	text-align:center;
+}
+
+.text {
+	width:250px;
+}
+.select {
+	width :257	px;
+}
+td {
+	height:40px;
 }
 </style>
 </head>
@@ -117,7 +133,7 @@ fieldset {
           <td class="form-right"><s:textfield id="age" name="users.age" theme="simple" cssClass="text"/></td>
         </tr>
         <tr>
-          <td class="form-left"></span>性别</td>
+          <td class="form-left">性别</td>
           <td class="form-right">
           		<s:select list="#{'0':'男','1':'女'}" name="users.sex" cssClass="select"></s:select>
           </td>

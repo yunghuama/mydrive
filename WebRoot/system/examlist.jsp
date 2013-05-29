@@ -142,7 +142,6 @@
 			</div>
 			</div>
 			</div>
-			<div class="line"></div>
 			<div id="sub2">
 			<div class="statistic">
 			<div class="title"><img alt="" src="<%=path%>/image/blue.png"><span>科目三考试统计</span></div>

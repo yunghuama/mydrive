@@ -8,22 +8,19 @@ String path = request.getContextPath();
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>驾考之家</title>
-     <link href="<%=path%>/css/core.css" rel="stylesheet" type="text/css"/>
     <style type="text/css">
-    html,body {
+    html,body{
       padding:0;
       margin:0;
       width:100%;
       height:100%;
       overflow:hidden;
-    }
-    div {
+      background-color:#f2f2f2;
     }
     #main{
       width:1010px;
       position:relative;
       margin:0px auto;
-     
     }
 	#logo {
 		width:500px;
@@ -33,7 +30,7 @@ String path = request.getContextPath();
 	
 	#logo img{
 		position:absolute;
-		right:30px;
+		right:40px;
 	}
 	
 	#car {
@@ -42,13 +39,24 @@ String path = request.getContextPath();
 		text-align:center;
 		padding:40px 0px;
 	}
+	
+	#line {
+		float:left;
+		width:1px;
+	}
+	
 	#loginDiv {
 		float:left;
 		text-align:center;
 		width:500px;
-		padding:70px 0px;
-		border-left : 1px solid #7d7d7d;
+		padding:30px 0px;
 	}
+	
+	
+	#loginDiv #info{
+		margin-bottom:20px;
+	} 
+	
 	#loginDiv input {
 		background-image:url("image/input.png");
 		border : none;
@@ -94,11 +102,13 @@ String path = request.getContextPath();
 
   <body>
     <div id="main">
-    	<div id="logo"><img src="<%=path %>/image/logo.png" alt="" /></div>
+    	<div id="logo"><img src="<%=path %>/image/logo2.png" alt="" /></div>
     	<div id="center">
     	<div id="car"><img src="<%=path %>/image/car.png" alt="" /> </div>
+    	<img src="<%=path %>/image/vline.png" id="line" alt="" />
     	<div id="loginDiv">
     	<form id="loginForm" method="post" action="<%=path%>/login.d">
+    		<img src="<%=path %>/image/login.png" id="info" alt="" /><br/>
     		<input id="accountName" name="accountName" type="text"/><br/>
     		<input id="title" type="text"/><input id="password" name="password" type="password" /><br/>
     		<a href="javascript:void(0);" id="submitA"><img src="image/loginButton.png" alt="" id="submitImg"/></a>

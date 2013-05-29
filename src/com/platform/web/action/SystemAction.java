@@ -150,8 +150,8 @@ public class SystemAction extends GenericAction {
 		usersService.update(users);
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		loginBean.getUser().setCartype(users.getCartype());
-		LoginBean loginBean1 = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		System.out.println(loginBean1.getUser().getCartype());
+		loginBean.getUser().setIdentity(users.getIdentity());
+		loginBean.getUser().setName(users.getName());
 		}catch(Exception e){
 			e.printStackTrace();
 		}

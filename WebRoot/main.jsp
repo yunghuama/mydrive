@@ -182,7 +182,7 @@ if(session.getAttribute("LoginBean")==null) {
   				</s:if>
   				<s:if test='@com.platform.constants.StringConstant@getOperate(\"sub3\")=="T"'>
   				<li class="menu-item">
-  				    <a href="javascript:void(0);" class="title">科目三</a>
+  				    <a href="javascript:void(0);" class="title">科目三(四)</a>
   				    <ul class="sub-nav">
   				    	<s:if test='@com.platform.constants.StringConstant@getOperate(\"sub3_exercise\")=="T"'>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_3_1">练习模式</a></li>
@@ -232,7 +232,7 @@ if(session.getAttribute("LoginBean")==null) {
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_3">学员成绩科目一</a></li>
   						</s:if>
   						<s:if test='@com.platform.constants.StringConstant@getOperate(\"school_score3\")=="T"'>
-  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_4">学员成绩科目三</a></li>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_4">学员成绩科目三(四)</a></li>
   						</s:if>
   					</ul>
   				</li>

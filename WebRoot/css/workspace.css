@@ -10,12 +10,14 @@
 }
 
 #sub1 {
-	width:500px;
+	width:800px;
+	margin:0px auto;
 	margin-bottom:20px;
 }
 
 #sub2 {
-	width:500px;
+	width:800px;
+	margin:0px auto;
 	margin-top:20px;
 }
 
@@ -32,7 +34,6 @@
 .title {
 	text-align:left;
 	font-weight:700;
-	margin-left:100px;
 }
 
 .contents {
@@ -46,15 +47,17 @@
 table{
 	width:100%;
 	border : none;
-	margin-left:80px;
+	border-collapse:collapse;
 }
 
 table td{
-	border : none;
+	border : 1px solid #bfbfbf;
+	border-collapse:collapse;
 	height:25px;
 }
 
 table th{
-	border : none;
+	border : 1px solid #bfbfbf;
+	border-collapse:collapse;
 }
 

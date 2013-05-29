@@ -67,24 +67,33 @@ form span {
 	color:#000000;
 }
 #content{
-	width:300px;
+	width:600px;
 	height:150px;
 	margin:0px auto;
 	margin-top:100px;
 }
 fieldset {
-	padding:20px;
-	border : 1px solid #7d7d7d;
+	padding:10px;
+	border : 1px solid #bfbfbf;
+	background-color:#ffffff;
 }
 #barDiv{
 	text-align:center;
+}
+
+.text {
+	width : 250px;
+}
+
+td {
+	height:40px;	
 }
 </style>
 </head>
 <body>
 	<div id="content">
 	<fieldset>
-	<legend>个人资料</legend>
+	<legend>续费</legend>
 	<form name="infoForm" id="infoForm" action="<%=path%>/exam/system/updateTime.d" class="form" method="post">
 	<s:hidden name="users.id"></s:hidden>
       <table class="form-table" cellspacing="0" cellpadding="0">

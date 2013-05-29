@@ -60,17 +60,24 @@ form span {
 	color:#000000;
 }
 #content{
-	width:300px;
+	width:600px;
 	height:200px;
 	margin:0px auto;
 	margin-top:100px;
 }
 fieldset {
-	padding:20px;
-	border : 1px solid #7d7d7d;
+	padding:20px 0;
+	border : 1px solid #bfbfbf;
+	background-color:#FFFFFF;
 }
 #barDiv{
 	text-align:center;
+}
+.text {
+	width:250px;
+}
+td {
+	height:40px;
 }
 </style>
 </head>
