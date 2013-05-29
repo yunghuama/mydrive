@@ -111,6 +111,7 @@ create table schoolcard (
     id char(32) not null primary key,
     number varchar(11) not null,
     password varchar(16) not null,
+    name varchar(50) ,
     createtime datetime
 );
 
@@ -247,24 +248,26 @@ insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392e
 
 insert into section(id,name,carType,sortIndex) values('4028813518f35feb0118f392eee50016','安全文明驾驶常识',4,0);
 
-update questions_car set category = '4028813518f35feb0118f392eee50045' where category = '道路交通安全法律、法规和规章';
-update questions_car set category = '4028813518f35feb0118f392eee50046' where category = '交通信号';
-update questions_car set category = '4028813518f35feb0118f392eee50047' where category = '安全行车、文明驾驶基础知识';
-update questions_car set category = '4028813518f35feb0118f392eee50048' where category = '机动车驾驶操作相关基础知识';
+update questions_car set category = '4028813518f35feb0118f392eee50001' where category = '道路交通安全法律、法规和规章';
+update questions_car set category = '4028813518f35feb0118f392eee50002' where category = '交通信号';
+update questions_car set category = '4028813518f35feb0118f392eee50003' where category = '安全行车、文明驾驶基础知识';
+update questions_car set category = '4028813518f35feb0118f392eee50004' where category = '机动车驾驶操作相关基础知识';
 
-update questions_bus set category = '4028813518f35feb0118f392eee50045' where category = '道路交通安全法律、法规和规章';
-update questions_bus set category = '4028813518f35feb0118f392eee50046' where category = '交通信号';
-update questions_bus set category = '4028813518f35feb0118f392eee50047' where category = '安全行车、文明驾驶基础知识';
-update questions_bus set category = '4028813518f35feb0118f392eee50048' where category = '机动车驾驶操作相关基础知识';
+update questions_bus set category = '4028813518f35feb0118f392eee50005' where category = '道路交通安全法律、法规和规章';
+update questions_bus set category = '4028813518f35feb0118f392eee50006' where category = '交通信号';
+update questions_bus set category = '4028813518f35feb0118f392eee50007' where category = '安全行车、文明驾驶基础知识';
+update questions_bus set category = '4028813518f35feb0118f392eee50008' where category = '机动车驾驶操作相关基础知识';
+update questions_bus set category = '4028813518f35feb0118f392eee50009' where category = '大型客车、城市公交车、中型客车';
 
-update questions_truck set category = '4028813518f35feb0118f392eee50045' where category = '道路交通安全法律、法规和规章';
-update questions_truck set category = '4028813518f35feb0118f392eee50046' where category = '交通信号';
-update questions_truck set category = '4028813518f35feb0118f392eee50047' where category = '安全行车、文明驾驶基础知识';
-update questions_truck set category = '4028813518f35feb0118f392eee50048' where category = '机动车驾驶操作相关基础知识';
+update questions_truck set category = '4028813518f35feb0118f392eee50010' where category = '道路交通安全法律、法规和规章';
+update questions_truck set category = '4028813518f35feb0118f392eee50011' where category = '交通信号';
+update questions_truck set category = '4028813518f35feb0118f392eee50012' where category = '安全行车、文明驾驶基础知识';
+update questions_truck set category = '4028813518f35feb0118f392eee50013' where category = '机动车驾驶操作相关基础知识';
+update questions_truck set category = '4028813518f35feb0118f392eee50014' where category = '牵引车、大型货车';
 
-update questions_motorcycle set category = '4028813518f35feb0118f392eee50056' where category = '摩托车';
+update questions_motorcycle set category = '4028813518f35feb0118f392eee50015' where category = '摩托车';
 
-update questions3 set category = '4028813518f35feb0118f392eee50057' where category = '安全文明驾驶常识';
+update questions3 set category = '4028813518f35feb0118f392eee50016' where category = '安全文明驾驶常识';
 
 
 

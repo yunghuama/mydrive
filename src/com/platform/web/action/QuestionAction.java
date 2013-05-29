@@ -305,10 +305,15 @@ public class QuestionAction extends GenericAction {
 	
 	public void importExcel(){
 		try{
-
+			
 			System.out.println("导入");
 			String path = "/home/cheney/driver/db1/q3.xlsx";
-			importXlsx(path);
+			
+			if(path.endsWith("xls")){
+				importXls(path);
+			}else if(path.endsWith("xlsx")){
+				importXlsx(path);
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -356,6 +361,7 @@ public class QuestionAction extends GenericAction {
 			}
 	}
 	
+	//Excel 2007
 	public void importXlsx(String path){
 		try{
 			File f1 = new File(path);

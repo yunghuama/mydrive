@@ -21,6 +21,7 @@ $(document).ready(function(){
 		$(this).addClass("click");
 		var type  = $(this).attr("id");
 		$("input[name='type']").val(type);
+		$("#currPage").val(1);
 		$("form").submit();
 	});
 	$("#<s:property value='type'/>").addClass("click");

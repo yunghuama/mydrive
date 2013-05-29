@@ -28,7 +28,7 @@ body{
 
 #sectionContent table {
 	width:600px;
-	border:1px solid #7d7d7d;
+	border:1px solid #bfbfbf;
 	margin:0px auto;
 	border-collapse:collapse;
 }
@@ -39,7 +39,7 @@ body{
 }
 #sectionContent table td,th {
 	border-collapse:collapse;
-	border : 1px solid #7d7d7d
+	border : 1px solid #bfbfbf
 }
 
 .mouseover {
@@ -56,7 +56,7 @@ body{
 	padding-top:10px;
 	padding-bottom:10px;
 	position:relative;
-	border-bottom : 1px solid #7d7d7d;
+	border-bottom : 1px solid #bfbfbf;
 }
 
 .question span {

@@ -84,7 +84,7 @@
 }
 #infoContent{
 	width:500px;
-	height:300px;
+	height:340px;
 	margin:0px auto;
 	margin-top:70px;
 	position:relative;
@@ -96,7 +96,7 @@ fieldset {
 }
 #infoForm {
 	width:500px;
-	height:250px;
+	height:290px;
 }
 #barDiv{
 	text-align:center;
@@ -120,6 +120,10 @@ td {
 	<form name="infoForm" id="infoForm" action="<%=path%>/exam/system/updateUsers.d" class="form" method="post">
 	<s:hidden name="users.id"></s:hidden>
       <table class="form-table" cellspacing="0" cellpadding="0">
+       <tr>
+          <td class="form-left">所属驾校</td>
+          <td class="form-right"><s:property value="users.schoolId"/> </td>
+        </tr>
         <tr>
           <td class="form-left"><span class="form-required">*</span>真实姓名</td>
           <td class="form-right"><s:textfield id="name" name="users.name" theme="simple" cssClass="text"/> </td>

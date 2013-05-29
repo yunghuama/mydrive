@@ -223,6 +223,7 @@ public class UsersDAO extends GenericDAO{
 				user.setCartype(rs.getString("cartype"));
 				user.setIdentity(rs.getString("identity"));
 				user.setPhonenumber(rs.getString("phonenumber"));
+				user.setSchoolId(rs.getString("sname"));
 				return user;
 			}
 		});

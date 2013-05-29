@@ -87,7 +87,7 @@ public final class SQLConstant {
 	public static final String STUDENT_LOGIN = "select id,name,remindtimes,reminddays,begindate,identity,cartype,schoolid from studentcard where number = ? and password = ?";
 	public static final String STUDENT_UPDATEINFO = "update studentcard set name=?,identity=?,age=?,sex=?,cartype=?,phonenumber=? where id=?";
 	public static final String STUDENT_COUNTDOWN = "update studentcard set remindtimes = remindtimes-1 where id = ?";
-	public static final String STUDENT_GET_BY_ID = "select id,name,identity,age,sex,cartype,phonenumber from studentcard where id = ?";
+	public static final String STUDENT_GET_BY_ID = "select stu.id,stu.name,identity,age,sex,cartype,phonenumber,sch.name as sname from studentcard stu left join schoolcard sch on stu.schoolid = sch.id  where stu.id = ?";
 	public static final String STUDENT_UPDATE_PASS = "update studentcard set password = ? where id = ? and password = ?";
 	public static final String STUDENT_UPDATE_TIME = "update studentcard set remindtimes = ?,begindate = ?,reminddays = ? where id = ?";
 	public static final String STUDENT_TIME_GET = "select remindtimes,begindate,reminddays from studentcard where number = ? and password = ?";
