@@ -13,9 +13,6 @@
 <script type="text/javascript" src="<%=path%>/js/ckplayer/ckplayer.js" charset="utf-8"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$(".answer a").bind("click",function(){
-		$(this).siblings("span").show();		
-	});
 	//弹出图片查看框
 	$(".showImg").click(function(){
 		var src = $(this).attr("src");
@@ -25,6 +22,18 @@ $(document).ready(function(){
 	$(".showImgA").click(function(){
 		var src = $(this).attr("name");
 		new ImageView({"renderTo":$("body"),"src":src});
+	});
+	//显示答案
+	$(".showQ").click(function(){
+		var attr1 = "<%=path%>/image/showquestion.png";
+		var attr2 = "<%=path%>/image/hidequestion.png";
+		var attr = $(this).attr("src");
+		if(attr==attr1){
+			$(this).attr("src",attr2);
+		}else if(attr==attr2){
+			$(this).attr("src",attr1);
+		}
+		$(this).parent("a").next("span").toggle();
 	});
 	//构造分页
 	var maxPage = parseInt($("#maxPage").val());
@@ -77,7 +86,7 @@ $(document).ready(function(){
 					<div class="answerb"><span><s:property value="#question.answer_b"/> </span></div>
 					<div class="answerc"><span><s:property value="#question.answer_c"/> </span></div>
 					<div class="answerd"><span><s:property value="#question.answer_d"/> </span></div>
-					<div class="answer"><a href="javascript:void(0);"><img alt="" src="<%=path%>/image/showquestion.png"/></a><span>正确答案：<s:property value="#question.answer"/> </span>
+					<div class="answer"><a href="javascript:void(0);"><img alt="" src="<%=path%>/image/showquestion.png" class="showQ"/></a><span>正确答案：<s:property value="#question.answer"/> </span>
 					<s:if test='#question.tips!=""&&#question.tips!=null'>
 					<span>提示：<s:property value="#question.tips"/> </span>
 					</s:if>

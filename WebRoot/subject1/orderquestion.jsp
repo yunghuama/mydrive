@@ -17,7 +17,7 @@ $(document).ready(function(){
 		var src = $(this).attr("src");
 		new ImageView({"renderTo":$("body"),"src":src});
 	});
-	
+	//显示大图
 	$(".showImgA").click(function(){
 		var src = $(this).attr("name");
 		new ImageView({"renderTo":$("body"),"src":src});
