@@ -31,5 +31,28 @@
     <action name="updateUsers" class="systemAction" method="updateUsers">
       <result>/share/blank.jsp</result>
     </action>
+    
+    <action name="listMessageStu" class="systemAction" method="listMessageStu">
+      <result>/message/msg_list_stu.jsp</result>
+    </action>
+    <action name="listMessageSch" class="systemAction" method="listMessageSch">
+      <result>/message/msg_list.jsp</result>
+    </action>
+    
+     <action name="getMessageById" class="systemAction" method="getMessageById">
+      <result>/message/msg_view.jsp</result>
+    </action>
+    
+    <action name="saveMessage" class="systemAction" method="saveMessage">
+      <result>/exam/system/listMessageStu.d</result>
+    </action>
+    
+    <action name="delMessageStu" class="systemAction" method="delMessageStu">
+      <result>/exam/system/listMessageStu.d</result>
+    </action>
+    
+    <action name="delMessageSch" class="systemAction" method="delMessageSch">
+      <result>/exam/system/listMessageSch.d</result>
+    </action>
   </package>
 </struts>

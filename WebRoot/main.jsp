@@ -122,6 +122,12 @@ if(session.getAttribute("LoginBean")==null) {
 			$("a[name='id_5_4']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/exam/system/listScore3.d");
 			});
+			$("a[name='id_5_5']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/system/listMessageStu.d");
+			});
+			$("a[name='id_5_6']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/system/listMessageSch.d");
+			});
 			
 			//题库设置
 			$("a[name='id_6_1']").bind("click",function(){
@@ -230,7 +236,7 @@ if(session.getAttribute("LoginBean")==null) {
   				<li class="menu-item">
   					<a href="javascript:void(0);" class="title">驾校公告</a>
   					 <ul class="sub-nav">
-  						 <s:if test='@com.platform.constants.StringConstant@getOperate(\"school_announce\")=="T"'>
+  						<s:if test='@com.platform.constants.StringConstant@getOperate(\"school_announce\")=="T"'>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_1">驾校公告</a></li>
   						</s:if>
   						<s:if test='@com.platform.constants.StringConstant@getOperate(\"school_announce_admin\")=="T"'>
@@ -241,6 +247,12 @@ if(session.getAttribute("LoginBean")==null) {
   						</s:if>
   						<s:if test='@com.platform.constants.StringConstant@getOperate(\"school_score3\")=="T"'>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_4">学员成绩科目三(四)</a></li>
+  						</s:if>
+  						<s:if test='@com.platform.constants.StringConstant@getOperate(\"student_message\")=="T"'>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_5">意见反馈</a></li>
+  						</s:if>
+  						<s:if test='@com.platform.constants.StringConstant@getOperate(\"school_message\")=="T"'>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_6">意见反馈</a></li>
   						</s:if>
   					</ul>
   				</li>

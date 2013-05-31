@@ -194,6 +194,16 @@ create table announcement (
     createtime datetime
 );
 
+drop table if exists message;
+create table message (
+    id char(32) not null primary key,
+    title varchar(100),
+    content varchar(8000) not null,
+    schoolcard char(32) not null,
+    studentcard char(32) not null,
+    createtime datetime
+);
+
 drop table if exists advertisement;
 create table advertisement (
     id char(32) not null primary key,

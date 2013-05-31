@@ -196,4 +196,16 @@ public final class SQLConstant {
 	public static final String ADVER_GET = "select * from advertisement where page = ? and position = ?";
 	public static final String ADVER_COUNT_ROW = "select count(id) from advertisement";
 	
+	
+	/**
+	 * 用户反馈
+	 */
+	public static final String MESSAGE_SAVE = "insert into message(id,title,content,schoolcard,studentcard,createtime) values(?,?,?,?,?,?)";
+	public static final String MESSAGE_QUERY_BY_STU = "select id,title,createtime from message where studentcard = ?";
+	public static final String MESSAGE_QUERY_BY_SCH = "select m.id,title,m.createtime,s.number as sname from message m left join studentcard s on m.studentcard = s.id where m.schoolcard = ?";
+	public static final String MESSAGE_DELETE = "delete from message where id = ?";
+	public static final String MESSAGE_GET = "select m.id,title,m.createtime,s.number,m.content,s.number as sname from message left join studentcard s on m.studentcard = s.id where s.id  = ?";
+	public static final String MESSAGE_QUERY_BY_STU_ROWCOUNT = "select count(id) from message where studentcard = ?";
+	public static final String MESSAGE_QUERY_BY_SCH_ROWCOUNT = "select count(id) from message where schoolcard = ?";
+	
 }

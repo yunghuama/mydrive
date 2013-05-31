@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.platform.constants.SQLConstant;
 import com.platform.dao.SystemDAO;
 import com.platform.domain.Announcement;
+import com.platform.domain.Message;
 import com.platform.vo.Page;
 
 @Service
@@ -69,4 +70,30 @@ public class SystemService implements IService {
 	   return systemDAO.getAnnouncementById(id);
    }
    
+   
+   /**
+    * 保存意见
+    */
+   public int saveMessage(Message message){
+	   return systemDAO.saveMessage(message);
+   }
+   
+   /**
+    * 
+    */
+   public Page<Message> listMessageByStu(Page page,String studentId){
+	   return systemDAO.listMessageByStu(page, studentId);
+   }
+   
+   public Page<Message> listMessageBySch(Page page,String schoolId){
+	   return systemDAO.listMessageBySch(page, schoolId);
+   }
+   
+   public int deleteMessage(String id){
+	   return systemDAO.deleteByProperty(SQLConstant.MESSAGE_DELETE, id);
+   }
+   
+   public Message getMessage(String id){
+	   return systemDAO.getMessage(id);
+   }
 }

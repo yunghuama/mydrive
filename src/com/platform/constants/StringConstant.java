@@ -72,6 +72,10 @@ public final class StringConstant {
 	//广告管理
 	public static final String NAV_ADS = "ads";
 	
+	//意见反馈
+	public static final String MSG_STUDENT = "student_message";
+	public static final String MSG_SCHOOL = "school_message";
+	
 	public static Map<String,Integer> questionType = new Hashtable<String,Integer>();
 	public static Map<String,String> operate = new HashMap<String,String>();
 	public static Map<String,String> loginInfo = new HashMap<String,String>();
@@ -120,6 +124,7 @@ public final class StringConstant {
 		operate.put(ROLE_STUDENT+NAV_USER_MONEY, "T");
 		operate.put(ROLE_STUDENT+NAV_SCHOOL, "T");
 		operate.put(ROLE_STUDENT+NAV_SCHOOL_ANNOUNCE, "T");
+		operate.put(ROLE_STUDENT+MSG_STUDENT,"T");
 		
 		//设置驾校菜单
 		operate.put(ROLE_SCHOOL+NAV_INDEX, "T");
@@ -129,6 +134,7 @@ public final class StringConstant {
 		operate.put(ROLE_SCHOOL+NAV_SCHOOL_ANNOUNCE_ADMIN, "T");
 		operate.put(ROLE_SCHOOL+NAV_SCHOOL_SCORE1, "T");
 		operate.put(ROLE_SCHOOL+NAV_SCHOOL_SCORE3, "T");
+		operate.put(ROLE_SCHOOL+MSG_SCHOOL,"T");
 		
 		//设置管理员
 		operate.put(ROLE_ADMIN+NAV_INDEX, "T");

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.platform.domain.Announcement;
+import com.platform.domain.Message;
 import com.platform.domain.Users;
 import com.platform.service.SystemService;
 import com.platform.service.UsersService;
@@ -27,6 +28,7 @@ public class SystemAction extends GenericAction {
 	private String annId;
 	private Users users;
 	
+	private Message msg;
 	/**
 	 * 保存公告
 	 * @return
@@ -158,6 +160,42 @@ public class SystemAction extends GenericAction {
 		return SUCCESS;
 	}
 
+	
+	public String saveMessage(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		msg.setSchoolcard(loginBean.getUser().getId());
+		msg.setSchoolcard(loginBean.getUser().getSchoolId());
+		systemService.saveMessage(msg);
+		return SUCCESS;
+	}
+	
+	public String listMessageStu(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		page = systemService.listMessageByStu(page, loginBean.getUser().getId());
+		return SUCCESS;
+	}
+	
+	public String listMessageSch(){
+		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+		page = systemService.listMessageByStu(page, loginBean.getUser().getId());
+		return SUCCESS;
+	}
+	
+	public String getMessageById(){
+		msg = systemService.getMessage(msg.getId());
+		return SUCCESS;
+	}
+	
+	public String delMessageStu(){
+		systemService.deleteMessage(msg.getId());
+		return SUCCESS;
+	}
+	
+	public String delMessageSch(){
+		systemService.deleteMessage(msg.getId());
+		return SUCCESS;
+	}
+	
 	public Announcement getAnnouncement() {
 		return announcement;
 	}
@@ -196,5 +234,15 @@ public class SystemAction extends GenericAction {
 	public void setUsers(Users users) {
 		this.users = users;
 	}
-	
+
+
+	public Message getMsg() {
+		return msg;
+	}
+
+
+	public void setMsg(Message msg) {
+		this.msg = msg;
+	}
+
 }

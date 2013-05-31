@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.platform.constants.SQLConstant;
 import com.platform.domain.Announcement;
+import com.platform.domain.Message;
 import com.platform.util.PageHelper;
 import com.platform.util.UUIDGenerator;
 import com.platform.vo.Page;
@@ -151,6 +152,96 @@ public class SystemDAO extends GenericDAO{
 				vo.setId(rs.getString("id"));
 				vo.setContent(rs.getString("content"));
 				vo.setTitle(rs.getString("title"));
+				vo.setCreateTime(rs.getDate("createtime") +" "+rs.getTime("createtime"));
+				return vo;
+			}
+		});
+		
+		if(list!=null&&list.size()>0){
+			return list.get(0);
+		}
+		return null;
+	}
+	
+	/***
+	 * 意见反馈
+	 */
+	public int saveMessage(Message message){
+		return jdbcTemplate.update(SQLConstant.MESSAGE_SAVE, new Object[]{
+				UUIDGenerator.generate(),
+				message.getTitle(),
+				message.getContent(),
+				message.getSchoolcard(),
+				message.getStudentCard(),
+				new Date()
+		});
+	}
+	
+	/**
+	 * 根据学员查询
+	 * @param page
+	 * @param studentId
+	 * @return
+	 */
+	public Page<Message> listMessageByStu(Page page,String studentId){
+		List<Message> list =  jdbcTemplate.query(SQLConstant.MESSAGE_QUERY_BY_STU,new Object[]{studentId,(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<Message>(){
+			@Override
+			public Message mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				Message vo = new Message();
+				vo.setId(rs.getString("id"));
+				vo.setContent(rs.getString("content"));
+				vo.setTitle(rs.getString("title"));
+				vo.setCreateTime(rs.getDate("createtime") +" "+rs.getTime("createtime"));
+				return vo;
+			}
+		});
+		int rowCount = queryForInt(SQLConstant.MESSAGE_QUERY_BY_STU_ROWCOUNT,studentId);
+		page.setRowCount(rowCount);
+		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
+		page.setList(list);
+		return page;
+	}
+	
+	
+	/**
+	 * 根据驾校查询
+	 * @param page
+	 * @param studentId
+	 * @return
+	 */
+	public Page<Message> listMessageBySch(Page page,String schoolId){
+		List<Message> list =  jdbcTemplate.query(SQLConstant.MESSAGE_QUERY_BY_SCH,new Object[]{schoolId,(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<Message>(){
+			@Override
+			public Message mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				Message vo = new Message();
+				vo.setId(rs.getString("id"));
+				vo.setContent(rs.getString("content"));
+				vo.setTitle(rs.getString("title"));
+				vo.setStudentCard(rs.getString("sname"));
+				vo.setCreateTime(rs.getDate("createtime") +" "+rs.getTime("createtime"));
+				return vo;
+			}
+		});
+		int rowCount = queryForInt(SQLConstant.MESSAGE_QUERY_BY_SCH_ROWCOUNT,schoolId);
+		page.setRowCount(rowCount);
+		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
+		page.setList(list);
+		return page;
+	}
+	
+	
+	public Message getMessage(String id){
+		List<Message> list = jdbcTemplate.query(SQLConstant.MESSAGE_GET,new Object[]{id},new RowMapper<Message>(){
+			@Override
+			public Message mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				Message vo = new Message();
+				vo.setId(rs.getString("id"));
+				vo.setContent(rs.getString("content"));
+				vo.setTitle(rs.getString("title"));
+				vo.setStudentCard(rs.getString("sname"));
 				vo.setCreateTime(rs.getDate("createtime") +" "+rs.getTime("createtime"));
 				return vo;
 			}
