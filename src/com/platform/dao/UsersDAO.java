@@ -80,7 +80,7 @@ public class UsersDAO extends GenericDAO{
 				Users user = new Users();
 				user.setId(rs.getString("id"));
 				user.SetRole(StringConstant.ROLE_SCHOOL);
-				user.setName(rs.getString("number"));
+				user.setName(rs.getString("name"));
 				return user;
 			}
 		});

@@ -83,7 +83,7 @@
 	padding-top:15px;
 }
 #infoContent{
-	width:500px;
+	width:550px;
 	height:340px;
 	margin:0px auto;
 	margin-top:70px;
@@ -106,7 +106,7 @@ fieldset {
 	width:250px;
 }
 .select {
-	width :257	px;
+	width :257px;
 }
 td {
 	height:40px;

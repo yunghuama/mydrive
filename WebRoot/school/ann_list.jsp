@@ -78,7 +78,7 @@ $(document).ready(function(){
 </head>
 <body style="overflow:auto">
 	 <div id="main">
-			<div id="title"><span>驾校公告管理</span></div>
+			<div id="title"><span><s:property value="#session['LoginBean'].user.name"/>公告管理</span></div>
 			<div id="sectionContent">
 			<div id="addDiv">
 			<a href="<%=path%>/school/ann_save.jsp"><img alt="" src="<%=path%>/image/add.png"> </a>
@@ -111,6 +111,5 @@ $(document).ready(function(){
 			</form>
 			</div>
 	 </div>
-	 
 </body>
 </html>

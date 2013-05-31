@@ -9,7 +9,7 @@ if(session.getAttribute("LoginBean")==null) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html >
   <head>
-    <title></title>
+    <title>驾照考试模拟仿真</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link href="<%=path%>/css/core.css" rel="stylesheet" type="text/css"/>
     <link href="<%=path%>/css/main.css" rel="stylesheet" type="text/css"/>
@@ -32,6 +32,13 @@ if(session.getAttribute("LoginBean")==null) {
 		top:200px;
 		width:100px;
 		height:200px;
+	}
+	#logo {
+		width:100px;
+		height:30px;
+		position:absolute;
+		left:20px;
+		top:8px
 	}
 	</style>
 	<script type="text/javascript">
@@ -141,6 +148,7 @@ if(session.getAttribute("LoginBean")==null) {
   </head>
   <body>
   <div id="head">
+  		<img src="<%=path%>/image/logo2.png" alt="" id="logo"/>
   		<div id="nav-div">
   			<ul id="nav" class="nav">
   				<li class="menu-item">

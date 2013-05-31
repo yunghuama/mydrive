@@ -83,6 +83,7 @@ body{
 .question .answer {
 	margin-top:10px;
 	color:red;
+	margin-left:10px;
 }
 .answer span{
 	display:none;
@@ -97,7 +98,8 @@ body{
 }
 
 .mark {
-	margin-top:0px;
+	margin-top:5px;
+	margin-left:10px;
 }
 
 .mark a {
@@ -112,6 +114,6 @@ body{
 	text-align:center;
 }
 .richmedia img {
-	max-width:100px;
-	max-height:100px;
+	max-width:300px;
+	max-height:150px;
 }

@@ -82,28 +82,34 @@
 	text-align:center;
 	padding-top:15px;
 }
-
-span {
-	font-size:20px;
-	color:#FFFFFF;
-	height:20px;
-	line-height:20px;
-}
-
-form span {
-	color:#000000;
-}
-#content{
-	width:300px;
-	height:300px;
+#infoContent{
+	width:550px;
+	height:340px;
 	margin:0px auto;
-	margin-top:100px;
+	margin-top:70px;
+	position:relative;
 }
 fieldset {
-	padding:20px;
+	border : 1px solid #bfbfbf;
+	background-color:#FFFFFF;
+	padding:10px 0;
+}
+#infoForm {
+	width:500px;
+	height:290px;
 }
 #barDiv{
 	text-align:center;
+}
+
+.text {
+	width:250px;
+}
+.select {
+	width :257px;
+}
+td {
+	height:40px;
 }
 </style>
 </head>
@@ -113,7 +119,7 @@ fieldset {
 		</div>
 		
 		
-	<div id="content">
+	<div id="infoContent">
 	<fieldset>
 	<legend>个人资料</legend>
 	<form name="infoForm" id="infoForm" action="<%=path%>/system/users/firstInit.d" class="form" method="post">
@@ -132,9 +138,9 @@ fieldset {
           <td class="form-right"><input type="text" id="age" name="users.age" class="text"/></td>
         </tr>
         <tr>
-          <td class="form-left"></span>性别</td>
+          <td class="form-left">性别</td>
           <td class="form-right">
-          		<select  name="users.sex">
+          		<select  name="users.sex" class="select">
           			<option value="0">男</option>
 					<option value="1">女</option>
           		</select>
@@ -142,7 +148,7 @@ fieldset {
         </tr>
         <tr>
           <td class="form-left"><span class="form-required">*</span>车型</td>
-          <td class="form-right"><select name="users.cartype">
+          <td class="form-right"><select name="users.cartype" class="select">
 								<option value="c1">C1</option>
 								<option value="c2">C2</option>
 								<option value="c3">C3</option>

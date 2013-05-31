@@ -59,5 +59,6 @@ table td{
 table th{
 	border : 1px solid #bfbfbf;
 	border-collapse:collapse;
+	height:25px;
 }
 

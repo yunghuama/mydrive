@@ -93,7 +93,7 @@
 			    	 var array = [];
 			    	for(var i=0;i<msg.length;i++){
 			    		array.push('<tr align="center">');
-				    	 array.push("<td>"+i+"</td>");
+				    	 array.push("<td>"+(i+1)+"</td>");
 				    	 array.push("<td>"+msg[i].score+"</td>");
 				    	 array.push("<td>"+msg[i].time+"</td>");
 				    	 array.push("<td>"+msg[i].createtime+"</td>");

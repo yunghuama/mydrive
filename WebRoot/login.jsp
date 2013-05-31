@@ -97,6 +97,11 @@ String path = request.getContextPath();
 		width:100px;
 		height:200px;
 	}
+	a {
+	blr:expression(this.onfocus=this.blur());
+	outline:none;
+	text-decoration: none;
+	}
     </style>
   </head>
 

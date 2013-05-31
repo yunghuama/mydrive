@@ -34,8 +34,8 @@
     </action>
      <action name="workspace" class="loginAction" method="workspace">
       <result name="student">/system/examlist.jsp</result>
-      <result name="admin">/system/adminworkspace.jsp</result>
-      <result name="school">/system/schoolworkspace.jsp</result>
+      <result name="admin" type="redirect">/system/adver/list.d</result>
+      <result name="school" type="redirect">/exam/system/listAnnouncement.d</result>
     </action>
   </package>
   

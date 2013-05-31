@@ -41,39 +41,39 @@ embed {
 					</div>
 				</div>
 				<div class="videoDiv">
-					<div class="title"><span>1号车侧方停车</span></div>
-					<div class="video">
-					<a href="<%=path%>/subject2/playvideo.jsp?name=1.flv" target="_blank"><img alt="" src="<%=path%>/image/v2.png"></a>
-					</div>
-				</div>
-				<div class="videoDiv">
-					<div class="title"><span>1号车倒库</span></div>
+					<div class="title"><span>倒库</span></div>
 					<div class="video">
 					<a href="<%=path%>/subject2/playvideo.jsp?name=2.flv" target="_blank"><img alt="" src="<%=path%>/image/v3.png"></a>
 					</div>
 				</div>
 				<div class="videoDiv">
-					<div class="title"><span>1号车模拟考试</span></div>
-					<div class="video">
-					<a href="<%=path%>/subject2/playvideo.jsp?name=3.flv" target="_blank"><img alt="" src="<%=path%>/image/v4.png"></a>
-					</div>
-				</div>
-				<div class="videoDiv">
-					<div class="title"><span>1号车坡道起步	</span></div>
+					<div class="title"><span>坡道起步	</span></div>
 					<div class="video">
 					<a href="<%=path%>/subject2/playvideo.jsp?name=4.flv" target="_blank"><img alt="" src="<%=path%>/image/v5.png"></a>
 					</div>
 				</div>
 				<div class="videoDiv">
-					<div class="title"><span>1号车曲线行驶</span></div>
+					<div class="title"><span>直角转弯</span></div>
+					<div class="video">
+					<a href="<%=path%>/subject2/playvideo.jsp?name=6.flv" target="_blank"><img alt="" src="<%=path%>/image/v7.png"></a>
+					</div>
+				</div>
+				<div class="videoDiv">
+					<div class="title"><span>侧方停车</span></div>
+					<div class="video">
+					<a href="<%=path%>/subject2/playvideo.jsp?name=1.flv" target="_blank"><img alt="" src="<%=path%>/image/v2.png"></a>
+					</div>
+				</div>
+				<div class="videoDiv">
+					<div class="title"><span>曲线行驶</span></div>
 					<div class="video">
 					<a href="<%=path%>/subject2/playvideo.jsp?name=5.flv" target="_blank"><img alt="" src="<%=path%>/image/v6.png"></a>
 					</div>
 				</div>
 				<div class="videoDiv">
-					<div class="title"><span>1号车直角转弯</span></div>
+					<div class="title"><span>模拟考试</span></div>
 					<div class="video">
-					<a href="<%=path%>/subject2/playvideo.jsp?name=6.flv" target="_blank"><img alt="" src="<%=path%>/image/v7.png"></a>
+					<a href="<%=path%>/subject2/playvideo.jsp?name=3.flv" target="_blank"><img alt="" src="<%=path%>/image/v4.png"></a>
 					</div>
 				</div>
 			</div>

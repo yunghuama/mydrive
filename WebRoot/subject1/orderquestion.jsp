@@ -9,11 +9,32 @@
 <link href="<%=path%>/css/section.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="<%=path%>/js/core.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
+<script type="text/javascript" src="<%=path%>/js/picview.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$(".answer a").bind("click",function(){
-		$(this).siblings("span").show();		
+	//弹出图片查看框
+	$(".showImg").click(function(){
+		var src = $(this).attr("src");
+		new ImageView({"renderTo":$("body"),"src":src});
 	});
+	
+	$(".showImgA").click(function(){
+		var src = $(this).attr("name");
+		new ImageView({"renderTo":$("body"),"src":src});
+	});
+	//显示答案
+	$(".showQ").click(function(){
+		var attr1 = "<%=path%>/image/showquestion.png";
+		var attr2 = "<%=path%>/image/hidequestion.png";
+		var attr = $(this).attr("src");
+		if(attr==attr1){
+			$(this).attr("src",attr2);
+		}else if(attr==attr2){
+			$(this).attr("src",attr1);
+		}
+		$(this).parent("a").next("span").toggle();
+	});
+	
 	//构造分页
 	var maxPage = parseInt($("#maxPage").val());
 	var currentPage = parseInt($("#currPage").val());
@@ -65,7 +86,7 @@ $(document).ready(function(){
 					<div class="answerb"><span><s:property value="#question.answer_b"/> </span></div>
 					<div class="answerc"><span><s:property value="#question.answer_c"/> </span></div>
 					<div class="answerd"><span><s:property value="#question.answer_d"/> </span></div>
-					<div class="answer"><a href="javascript:void(0);"><img alt="" src="<%=path%>/image/showquestion.png"/></a><span>正确答案：<s:property value="#question.answer"/> </span>
+					<div class="answer"><a href="javascript:void(0);"><img alt="" src="<%=path%>/image/showquestion.png" class="showQ"/></a><span>正确答案：<s:property value="#question.answer"/> </span>
 					<s:if test='#question.tips!=""&&#question.tips!=null'>
 					<span>提示：<s:property value="#question.tips"/> </span>
 					</s:if>
@@ -74,8 +95,8 @@ $(document).ready(function(){
 				 </div>
 				<div class="richmedia">
 					<s:if test='#question.image!=""&&#question.image!=null'>
-						<img src='/image/sub1/<s:property value="type"/>/<s:property value="#question.image"/>'/><br/><br/>
-						<a href='/image/sub1/<s:property value="type"/>/<s:property value="#question.image"/>' target="_blank">查看大图</a>
+						<img src='/image/sub1/<s:property value="type"/>/<s:property value="#question.image"/>' class="showImg"/><br/><br/>
+						<a name='/image/sub1/<s:property value="type"/>/<s:property value="#question.image"/>' href="javascript:void(0);" class="showImgA">查看大图</a>
 					</s:if>
 				</div>
 			</div>

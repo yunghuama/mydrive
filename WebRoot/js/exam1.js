@@ -238,8 +238,7 @@ Exam.prototype = {
 		}
 		//如果有视频则显示视频
 		if(question.video!=""&&question.video!=null){
-			alert(question.video);
-			var video = '<embed src="'+projectName+'/js/ckplayer/ckplayer.swf" flashvars="f='+"/"+question.path+"/"+question.video.toLowerCase()+'&p=0" quality="high" width="700" height="300" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>';
+			var video = '<embed src="'+projectName+'/js/ckplayer/ckplayer.swf" flashvars="f='+"/image/"+question.path+"/"+question.video.toLowerCase()+'&p=0" quality="high" width="700" height="300" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>';
 			this.richMediaRenderTo.append(video);
 		}
 		

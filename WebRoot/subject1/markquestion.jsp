@@ -9,10 +9,21 @@
 <link href="<%=path%>/css/section.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="<%=path%>/js/core.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
+<script type="text/javascript" src="<%=path%>/js/picview.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$(".answer a").bind("click",function(){
 		$(this).siblings("span").show();		
+	});
+	//弹出图片查看框
+	$(".showImg").click(function(){
+		var src = $(this).attr("src");
+		new ImageView({"renderTo":$("body"),"src":src});
+	});
+	
+	$(".showImgA").click(function(){
+		var src = $(this).attr("name");
+		new ImageView({"renderTo":$("body"),"src":src});
 	});
 	//构造分页
 	var maxPage = parseInt($("#maxPage").val());
@@ -68,8 +79,8 @@ $(document).ready(function(){
 				 </div>
 				<div class="richmedia">
 					<s:if test='#question.image!=""&&#question.image!=null'>
-						<img src='/image/sub1/<s:property value="type"/>/<s:property value="#question.image"/>'/><br/><br/>
-						<a href='/image/sub1/<s:property value="type"/>/<s:property value="#question.image"/>' target="_blank">查看大图</a>
+						<img src='/image/sub1/<s:property value="type"/>/<s:property value="#question.image"/>' class="showImg"/><br/><br/>
+						<a name='/image/sub1/<s:property value="type"/>/<s:property value="#question.image"/>' href="javascript:void(0);" class="showImgA">查看大图</a>
 					</s:if>
 				</div>
 			</div>
