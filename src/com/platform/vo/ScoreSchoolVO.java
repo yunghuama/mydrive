@@ -9,9 +9,16 @@ public class ScoreSchoolVO {
 	private int passcount;
 	private String name;
 	private int rate;
+	private String stuId;
+
 	
 	
-	
+	public String getStuId() {
+		return stuId;
+	}
+	public void setStuId(String stuId) {
+		this.stuId = stuId;
+	}
 	public int getRate() {
 		double d = passcount*100/scorecounts;
 		System.out.println(d);

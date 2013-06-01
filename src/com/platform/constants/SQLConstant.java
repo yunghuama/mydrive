@@ -112,16 +112,23 @@ public final class SQLConstant {
 	public static final String EXAMSCORE_SAVE = "insert into examscore(id,studentId,score,time,cartype,createtime) values(?,?,?,?,?,?)";
 	public static final String STATISTISC_SCORE = "select max(score) as maxscore, min(score) as minscore, count(id) as scorecounts ,avg(score) as avgscore,sum(score>=90) as passcount from examscore where studentid = ? and cartype = ?";
 	public static final String EXAMSCORE_QUERY = "select score,time,createtime from examscore where studentid = ? and cartype = ? order by createtime desc limit 0,5";
-	public static final String STATISTISC_BY_SCHOOL_SCORE = "select max(exam.score) as maxscore, min(exam.score) as minscore, count(exam.id) as scorecounts ,avg(exam.score) as avgscore,sum(exam.score>=90) as passcount,stu.name  from examscore exam , studentcard stu where exam.studentid = stu.id and stu.schoolid = ? group by exam.studentid  limit ?,?";
+	public static final String STATISTISC_BY_SCHOOL_SCORE = "select max(exam.score) as maxscore, min(exam.score) as minscore, count(exam.id) as scorecounts ,avg(exam.score) as avgscore,sum(exam.score>=90) as passcount,stu.name,stu.id as stuId  from examscore exam , studentcard stu where exam.studentid = stu.id and stu.schoolid = ? and stu.name like ? group by exam.studentid  limit ?,?";
 	public static final String STATISTISC_BY_SCHOOL_ROWCOUNT = "select count(exam.id) from examscore exam , studentcard stu where exam.studentid = stu.id and stu.schoolid = ?";
+	public static final String EXAMSCORE_QUERY_ALL = "select score,time,createtime from examscore where studentid  order by createtime desc";
+	public static final String STATISTISC_BY_SCHOOL_STU_SCORE = "select max(exam.score) as maxscore, min(exam.score) as minscore, count(exam.id) as scorecounts ,avg(exam.score) as avgscore,sum(exam.score>=90) as passcount,stu.name,stu.id as stuId  from examscore exam , studentcard stu where stu.id=?  and exam.studentid = stu.id  group by exam.studentid";
+
+	
 	/**
 	 * 考试成绩 科目三
 	 */
 	public static final String EXAMSCORE3_SAVE = "insert into examscore3(id,studentId,score,time,createtime) values(?,?,?,?,?)";
 	public static final String STATISTISC_SCORE3 = "select max(score) as maxscore, min(score) as minscore, count(id) as scorecounts ,avg(score) as avgscore,sum(score>=90) as passcount from examscore3 where studentid = ?";
 	public static final String EXAMSCORE3_QUERY = "select score,time,createtime from examscore3 where studentid = ? order by createtime desc limit 0,5";
-	public static final String STATISTISC_BY_SCHOOL_SCORE3 = "select max(exam.score) as maxscore, min(exam.score) as minscore, count(exam.id) as scorecounts ,avg(exam.score) as avgscore,sum(exam.score>=90) as passcount,stu.name  from examscore3 exam , studentcard stu where exam.studentid = stu.id and stu.schoolid = ? group by exam.studentid limit ?,?";
+	public static final String STATISTISC_BY_SCHOOL_SCORE3 = "select max(exam.score) as maxscore, min(exam.score) as minscore, count(exam.id) as scorecounts ,avg(exam.score) as avgscore,sum(exam.score>=90) as passcount,stu.name,stu.id as stuId  from examscore3 exam , studentcard stu where exam.studentid = stu.id and stu.schoolid = ? and stu.name like ? group by exam.studentid limit ?,?";
 	public static final String STATISTISC_BY_SCHOOL_ROWCOUNT3 = "select count(exam.id) from examscore3 exam , studentcard stu where exam.studentid = stu.id and stu.schoolid = ?";
+	public static final String EXAMSCORE3_QUERY_ALL = "select score,time,createtime from examscore3 where studentid  order by createtime desc";
+	public static final String STATISTISC3_BY_SCHOOL_STU_SCORE = "select max(exam.score) as maxscore, min(exam.score) as minscore, count(exam.id) as scorecounts ,avg(exam.score) as avgscore,sum(exam.score>=90) as passcount,stu.name,stu.id as stuId  from examscor3e exam , studentcard stu where stu.id=?  and exam.studentid = stu.id  group by exam.studentid";
+
 	
 	/**
 	 * 错题

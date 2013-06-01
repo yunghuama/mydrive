@@ -59,6 +59,7 @@ $(document).ready(function(){
 						<th>平均成绩</th>
 						<th>通过次数</th>
 						<th>通过率</th>
+						<th>导出</th>
 					</tr>
 					<s:if test="page.list!=null&&page.list.size>0">
 					 <s:iterator id="score" value="page.list" status="i">
@@ -71,11 +72,12 @@ $(document).ready(function(){
 						<td><s:property value="#score.avgscore"/> </td>
 						<td><s:property value="#score.passcount"/> </td>
 						<td><s:property value="#score.rate"/>%</td>
+						<td><a href="javascript:void(0);">导出Excel</a></td>
 					</tr>
 					</s:iterator>
 					</s:if>
 					<s:else>
-					<tr><td colspan="8">暂无数据</td></tr>
+					<tr><td colspan="9">暂无数据</td></tr>
 					</s:else>
 				</table>
 			</div>

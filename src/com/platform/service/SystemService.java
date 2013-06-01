@@ -40,8 +40,8 @@ public class SystemService implements IService {
     * @param schoolcard
     * @return
     */
-   public Page listScore1(Page page,String schoolcard){
-	   return systemDAO.listScore1(page, schoolcard);
+   public Page listScore1(Page page,String schoolcard,String name){
+	   return systemDAO.listScore1(page, schoolcard,name);
    }
    
    /**
@@ -50,8 +50,8 @@ public class SystemService implements IService {
     * @param schoolcard
     * @return
     */
-   public Page listScore3(Page page,String schoolcard){
-	   return systemDAO.listScore3(page, schoolcard);
+   public Page listScore3(Page page,String schoolcard,String name){
+	   return systemDAO.listScore3(page, schoolcard,name);
    }
    
    

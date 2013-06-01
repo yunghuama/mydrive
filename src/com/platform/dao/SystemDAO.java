@@ -96,8 +96,8 @@ public class SystemDAO extends GenericDAO{
 	/**
 	 * 根据驾校查询成绩1
 	 */
-	public Page<ScoreSchoolVO> listScore1(Page<ScoreSchoolVO> page,String schoolcard){
-		List<ScoreSchoolVO> list =  jdbcTemplate.query(SQLConstant.STATISTISC_BY_SCHOOL_SCORE,new Object[]{schoolcard,(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<ScoreSchoolVO>(){
+	public Page<ScoreSchoolVO> listScore1(Page<ScoreSchoolVO> page,String schoolcard,String name){
+		List<ScoreSchoolVO> list =  jdbcTemplate.query(SQLConstant.STATISTISC_BY_SCHOOL_SCORE,new Object[]{schoolcard,"%"+name+"%",(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<ScoreSchoolVO>(){
 			@Override
 			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
 					throws SQLException {
@@ -121,8 +121,8 @@ public class SystemDAO extends GenericDAO{
 	/**
 	 * 根据驾校查询成绩3
 	 */
-	public Page<ScoreSchoolVO> listScore3(Page<ScoreSchoolVO> page,String schoolcard){
-		List<ScoreSchoolVO> list =  jdbcTemplate.query(SQLConstant.STATISTISC_BY_SCHOOL_SCORE3,new Object[]{schoolcard,(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<ScoreSchoolVO>(){
+	public Page<ScoreSchoolVO> listScore3(Page<ScoreSchoolVO> page,String schoolcard,String name){
+		List<ScoreSchoolVO> list =  jdbcTemplate.query(SQLConstant.STATISTISC_BY_SCHOOL_SCORE3,new Object[]{schoolcard,"%"+name+"%",(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<ScoreSchoolVO>(){
 			@Override
 			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
 					throws SQLException {

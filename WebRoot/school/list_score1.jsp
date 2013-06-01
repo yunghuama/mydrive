@@ -9,6 +9,16 @@
 <link href="<%=path%>/css/section.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="<%=path%>/js/core.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
+<style type="text/css">
+.text {
+  padding: 2px 3px;
+  background-color: #FFFFFF;
+  border: 1px solid #A6B2CA;
+  height: 17px;
+  line-height: 17px;
+  width: 142px;
+}
+</style>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("table tr").bind("mouseover",function(){
@@ -18,6 +28,10 @@ $(document).ready(function(){
 		$(this).addClass("mouseover");
 	}).bind("mouseout",function(){
 		$(this).removeClass("mouseover");
+	});
+	//过滤
+	$("#searchButton").click(function(){
+		$("#name").val($("#nameVal").val());
 	});
 	//构造分页
 	var maxPage = parseInt($("#maxPage").val());
@@ -49,6 +63,7 @@ $(document).ready(function(){
 	 <div id="main">
 			<div id="title"><span>学员考试成绩列表</span></div>
 			<div id="sectionContent">
+				<div id="search"><span>姓名:</span><s:textfield name="name" id="nameVal" theme="simple" cssClass="text"></s:textfield><button id="searchButton"></button></div>
 				<table>
 					<tr>
 						<th width="10%">序号</th>
@@ -59,6 +74,7 @@ $(document).ready(function(){
 						<th>平均成绩</th>
 						<th>通过次数</th>
 						<th>通过率</th>
+						<th>导出</th>
 					</tr>
 					<s:if test="page.list!=null&&page.list.size>0">
 					<s:iterator id="score" value="page.list" status="i">
@@ -71,19 +87,19 @@ $(document).ready(function(){
 						<td><s:property value="#score.avgscore"/> </td>
 						<td><s:property value="#score.passcount"/> </td>
 						<td><s:property value="#score.rate"/>%</td>
+						<td><a href="javascript:void(0);">导出Excel</a></td>
 					</tr>
 					</s:iterator>
 					</s:if>
 					<s:else>
-					<tr><td colspan="8">暂无数据</td></tr>
+					<tr><td colspan="9">暂无数据</td></tr>
 					</s:else>
 				</table>
 				
 			</div>
 			<div id="pageBar">
 			<form action="<%=path %>/exam/system/listScore1.d">
-			<s:hidden name="categoryId"/>
-			<s:hidden name="questionId" id="questionId"/>
+			<s:hidden name="name" id="name"/>
 			<s:hidden id="maxPage" name="page.maxPage"/>
 			<s:hidden id="currPage" name="page.currPage"/>
 			<button id="prev">上一页</button>

@@ -27,8 +27,8 @@ public class SystemAction extends GenericAction {
 	private Announcement announcement;
 	private String annId;
 	private Users users;
-	
 	private Message msg;
+	private String name = "";
 	/**
 	 * 保存公告
 	 * @return
@@ -109,7 +109,7 @@ public class SystemAction extends GenericAction {
 	public String listScore1(){
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		try{
-			page = systemService.listScore1(page, loginBean.getUser().getId());
+			page = systemService.listScore1(page, loginBean.getUser().getId(),name);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -124,7 +124,7 @@ public class SystemAction extends GenericAction {
 	public String listScore3(){
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		try{
-			page = systemService.listScore3(page, loginBean.getUser().getId());
+			page = systemService.listScore3(page, loginBean.getUser().getId(),name);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -273,6 +273,16 @@ public class SystemAction extends GenericAction {
 
 	public void setMsg(Message msg) {
 		this.msg = msg;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }
