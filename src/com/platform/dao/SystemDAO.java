@@ -190,7 +190,6 @@ public class SystemDAO extends GenericDAO{
 					throws SQLException {
 				Message vo = new Message();
 				vo.setId(rs.getString("id"));
-				vo.setContent(rs.getString("content"));
 				vo.setTitle(rs.getString("title"));
 				vo.setCreateTime(rs.getDate("createtime") +" "+rs.getTime("createtime"));
 				return vo;
@@ -217,7 +216,6 @@ public class SystemDAO extends GenericDAO{
 					throws SQLException {
 				Message vo = new Message();
 				vo.setId(rs.getString("id"));
-				vo.setContent(rs.getString("content"));
 				vo.setTitle(rs.getString("title"));
 				vo.setStudentCard(rs.getString("sname"));
 				vo.setCreateTime(rs.getDate("createtime") +" "+rs.getTime("createtime"));

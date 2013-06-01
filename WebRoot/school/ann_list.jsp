@@ -21,6 +21,11 @@
 		width:600px;
 		margin:0px auto;
 	}
+td {
+	white-space: normal;
+	word-wrap: break-word;
+    word-break: break-all;
+    }
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -33,7 +38,7 @@ $(document).ready(function(){
 		$(this).removeClass("mouseover");
 	});
 	
-	$(".data").bind("click",function(){
+	$(".data").find("td").eq(1).bind("click",function(){
 		var id = $(this).attr("id");
 		$("#annId").val(id);
 		$("form").attr("action","<%=path%>/exam/system/viewAnnouncement.d");
@@ -91,9 +96,9 @@ $(document).ready(function(){
 						<th>操作</th>
 					</tr>
 					 <s:iterator id="ann" value="page.list" status="i">
-					<tr class="data" id=<s:property value="#ann.id"/>>
+					<tr class="data">
 						<td><s:property value="#i.index+1"/> </td>
-						<td><s:property value="#ann.title"/> </td>
+						<td id=<s:property value="#ann.id"/>><s:property value="#ann.title"/> </td>
 						<td><a href="javascript:void(0);" id='<s:property value="#ann.id"/>'><img alt="" src="<%=path%>/image/dd.png"></a> </td>
 					</tr>
 					</s:iterator>

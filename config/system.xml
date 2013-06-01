@@ -44,15 +44,15 @@
     </action>
     
     <action name="saveMessage" class="systemAction" method="saveMessage">
-      <result>/exam/system/listMessageStu.d</result>
+      <result type="redirect">/exam/system/listMessageStu.d</result>
     </action>
     
     <action name="delMessageStu" class="systemAction" method="delMessageStu">
-      <result>/exam/system/listMessageStu.d</result>
+      <result type="redirect">/exam/system/listMessageStu.d</result>
     </action>
     
     <action name="delMessageSch" class="systemAction" method="delMessageSch">
-      <result>/exam/system/listMessageSch.d</result>
+      <result type="redirect">/exam/system/listMessageSch.d</result>
     </action>
   </package>
 </struts>

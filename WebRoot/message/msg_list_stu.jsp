@@ -21,6 +21,11 @@
 		width:600px;
 		margin:0px auto;
 	}
+	td {
+		white-space: normal;
+	word-wrap: break-word;
+    word-break: break-all;
+	}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -33,10 +38,19 @@ $(document).ready(function(){
 		$(this).removeClass("mouseover");
 	});
 	
-	$(".data").bind("click",function(){
+	$(".data").find("td").eq(1).bind("click",function(){
 		var id = $(this).attr("id");
-		$("#annId").val(id);
+		$("#msg").val(id);
 		$("form").attr("action","<%=path%>/exam/system/getMessageById.d");
+		$("form").submit();
+	});
+	
+	$(".data a").bind("click",function(){
+		if(!confirm("确定删除?"))
+			return false;
+		var id = $(this).attr("id");
+		$("#msg").val(id);
+		$("form").attr("action","<%=path%>/exam/system/delMessageStu.d");
 		$("form").submit();
 	});
 	
@@ -82,22 +96,22 @@ $(document).ready(function(){
 					</tr>
 					<s:if test="page.list!=null&&page.list.size>0">
 					 <s:iterator id="msg" value="page.list" status="i">
-					<tr class="data" id=<s:property value="#ann.id"/>>
+					<tr class="data">
 						<td><s:property value="#i.index+1"/> </td>
-						<td><s:property value="#msg.title"/> </td>
+						<td id=<s:property value="#msg.id"/>><s:property value="#msg.title"/> </td>
 						<td><s:property value="#msg.createTime"/> </td>
 						<td><a href="javascript:void(0);" id='<s:property value="#msg.id"/>'><img alt="" src="<%=path%>/image/dd.png"></a> </td>
 					</tr>
 					</s:iterator>
 					</s:if>
 					<s:else>
-					<tr><td colspan="2">暂无数据</td></tr>
+					<tr><td colspan="4">暂无数据</td></tr>
 					</s:else>
 				</table>
 			</div>
 			<div id="pageBar">
 			<form action="<%=path %>/exam/system/listMessageStu.d">
-			<s:hidden name="annId" id="annId"/>
+			<s:hidden name="msg.id" id="msg"/>
 			<s:hidden id="maxPage" name="page.maxPage"/>
 			<s:hidden id="currPage" name="page.currPage"/>
 			<button id="prev">上一页</button>

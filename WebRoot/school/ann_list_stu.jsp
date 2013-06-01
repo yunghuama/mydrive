@@ -9,6 +9,13 @@
 <link href="<%=path%>/css/section.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="<%=path%>/js/core.js"></script>
 <script type="text/javascript" src="<%=path%>/js/jquery.js"></script>
+<style type="text/css">
+td {
+	white-space: normal;
+	word-wrap: break-word;
+    word-break: break-all;
+    }
+</style>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("table tr").bind("mouseover",function(){

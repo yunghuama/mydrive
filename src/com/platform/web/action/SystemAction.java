@@ -162,37 +162,67 @@ public class SystemAction extends GenericAction {
 
 	
 	public String saveMessage(){
+		try{
+		
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		msg.setSchoolcard(loginBean.getUser().getId());
+		msg.setStudentCard(loginBean.getUser().getId());
 		msg.setSchoolcard(loginBean.getUser().getSchoolId());
 		systemService.saveMessage(msg);
+		
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
 	public String listMessageStu(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		page = systemService.listMessageByStu(page, loginBean.getUser().getId());
+		try{
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			page = systemService.listMessageByStu(page, loginBean.getUser().getId());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		return SUCCESS;
 	}
 	
 	public String listMessageSch(){
-		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		page = systemService.listMessageByStu(page, loginBean.getUser().getId());
+		try{
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			page = systemService.listMessageBySch(page, loginBean.getUser().getId());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		return SUCCESS;
 	}
 	
 	public String getMessageById(){
-		msg = systemService.getMessage(msg.getId());
+		try{
+			msg = systemService.getMessage(msg.getId());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		return SUCCESS;
 	}
 	
 	public String delMessageStu(){
-		systemService.deleteMessage(msg.getId());
+		try{
+			systemService.deleteMessage(msg.getId());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		return SUCCESS;
 	}
 	
 	public String delMessageSch(){
-		systemService.deleteMessage(msg.getId());
+		try{
+			systemService.deleteMessage(msg.getId());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		return SUCCESS;
 	}
 	
