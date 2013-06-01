@@ -18,6 +18,12 @@
   line-height: 17px;
   width: 142px;
 }
+#search {
+	text-align:left;
+	margin:0px auto;
+	width:600px;
+	margin-bottom:10px;
+}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -32,6 +38,7 @@ $(document).ready(function(){
 	//过滤
 	$("#searchButton").click(function(){
 		$("#name").val($("#nameVal").val());
+		$("form").submit();
 	});
 	//构造分页
 	var maxPage = parseInt($("#maxPage").val());
@@ -63,7 +70,7 @@ $(document).ready(function(){
 	 <div id="main">
 			<div id="title"><span>学员考试成绩列表</span></div>
 			<div id="sectionContent">
-				<div id="search"><span>姓名:</span><s:textfield name="name" id="nameVal" theme="simple" cssClass="text"></s:textfield><button id="searchButton"></button></div>
+				<div id="search"><span>姓名:</span><s:textfield name="name" id="nameVal" theme="simple" cssClass="text"></s:textfield><button id="searchButton">查询</button></div>
 				<table>
 					<tr>
 						<th width="10%">序号</th>
@@ -87,7 +94,7 @@ $(document).ready(function(){
 						<td><s:property value="#score.avgscore"/> </td>
 						<td><s:property value="#score.passcount"/> </td>
 						<td><s:property value="#score.rate"/>%</td>
-						<td><a href="javascript:void(0);">导出Excel</a></td>
+						<td><a href='<%=path %>/exam/system/exportSocre1.d?users.id=<s:property value="#score.stuId"/>'>导出Excel</a></td>
 					</tr>
 					</s:iterator>
 					</s:if>
@@ -98,7 +105,7 @@ $(document).ready(function(){
 				
 			</div>
 			<div id="pageBar">
-			<form action="<%=path %>/exam/system/listScore1.d">
+			<form action="<%=path %>/exam/system/listScore1.d" method="post">
 			<s:hidden name="name" id="name"/>
 			<s:hidden id="maxPage" name="page.maxPage"/>
 			<s:hidden id="currPage" name="page.currPage"/>

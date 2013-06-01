@@ -1,5 +1,17 @@
 package com.platform.web.action;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.List;
+
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.CellRangeAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -11,6 +23,8 @@ import com.platform.domain.Users;
 import com.platform.service.SystemService;
 import com.platform.service.UsersService;
 import com.platform.util.LoginBean;
+import com.platform.vo.ScoreSchoolVO;
+import com.platform.vo.ScoreVO;
 
 
 @Controller
@@ -29,6 +43,8 @@ public class SystemAction extends GenericAction {
 	private Users users;
 	private Message msg;
 	private String name = "";
+	private InputStream inputStream;
+	private String fileName;
 	/**
 	 * 保存公告
 	 * @return
@@ -109,7 +125,103 @@ public class SystemAction extends GenericAction {
 	public String listScore1(){
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		try{
-			page = systemService.listScore1(page, loginBean.getUser().getId(),name);
+			page = systemService.listScore1(page, loginBean.getUser().getId(),name.trim());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return SUCCESS;
+	}
+	
+	
+	/**
+	 * 导出学员成绩1
+	 */
+	public String exportSocre1(){
+		try{
+			ScoreSchoolVO vo1 = systemService.getStasticScore1(users.getId());
+			List<ScoreVO> list1 = systemService.getScore1(users.getId());
+			
+			if(vo1.getName()!=null&&!"".equals(vo1.getName())){
+				fileName = vo1.getName()+"科目一驾考成绩.xls";
+			}else {
+				fileName = "科目一驾考成绩.xls";
+			}
+			
+			HSSFWorkbook wb = new HSSFWorkbook(); 
+			HSSFSheet sheet = wb.createSheet("驾考成绩");  
+			//设置居中的样式
+			HSSFCellStyle style = wb.createCellStyle();  
+	        style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中  
+	        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中  
+	        //创建第一行
+	        HSSFRow row = sheet.createRow((short) 0); 
+	        row.setHeight((short)500);  
+	        sheet.addMergedRegion(new CellRangeAddress(0, (short) 0, 0, (short) 6)); 
+	        HSSFCell ce = row.createCell(0); 
+	        ce.setCellValue("学员驾考成绩统计");
+	        ce.setCellStyle(style);
+	        //创建第二行
+	        HSSFRow row2 = sheet.createRow((short) 1);
+	        HSSFCell ce21 = row2.createCell(0); 
+	        ce21.setCellValue("学员名称");
+	        HSSFCell ce22 = row2.createCell(1); 
+	        ce22.setCellValue("最高分");
+	        HSSFCell ce23 = row2.createCell(2); 
+	        ce23.setCellValue("最低分");
+	        HSSFCell ce24 = row2.createCell(3); 
+	        ce24.setCellValue("考试次数");
+	        HSSFCell ce25 = row2.createCell(4); 
+	        ce25.setCellValue("平均成绩");
+	        HSSFCell ce26 = row2.createCell(5); 
+	        ce26.setCellValue("通过次数");
+	        HSSFCell ce27 = row2.createCell(6); 
+	        ce27.setCellValue("通过率");
+	        //创建第三行
+	        HSSFRow row3 = sheet.createRow((short) 2);
+	        HSSFCell ce31 = row3.createCell(0); 
+	        ce31.setCellValue(vo1.getName());
+	        HSSFCell ce32 = row3.createCell(1); 
+	        ce32.setCellValue(vo1.getMaxscore());
+	        HSSFCell ce33 = row3.createCell(2); 
+	        ce33.setCellValue(vo1.getMinscore());
+	        HSSFCell ce34 = row3.createCell(3); 
+	        ce34.setCellValue(vo1.getScorecounts());
+	        HSSFCell ce35 = row3.createCell(4); 
+	        ce35.setCellValue(vo1.getAvgscore());
+	        HSSFCell ce36 = row3.createCell(5); 
+	        ce36.setCellValue(vo1.getPasscount());
+	        HSSFCell ce37 = row3.createCell(6); 
+	        ce37.setCellValue(vo1.getRate()+"%");
+	        //创建第4行
+	        HSSFRow row4 = sheet.createRow((short) 3); 
+	        row4.setHeight((short)500);  
+	        sheet.addMergedRegion(new CellRangeAddress(3, (short) 3, 0, (short) 6)); 
+	        HSSFCell ce41 = row4.createCell(0); 
+	        ce41.setCellValue("学员驾考成绩明细");
+	        ce41.setCellStyle(style);
+	        //创建第5行
+	        HSSFRow row5 = sheet.createRow((short) 4);
+	        HSSFCell ce51 = row5.createCell(0); 
+	        ce51.setCellValue("分数");
+	        HSSFCell ce52 = row5.createCell(1); 
+	        ce52.setCellValue("考试时长");
+	        HSSFCell ce53 = row5.createCell(2); 
+	        ce53.setCellValue("考试时间");
+	        //开始循环创建考试成绩
+	        for(int i=0;i<list1.size();i++){
+	        	ScoreVO v = list1.get(i);
+	        	HSSFRow scoreRow = sheet.createRow((short) (5+i));
+	 	        HSSFCell scoreRow1 = scoreRow.createCell(0); 
+	 	        scoreRow1.setCellValue(v.getScore());
+	 	        HSSFCell scoreRow2 = scoreRow.createCell(1); 
+	 	        scoreRow2.setCellValue(v.getTime());
+	 	        HSSFCell scoreRow3 = scoreRow.createCell(2); 
+	 	        scoreRow3.setCellValue(v.getCreatetime());
+	        }
+	        ByteArrayOutputStream out = new ByteArrayOutputStream();
+	        wb.write(out);
+	        inputStream = new ByteArrayInputStream(out.toByteArray());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -131,6 +243,100 @@ public class SystemAction extends GenericAction {
 		return SUCCESS;
 	}
 	
+	/**
+	 * 导出学员成绩1
+	 */
+	public String exportSocre3(){
+		try{
+			ScoreSchoolVO vo1 = systemService.getStasticScore3(users.getId());
+			List<ScoreVO> list1 = systemService.getScore3(users.getId());
+			
+			if(vo1.getName()!=null&&!"".equals(vo1.getName())){
+				fileName = vo1.getName()+"科目三(四)驾考成绩.xls";
+			}else {
+				fileName = "科目三(四)驾考成绩.xls";
+			}
+			
+			HSSFWorkbook wb = new HSSFWorkbook(); 
+			HSSFSheet sheet = wb.createSheet("驾考成绩");  
+			//设置居中的样式
+			HSSFCellStyle style = wb.createCellStyle();  
+	        style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中  
+	        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中  
+	        //创建第一行
+	        HSSFRow row = sheet.createRow((short) 0); 
+	        row.setHeight((short)500);  
+	        sheet.addMergedRegion(new CellRangeAddress(0, (short) 0, 0, (short) 6)); 
+	        HSSFCell ce = row.createCell(0); 
+	        ce.setCellValue("学员驾考成绩统计");
+	        ce.setCellStyle(style);
+	        //创建第二行
+	        HSSFRow row2 = sheet.createRow((short) 1);
+	        HSSFCell ce21 = row2.createCell(0); 
+	        ce21.setCellValue("学员名称");
+	        HSSFCell ce22 = row2.createCell(1); 
+	        ce22.setCellValue("最高分");
+	        HSSFCell ce23 = row2.createCell(2); 
+	        ce23.setCellValue("最低分");
+	        HSSFCell ce24 = row2.createCell(3); 
+	        ce24.setCellValue("考试次数");
+	        HSSFCell ce25 = row2.createCell(4); 
+	        ce25.setCellValue("平均成绩");
+	        HSSFCell ce26 = row2.createCell(5); 
+	        ce26.setCellValue("通过次数");
+	        HSSFCell ce27 = row2.createCell(6); 
+	        ce27.setCellValue("通过率");
+	        //创建第三行
+	        HSSFRow row3 = sheet.createRow((short) 2);
+	        HSSFCell ce31 = row3.createCell(0); 
+	        ce31.setCellValue(vo1.getName());
+	        HSSFCell ce32 = row3.createCell(1); 
+	        ce32.setCellValue(vo1.getMaxscore());
+	        HSSFCell ce33 = row3.createCell(2); 
+	        ce33.setCellValue(vo1.getMinscore());
+	        HSSFCell ce34 = row3.createCell(3); 
+	        ce34.setCellValue(vo1.getScorecounts());
+	        HSSFCell ce35 = row3.createCell(4); 
+	        ce35.setCellValue(vo1.getAvgscore());
+	        HSSFCell ce36 = row3.createCell(5); 
+	        ce36.setCellValue(vo1.getPasscount());
+	        HSSFCell ce37 = row3.createCell(6); 
+	        ce37.setCellValue(vo1.getRate()+"%");
+	        //创建第4行
+	        HSSFRow row4 = sheet.createRow((short) 3); 
+	        row4.setHeight((short)500);  
+	        sheet.addMergedRegion(new CellRangeAddress(3, (short) 3, 0, (short) 6)); 
+	        HSSFCell ce41 = row4.createCell(0); 
+	        ce41.setCellValue("学员驾考成绩明细");
+	        ce41.setCellStyle(style);
+	        //创建第5行
+	        HSSFRow row5 = sheet.createRow((short) 4);
+	        HSSFCell ce51 = row5.createCell(0); 
+	        ce51.setCellValue("分数");
+	        HSSFCell ce52 = row5.createCell(1); 
+	        ce52.setCellValue("考试时长");
+	        HSSFCell ce53 = row5.createCell(2); 
+	        ce53.setCellValue("考试时间");
+	        //开始循环创建考试成绩
+	        for(int i=0;i<list1.size();i++){
+	        	ScoreVO v = list1.get(i);
+	        	HSSFRow scoreRow = sheet.createRow((short) (5+i));
+	 	        HSSFCell scoreRow1 = scoreRow.createCell(0); 
+	 	        scoreRow1.setCellValue(v.getScore());
+	 	        HSSFCell scoreRow2 = scoreRow.createCell(1); 
+	 	        scoreRow2.setCellValue(v.getTime());
+	 	        HSSFCell scoreRow3 = scoreRow.createCell(2); 
+	 	        scoreRow3.setCellValue(v.getCreatetime());
+	        }
+	        ByteArrayOutputStream out = new ByteArrayOutputStream();
+	        wb.write(out);
+	        inputStream = new ByteArrayInputStream(out.toByteArray());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return SUCCESS;
+	}
 	
 	/**
 	 * 获得个人信息
@@ -226,6 +432,25 @@ public class SystemAction extends GenericAction {
 		return SUCCESS;
 	}
 	
+	
+	
+	
+	public String getFileName() {
+		try{
+			return new String(fileName.getBytes(),"iso8859-1");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "error.xls";
+	}
+
+	public InputStream getInputStream() {
+		System.out.println(inputStream);
+		return inputStream;
+	}
+
+
+
 	public Announcement getAnnouncement() {
 		return announcement;
 	}

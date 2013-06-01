@@ -54,5 +54,22 @@
     <action name="delMessageSch" class="systemAction" method="delMessageSch">
       <result type="redirect">/exam/system/listMessageSch.d</result>
     </action>
+    
+    <action name="exportSocre1" class="systemAction" method="exportSocre1">
+      <result type="stream">
+          <param name="contentType">application/x-msdownload</param> 
+          <param name="inputName">inputStream</param>
+          <param name="contentDisposition">attachment;filename="${fileName}"</param>
+          <param name="bufferSize">4096</param><!-- 输出时缓冲区的大小 --> 
+      </result>
+    </action>
+    <action name="exportSocre3" class="systemAction" method="exportSocre3">
+      <result type="stream">
+          <param name="contentType">application/x-msdownload</param> 
+          <param name="inputName">inputStream</param>
+          <param name="contentDisposition">attachment;filename="${fileName}"</param>
+          <param name="bufferSize">4096</param><!-- 输出时缓冲区的大小 --> 
+      </result>
+    </action>
   </package>
 </struts>

@@ -15,6 +15,7 @@ import com.platform.util.PageHelper;
 import com.platform.util.UUIDGenerator;
 import com.platform.vo.Page;
 import com.platform.vo.ScoreSchoolVO;
+import com.platform.vo.ScoreVO;
 
 /**
  * <p>程序名称：       UsersDAO.java</p>
@@ -107,6 +108,7 @@ public class SystemDAO extends GenericDAO{
 				vo.setPasscount(rs.getInt("passcount"));
 				vo.setAvgscore(rs.getInt("avgscore"));
 				vo.setScorecounts(rs.getInt("scorecounts"));
+				vo.setStuId(rs.getString("stuId"));
 				vo.setName(rs.getString("name"));
 				return vo;
 			}
@@ -117,6 +119,43 @@ public class SystemDAO extends GenericDAO{
 		page.setList(list);
 		return page;
 	}
+	
+	/**
+	 * 根学员统计查询
+	 */
+	public ScoreSchoolVO getStasticScore1(String stuId){
+		List<ScoreSchoolVO> list =  jdbcTemplate.query(SQLConstant.STATISTISC_BY_SCHOOL_STU_SCORE,new Object[]{stuId},new RowMapper<ScoreSchoolVO>(){
+			@Override
+			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				ScoreSchoolVO vo = new ScoreSchoolVO();
+				vo.setMaxscore(rs.getInt("maxscore"));
+				vo.setMinscore(rs.getInt("minscore"));
+				vo.setPasscount(rs.getInt("passcount"));
+				vo.setAvgscore(rs.getInt("avgscore"));
+				vo.setScorecounts(rs.getInt("scorecounts"));
+				vo.setName(rs.getString("name"));
+				return vo;
+			}
+		});
+		if(list!=null&&list.size()>0)
+			return list.get(0);
+		return null;
+	}
+	
+	public List<ScoreVO> getScores1(String studentId){
+		return jdbcTemplate.query(SQLConstant.EXAMSCORE_QUERY_ALL,new Object[]{studentId},new RowMapper<ScoreVO>(){
+			@Override
+			public ScoreVO mapRow(ResultSet rs, int arg1) throws SQLException {
+				ScoreVO vo  = new ScoreVO();
+				vo.setScore(rs.getInt("score"));
+				vo.setTime(rs.getString("time"));
+				vo.setCreatetime(rs.getDate("createtime")+ " "+rs.getTime("createtime"));
+				return vo;
+			}
+		});
+	}
+	
 	
 	/**
 	 * 根据驾校查询成绩3
@@ -132,6 +171,7 @@ public class SystemDAO extends GenericDAO{
 				vo.setPasscount(rs.getInt("passcount"));
 				vo.setAvgscore(rs.getInt("avgscore"));
 				vo.setScorecounts(rs.getInt("scorecounts"));
+				vo.setStuId(rs.getString("stuId"));
 				vo.setName(rs.getString("name"));
 				return vo;
 			}
@@ -142,6 +182,44 @@ public class SystemDAO extends GenericDAO{
 		page.setList(list);
 		return page;
 	}
+	
+	
+	/**
+	 * 根学员统计查询
+	 */
+	public ScoreSchoolVO getStasticScore3(String stuId){
+		List<ScoreSchoolVO> list =  jdbcTemplate.query(SQLConstant.STATISTISC3_BY_SCHOOL_STU_SCORE,new Object[]{stuId},new RowMapper<ScoreSchoolVO>(){
+			@Override
+			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				ScoreSchoolVO vo = new ScoreSchoolVO();
+				vo.setMaxscore(rs.getInt("maxscore"));
+				vo.setMinscore(rs.getInt("minscore"));
+				vo.setPasscount(rs.getInt("passcount"));
+				vo.setAvgscore(rs.getInt("avgscore"));
+				vo.setScorecounts(rs.getInt("scorecounts"));
+				vo.setName(rs.getString("name"));
+				return vo;
+			}
+		});
+		if(list!=null&&list.size()>0)
+			return list.get(0);
+		return null;
+	}
+	
+	public List<ScoreVO> getScores3(String studentId){
+		return jdbcTemplate.query(SQLConstant.EXAMSCORE3_QUERY_ALL,new Object[]{studentId},new RowMapper<ScoreVO>(){
+			@Override
+			public ScoreVO mapRow(ResultSet rs, int arg1) throws SQLException {
+				ScoreVO vo  = new ScoreVO();
+				vo.setScore(rs.getInt("score"));
+				vo.setTime(rs.getString("time"));
+				vo.setCreatetime(rs.getDate("createtime")+ " "+rs.getTime("createtime"));
+				return vo;
+			}
+		});
+	}
+	
 	
 	public Announcement getAnnouncementById(String id){
 		List<Announcement> list = jdbcTemplate.query(SQLConstant.ANNOUNCEMENT_GET,new Object[]{id},new RowMapper<Announcement>(){

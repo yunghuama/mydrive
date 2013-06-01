@@ -1,5 +1,7 @@
 package com.platform.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,8 @@ import com.platform.dao.SystemDAO;
 import com.platform.domain.Announcement;
 import com.platform.domain.Message;
 import com.platform.vo.Page;
+import com.platform.vo.ScoreSchoolVO;
+import com.platform.vo.ScoreVO;
 
 @Service
 public class SystemService implements IService {
@@ -45,6 +49,20 @@ public class SystemService implements IService {
    }
    
    /**
+    * 根据学员ID 查询统计结果
+    */
+   public ScoreSchoolVO getStasticScore1(String stuId){
+	  return  systemDAO.getStasticScore1(stuId);
+   }
+   
+   /**
+    * 根据学员ID 查询详细分数
+    */
+   public List<ScoreVO> getScore1(String stuId){
+	   return systemDAO.getScores1(stuId);
+   }
+   
+   /**
     * 查询学员科目3成绩
     * @param page
     * @param schoolcard
@@ -54,6 +72,20 @@ public class SystemService implements IService {
 	   return systemDAO.listScore3(page, schoolcard,name);
    }
    
+   
+   /**
+    * 根据学员ID 查询统计结果
+    */
+   public ScoreSchoolVO getStasticScore3(String stuId){
+	  return  systemDAO.getStasticScore3(stuId);
+   }
+   
+   /**
+    * 根据学员ID 查询详细分数
+    */
+   public List<ScoreVO> getScore3(String stuId){
+	   return systemDAO.getScores3(stuId);
+   }
    
    /**
     * 删除公告
