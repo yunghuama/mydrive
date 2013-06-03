@@ -71,5 +71,22 @@
           <param name="bufferSize">4096</param><!-- 输出时缓冲区的大小 --> 
       </result>
     </action>
+    
+    <action name="exportStaticSocre1" class="systemAction" method="exportStaticSocre1">
+      <result type="stream">
+          <param name="contentType">application/x-msdownload</param> 
+          <param name="inputName">inputStream</param>
+          <param name="contentDisposition">attachment;filename="${fileName}"</param>
+          <param name="bufferSize">4096</param><!-- 输出时缓冲区的大小 --> 
+      </result>
+    </action>
+    <action name="exportStaticSocre3" class="systemAction" method="exportStaticSocre3">
+      <result type="stream">
+          <param name="contentType">application/x-msdownload</param> 
+          <param name="inputName">inputStream</param>
+          <param name="contentDisposition">attachment;filename="${fileName}"</param>
+          <param name="bufferSize">4096</param><!-- 输出时缓冲区的大小 --> 
+      </result>
+    </action>
   </package>
 </struts>

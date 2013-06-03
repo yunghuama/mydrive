@@ -135,6 +135,74 @@ public class SystemAction extends GenericAction {
 	
 	
 	/**
+	 * 导出学员成绩统计1
+	 */
+	public String exportStaticSocre1(){
+		try{
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			List<ScoreSchoolVO> list = systemService.listScore1All(loginBean.getUser().getId(), name);
+			
+			fileName = "科目一驾考成绩统计.xls";
+			
+			HSSFWorkbook wb = new HSSFWorkbook(); 
+			HSSFSheet sheet = wb.createSheet("驾考成绩");  
+			//设置居中的样式
+			HSSFCellStyle style = wb.createCellStyle();  
+	        style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中  
+	        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中  
+	        //创建第一行
+	        HSSFRow row = sheet.createRow((short) 0); 
+	        row.setHeight((short)500);  
+	        sheet.addMergedRegion(new CellRangeAddress(0, (short) 0, 0, (short) 6)); 
+	        HSSFCell ce = row.createCell(0); 
+	        ce.setCellValue("学员驾考成绩统计");
+	        ce.setCellStyle(style);
+	        //创建第二行
+	        HSSFRow row2 = sheet.createRow((short) 1);
+	        HSSFCell ce21 = row2.createCell(0); 
+	        ce21.setCellValue("学员名称");
+	        HSSFCell ce22 = row2.createCell(1); 
+	        ce22.setCellValue("最高分");
+	        HSSFCell ce23 = row2.createCell(2); 
+	        ce23.setCellValue("最低分");
+	        HSSFCell ce24 = row2.createCell(3); 
+	        ce24.setCellValue("考试次数");
+	        HSSFCell ce25 = row2.createCell(4); 
+	        ce25.setCellValue("平均成绩");
+	        HSSFCell ce26 = row2.createCell(5); 
+	        ce26.setCellValue("通过次数");
+	        HSSFCell ce27 = row2.createCell(6); 
+	        ce27.setCellValue("通过率");
+	        //创建统计结果
+	        for(int i=0;i<list.size();i++){
+	        HSSFRow tr = sheet.createRow((short) i+2);
+	        ScoreSchoolVO vo1 = list.get(i);
+	        HSSFCell ce31 = tr.createCell(0); 
+	        ce31.setCellValue(vo1.getName());
+	        HSSFCell ce32 = tr.createCell(1); 
+	        ce32.setCellValue(vo1.getMaxscore());
+	        HSSFCell ce33 = tr.createCell(2); 
+	        ce33.setCellValue(vo1.getMinscore());
+	        HSSFCell ce34 = tr.createCell(3); 
+	        ce34.setCellValue(vo1.getScorecounts());
+	        HSSFCell ce35 = tr.createCell(4); 
+	        ce35.setCellValue(vo1.getAvgscore());
+	        HSSFCell ce36 = tr.createCell(5); 
+	        ce36.setCellValue(vo1.getPasscount());
+	        HSSFCell ce37 = tr.createCell(6); 
+	        ce37.setCellValue(vo1.getRate()+"%");
+	        }
+	        ByteArrayOutputStream out = new ByteArrayOutputStream();
+	        wb.write(out);
+	        inputStream = new ByteArrayInputStream(out.toByteArray());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return SUCCESS;
+	}
+	
+	/**
 	 * 导出学员成绩1
 	 */
 	public String exportSocre1(){
@@ -243,8 +311,77 @@ public class SystemAction extends GenericAction {
 		return SUCCESS;
 	}
 	
+	
 	/**
-	 * 导出学员成绩1
+	 * 导出学员成绩统计3所有
+	 */
+	public String exportStaticSocre3(){
+		try{
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			List<ScoreSchoolVO> list = systemService.listScore3All(loginBean.getUser().getId(), name);
+			
+			fileName = "科目三(四)驾考成绩统计.xls";
+			
+			HSSFWorkbook wb = new HSSFWorkbook(); 
+			HSSFSheet sheet = wb.createSheet("驾考成绩");  
+			//设置居中的样式
+			HSSFCellStyle style = wb.createCellStyle();  
+	        style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中  
+	        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中  
+	        //创建第一行
+	        HSSFRow row = sheet.createRow((short) 0); 
+	        row.setHeight((short)500);  
+	        sheet.addMergedRegion(new CellRangeAddress(0, (short) 0, 0, (short) 6)); 
+	        HSSFCell ce = row.createCell(0); 
+	        ce.setCellValue("学员驾考成绩统计");
+	        ce.setCellStyle(style);
+	        //创建第二行
+	        HSSFRow row2 = sheet.createRow((short) 1);
+	        HSSFCell ce21 = row2.createCell(0); 
+	        ce21.setCellValue("学员名称");
+	        HSSFCell ce22 = row2.createCell(1); 
+	        ce22.setCellValue("最高分");
+	        HSSFCell ce23 = row2.createCell(2); 
+	        ce23.setCellValue("最低分");
+	        HSSFCell ce24 = row2.createCell(3); 
+	        ce24.setCellValue("考试次数");
+	        HSSFCell ce25 = row2.createCell(4); 
+	        ce25.setCellValue("平均成绩");
+	        HSSFCell ce26 = row2.createCell(5); 
+	        ce26.setCellValue("通过次数");
+	        HSSFCell ce27 = row2.createCell(6); 
+	        ce27.setCellValue("通过率");
+	        //创建统计结果
+	        for(int i=0;i<list.size();i++){
+	        HSSFRow tr = sheet.createRow((short) i+2);
+	        ScoreSchoolVO vo1 = list.get(i);
+	        HSSFCell ce31 = tr.createCell(0); 
+	        ce31.setCellValue(vo1.getName());
+	        HSSFCell ce32 = tr.createCell(1); 
+	        ce32.setCellValue(vo1.getMaxscore());
+	        HSSFCell ce33 = tr.createCell(2); 
+	        ce33.setCellValue(vo1.getMinscore());
+	        HSSFCell ce34 = tr.createCell(3); 
+	        ce34.setCellValue(vo1.getScorecounts());
+	        HSSFCell ce35 = tr.createCell(4); 
+	        ce35.setCellValue(vo1.getAvgscore());
+	        HSSFCell ce36 = tr.createCell(5); 
+	        ce36.setCellValue(vo1.getPasscount());
+	        HSSFCell ce37 = tr.createCell(6); 
+	        ce37.setCellValue(vo1.getRate()+"%");
+	        }
+	        ByteArrayOutputStream out = new ByteArrayOutputStream();
+	        wb.write(out);
+	        inputStream = new ByteArrayInputStream(out.toByteArray());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return SUCCESS;
+	}
+	
+	/**
+	 * 导出学员成绩3
 	 */
 	public String exportSocre3(){
 		try{

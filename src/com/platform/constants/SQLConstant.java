@@ -116,7 +116,7 @@ public final class SQLConstant {
 	public static final String STATISTISC_BY_SCHOOL_ROWCOUNT = "select count(exam.id) from examscore exam , studentcard stu where exam.studentid = stu.id and stu.schoolid = ?";
 	public static final String EXAMSCORE_QUERY_ALL = "select score,time,createtime from examscore where studentid = ?  order by createtime desc";
 	public static final String STATISTISC_BY_SCHOOL_STU_SCORE = "select max(exam.score) as maxscore, min(exam.score) as minscore, count(exam.id) as scorecounts ,avg(exam.score) as avgscore,sum(exam.score>=90) as passcount,stu.name,stu.id as stuId  from examscore exam , studentcard stu where stu.id=?  and exam.studentid = stu.id";
-
+	public static final String STATISTISC_BY_SCHOOL_SCORE_ALL = "select max(exam.score) as maxscore, min(exam.score) as minscore, count(exam.id) as scorecounts ,avg(exam.score) as avgscore,sum(exam.score>=90) as passcount,stu.name,stu.id as stuId  from examscore exam , studentcard stu where exam.studentid = stu.id and stu.schoolid = ? and stu.name like ? group by exam.studentid";
 	
 	/**
 	 * 考试成绩 科目三
@@ -128,7 +128,7 @@ public final class SQLConstant {
 	public static final String STATISTISC_BY_SCHOOL_ROWCOUNT3 = "select count(exam.id) from examscore3 exam , studentcard stu where exam.studentid = stu.id and stu.schoolid = ?";
 	public static final String EXAMSCORE3_QUERY_ALL = "select score,time,createtime from examscore3 where studentid = ? order by createtime desc";
 	public static final String STATISTISC3_BY_SCHOOL_STU_SCORE = "select max(exam.score) as maxscore, min(exam.score) as minscore, count(exam.id) as scorecounts ,avg(exam.score) as avgscore,sum(exam.score>=90) as passcount,stu.name,stu.id as stuId  from examscore3 exam , studentcard stu where stu.id=?  and exam.studentid = stu.id";
-
+	public static final String STATISTISC_BY_SCHOOL_SCORE3_ALL = "select max(exam.score) as maxscore, min(exam.score) as minscore, count(exam.id) as scorecounts ,avg(exam.score) as avgscore,sum(exam.score>=90) as passcount,stu.name,stu.id as stuId  from examscore3 exam , studentcard stu where exam.studentid = stu.id and stu.schoolid = ? and stu.name like ? group by exam.studentid";
 	
 	/**
 	 * 错题

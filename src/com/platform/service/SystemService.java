@@ -49,6 +49,26 @@ public class SystemService implements IService {
    }
    
    /**
+    * 查询学员科目1成绩所有
+    * @param page
+    * @param schoolcard
+    * @return
+    */
+   public List<ScoreSchoolVO> listScore1All(String schoolcard,String name){
+	   return systemDAO.listScore1All(schoolcard,name);
+   }
+   
+   /**
+    * 查询学员科目1成绩所有
+    * @param page
+    * @param schoolcard
+    * @return
+    */
+   public List<ScoreSchoolVO> listScore3All(String schoolcard,String name){
+	   return systemDAO.listScore3All(schoolcard,name);
+   }
+   
+   /**
     * 根据学员ID 查询统计结果
     */
    public ScoreSchoolVO getStasticScore1(String stuId){

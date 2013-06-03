@@ -47,8 +47,8 @@ if(session.getAttribute("LoginBean")==null) {
 			initNav();
 			//添加点击效果
 			$("a[name='id_0_0']").bind("click",function(){
-				$("#mainFrame").attr("src","<%=path%>/system/examlist.jsp");
-				//$("#mainFrame").attr("src","<%=path%>/workspace.d");
+				//$("#mainFrame").attr("src","<%=path%>/system/examlist.jsp");
+				$("#mainFrame").attr("src","<%=path%>/workspace.d");
 			});
 			
 			//科目一
@@ -108,6 +108,9 @@ if(session.getAttribute("LoginBean")==null) {
 			$("a[name='id_4_3']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/system/updateTime.jsp");
 			});
+			$("a[name='id_4_4']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/system/listMessageStu.d");
+			});
 			
 			//驾校管理
 			$("a[name='id_5_1']").bind("click",function(){
@@ -121,9 +124,6 @@ if(session.getAttribute("LoginBean")==null) {
 			});
 			$("a[name='id_5_4']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/exam/system/listScore3.d");
-			});
-			$("a[name='id_5_5']").bind("click",function(){
-				$("#mainFrame").attr("src","<%=path%>/exam/system/listMessageStu.d");
 			});
 			$("a[name='id_5_6']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/exam/system/listMessageSch.d");
@@ -152,8 +152,8 @@ if(session.getAttribute("LoginBean")==null) {
 	
 	</script>
   </head>
-  <body>
-  <div id="head">
+  <body style="overflow-x:auto">
+  <div id="head" style="width:1366px;">
   		<img src="<%=path%>/image/logo2.png" alt="" id="logo"/>
   		<div id="nav-div">
   			<ul id="nav" class="nav">
@@ -229,6 +229,9 @@ if(session.getAttribute("LoginBean")==null) {
   						<s:if test='@com.platform.constants.StringConstant@getOperate(\"user_money\")=="T"'>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_4_3">续费</a></li>
   						</s:if>
+  						<s:if test='@com.platform.constants.StringConstant@getOperate(\"student_message\")=="T"'>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_4_4">意见反馈</a></li>
+  						</s:if>
   					</ul>
   				</li>
   				</s:if>
@@ -247,9 +250,6 @@ if(session.getAttribute("LoginBean")==null) {
   						</s:if>
   						<s:if test='@com.platform.constants.StringConstant@getOperate(\"school_score3\")=="T"'>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_4">学员成绩科目三(四)</a></li>
-  						</s:if>
-  						<s:if test='@com.platform.constants.StringConstant@getOperate(\"student_message\")=="T"'>
-  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_5">意见反馈</a></li>
   						</s:if>
   						<s:if test='@com.platform.constants.StringConstant@getOperate(\"school_message\")=="T"'>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_5_6">意见反馈</a></li>
@@ -282,7 +282,7 @@ if(session.getAttribute("LoginBean")==null) {
   		</div>
   </div>
   <div id="content">
-  	<iframe id="mainFrame" frameborder="0"  class="mainFrame" src="<%=path%>/workspace.d"></iframe>
+  	<iframe id="mainFrame" frameborder="0"  class="mainFrame" src="<%=path%>/workspace.d" style="width:1366px;"></iframe>
   </div>
   	<div id="adsLeft"></div>
 	<div id="adsRight"></div>

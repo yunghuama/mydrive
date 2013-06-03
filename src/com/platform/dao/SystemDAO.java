@@ -121,6 +121,48 @@ public class SystemDAO extends GenericDAO{
 	}
 	
 	/**
+	 * 根据驾校查询成绩1所有
+	 */
+	public List<ScoreSchoolVO> listScore1All(String schoolcard,String name){
+		return  jdbcTemplate.query(SQLConstant.STATISTISC_BY_SCHOOL_SCORE_ALL,new Object[]{schoolcard,"%"+name+"%"},new RowMapper<ScoreSchoolVO>(){
+			@Override
+			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				ScoreSchoolVO vo = new ScoreSchoolVO();
+				vo.setMaxscore(rs.getInt("maxscore"));
+				vo.setMinscore(rs.getInt("minscore"));
+				vo.setPasscount(rs.getInt("passcount"));
+				vo.setAvgscore(rs.getInt("avgscore"));
+				vo.setScorecounts(rs.getInt("scorecounts"));
+				vo.setStuId(rs.getString("stuId"));
+				vo.setName(rs.getString("name"));
+				return vo;
+			}
+		});
+	}
+	
+	/**
+	 * 根据驾校查询成绩3所有
+	 */
+	public List<ScoreSchoolVO> listScore3All(String schoolcard,String name){
+		return  jdbcTemplate.query(SQLConstant.STATISTISC_BY_SCHOOL_SCORE3_ALL,new Object[]{schoolcard,"%"+name+"%"},new RowMapper<ScoreSchoolVO>(){
+			@Override
+			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				ScoreSchoolVO vo = new ScoreSchoolVO();
+				vo.setMaxscore(rs.getInt("maxscore"));
+				vo.setMinscore(rs.getInt("minscore"));
+				vo.setPasscount(rs.getInt("passcount"));
+				vo.setAvgscore(rs.getInt("avgscore"));
+				vo.setScorecounts(rs.getInt("scorecounts"));
+				vo.setStuId(rs.getString("stuId"));
+				vo.setName(rs.getString("name"));
+				return vo;
+			}
+		});
+	}
+	
+	/**
 	 * 根学员统计查询
 	 */
 	public ScoreSchoolVO getStasticScore1(String stuId){

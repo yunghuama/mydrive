@@ -24,6 +24,11 @@
 	width:600px;
 	margin-bottom:10px;
 }
+#exportAll {
+	margin-left:100px;
+	color:red;
+	font-size:18px;
+}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -70,7 +75,7 @@ $(document).ready(function(){
 	 <div id="main">
 			<div id="title"><span>学员考试成绩列表</span></div>
 			<div id="sectionContent">
-			<div id="search"><span>姓名:</span><s:textfield name="name" id="nameVal" theme="simple" cssClass="text"></s:textfield><button id="searchButton">查询</button></div>
+			<div id="search"><span>姓名:</span><s:textfield name="name" id="nameVal" theme="simple" cssClass="text"></s:textfield><button id="searchButton">查询</button><a href='<%=path %>/exam/system/exportStaticSocre3.d' id="exportAll">导出所有成绩</a></div>
 				<table>
 					<tr>
 						<th width="10%">序号</th>
