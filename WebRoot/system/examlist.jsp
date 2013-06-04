@@ -110,7 +110,7 @@
 </script>
 <title></title>
 </head>
-<body style="overflow:auto;">
+<body style="overflow-y:auto">
 		<div id="main">
 			<div id="sub1">
 			<div class="statistic">
@@ -158,7 +158,6 @@
 				</table>
 			</div>
 			</div>
-			
 			<div class="score">
 			<div class="title"><img alt="" src="<%=path%>/image/blue.png"><span>科目三考试成绩</span></div>
 			<div class="contents">

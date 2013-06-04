@@ -33,7 +33,7 @@ $(document).ready(function(){
 		}else if(attr==attr2){
 			$(this).attr("src",attr1);
 		}
-		$(this).parent("a").next("span").toggle();
+		$(this).parent("a").next("span").toggle('fast');
 	});
 	
 	//构造分页

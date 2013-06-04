@@ -152,7 +152,7 @@ if(session.getAttribute("LoginBean")==null) {
 	
 	</script>
   </head>
-  <body style="overflow-x:auto">
+  <body style="overflow-x:auto" style="width:1366px;">
   <div id="head" style="width:1366px;">
   		<img src="<%=path%>/image/logo2.png" alt="" id="logo"/>
   		<div id="nav-div">
@@ -281,8 +281,8 @@ if(session.getAttribute("LoginBean")==null) {
   		&nbsp;&nbsp;| &nbsp;&nbsp;<a href="<%=path%>/logout.d">安全退出</a>
   		</div>
   </div>
-  <div id="content">
-  	<iframe id="mainFrame" frameborder="0"  class="mainFrame" src="<%=path%>/workspace.d" style="width:1366px;"></iframe>
+  <div id="content" style="text-align:center">
+  	<iframe id="mainFrame" frameborder="0"  class="mainFrame" src="<%=path%>/workspace.d" style="min-width:1366px;"></iframe>
   </div>
   	<div id="adsLeft"></div>
 	<div id="adsRight"></div>

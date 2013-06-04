@@ -65,7 +65,7 @@ String path = request.getContextPath();
       	font-family:verdana,simsun,sans-serif;
      	width:235px;
      	height:45px;
-     	line-height:30px;
+     	line-height:40px;
         outline:none;
         margin-top:10px;
         text-align:center;
@@ -98,9 +98,12 @@ String path = request.getContextPath();
 		height:200px;
 	}
 	a {
-	blr:expression(this.onfocus=this.blur());
-	outline:none;
-	text-decoration: none;
+		blr:expression(this.onfocus=this.blur());
+		outline:none;
+		text-decoration: none;
+	}
+	a img {
+		border : none;
 	}
     </style>
   </head>
