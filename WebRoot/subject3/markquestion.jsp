@@ -70,7 +70,7 @@ $(document).ready(function(){
 <body style="overflow:auto">
 	 <div id="main">
 			<div id="title"><span>科目三已标记题</span></div>
-			<div id="sectionContent">
+			<div id="questionDiv">
 			 <s:iterator id="question" value="page.list" status="i">
 			<div class="question">
 			    <div class="quesntinContent">
@@ -95,6 +95,7 @@ $(document).ready(function(){
 					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/sub3/<s:property value='#question.video'/>&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
 					</s:elseif>
 				</div>
+				<div class="clear"></div>
 			</div>
 			</s:iterator>
 			<div id="pageBar">

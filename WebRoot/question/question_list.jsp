@@ -89,7 +89,7 @@ $(document).ready(function(){
 					<span>科目三</span>
 				</div>
 			</div>
-			<div id="sectionContent">
+			<div id="questionDiv">
 			<div class="addDiv"><a href="javascript:void(0);"><img src="<%=path%>/image/add.png"/></a></div>
 			<s:iterator id="question" value="page.list" status="i">
 			<div class="question">
@@ -111,8 +111,8 @@ $(document).ready(function(){
 						<a href='/image/sub1/<s:property value="type"/>/<s:property value="#question.image"/>' target="_blank">查看大图</a>
 						</s:if>
 						<s:elseif test="type==4">
-						<img src='/image/sub3/<s:property value="type"/>/<s:property value="#question.image"/>'/><br/><br/>
-						<a href='/image/sub3/<s:property value="type"/>/<s:property value="#question.image"/>' target="_blank">查看大图</a>
+						<img src='/image/sub3/<s:property value="#question.image"/>'/><br/><br/>
+						<a href='/image/sub3/<s:property value="#question.image"/>' target="_blank">查看大图</a>
 						</s:elseif>
 					</s:if>
 					<s:elseif test='#question.video!=""&&#question.video!=null'>
@@ -125,7 +125,8 @@ $(document).ready(function(){
 				<a href="<%=path %>/exam/subject1/toUpdateQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>"> <img alt="" src="<%=path%>/image/modifyquestion.png"></a><br/>
 				<a href="<%=path %>/exam/subject1/deleteQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>"><img alt="" src="<%=path%>/image/del.png"> </a><br/>
 				</div>
-			</div>
+				</div>
+				<div class="clear"></div>
 			</div>
 			</s:iterator>
 			<div id="pageBar">

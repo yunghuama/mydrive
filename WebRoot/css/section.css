@@ -47,16 +47,35 @@ body{
 }
 
 /***问题***/
+#questionDiv {
+	position:relative;
+	text-align:center;
+	margin-top:30px;
+	margin-bottom:20px;
+}
+
+#questionDiv table {
+	width:700px;
+	margin:0px auto;
+	border-collapse:collapse;
+}
+
+#questionDiv table tr{
+	border-bottom:1px solid #bfbfbf;
+}
+#questionDiv table td,th {
+	border-collapse:collapse;
+}
 
 .question {
 	text-align:left;
 	width:700px;
-	height:220px;
+	height:100%;
 	margin:0px auto;
-	padding-top:10px;
-	padding-bottom:10px;
 	position:relative;
-	border-bottom : 1px solid #bfbfbf;
+	padding-top:20px;
+	padding-bottom:20px;
+	border-bottom:1px solid #bfbfbf;
 }
 
 .question span {
@@ -110,10 +129,15 @@ body{
 .richmedia {
 	float:left;
 	width:100px;
-	height:100px;
+	height:160px;
 	text-align:center;
 }
 .richmedia img {
 	max-width:300px;
 	max-height:150px;
+}
+
+/*************清除浮动**************/
+.clear {
+	clear:both;
 }

@@ -281,7 +281,7 @@ if(session.getAttribute("LoginBean")==null) {
   		&nbsp;&nbsp;| &nbsp;&nbsp;<a href="<%=path%>/logout.d">安全退出</a>
   		</div>
   </div>
-  <div id="content" style="text-align:center">
+  <div id="content">
   	<iframe id="mainFrame" frameborder="0"  class="mainFrame" src="<%=path%>/workspace.d" style="min-width:1366px;"></iframe>
   </div>
   	<div id="adsLeft"></div>

@@ -70,7 +70,7 @@ $(document).ready(function(){
 <body style="overflow:auto">
 	 <div id="main">
 			<div id="title"><span>科目一错题练习</span></div>
-			<div id="sectionContent">
+			<div id="questionDiv">
 			 <s:iterator id="question" value="page.list" status="i">
 			<div class="question">
 			    <div class="quesntinContent">
@@ -92,6 +92,7 @@ $(document).ready(function(){
 						<a name='/image/sub1/<s:property value="type"/>/<s:property value="#question.image"/>' href="javascript:void(0);" class="showImgA">查看大图</a>
 					</s:if>
 				</div>
+				<div class="clear"></div>
 			</div>
 			</s:iterator>
 			<div id="pageBar">
