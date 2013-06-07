@@ -111,6 +111,7 @@ create table schoolcard (
     id char(32) not null primary key,
     number varchar(11) not null,
     password varchar(16) not null,
+    city char(32),
     name varchar(50) ,
     createtime datetime
 );
@@ -279,10 +280,3 @@ update questions_motorcycle set category = '4028813518f35feb0118f392eee50015' wh
 
 update questions3 set category = '4028813518f35feb0118f392eee50016' where category = '安全文明驾驶常识';
 
-
-
-
-select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_car where id in (select questionid from markquestion  order by createtime desc)  limit 0,10;
-insert into questions3(id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,createtime) select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,createtime from questions_car;
-select max(score) as maxscore, min(score) as minscore, count(id) as scorecounts ,avg(score) as avgscore,(select count(id)  from examscore where studentid = '4028813518f35feb0118f392eee50043' and cartype = 'c2' and score >=90 ) as passcount ,time,createtime from examscore where studentid = '4028813518f35feb0118f392eee50043' and cartype = 'c2'
-select max(exam.score) as maxscore, min(exam.score) as minscore, count(exam.id) as scorecounts ,avg(exam.score) as avgscore,sum(exam.score>=90) as passcount,stu.name  from examscore exam , studentcard stu where exam.studentid = stu.id and stu.schoolid = '4028813518f35feb0118f392eee50046'
