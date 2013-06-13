@@ -2,6 +2,8 @@ package com.platform.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import com.platform.domain.Announcement;
 import com.platform.domain.Message;
 import com.platform.util.PageHelper;
 import com.platform.util.UUIDGenerator;
+import com.platform.vo.LoginLogs;
 import com.platform.vo.Page;
 import com.platform.vo.ScoreSchoolVO;
 import com.platform.vo.ScoreVO;
@@ -345,6 +348,50 @@ public class SystemDAO extends GenericDAO{
 		int rowCount = queryForInt(SQLConstant.MESSAGE_QUERY_BY_SCH_ROWCOUNT,schoolId);
 		page.setRowCount(rowCount);
 		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
+		page.setList(list);
+		return page;
+	}
+	
+	/**
+	 * 保存登录日志
+	 * @param id
+	 * @return
+	 */
+	public int saveLoginLogs(String id){
+		return jdbcTemplate.update(SQLConstant.LOGINLOGS_SAVE, new Object[]{
+			UUIDGenerator.generate(),
+			id,
+			new Date(),
+			new Date()
+		});
+	}
+	
+	/**
+	 * 查询登录日志
+	 * @param id
+	 * @return
+	 */
+	public Page listLoginLogs(String sDate,String eDate,Page page) throws Exception{
+		int rowcount = 0;
+		List list =  jdbcTemplate.query(SQLConstant.LOGINLOGS_PAGE_QUERY, new Object[]{sDate,eDate,(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<LoginLogs>(){
+			@Override
+			public LoginLogs mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				LoginLogs ll = new LoginLogs();
+				ll.setCounts(rs.getInt("lcount"));
+				ll.setDate(rs.getDate("createdate")+"");
+				return ll;
+			}
+		});
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		cal.setTime(sdf.parse(sDate));
+		int day1=cal.get(Calendar.DAY_OF_YEAR); 
+		cal.setTime(sdf.parse(eDate));
+		int day2 =cal.get(Calendar.DAY_OF_YEAR); 
+		//计算两个日期之间的天数
+		page.setRowCount(day2-day1);
+		page.setMaxPage(PageHelper.getMaxPage(page.getRowCount(), page.getPageSize()));
 		page.setList(list);
 		return page;
 	}

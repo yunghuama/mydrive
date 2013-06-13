@@ -2,6 +2,7 @@ package com.platform.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -130,6 +131,13 @@ public class UsersDAO extends GenericDAO{
 			users.getPhonenumber(),
 			users.getId()
 		});
+	}
+	
+	/**
+	 * 更新激活时间
+	 */
+	public int updateActiveTime(){
+		return jdbcTemplate.update(SQLConstant.STUDENT_ACTIVETIME_UPDATE, new Date());
 	}
 	
 	/**

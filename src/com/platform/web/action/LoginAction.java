@@ -12,6 +12,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.platform.constants.StringConstant;
 import com.platform.domain.Users;
 import com.platform.service.QuestionService;
+import com.platform.service.SystemService;
 import com.platform.service.UsersService;
 import com.platform.util.LoginBean;
 
@@ -28,6 +29,8 @@ public class LoginAction extends ActionSupport {
 	private UsersService usersService;
 	@Autowired
 	private QuestionService questionService;
+	@Autowired
+	private SystemService systemService;
 
 	private String accountName;
 	private String password;
@@ -65,6 +68,9 @@ public class LoginAction extends ActionSupport {
 		}
 		LoginBean loginBean = new LoginBean();
 		loginBean.setUser(users);
+		//保存登录日志
+		systemService.saveLoginLogs(users.getId());
+		
 		ActionContext.getContext().getSession().put("LoginBean", loginBean);
 		//判断学员需不需要改资料
 		if(StringConstant.ROLE_STUDENT.equals(users.getRole())){
@@ -94,6 +100,7 @@ public class LoginAction extends ActionSupport {
 	public String firstInit(){
 		try{
 			usersService.update(users);
+			usersService.updateActiveTime();
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 			loginBean.getUser().setCartype(users.getCartype());
 			loginBean.getUser().setName(users.getName());

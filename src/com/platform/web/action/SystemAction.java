@@ -2,8 +2,9 @@ package com.platform.web.action;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -39,7 +40,7 @@ public class SystemAction extends GenericAction {
 	private UsersService usersService;
 	
 	private Announcement announcement;
-	private String annId;
+	private String annId,stDate,enDate;
 	private Users users;
 	private Message msg;
 	private String name = "";
@@ -490,6 +491,25 @@ public class SystemAction extends GenericAction {
 		return SUCCESS;
 	}
 	
+	/**
+	 * 查询登录日志
+	 * @return
+	 */
+	public String listLoginLogs(){
+		try{
+		if(stDate==null||"".equals(stDate)||enDate==null||"".equals(enDate)){
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			stDate = enDate = sdf.format(new Date());
+		}
+		page = systemService.listLoginLogs(stDate, enDate, page);
+		
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	
 	public String updateUsers(){
 		try{
 		usersService.update(users);
@@ -647,4 +667,23 @@ public class SystemAction extends GenericAction {
 		this.name = name;
 	}
 
+
+	public String getStDate() {
+		return stDate;
+	}
+
+
+	public void setStDate(String stDate) {
+		this.stDate = stDate;
+	}
+
+
+	public String getEnDate() {
+		return enDate;
+	}
+
+
+	public void setEnDate(String enDate) {
+		this.enDate = enDate;
+	}
 }

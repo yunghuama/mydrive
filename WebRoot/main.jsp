@@ -136,6 +136,12 @@ if(session.getAttribute("LoginBean")==null) {
 			$("a[name='id_6_2']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/system/adver/list.d");
 			});
+			$("a[name='id_6_3']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/system/listLoginLogs.d");
+			});
+			$("a[name='id_6_4']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/system/cardactive.d");
+			});
 			
 			new Adver({
 		      	  "renderTo":$("#adsLeft"),
@@ -259,13 +265,19 @@ if(session.getAttribute("LoginBean")==null) {
   				</s:if>
   				<s:if test='@com.platform.constants.StringConstant@getOperate(\"question\")=="T"'>
   				<li class="menu-item">
-  					<a href="javascript:void(0);" class="title">题库管理</a>
+  					<a href="javascript:void(0);" class="title">系统管理</a>
   					 <ul class="sub-nav">
   					 	<s:if test='@com.platform.constants.StringConstant@getOperate(\"question_admin\")=="T"'>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_6_1">题库管理</a></li>
   						</s:if>
   						<s:if test='@com.platform.constants.StringConstant@getOperate(\"ads\")=="T"'>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_6_2">广告管理</a></li>
+  						</s:if>
+  						<s:if test='@com.platform.constants.StringConstant@getOperate(\"loginlogs\")=="T"'>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_6_3">登录量统计</a></li>
+  						</s:if>
+  						<s:if test='@com.platform.constants.StringConstant@getOperate(\"cardactive\")=="T"'>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_6_4">激活量统计</a></li>
   						</s:if>
   					</ul>
   				</li>

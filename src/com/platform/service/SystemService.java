@@ -131,6 +131,21 @@ public class SystemService implements IService {
    }
    
    /**
+    * 保存登录日志
+    */
+   public int saveLoginLogs(String id){
+	   return systemDAO.saveLoginLogs(id);
+   }
+   
+   /**
+    * 查询登录日志
+    * 
+    */
+   public Page listLoginLogs(String sDate,String eDate,Page page) throws Exception{
+	   return systemDAO.listLoginLogs(sDate, eDate, page);
+   }
+   
+   /**
     * 
     */
    public Page<Message> listMessageByStu(Page page,String studentId){

@@ -103,6 +103,7 @@ create table studentcard (
     phonenumber varchar(12),
     age int,
     sex char(1),
+    activetime datetime,
     createtime datetime
 );
 
@@ -216,6 +217,21 @@ create table advertisement (
     pathName varchar(50),
     name varchar(100),
     createtime datetime
+);
+
+drop table if exists loginlogs;
+create table loginlogs (
+    id char(32) not null primary key,
+    userId char(32),
+    createtime datetime
+);
+
+drop table if exists loginlogs;
+create table loginlogs (
+    id char(32) not null primary key,
+    userId char(32),
+    createtime datetime,
+    createdate date
 );
 
 alter table questions_car drop column question_vedio;
