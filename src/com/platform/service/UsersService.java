@@ -46,8 +46,8 @@ public class UsersService implements IService {
 	   return usersDAO.updateInfo(users);
    }
    
-   public int updateActiveTime(){
-	   return usersDAO.updateActiveTime();
+   public int updateActiveTime(String id){
+	   return usersDAO.updateActiveTime(id);
    }
    
    public Users getUsersById(String id){

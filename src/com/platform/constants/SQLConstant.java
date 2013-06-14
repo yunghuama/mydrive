@@ -93,7 +93,7 @@ public final class SQLConstant {
 	public static final String STUDENT_TIME_GET = "select remindtimes,begindate,reminddays from studentcard where number = ? and password = ?";
 	public static final String STUDENT_TIME0 = "update studentcard set remindtimes = 0 where number = ? and password = ?";
 	public static final String STUDENT_TIMES_GET = "select remindtimes,reminddays,begindate from studentcard where id = ?";
-	public static final String STUDENT_ACTIVETIME_UPDATE = "update studentcard set activetime = ?";
+	public static final String STUDENT_ACTIVETIME_UPDATE = "update studentcard set activetime = ?,activedate = ? where id = ?";
 	
 	/**
 	 * 学校
@@ -221,6 +221,11 @@ public final class SQLConstant {
 	 * 登录日志
 	 */
 	public static final String LOGINLOGS_SAVE = "insert into loginlogs(id,userid,createtime,createdate) values(?,?,?,?)";
-	public static final String LOGINLOGS_PAGE_QUERY = "select createdate,count(id) as lcount from loginlogs where createdate >= ? and createdate<=? group by createdate order by createdate desc limit ?,?";
-	public static final String LOGINLOGS_ROWCOUNTS = "select count(select count(id) from loginlogs where createdate >= ? and createdate<=?) from loginlogs";
+	public static final String LOGINLOGS_PAGE_QUERY = "select SQL_CALC_FOUND_ROWS createdate,count(id) as lcount from loginlogs where createdate >= ? and createdate<=? group by createdate order by createdate desc limit ?,?";
+	public static final String LOGINLOGS_ROWCOUNTS = "select FOUND_ROWS() as counts";
+	
+	/**
+	 * 用户激活统计
+	 */
+	public static final String USERSACTIVELOGS = "select SQL_CALC_FOUND_ROWS activedate,count(id) as lcount from loginlogs where activedate >= ? and activedate<=? group by createdate order by activedate desc limit ?,?";
 }

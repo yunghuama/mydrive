@@ -104,6 +104,7 @@ create table studentcard (
     age int,
     sex char(1),
     activetime datetime,
+    activedate date,
     createtime datetime
 );
 

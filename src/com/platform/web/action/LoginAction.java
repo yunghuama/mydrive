@@ -100,7 +100,7 @@ public class LoginAction extends ActionSupport {
 	public String firstInit(){
 		try{
 			usersService.update(users);
-			usersService.updateActiveTime();
+			usersService.updateActiveTime(users.getId());
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 			loginBean.getUser().setCartype(users.getCartype());
 			loginBean.getUser().setName(users.getName());

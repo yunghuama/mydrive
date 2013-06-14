@@ -136,8 +136,8 @@ public class UsersDAO extends GenericDAO{
 	/**
 	 * 更新激活时间
 	 */
-	public int updateActiveTime(){
-		return jdbcTemplate.update(SQLConstant.STUDENT_ACTIVETIME_UPDATE, new Date());
+	public int updateActiveTime(String id){
+		return jdbcTemplate.update(SQLConstant.STUDENT_ACTIVETIME_UPDATE, new Date(),new Date(),id);
 	}
 	
 	/**

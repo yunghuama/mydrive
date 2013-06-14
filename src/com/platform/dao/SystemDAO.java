@@ -1,9 +1,10 @@
 package com.platform.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -371,26 +372,65 @@ public class SystemDAO extends GenericDAO{
 	 * @param id
 	 * @return
 	 */
-	public Page listLoginLogs(String sDate,String eDate,Page page) throws Exception{
-		int rowcount = 0;
-		List list =  jdbcTemplate.query(SQLConstant.LOGINLOGS_PAGE_QUERY, new Object[]{sDate,eDate,(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<LoginLogs>(){
-			@Override
-			public LoginLogs mapRow(ResultSet rs, int arg1)
-					throws SQLException {
-				LoginLogs ll = new LoginLogs();
-				ll.setCounts(rs.getInt("lcount"));
-				ll.setDate(rs.getDate("createdate")+"");
-				return ll;
-			}
-		});
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		cal.setTime(sdf.parse(sDate));
-		int day1=cal.get(Calendar.DAY_OF_YEAR); 
-		cal.setTime(sdf.parse(eDate));
-		int day2 =cal.get(Calendar.DAY_OF_YEAR); 
+	@SuppressWarnings("unchecked")
+	public Page listLoginLogs(String sDate, String eDate, Page page) throws Exception{
+		List list = new ArrayList();
+		Connection conn = jdbcTemplate.getDataSource().getConnection();
+		PreparedStatement ps = conn.prepareStatement(SQLConstant.LOGINLOGS_PAGE_QUERY);
+		ps.setString(1, sDate);
+		ps.setString(2, eDate);
+		ps.setInt(3, (page.getCurrPage()-1)*page.getPageSize());
+		ps.setInt(4, page.getPageSize());
+		ResultSet rs1 = ps.executeQuery();
+		while(rs1.next()){
+			LoginLogs ll = new LoginLogs();
+			ll.setCounts(rs1.getInt("lcount"));
+			ll.setDate(rs1.getDate("createdate")+"");
+			list.add(ll);
+		}
+		ResultSet rs = ps.executeQuery(SQLConstant.LOGINLOGS_ROWCOUNTS);
+		while(rs.next()){
+			page.setRowCount(rs.getInt("counts"));
+		}
+		rs.close();
+		rs1.close();
+		ps.close();
+		conn.close();
 		//计算两个日期之间的天数
-		page.setRowCount(day2-day1);
+		page.setMaxPage(PageHelper.getMaxPage(page.getRowCount(), page.getPageSize()));
+		page.setList(list);
+		return page;
+	}
+	
+	/**
+	 * 查询激活用户
+	 * @param id
+	 * @return
+	 */
+	public Page listActiveCard(String sDate, String eDate, Page page)throws Exception{
+		List list = new ArrayList();
+		Connection conn = jdbcTemplate.getDataSource().getConnection();
+		PreparedStatement ps = conn.prepareStatement(SQLConstant.LOGINLOGS_PAGE_QUERY);
+		ps.setString(1, sDate);
+		ps.setString(2, eDate);
+		ps.setInt(3, (page.getCurrPage()-1)*page.getPageSize());
+		ps.setInt(4, page.getPageSize());
+		ResultSet rs1 = ps.executeQuery();
+		while(rs1.next()){
+			LoginLogs ll = new LoginLogs();
+			ll.setCounts(rs1.getInt("lcount"));
+			ll.setDate(rs1.getDate("createdate")+"");
+			list.add(ll);
+		}
+		ResultSet rs = ps.executeQuery(SQLConstant.LOGINLOGS_ROWCOUNTS);
+		while(rs.next()){
+			page.setRowCount(rs.getInt("counts"));
+		}
+		rs.close();
+		rs1.close();
+		ps.close();
+		conn.close();
+		//计算两个日期之间的天数
 		page.setMaxPage(PageHelper.getMaxPage(page.getRowCount(), page.getPageSize()));
 		page.setList(list);
 		return page;
