@@ -477,6 +477,65 @@ public class SystemAction extends GenericAction {
 	}
 	
 	/**
+	 * 导出学员成绩3
+	 */
+	public String exportActive(){
+		try{
+			if(stDate==null||"".equals(stDate)||enDate==null||"".equals(enDate)){
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				stDate = enDate = sdf.format(new Date());
+			}
+			List<Users> list = systemService.listActiveUsers(stDate,enDate);
+			
+			fileName = "激活卡统计.xls";
+			
+			HSSFWorkbook wb = new HSSFWorkbook(); 
+			HSSFSheet sheet = wb.createSheet("激活卡统计");  
+			//设置居中的样式
+			HSSFCellStyle style = wb.createCellStyle();  
+	        style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中  
+	        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中  
+	        //创建第一行
+	        HSSFRow row = sheet.createRow((short) 0); 
+	        row.setHeight((short)500);  
+	        sheet.addMergedRegion(new CellRangeAddress(0, (short) 0, 0, (short) 6)); 
+	        HSSFCell ce = row.createCell(0); 
+	        ce.setCellValue("学员卡激活统计");
+	        ce.setCellStyle(style);
+	        //创建第二行
+	        HSSFRow row2 = sheet.createRow((short) 1);
+	        HSSFCell ce21 = row2.createCell(0); 
+	        ce21.setCellValue("卡号");
+	        HSSFCell ce22 = row2.createCell(1); 
+	        ce22.setCellValue("姓名");
+	        HSSFCell ce23 = row2.createCell(2); 
+	        ce23.setCellValue("所属驾校");
+	        HSSFCell ce24 = row2.createCell(3); 
+	        ce24.setCellValue("激活时间");
+	        //开始循环创建考试成绩
+	        for(int i=0;i<list.size();i++){
+	        	Users v = list.get(i);
+	        	HSSFRow scoreRow = sheet.createRow((short) (2+i));
+	 	        HSSFCell scoreRow1 = scoreRow.createCell(0); 
+	 	        scoreRow1.setCellValue(v.getNumber());
+	 	        HSSFCell scoreRow2 = scoreRow.createCell(1); 
+	 	        scoreRow2.setCellValue(v.getName());
+	 	        HSSFCell scoreRow3 = scoreRow.createCell(2); 
+	 	        scoreRow3.setCellValue(v.getSchoolId());
+	 	        HSSFCell scoreRow4 = scoreRow.createCell(3); 
+	 	        scoreRow4.setCellValue(v.getActiveTime());
+	        }
+	        ByteArrayOutputStream out = new ByteArrayOutputStream();
+	        wb.write(out);
+	        inputStream = new ByteArrayInputStream(out.toByteArray());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return SUCCESS;
+	}
+	
+	/**
 	 * 获得个人信息
 	 * @return
 	 */
@@ -509,6 +568,24 @@ public class SystemAction extends GenericAction {
 		return SUCCESS;
 	}
 	
+	
+	/**
+	 * 查询激活用户
+	 * @return
+	 */
+	public String listActiveCard(){
+		try{
+		if(stDate==null||"".equals(stDate)||enDate==null||"".equals(enDate)){
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			stDate = enDate = sdf.format(new Date());
+		}
+		page = systemService.listActive(stDate, enDate, page);
+		
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
 	
 	public String updateUsers(){
 		try{

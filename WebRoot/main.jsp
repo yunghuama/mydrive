@@ -140,7 +140,7 @@ if(session.getAttribute("LoginBean")==null) {
 				$("#mainFrame").attr("src","<%=path%>/exam/system/listLoginLogs.d");
 			});
 			$("a[name='id_6_4']").bind("click",function(){
-				$("#mainFrame").attr("src","<%=path%>/exam/system/cardactive.d");
+				$("#mainFrame").attr("src","<%=path%>/exam/system/listActiveCard.d");
 			});
 			
 			new Adver({

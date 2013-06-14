@@ -10,6 +10,7 @@ import com.platform.constants.SQLConstant;
 import com.platform.dao.SystemDAO;
 import com.platform.domain.Announcement;
 import com.platform.domain.Message;
+import com.platform.domain.Users;
 import com.platform.vo.Page;
 import com.platform.vo.ScoreSchoolVO;
 import com.platform.vo.ScoreVO;
@@ -143,6 +144,25 @@ public class SystemService implements IService {
     */
    public Page listLoginLogs(String sDate,String eDate,Page page) throws Exception{
 	   return systemDAO.listLoginLogs(sDate, eDate, page);
+   }
+   
+   /**
+    * 查询激活量
+    * 
+    */
+   public Page listActive(String sDate,String eDate,Page page) throws Exception{
+	   return systemDAO.listActiveCard(sDate, eDate, page);
+   }
+   
+   /**
+    * 查询激活用户
+    * @param sDate
+    * @param eDate
+    * @return
+    * @throws Exception
+    */
+   public List<Users> listActiveUsers(String sDate,String eDate) throws Exception {
+	   return systemDAO.listActiveUsers(sDate, eDate);
    }
    
    /**

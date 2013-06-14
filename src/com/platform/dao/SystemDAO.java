@@ -12,8 +12,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.platform.constants.SQLConstant;
+import com.platform.constants.StringConstant;
 import com.platform.domain.Announcement;
 import com.platform.domain.Message;
+import com.platform.domain.Users;
 import com.platform.util.PageHelper;
 import com.platform.util.UUIDGenerator;
 import com.platform.vo.LoginLogs;
@@ -410,7 +412,7 @@ public class SystemDAO extends GenericDAO{
 	public Page listActiveCard(String sDate, String eDate, Page page)throws Exception{
 		List list = new ArrayList();
 		Connection conn = jdbcTemplate.getDataSource().getConnection();
-		PreparedStatement ps = conn.prepareStatement(SQLConstant.LOGINLOGS_PAGE_QUERY);
+		PreparedStatement ps = conn.prepareStatement(SQLConstant.USERSACTIVELOGS);
 		ps.setString(1, sDate);
 		ps.setString(2, eDate);
 		ps.setInt(3, (page.getCurrPage()-1)*page.getPageSize());
@@ -419,7 +421,7 @@ public class SystemDAO extends GenericDAO{
 		while(rs1.next()){
 			LoginLogs ll = new LoginLogs();
 			ll.setCounts(rs1.getInt("lcount"));
-			ll.setDate(rs1.getDate("createdate")+"");
+			ll.setDate(rs1.getDate("activedate")+"");
 			list.add(ll);
 		}
 		ResultSet rs = ps.executeQuery(SQLConstant.LOGINLOGS_ROWCOUNTS);
@@ -436,6 +438,25 @@ public class SystemDAO extends GenericDAO{
 		return page;
 	}
 	
+	/**
+	 * 查询激活
+	 * @param id
+	 * @return
+	 */
+	
+	public List<Users> listActiveUsers(String sDate, String eDate)throws Exception{
+		return jdbcTemplate.query(SQLConstant.USERSACTIVEEXPORT, new Object[]{sDate,eDate},new RowMapper<Users>(){
+			@Override
+			public Users mapRow(ResultSet rs, int arg1) throws SQLException {
+				Users user = new Users();
+				user.setActiveTime(rs.getDate("activetime")+" "+rs.getTime("activetime"));
+				user.setNumber(rs.getString("number"));
+				user.setName(rs.getString("name"));
+				user.setSchoolId(rs.getString("schoolname"));
+				return user;
+			}
+		});
+	}
 	
 	public Message getMessage(String id){
 		List<Message> list = jdbcTemplate.query(SQLConstant.MESSAGE_GET,new Object[]{id},new RowMapper<Message>(){

@@ -227,5 +227,6 @@ public final class SQLConstant {
 	/**
 	 * 用户激活统计
 	 */
-	public static final String USERSACTIVELOGS = "select SQL_CALC_FOUND_ROWS activedate,count(id) as lcount from loginlogs where activedate >= ? and activedate<=? group by createdate order by activedate desc limit ?,?";
+	public static final String USERSACTIVELOGS = "select SQL_CALC_FOUND_ROWS activedate,count(id) as lcount from studentcard where activedate >= ? and activedate<=? group by activedate order by activedate desc limit ?,?";
+	public static final String USERSACTIVEEXPORT = "select stu.number,stu.name,activetime,sc.name as schoolname from studentcard stu left join schoolcard sc on stu.schoolid = sc.id where activedate >= ? and activedate<=? order by activetime";
 }
