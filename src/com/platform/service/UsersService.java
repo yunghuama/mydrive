@@ -9,6 +9,7 @@ import com.platform.constants.StringConstant;
 import com.platform.dao.UsersDAO;
 import com.platform.domain.Users;
 import com.platform.exception.CRUDException;
+import com.platform.vo.SchoolVo;
 
 @Service
 public class UsersService implements IService {
@@ -42,6 +43,10 @@ public class UsersService implements IService {
         return user;
     }
 
+    public SchoolVo getSchoolById(String id){
+    	return usersDAO.getSchoolById(id);
+    }
+    
    public int update(Users users){
 	   return usersDAO.updateInfo(users);
    }

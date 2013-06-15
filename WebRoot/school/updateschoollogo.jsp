@@ -12,27 +12,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#next").click(function(){
-			var oldPass = $("#oldPass").val();
-			var newPass = $("#newPass").val();
-			var newPass1 = $("#newPass1").val();
-			if(newPass!=newPass1){
-				alert("两次输入的密码不一样");
-				return;
-			}
-			$.ajax({
-				   type: "POST",
-				   url: '<%=path%>/system/ajax/updatePass.d',
-				   data: {'oldPass':oldPass,'newPass':newPass},
-				   async: false,
-				   success: function(data){
-					  if(data=='success'){
-						  alert("密码修改成功,请重新登录");
-					  }else {
-						  alert("密码修改失败");
-					  }
-				   }
-				});
-			
+			$("form").submit();
 		});
 	});
 
@@ -80,8 +60,8 @@ td {
 	height:40px;
 }
 #slogo {
-	width:20px;
-	height:20px;
+	width:50px;
+	height:30px;
 }
 </style>
 </head>
@@ -89,16 +69,23 @@ td {
 	<div id="content">
 	<fieldset>
 	<legend>驾校logo修改</legend>
-	<form name="infoForm" id="infoForm" action="<%=path%>/exam/system/updatePass.d" class="form" method="post">
+	<form name="infoForm" id="infoForm" action="<%=path%>/exam/system/updateSLogo.d" class="form" method="post" enctype="multipart/form-data">
 	<s:hidden name="users.id"></s:hidden>
       <table class="form-table" cellspacing="0" cellpadding="0">
         <tr>
-          <td class="form-left"><span class="form-required">*</span>当前LOGO</td>
-          <td class="form-right"><img alt="" src="<%=path %>/image/slogo.png" id="slogo"> </td>
+          <td class="form-left">当前LOGO</td>
+          <td class="form-right">
+          <s:if test="logo!=null&&logo!=''">
+          <img alt="" src="/image/slogo/<s:property value='logo'/>" id="slogo"> 
+          </s:if>
+          <s:else>
+          <img alt="" src="<%=path %>/image/slogo.png" id="slogo"> 
+          </s:else>
+          </td>
         </tr>
         <tr>
           <td class="form-left"><span class="form-required">*</span>新LOGO</td>
-          <td class="form-right"><input type="file" name="upload" class="text"></td>
+          <td class="form-right"><input type="file" name="upload" class="file"></td>
         </tr>
       </table>
     </form>

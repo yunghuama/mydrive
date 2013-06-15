@@ -67,6 +67,7 @@ public final class StringConstant {
 	public static final String NAV_SCHOOL_ANNOUNCE_ADMIN = "school_announce_admin";
 	public static final String NAV_SCHOOL_SCORE1 = "school_score1";
 	public static final String NAV_SCHOOL_SCORE3 = "school_score3";
+	public static final String NAV_SCHOOL_SLOGO  = "school_logo";
 	//题库管理
 	public static final String NAV_QUESTION = "question";
 	public static final String NAV_QUESTION_ADMIN = "question_admin";
@@ -142,6 +143,7 @@ public final class StringConstant {
 		operate.put(ROLE_SCHOOL+NAV_SCHOOL_SCORE1, "T");
 		operate.put(ROLE_SCHOOL+NAV_SCHOOL_SCORE3, "T");
 		operate.put(ROLE_SCHOOL+MSG_SCHOOL,"T");
+		operate.put(ROLE_SCHOOL+NAV_SCHOOL_SLOGO,"T");
 		
 		//设置管理员
 		operate.put(ROLE_ADMIN+NAV_INDEX, "T");

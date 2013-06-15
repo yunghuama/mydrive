@@ -6,8 +6,14 @@ public class SchoolVo {
 	private String logo;
 	private String address;
 	private String id;
+	private String tel;
 	
-	
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	public String getName() {
 		return name;
 	}

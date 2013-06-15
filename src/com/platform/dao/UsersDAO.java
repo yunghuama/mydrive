@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.platform.constants.SQLConstant;
 import com.platform.constants.StringConstant;
 import com.platform.domain.Users;
+import com.platform.vo.SchoolVo;
 
 /**
  * <p>程序名称：       UsersDAO.java</p>
@@ -233,6 +234,30 @@ public class UsersDAO extends GenericDAO{
 				user.setPhonenumber(rs.getString("phonenumber"));
 				user.setSchoolId(rs.getString("sname"));
 				return user;
+			}
+		});
+		
+		if(list!=null&&list.size()>0){
+			return list.get(0);
+		}
+		return null;
+	}
+	
+	/**
+	 * 查询SCHOOL 信息
+	 * @param id
+	 * @return
+	 */
+	public SchoolVo getSchoolById(String id){
+		List<SchoolVo> list =  jdbcTemplate.query(SQLConstant.SCHOOL_IDENTITY_GET,new Object[]{id}, new RowMapper<SchoolVo>(){
+			@Override
+			public SchoolVo mapRow(ResultSet rs, int arg1) throws SQLException {
+				SchoolVo vo = new SchoolVo();
+				vo.setAddress(rs.getString("address"));
+				vo.setLogo(rs.getString("logo"));
+				vo.setName(rs.getString("name"));
+				vo.setTel(rs.getString("tel"));
+				return vo;
 			}
 		});
 		

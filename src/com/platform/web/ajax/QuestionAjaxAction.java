@@ -20,6 +20,7 @@ import com.platform.service.QuestionSubject3Service;
 import com.platform.service.SystemService;
 import com.platform.service.UsersService;
 import com.platform.util.LoginBean;
+import com.platform.vo.SchoolVo;
 import com.platform.vo.ScoreVO;
 import com.platform.vo.StatisticVO;
 
@@ -49,6 +50,7 @@ public class QuestionAjaxAction {
     private String oldPass,newPass;
     private Adver adver;
     private List<Adver> adverList;
+    private SchoolVo school;
     /**
      * 保存成绩
      * @return
@@ -309,6 +311,24 @@ public class QuestionAjaxAction {
 		return Action.SUCCESS;
 	}
 	
+	public String getSchoolIdentity(){
+		try{
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			school = usersService.getSchoolById(loginBean.getUser().getSchoolId());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return Action.SUCCESS;
+	}
+	
+	public SchoolVo getSchool() {
+		return school;
+	}
+
+	public void setSchool(SchoolVo school) {
+		this.school = school;
+	}
+
 	public QuestionService getQuestionService() {
 		return questionService;
 	}

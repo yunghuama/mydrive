@@ -64,7 +64,7 @@
     
     <action name="exportSocre1" class="systemAction" method="exportSocre1">
       <result type="stream">
-          <param name="contentType">application/x-msdownload</param> 
+          <param name="contentType">application/x-msdownload;charset=ISO8859-1</param> 
           <param name="inputName">inputStream</param>
           <param name="contentDisposition">attachment;filename="${fileName}"</param>
           <param name="bufferSize">4096</param><!-- 输出时缓冲区的大小 --> 
@@ -72,7 +72,7 @@
     </action>
     <action name="exportSocre3" class="systemAction" method="exportSocre3">
       <result type="stream">
-          <param name="contentType">application/x-msdownload</param> 
+          <param name="contentType">application/x-msdownload;charset=ISO8859-1</param> 
           <param name="inputName">inputStream</param>
           <param name="contentDisposition">attachment;filename="${fileName}"</param>
           <param name="bufferSize">4096</param><!-- 输出时缓冲区的大小 --> 
@@ -81,7 +81,7 @@
     
     <action name="exportStaticSocre1" class="systemAction" method="exportStaticSocre1">
       <result type="stream">
-          <param name="contentType">application/x-msdownload</param> 
+          <param name="contentType">application/x-msdownload;charset=ISO8859-1</param> 
           <param name="inputName">inputStream</param>
           <param name="contentDisposition">attachment;filename="${fileName}"</param>
           <param name="bufferSize">4096</param><!-- 输出时缓冲区的大小 --> 
@@ -89,7 +89,7 @@
     </action>
     <action name="exportStaticSocre3" class="systemAction" method="exportStaticSocre3">
       <result type="stream">
-          <param name="contentType">application/x-msdownload</param> 
+          <param name="contentType">application/x-msdownload;charset=ISO8859-1</param> 
           <param name="inputName">inputStream</param>
           <param name="contentDisposition">attachment;filename="${fileName}"</param>
           <param name="bufferSize">4096</param><!-- 输出时缓冲区的大小 --> 
@@ -103,7 +103,7 @@
     </action>
     <action name="exportActive" class="systemAction" method="exportActive">
       <result type="stream">
-          <param name="contentType">application/x-msdownload</param> 
+          <param name="contentType">application/x-msdownload;charset=ISO8859-1</param> 
           <param name="inputName">inputStream</param>
           <param name="contentDisposition">attachment;filename="${fileName}"</param>
           <param name="bufferSize">4096</param><!-- 输出时缓冲区的大小 --> 

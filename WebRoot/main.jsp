@@ -44,20 +44,39 @@ if(session.getAttribute("LoginBean")==null) {
 		position:absolute;
 		right:15px;
 		bottom:0px;
-		width:229px;
+		width:329px;
 		height:100px;
 	}
 	#immage {
 		float : left;
 		width:25px;
 		height:96px;
+		cursor:pointer;
 	}
 	#scontent {
 		float:left;
-		width:200px;
+		width:300px;
 		height:96px;
 		border:1px solid #bfbfbf;
 	}
+	#slogoimage {
+		width:100px;
+		height:80px;
+	}
+	#slogo  {
+		width:100px;
+		height:80px;
+		float:left;
+	}
+	#sinfo {
+		float:left;
+		width:200px;
+		margin-top:10px;
+		text-align:center;
+	}
+	#sname,#sadd,#stel{
+		margin-top:5px;
+	} 
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -129,6 +148,9 @@ if(session.getAttribute("LoginBean")==null) {
 			$("a[name='id_4_4']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/exam/system/listMessageStu.d");
 			});
+			$("a[name='id_4_5']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/system/toUpdateSLogo.d");
+			});
 			
 			//驾校管理
 			$("a[name='id_5_1']").bind("click",function(){
@@ -176,6 +198,46 @@ if(session.getAttribute("LoginBean")==null) {
 		      	   "page":1,
 		      	   "position":1
 		       });
+		      
+		     //载入驾校名片
+		      $.ajax({
+				   type: "POST",
+				   url: projectName+"/system/ajax/getSchoolIdentity.d",
+				   success: function(data){
+					   var logo = data.logo;
+					   var name =data.name;
+					   var address = data.address;
+					   var tel = data.tel;
+					   if(logo!=null&&logo!=""){
+						  $("#slogo").find("img").attr("src","/image/slogo/"+logo);
+					   }
+					   if(name==null||name==""){
+						   name = "";
+					   }
+					   if(address==null||address==""){
+						   address = "";
+					   }
+					   if(tel==null||tel==""){
+						   tel = "";
+					   }
+					  $("#sname").find("span").text(name);
+					  $("#sadd").find("span").text(address);
+					  $("#stel").find("span").text(tel);
+				   }
+				});
+		     
+		     $("#immage").click(function(){
+		    	 if($("#scontent").is(":visible")){
+		    		 $("#scontent").hide();
+		    		 $("#schoolidentity").width(25);
+		    		 $("#immage").find("img").attr("src","<%=path %>/image/close.png");
+		    	 }else {
+		    		 $("#scontent").show();
+		    		 $("#schoolidentity").width(329);
+		    		 $("#immage").find("img").attr("src","<%=path %>/image/open.png");
+		    	 }
+		    	 
+		     });
 		});
 	
 	</script>
@@ -260,6 +322,9 @@ if(session.getAttribute("LoginBean")==null) {
   						<s:if test='@com.platform.constants.StringConstant@getOperate(\"student_message\")=="T"'>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_4_4">意见反馈</a></li>
   						</s:if>
+  						<s:if test='@com.platform.constants.StringConstant@getOperate(\"school_logo\")=="T"'>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_4_5">上传LOGO</a></li>
+  						</s:if>
   					</ul>
   				</li>
   				</s:if>
@@ -325,13 +390,13 @@ if(session.getAttribute("LoginBean")==null) {
 	<div id="adsRight"></div>
 	<s:if test='#session["LoginBean"].user.role=="STUDENT"'>
 	<div id="schoolidentity">
-		<div id="immage"><img src="<%=path %>/image/close.png"/></div>
+		<div id="immage"><img src="<%=path %>/image/open.png"/></div>
 		<div id="scontent">
-		<div id="slogo"></div>
+		<div id="slogo"><img src='<%=path %>/image/slogo.png' alt="" id="slogoimage"/> </div>
 		<div id="sinfo">
-			<div id="sname">1231313</div>
-			<div id="sadd">123131321</div>
-			<div id="stel">1321313212</div>
+			<div id="sname"><span></span></div>
+			<div id="sadd"><span></span></div>
+			<div id="stel"><span></span></div>
 		</div>
 		</div>
 	</div>

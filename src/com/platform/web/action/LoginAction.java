@@ -15,6 +15,7 @@ import com.platform.service.QuestionService;
 import com.platform.service.SystemService;
 import com.platform.service.UsersService;
 import com.platform.util.LoginBean;
+import com.platform.vo.SchoolVo;
 
 
 @Controller
@@ -37,7 +38,6 @@ public class LoginAction extends ActionSupport {
 	private String errorMes;
 	private String remember;
 	private Users users;
-
 	/**
 	 * 登录
 	 * 
@@ -77,6 +77,7 @@ public class LoginAction extends ActionSupport {
 			if(users.getIdentity()==null||users.getName()==null){
 				return FIRST_INIT;
 			}
+			//查询所属驾校信息
 		}
 		return SUCCESS;
 	}
@@ -125,6 +126,9 @@ public class LoginAction extends ActionSupport {
 		}
 		return null;
 	}
+
+	
+
 
 	public String getAccountName() {
 		return accountName;

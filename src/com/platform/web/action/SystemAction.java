@@ -13,6 +13,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.CellRangeAddress;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -50,6 +51,7 @@ public class SystemAction extends GenericAction {
 	private String name = "";
 	private InputStream inputStream;
 	private String fileName;
+	private String logo;
 	/**
 	 * 保存公告
 	 * @return
@@ -684,6 +686,7 @@ public class SystemAction extends GenericAction {
 	
 	public String getFileName() {
 		try{
+			ServletActionContext.getResponse().setHeader("charset","ISO8859-1"); 
 			return new String(fileName.getBytes(),"iso8859-1");
 		}catch(Exception e){
 			e.printStackTrace();
@@ -699,7 +702,7 @@ public class SystemAction extends GenericAction {
 	public String toUpdateSLogo(){
 		try{
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-			fileName = systemService.querySLogo(loginBean.getUser().getId());
+			logo = systemService.querySLogo(loginBean.getUser().getId());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -729,6 +732,18 @@ public class SystemAction extends GenericAction {
 		return SUCCESS;
 	}
 	
+	
+	
+	public String getLogo() {
+		return logo;
+	}
+
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+
+
 	public InputStream getInputStream() {
 		System.out.println(inputStream);
 		return inputStream;

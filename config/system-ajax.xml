@@ -76,6 +76,11 @@
         <param name="root">adverList</param>
       </result>
     </action>
+    <action name="getSchoolIdentity" class="questionAjaxAction" method="getSchoolIdentity">
+      <result type="json">
+        <param name="root">school</param>
+      </result>
+    </action>
   </package>
   
 </struts>
