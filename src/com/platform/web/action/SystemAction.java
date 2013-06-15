@@ -149,7 +149,7 @@ public class SystemAction extends GenericAction {
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 			List<ScoreSchoolVO> list = systemService.listScore1All(loginBean.getUser().getId(), name);
 			
-			fileName = "科目一驾考成绩统计.xls";
+			fileName = "xycjtj_km1.xls";
 			
 			HSSFWorkbook wb = new HSSFWorkbook(); 
 			HSSFSheet sheet = wb.createSheet("驾考成绩");  
@@ -217,11 +217,7 @@ public class SystemAction extends GenericAction {
 			ScoreSchoolVO vo1 = systemService.getStasticScore1(users.getId());
 			List<ScoreVO> list1 = systemService.getScore1(users.getId());
 			
-			if(vo1.getName()!=null&&!"".equals(vo1.getName())){
-				fileName = vo1.getName()+"科目一驾考成绩.xls";
-			}else {
-				fileName = "科目一驾考成绩.xls";
-			}
+			fileName = "xycj_km1.xls";
 			
 			HSSFWorkbook wb = new HSSFWorkbook(); 
 			HSSFSheet sheet = wb.createSheet("驾考成绩");  
@@ -327,7 +323,7 @@ public class SystemAction extends GenericAction {
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 			List<ScoreSchoolVO> list = systemService.listScore3All(loginBean.getUser().getId(), name);
 			
-			fileName = "科目三(四)驾考成绩统计.xls";
+			fileName = "xycjtj_km3.xls";
 			
 			HSSFWorkbook wb = new HSSFWorkbook(); 
 			HSSFSheet sheet = wb.createSheet("驾考成绩");  
@@ -395,11 +391,7 @@ public class SystemAction extends GenericAction {
 			ScoreSchoolVO vo1 = systemService.getStasticScore3(users.getId());
 			List<ScoreVO> list1 = systemService.getScore3(users.getId());
 			
-			if(vo1.getName()!=null&&!"".equals(vo1.getName())){
-				fileName = vo1.getName()+"科目三(四)驾考成绩.xls";
-			}else {
-				fileName = "科目三(四)驾考成绩.xls";
-			}
+			fileName = "xycj_km3.xls";
 			
 			HSSFWorkbook wb = new HSSFWorkbook(); 
 			HSSFSheet sheet = wb.createSheet("驾考成绩");  
@@ -493,7 +485,7 @@ public class SystemAction extends GenericAction {
 			}
 			List<Users> list = systemService.listActiveUsers(stDate,enDate);
 			
-			fileName = "激活卡统计.xls";
+			fileName = "jhktj.xls";
 			
 			HSSFWorkbook wb = new HSSFWorkbook(); 
 			HSSFSheet sheet = wb.createSheet("激活卡统计");  

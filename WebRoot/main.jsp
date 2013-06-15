@@ -44,7 +44,7 @@ if(session.getAttribute("LoginBean")==null) {
 		position:absolute;
 		right:15px;
 		bottom:0px;
-		width:329px;
+		width:25px;
 		height:100px;
 	}
 	#immage {
@@ -58,6 +58,7 @@ if(session.getAttribute("LoginBean")==null) {
 		width:300px;
 		height:96px;
 		border:1px solid #bfbfbf;
+		display:none;
 	}
 	#slogoimage {
 		width:100px;
@@ -390,9 +391,9 @@ if(session.getAttribute("LoginBean")==null) {
 	<div id="adsRight"></div>
 	<s:if test='#session["LoginBean"].user.role=="STUDENT"'>
 	<div id="schoolidentity">
-		<div id="immage"><img src="<%=path %>/image/open.png"/></div>
+		<div id="immage"><img src="<%=path %>/image/close.png"/></div>
 		<div id="scontent">
-		<div id="slogo"><img src='<%=path %>/image/slogo.png' alt="" id="slogoimage"/> </div>
+		<div id="slogo"><img src='<%=path %>/image/slogo.gif' alt="" id="slogoimage"/> </div>
 		<div id="sinfo">
 			<div id="sname"><span></span></div>
 			<div id="sadd"><span></span></div>

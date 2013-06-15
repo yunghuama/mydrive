@@ -224,12 +224,6 @@ create table advertisement (
     createtime datetime
 );
 
-drop table if exists loginlogs;
-create table loginlogs (
-    id char(32) not null primary key,
-    userId char(32),
-    createtime datetime
-);
 
 drop table if exists loginlogs;
 create table loginlogs (
