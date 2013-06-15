@@ -176,11 +176,29 @@ public class SystemService implements IService {
 	   return systemDAO.listMessageBySch(page, schoolId);
    }
    
+   public Page<Message> listMessageBySys(Page page){
+	   return systemDAO.listMessageBySys(page);
+   }
+   
    public int deleteMessage(String id){
 	   return systemDAO.deleteByProperty(SQLConstant.MESSAGE_DELETE, id);
    }
    
    public Message getMessage(String id){
 	   return systemDAO.getMessage(id);
+   }
+   
+   /**
+    * 查询驾校logo
+    */
+   public String querySLogo(String id){
+	   return systemDAO.querySLogo(id);
+   }
+   
+   /**
+    * 修改驾校logo
+    */
+   public int updateSLogo(String id,String logo){
+	   return systemDAO.updateSLogo(id, logo);
    }
 }

@@ -20,12 +20,13 @@
 	#sectionContent {
 		width:600px;
 		margin:0px auto;
+		margin-top:20px;
 	}
 	td {
-		white-space: normal;
+	white-space: normal;
 	word-wrap: break-word;
     word-break: break-all;
-	}
+    }
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -38,7 +39,7 @@ $(document).ready(function(){
 		$(this).removeClass("mouseover");
 	});
 	
-	
+
 	$(".data").each(function(){
 		$(this).find("td").eq(1).bind("click",function(){
 			var id = $(this).attr("id");
@@ -53,9 +54,10 @@ $(document).ready(function(){
 			return false;
 		var id = $(this).attr("id");
 		$("#msg").val(id);
-		$("form").attr("action","<%=path%>/exam/system/delMessageStu.d");
+		$("form").attr("action","<%=path%>/exam/system/delMessageSch.d");
 		$("form").submit();
 	});
+	
 	
 	//构造分页
 	var maxPage = parseInt($("#maxPage").val());
@@ -85,35 +87,29 @@ $(document).ready(function(){
 </head>
 <body style="overflow:auto">
 	 <div id="main">
-			<div id="title"><span>意见反馈</span></div>
+			<div id="title"><span>用户意见反馈</span></div>
 			<div id="sectionContent">
-			<div id="addDiv">
-			<a href="<%=path%>/message/msg_save.jsp"><img alt="" src="<%=path%>/image/add.png"> </a>
-			</div>
 				<table>
 					<tr>
 						<th width="10%">序号</th>
 						<th>标题</th>
+						<th>反馈人</th>
 						<th>时间</th>
 						<th>操作</th>
 					</tr>
-					<s:if test="page.list!=null&&page.list.size>0">
 					 <s:iterator id="msg" value="page.list" status="i">
-					<tr class="data">
+					<tr class="data" id=<s:property value="#msg.id"/>>
 						<td><s:property value="#i.index+1"/> </td>
 						<td id=<s:property value="#msg.id"/>><s:property value="#msg.title"/> </td>
+						<td><s:property value="#msg.studentCard"/> </td>
 						<td><s:property value="#msg.createTime"/> </td>
 						<td><a href="javascript:void(0);" id='<s:property value="#msg.id"/>'><img alt="" src="<%=path%>/image/dd.png"></a> </td>
 					</tr>
 					</s:iterator>
-					</s:if>
-					<s:else>
-					<tr><td colspan="4">暂无数据</td></tr>
-					</s:else>
 				</table>
 			</div>
 			<div id="pageBar">
-			<form action="<%=path %>/exam/system/listMessageStu.d">
+			<form action="<%=path %>/exam/system/listMessageSch.d">
 			<s:hidden name="msg.id" id="msg"/>
 			<s:hidden id="maxPage" name="page.maxPage"/>
 			<s:hidden id="currPage" name="page.currPage"/>
@@ -124,6 +120,5 @@ $(document).ready(function(){
 			</form>
 			</div>
 	 </div>
-	 
 </body>
 </html>

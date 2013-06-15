@@ -115,6 +115,9 @@ create table schoolcard (
     password varchar(16) not null,
     city char(32),
     name varchar(50) ,
+    address varchar(80),
+    tel varchar(15),
+    logo varchar(20),
     createtime datetime
 );
 
@@ -204,6 +207,7 @@ create table message (
     content varchar(8000) not null,
     schoolcard char(32) not null,
     studentcard char(32) not null,
+    type char(1),
     createtime datetime
 );
 

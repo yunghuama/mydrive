@@ -299,7 +299,8 @@ public class SystemDAO extends GenericDAO{
 				message.getContent(),
 				message.getSchoolcard(),
 				message.getStudentCard(),
-				new Date()
+				new Date(),
+				message.getType()
 		});
 	}
 	
@@ -354,6 +355,33 @@ public class SystemDAO extends GenericDAO{
 		page.setList(list);
 		return page;
 	}
+	
+	/**
+	 * 根据驾校查询
+	 * @param page
+	 * @param studentId
+	 * @return
+	 */
+	public Page<Message> listMessageBySys(Page page){
+		List<Message> list =  jdbcTemplate.query(SQLConstant.MESSAGE_QUERY_BY_SYS,new Object[]{"1",(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<Message>(){
+			@Override
+			public Message mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				Message vo = new Message();
+				vo.setId(rs.getString("id"));
+				vo.setTitle(rs.getString("title"));
+				vo.setStudentCard(rs.getString("sname"));
+				vo.setCreateTime(rs.getDate("createtime") +" "+rs.getTime("createtime"));
+				return vo;
+			}
+		});
+		int rowCount = queryForInt(SQLConstant.MESSAGE_QUERY_BY_SCH_ROWCOUNT,"1");
+		page.setRowCount(rowCount);
+		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
+		page.setList(list);
+		return page;
+	}
+	
 	
 	/**
 	 * 保存登录日志
@@ -477,5 +505,22 @@ public class SystemDAO extends GenericDAO{
 			return list.get(0);
 		}
 		return null;
+	}
+	
+	/**
+	 * 查询驾校图片
+	 */
+	public String querySLogo(String id){
+		return jdbcTemplate.queryForObject(SQLConstant.SCHOOL_LOGO_GET, String.class, id);
+	}
+	
+	/**
+	 * 更新驾校图片
+	 */
+	public int updateSLogo(String id,String logo){
+		return jdbcTemplate.update(SQLConstant.SCHOOL_LOGO_UPDATE, new Object[]{
+				logo,
+				id
+		});
 	}
 }

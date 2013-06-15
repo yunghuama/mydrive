@@ -40,6 +40,24 @@ if(session.getAttribute("LoginBean")==null) {
 		left:20px;
 		top:8px
 	}
+	#schoolidentity {
+		position:absolute;
+		right:15px;
+		bottom:0px;
+		width:229px;
+		height:100px;
+	}
+	#immage {
+		float : left;
+		width:25px;
+		height:96px;
+	}
+	#scontent {
+		float:left;
+		width:200px;
+		height:96px;
+		border:1px solid #bfbfbf;
+	}
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -142,6 +160,10 @@ if(session.getAttribute("LoginBean")==null) {
 			$("a[name='id_6_4']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/exam/system/listActiveCard.d");
 			});
+			$("a[name='id_6_5']").bind("click",function(){
+				$("#mainFrame").attr("src","<%=path%>/exam/system/listMessageSys.d");
+			});
+			
 			
 			new Adver({
 		      	  "renderTo":$("#adsLeft"),
@@ -153,7 +175,7 @@ if(session.getAttribute("LoginBean")==null) {
 		      	  "renderTo":$("#adsRight"),
 		      	   "page":1,
 		      	   "position":1
-		        });
+		       });
 		});
 	
 	</script>
@@ -279,6 +301,9 @@ if(session.getAttribute("LoginBean")==null) {
   						<s:if test='@com.platform.constants.StringConstant@getOperate(\"cardactive\")=="T"'>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_6_4">激活量统计</a></li>
   						</s:if>
+  						<s:if test='@com.platform.constants.StringConstant@getOperate(\"sys_message\")=="T"'>
+  						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_6_5">用户反馈</a></li>
+  						</s:if>
   					</ul>
   				</li>
   				</s:if>
@@ -298,5 +323,18 @@ if(session.getAttribute("LoginBean")==null) {
   </div>
   	<div id="adsLeft"></div>
 	<div id="adsRight"></div>
+	<s:if test='#session["LoginBean"].user.role=="STUDENT"'>
+	<div id="schoolidentity">
+		<div id="immage"><img src="<%=path %>/image/close.png"/></div>
+		<div id="scontent">
+		<div id="slogo"></div>
+		<div id="sinfo">
+			<div id="sname">1231313</div>
+			<div id="sadd">123131321</div>
+			<div id="stel">1321313212</div>
+		</div>
+		</div>
+	</div>
+	</s:if>
 	</body>
 </html>

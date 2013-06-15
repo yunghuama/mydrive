@@ -11,9 +11,15 @@ public class Message  {
 	private String schoolcard;
 	private String createTime;
 	private String studentCard;
+	private String type;
 	
 	
-
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getStudentCard() {
 		return studentCard;
 	}

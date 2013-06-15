@@ -208,14 +208,15 @@ public final class SQLConstant {
 	/**
 	 * 用户反馈
 	 */
-	public static final String MESSAGE_SAVE = "insert into message(id,title,content,schoolcard,studentcard,createtime) values(?,?,?,?,?,?)";
+	public static final String MESSAGE_SAVE = "insert into message(id,title,content,schoolcard,studentcard,createtime,type) values(?,?,?,?,?,?,?)";
 	public static final String MESSAGE_QUERY_BY_STU = "select id,title,createtime from message where studentcard = ? limit ?,?";
 	public static final String MESSAGE_QUERY_BY_SCH = "select m.id,title,m.createtime,s.number as sname from message m left join studentcard s on m.studentcard = s.id where m.schoolcard = ? limit ?,?";
 	public static final String MESSAGE_DELETE = "delete from message where id = ?";
 	public static final String MESSAGE_GET = "select m.id,title,m.createtime,s.number,m.content,s.number as sname from message m left join studentcard s on m.studentcard = s.id where m.id  = ?";
 	public static final String MESSAGE_QUERY_BY_STU_ROWCOUNT = "select count(id) from message where studentcard = ?";
 	public static final String MESSAGE_QUERY_BY_SCH_ROWCOUNT = "select count(id) from message where schoolcard = ?";
-	
+	public static final String MESSAGE_QUERY_BY_SYS = "select m.id,title,m.createtime,s.number as sname from message m left join studentcard s on m.studentcard = s.id where m.type = ? limit ?,?";
+	public static final String MESSAGE_QUERY_BY_SYS_ROWCOUNT = "select count(id) from message where type = ?";
 	
 	/**
 	 * 登录日志
@@ -229,4 +230,11 @@ public final class SQLConstant {
 	 */
 	public static final String USERSACTIVELOGS = "select SQL_CALC_FOUND_ROWS activedate,count(id) as lcount from studentcard where activedate >= ? and activedate<=? group by activedate order by activedate desc limit ?,?";
 	public static final String USERSACTIVEEXPORT = "select stu.number,stu.name,activetime,sc.name as schoolname from studentcard stu left join schoolcard sc on stu.schoolid = sc.id where activedate >= ? and activedate<=? order by activetime";
+
+	/**
+	 * 驾校名片
+	 */
+	public static final String SCHOOL_LOGO_GET = "select logo from schoolcard where id = ?";
+	public static final String SCHOOL_IDENTITY_GET = "select * from schoolcard where id = ?";
+	public static final String SCHOOL_LOGO_UPDATE = "update schoolcard set logo = ? where id = ?";
 }

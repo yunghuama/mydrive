@@ -31,14 +31,21 @@
     <action name="updateUsers" class="systemAction" method="updateUsers">
       <result>/share/blank.jsp</result>
     </action>
-    
+    <action name="toUpdateSLogo" class="systemAction" method="toUpdateSLogo">
+      <result>/school/updateschoollogo.jsp</result>
+    </action>
+     <action name="updateSLogo" class="systemAction" method="updateSLogo">
+       <result type="redirect">/exam/system/toUpdateSLogo.d</result>
+    </action>
     <action name="listMessageStu" class="systemAction" method="listMessageStu">
       <result>/message/msg_list_stu.jsp</result>
     </action>
     <action name="listMessageSch" class="systemAction" method="listMessageSch">
       <result>/message/msg_list.jsp</result>
     </action>
-    
+    <action name="listMessageSys" class="systemAction" method="listMessageSys">
+      <result>/message/msg_list_sys.jsp</result>
+    </action>
      <action name="getMessageById" class="systemAction" method="getMessageById">
       <result>/message/msg_view.jsp</result>
     </action>

@@ -39,11 +39,14 @@ $(document).ready(function(){
 		$(this).removeClass("mouseover");
 	});
 	
-	$(".data").find("td").eq(1).bind("click",function(){
-		var id = $(this).attr("id");
-		$("#msg").val(id);
-		$("form").attr("action","<%=path%>/exam/system/getMessageById.d");
-		$("form").submit();
+
+	$(".data").each(function(){
+		$(this).find("td").eq(1).bind("click",function(){
+			var id = $(this).attr("id");
+			$("#msg").val(id);
+			$("form").attr("action","<%=path%>/exam/system/getMessageById.d");
+			$("form").submit();
+		});
 	});
 	
 	$(".data a").bind("click",function(){

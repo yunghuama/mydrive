@@ -18,12 +18,16 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionContext;
+import com.platform.constants.StringConstant;
 import com.platform.domain.Announcement;
+import com.platform.domain.AttachedFile;
 import com.platform.domain.Message;
 import com.platform.domain.Users;
 import com.platform.service.SystemService;
 import com.platform.service.UsersService;
+import com.platform.util.ConfigureUtil;
 import com.platform.util.LoginBean;
+import com.platform.util.UploadHelper;
 import com.platform.vo.ScoreSchoolVO;
 import com.platform.vo.ScoreVO;
 
@@ -636,6 +640,15 @@ public class SystemAction extends GenericAction {
 		return SUCCESS;
 	}
 	
+	public String listMessageSys(){
+		try{
+			page = systemService.listMessageBySys(page);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
 	public String getMessageById(){
 		try{
 			msg = systemService.getMessage(msg.getId());
@@ -677,7 +690,45 @@ public class SystemAction extends GenericAction {
 		}
 		return "error.xls";
 	}
-
+	
+	
+	/**
+	 * 预修改驾校logo
+	 * @return
+	 */
+	public String toUpdateSLogo(){
+		try{
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			fileName = systemService.querySLogo(loginBean.getUser().getId());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
+	/**
+	 * 修改
+	 * @return
+	 */
+	public String updateSLogo(){
+		try{
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			if(upload!=null&&upload.size()>0){
+				ConfigureUtil configure = new ConfigureUtil();
+				String path = configure.get(StringConstant.PATH_IMAGE_SLOGO);
+				UploadHelper helper = new UploadHelper(upload, uploadFileName, uploadTitle, uploadContentType, path, UploadHelper.UID);
+				List<AttachedFile> list = helper.getAttachedFiles();
+				if(list!=null&&list.size()>0){
+					AttachedFile af = list.get(0);
+					systemService.updateSLogo(loginBean.getUser().getId(), af.getExtendName());
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return SUCCESS;
+	}
+	
 	public InputStream getInputStream() {
 		System.out.println(inputStream);
 		return inputStream;

@@ -59,6 +59,8 @@ $(document).ready(function(){
 				<form action="<%=path%>/exam/system/saveMessage.d" method="post">
 		          <span class="form-required">*</span>标题
 		          <s:textfield id="aTitle" name="msg.title" theme="simple" style="width:400px;" cssClass="text"/><br/>
+		          <span class="form-required">*</span>类型
+		          <s:select name="msg.type" listKey="key" listValue="value" list="#{'0':'反馈给驾校','1':'反馈给系统'}" theme="simple" style="width:400px;" cssClass="select"></s:select> <br/>
 		          <span class="form-required">*</span>内容
 		          <s:textarea  id="aContent" name="msg.content" theme="simple" style="height:250px;" cssClass="textarea"/>
 				</form>

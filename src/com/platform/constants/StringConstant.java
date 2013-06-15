@@ -34,7 +34,9 @@ public final class StringConstant {
 	public static final String PATH_IMAGE_SUB2 = "sub2Image";//科目二附件目录
 	public static final String PATH_IMAGE_SUB3 = "sub3Image";//科目三附件目录
 	public static final String PATH_IMAGE_ADVER = "adverImage";//广告附件目录
+	public static final String PATH_IMAGE_SLOGO = "slogoImage";//驾校LOGO
 	
+
 	//权限菜单
 	public static final String NAV_INDEX = "index";
 	//科目一
@@ -75,7 +77,7 @@ public final class StringConstant {
 	//意见反馈
 	public static final String MSG_STUDENT = "student_message";
 	public static final String MSG_SCHOOL = "school_message";
-	
+	public static final String MSG_SYS = "sys_message";
 	//登录量管理
 	public static final String LOGINLOGS = "loginlogs";
 	//激活量管理
@@ -150,6 +152,7 @@ public final class StringConstant {
 		operate.put(ROLE_ADMIN+NAV_ADS, "T");
 		operate.put(ROLE_ADMIN+LOGINLOGS, "T");
 		operate.put(ROLE_ADMIN+CARDACTIVITY, "T");
+		operate.put(ROLE_ADMIN+MSG_SYS, "T");
 		
 		advPage.put("0", "登录页面");
 		advPage.put("1", "工作台页面");
