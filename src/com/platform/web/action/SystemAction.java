@@ -678,7 +678,7 @@ public class SystemAction extends GenericAction {
 	
 	public String getFileName() {
 		try{
-			ServletActionContext.getResponse().setHeader("charset","ISO8859-1"); 
+			//ServletActionContext.getResponse().setHeader("charset","ISO8859-1");
 			return new String(fileName.getBytes(),"iso8859-1");
 		}catch(Exception e){
 			e.printStackTrace();
