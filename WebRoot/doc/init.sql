@@ -118,6 +118,8 @@ create table schoolcard (
     address varchar(80),
     tel varchar(15),
     logo varchar(20),
+    questiontable varchar(50),
+    imageresource varchar(50),
     createtime datetime
 );
 
@@ -231,6 +233,19 @@ create table loginlogs (
     userId char(32),
     createtime datetime,
     createdate date
+);
+
+drop table if exists questiontable;
+create table questiontable (
+    tablename varchar(50) not null primary key,
+    tabletitle varchar(50),
+    createtime datetime
+);
+
+drop table if exists imageresourcetable;
+create table imageresourcetable (
+    sourcename varchar(50) not null primary key,
+    createtime datetime
 );
 
 alter table questions_car drop column question_vedio;
