@@ -159,11 +159,10 @@ public class QuestionBusDAO extends GenericDAO{
 	 * 从客车题库根据类型分页获取题目
 	 * @return
 	 */
-	public Page<QuestionVO> listQuestionOrderAll_bus(Page<QuestionVO> page) throws Exception{
+	public Page<QuestionVO> listQuestionOrderAll_bus(Page<QuestionVO> page,String type) throws Exception{
 
-        Users users  = LoginBean.getLoginBean().getUser();
-        String type = users.getQuestionType();
         String sql = formatSQL(SQLConstant.QUESTION_BUS_QUERY_PAGE_ALL,"questions_bus",type);
+        sql =  formatSQL(sql,"section",type);
         List list = new ArrayList();
         Connection conn = jdbcTemplate.getDataSource().getConnection();
         PreparedStatement ps = conn.prepareStatement(sql);

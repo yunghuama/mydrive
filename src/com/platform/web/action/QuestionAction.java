@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
+import com.platform.domain.*;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -20,10 +21,6 @@ import org.springframework.stereotype.Controller;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.platform.constants.StringConstant;
-import com.platform.domain.AttachedFile;
-import com.platform.domain.Question;
-import com.platform.domain.Section;
-import com.platform.domain.Users;
 import com.platform.service.QuestionService;
 import com.platform.service.UsersService;
 import com.platform.util.FileHelper;
@@ -43,6 +40,7 @@ public class QuestionAction extends GenericAction {
 	@Autowired
 	private QuestionService questionService;
 	private List<QuestionVO> list;
+    private List<QuestionTable> questionTableList;
 	private List<Section> sectionList;
 	private String categoryId;
 	private int questionId;
@@ -51,6 +49,7 @@ public class QuestionAction extends GenericAction {
 	private int fileType;//上传文件类型
 	private QuestionVO questionVO;
 	private int isDelImage;//是否删除图片
+    private String code = "shandong";
 	/**
 	 * 初始化练习模式试题
 	 * @return
@@ -129,7 +128,11 @@ public class QuestionAction extends GenericAction {
 		}
 		return SUCCESS;
 	}
-	
+
+    /**
+     * 根据章节获得题目
+     * @return
+     */
 	public String orderQuestion1(){
 		try{
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
@@ -150,7 +153,7 @@ public class QuestionAction extends GenericAction {
 		return SUCCESS;
 	}
 	
-	/**fileType
+	/**
 	 * 获得已标记题
 	 * @return
 	 */
@@ -210,16 +213,18 @@ public class QuestionAction extends GenericAction {
 		}
 		return Action.SUCCESS;
 	}
-	
-	/**
-	 * 问题列表查询
+
+
+
+    /**
+	 * 管理员查询所有题目
 	 * @return
 	 */
 	public String listQuestion(){
 		try {
-			page = questionService.listQuestion(page, type);
+            questionTableList = questionService.questionTableList();
+			page = questionService.listQuestion(page, type,code);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Action.SUCCESS;
@@ -492,4 +497,18 @@ public class QuestionAction extends GenericAction {
 		this.isDelImage = isDelImage;
 	}
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+    public List<QuestionTable> getQuestionTableList() {
+        return questionTableList;
+    }
+
+    public void setQuestionTableList(List<QuestionTable> questionTableList) {
+        this.questionTableList = questionTableList;
+    }
 }

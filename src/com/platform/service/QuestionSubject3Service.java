@@ -66,7 +66,7 @@ public class QuestionSubject3Service implements IService {
     /**
      * 根据类型分页获取小汽车
      */
-    public Page<QuestionVO> listQuestionOrder(Page<QuestionVO> page,String category){
+    public Page<QuestionVO> listQuestionOrder(Page<QuestionVO> page,String category) throws Exception{
     	return questionDAO.listQuestionOrder(page,category);
     }
     
@@ -89,7 +89,7 @@ public class QuestionSubject3Service implements IService {
     /**
      * 查询已标记题car
      */
-    public Page<QuestionVO> listMarkQuestion(Page<QuestionVO> page,String studentId){
+    public Page<QuestionVO> listMarkQuestion(Page<QuestionVO> page,String studentId) throws Exception{
     	return questionDAO.listMarkQuestion(page,studentId);
     }
     
@@ -106,7 +106,7 @@ public class QuestionSubject3Service implements IService {
     
     /*****************************错题练习开始*********************************/
     
-    public Page<QuestionVO> listWrongQuestion(Page<QuestionVO> page,String studentId){
+    public Page<QuestionVO> listWrongQuestion(Page<QuestionVO> page,String studentId) throws Exception{
     	 return questionDAO.listWrongQuestion(page,studentId);
     }
     

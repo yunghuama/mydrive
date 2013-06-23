@@ -2,6 +2,7 @@ package com.platform.service;
 
 import java.util.List;
 
+import com.platform.domain.QuestionTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -167,21 +168,21 @@ public class QuestionService implements IService {
     /**
      * 根据类型分页获取客车
      */
-    public Page<QuestionVO> listQuestionOrder_bus(Page<QuestionVO> page,String category){
+    public Page<QuestionVO> listQuestionOrder_bus(Page<QuestionVO> page,String category) throws Exception {
     	return questionBusDAO.listQuestionOrder_bus(page,category);
     }
     
     /**
      * 根据类型分页获取卡车
      */
-    public Page<QuestionVO> listQuestionOrder_truck(Page<QuestionVO> page,String category){
+    public Page<QuestionVO> listQuestionOrder_truck(Page<QuestionVO> page,String category) throws Exception{
     	return questionTruckDAO.listQuestionOrder_truck(page,category);
     }
     
     /**
      * 根据类型分页获取摩托车
      */
-    public Page<QuestionVO> listQuestionOrder_moto(Page<QuestionVO> page,String category){
+    public Page<QuestionVO> listQuestionOrder_moto(Page<QuestionVO> page,String category) throws Exception{
     	return questionMotoDAO.listQuestionOrder_moto(page,category);
     }
     
@@ -260,20 +261,28 @@ public class QuestionService implements IService {
     }
     
     /*******************************题库管理开始***********************************/
-    public Page<QuestionVO> listQuestion(Page<QuestionVO> page,int cartype) throws Exception{
+    public Page<QuestionVO> listQuestion(Page<QuestionVO> page,int cartype,String type) throws Exception{
     	if(StringConstant.questionType_car== cartype)
-    		return questionCarDAO.listQuestionOrderAll_car(page);
+    		return questionCarDAO.listQuestionOrderAll_car(page,type);
     	else if(StringConstant.questionType_bus== cartype)
-    		return questionBusDAO.listQuestionOrderAll_bus(page);
+    		return questionBusDAO.listQuestionOrderAll_bus(page,type);
     		else if(StringConstant.questionType_truck== cartype)
-    			return questionTruckDAO.listQuestionOrderAll_truck(page);
+    			return questionTruckDAO.listQuestionOrderAll_truck(page,type);
     			else if(StringConstant.questionType_moto== cartype)
-    				return questionMotoDAO.listQuestionOrderAll_moto(page);
+    				return questionMotoDAO.listQuestionOrderAll_moto(page,type);
     				else if(StringConstant.questionType_3 == cartype)
-    					return questionSubject3DAO.listQuestionAll(page);
+    					return questionSubject3DAO.listQuestionAll(page,type);
     	return page;
     }
-    
+
+    /**
+     * 获得命名规则
+     * @return
+     */
+    public List<QuestionTable> questionTableList(){
+           return questionDAO.questionTableList();
+    }
+
     /**
      * 
      * @param question
@@ -316,7 +325,6 @@ public class QuestionService implements IService {
     
     /**
      * 根据ID 更新问题
-     * @param id
      * @param cartype
      * @return
      */

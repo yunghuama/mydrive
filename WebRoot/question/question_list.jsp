@@ -15,6 +15,11 @@ $(document).ready(function(){
 	$(".answer a").bind("click",function(){
 		$(this).siblings("span").show();		
 	});
+    //切换地区
+    $("#code").bind("change",function(){
+        $("input[name='code']").val($(this).val());
+        $("form").submit();
+    });
 	//过滤条件
 	$(".type").click(function(){
 		$(".type").removeClass("click");
@@ -73,6 +78,9 @@ $(document).ready(function(){
 <body style="overflow:auto">
 	 <div id="main">
 			<div id="type">
+                <s:select list="questionTableList" listKey="name" listValue="title" name="code" id="code">
+
+                </s:select>
 				<div class="type" id="0">
 					<span>小汽车</span>
 				</div>
@@ -132,6 +140,7 @@ $(document).ready(function(){
 			<div id="pageBar">
 			<form action="<%=path %>/exam/subject1/listQuestion.d">
 			<s:hidden name="type"/>
+            <s:hidden name="code"/>
 			<s:hidden id="maxPage" name="page.maxPage"/>
 			<s:hidden id="currPage" name="page.currPage"/>
 			<button id="prev">上一页</button>

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.platform.util.LoginBean;
+import com.platform.vo.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -18,10 +20,6 @@ import com.platform.domain.Message;
 import com.platform.domain.Users;
 import com.platform.util.PageHelper;
 import com.platform.util.UUIDGenerator;
-import com.platform.vo.LoginLogs;
-import com.platform.vo.Page;
-import com.platform.vo.ScoreSchoolVO;
-import com.platform.vo.ScoreVO;
 
 /**
  * <p>程序名称：       UsersDAO.java</p>
@@ -52,15 +50,16 @@ public class SystemDAO extends GenericDAO{
 	public int queryForInt(String sql,Object args){
 		return jdbcTemplate.queryForInt(sql,args);
 	}
-	
+
+    public String formatSQL(String sql,String str,String prefix){
+        if(sql!=null&&!"".equals(str)){
+            sql = sql.replace(str,prefix+"_"+str);
+        }
+        return sql;
+    }
 
 	/**
 	 * 保存驾校通知
-	 * @param studentId
-	 * @param score
-	 * @param time
-	 * @param cartype
-	 * @return
 	 */
 	public int saveAnnouncement(String schoolCard,String title,String content){
 		return jdbcTemplate.update(SQLConstant.ANNOUNCEMENT_SAVE, new Object[]{
@@ -103,26 +102,42 @@ public class SystemDAO extends GenericDAO{
 	/**
 	 * 根据驾校查询成绩1
 	 */
-	public Page<ScoreSchoolVO> listScore1(Page<ScoreSchoolVO> page,String schoolcard,String name){
-		List<ScoreSchoolVO> list =  jdbcTemplate.query(SQLConstant.STATISTISC_BY_SCHOOL_SCORE,new Object[]{schoolcard,"%"+name+"%",(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<ScoreSchoolVO>(){
-			@Override
-			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
-					throws SQLException {
-				ScoreSchoolVO vo = new ScoreSchoolVO();
-				vo.setMaxscore(rs.getInt("maxscore"));
-				vo.setMinscore(rs.getInt("minscore"));
-				vo.setPasscount(rs.getInt("passcount"));
-				vo.setAvgscore(rs.getInt("avgscore"));
-				vo.setScorecounts(rs.getInt("scorecounts"));
-				vo.setStuId(rs.getString("stuId"));
-				vo.setName(rs.getString("name"));
-				return vo;
-			}
-		});
-		int rowCount = queryForInt(SQLConstant.STATISTISC_BY_SCHOOL_ROWCOUNT,schoolcard);
-		page.setRowCount(rowCount);
-		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
-		page.setList(list);
+	public Page<ScoreSchoolVO> listScore1(Page<ScoreSchoolVO> page,String schoolcard,String name) throws Exception{
+
+        Users users  = LoginBean.getLoginBean().getUser();
+        String type = users.getQuestionType();
+        String sql = formatSQL(SQLConstant.STATISTISC_BY_SCHOOL_SCORE,"examscore",type);
+        List list = new ArrayList();
+        Connection conn = jdbcTemplate.getDataSource().getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1,schoolcard);
+        ps.setString(2,"%"+name+"%");
+        ps.setInt(3, (page.getCurrPage()-1)*page.getPageSize());
+        ps.setInt(4, page.getPageSize());
+        ResultSet rs1 = ps.executeQuery();
+        while(rs1.next()){
+            ScoreSchoolVO vo = new ScoreSchoolVO();
+            vo.setMaxscore(rs1.getInt("maxscore"));
+            vo.setMinscore(rs1.getInt("minscore"));
+            vo.setPasscount(rs1.getInt("passcount"));
+            vo.setAvgscore(rs1.getInt("avgscore"));
+            vo.setScorecounts(rs1.getInt("scorecounts"));
+            vo.setStuId(rs1.getString("stuId"));
+            vo.setName(rs1.getString("name"));
+            list.add(vo);
+        }
+        ResultSet rs = ps.executeQuery(SQLConstant.SELECT_ROWCOUNTS);
+        while(rs.next()){
+            page.setRowCount(rs.getInt("counts"));
+        }
+        rs.close();
+        rs1.close();
+        ps.close();
+        conn.close();
+        page.setMaxPage(PageHelper.getMaxPage(page.getRowCount(), page.getPageSize()));
+        page.setList(list);
+
+
 		return page;
 	}
 	
@@ -130,7 +145,10 @@ public class SystemDAO extends GenericDAO{
 	 * 根据驾校查询成绩1所有
 	 */
 	public List<ScoreSchoolVO> listScore1All(String schoolcard,String name){
-		return  jdbcTemplate.query(SQLConstant.STATISTISC_BY_SCHOOL_SCORE_ALL,new Object[]{schoolcard,"%"+name+"%"},new RowMapper<ScoreSchoolVO>(){
+        Users users  = LoginBean.getLoginBean().getUser();
+        String type = users.getQuestionType();
+        String sql = formatSQL(SQLConstant.STATISTISC_BY_SCHOOL_SCORE_ALL,"examscore",type);
+		return  jdbcTemplate.query(sql,new Object[]{schoolcard,"%"+name+"%"},new RowMapper<ScoreSchoolVO>(){
 			@Override
 			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
 					throws SQLException {
@@ -151,7 +169,10 @@ public class SystemDAO extends GenericDAO{
 	 * 根据驾校查询成绩3所有
 	 */
 	public List<ScoreSchoolVO> listScore3All(String schoolcard,String name){
-		return  jdbcTemplate.query(SQLConstant.STATISTISC_BY_SCHOOL_SCORE3_ALL,new Object[]{schoolcard,"%"+name+"%"},new RowMapper<ScoreSchoolVO>(){
+        Users users  = LoginBean.getLoginBean().getUser();
+        String type = users.getQuestionType();
+        String sql = formatSQL(SQLConstant.STATISTISC_BY_SCHOOL_SCORE3_ALL,"examscore3",type);
+		return  jdbcTemplate.query(sql,new Object[]{schoolcard,"%"+name+"%"},new RowMapper<ScoreSchoolVO>(){
 			@Override
 			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
 					throws SQLException {
@@ -172,7 +193,10 @@ public class SystemDAO extends GenericDAO{
 	 * 根学员统计查询
 	 */
 	public ScoreSchoolVO getStasticScore1(String stuId){
-		List<ScoreSchoolVO> list =  jdbcTemplate.query(SQLConstant.STATISTISC_BY_SCHOOL_STU_SCORE,new Object[]{stuId},new RowMapper<ScoreSchoolVO>(){
+        Users users  = LoginBean.getLoginBean().getUser();
+        String type = users.getQuestionType();
+        String sql = formatSQL(SQLConstant.STATISTISC_BY_SCHOOL_STU_SCORE,"examscore",type);
+		List<ScoreSchoolVO> list =  jdbcTemplate.query(sql,new Object[]{stuId},new RowMapper<ScoreSchoolVO>(){
 			@Override
 			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
 					throws SQLException {
@@ -192,7 +216,10 @@ public class SystemDAO extends GenericDAO{
 	}
 	
 	public List<ScoreVO> getScores1(String studentId){
-		return jdbcTemplate.query(SQLConstant.EXAMSCORE_QUERY_ALL,new Object[]{studentId},new RowMapper<ScoreVO>(){
+        Users users  = LoginBean.getLoginBean().getUser();
+        String type = users.getQuestionType();
+        String sql = formatSQL(SQLConstant.EXAMSCORE_QUERY_ALL,"examscore",type);
+		return jdbcTemplate.query(sql,new Object[]{studentId},new RowMapper<ScoreVO>(){
 			@Override
 			public ScoreVO mapRow(ResultSet rs, int arg1) throws SQLException {
 				ScoreVO vo  = new ScoreVO();
@@ -208,26 +235,41 @@ public class SystemDAO extends GenericDAO{
 	/**
 	 * 根据驾校查询成绩3
 	 */
-	public Page<ScoreSchoolVO> listScore3(Page<ScoreSchoolVO> page,String schoolcard,String name){
-		List<ScoreSchoolVO> list =  jdbcTemplate.query(SQLConstant.STATISTISC_BY_SCHOOL_SCORE3,new Object[]{schoolcard,"%"+name+"%",(page.getCurrPage()-1)*page.getPageSize(),page.getPageSize()},new RowMapper<ScoreSchoolVO>(){
-			@Override
-			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
-					throws SQLException {
-				ScoreSchoolVO vo = new ScoreSchoolVO();
-				vo.setMaxscore(rs.getInt("maxscore"));
-				vo.setMinscore(rs.getInt("minscore"));
-				vo.setPasscount(rs.getInt("passcount"));
-				vo.setAvgscore(rs.getInt("avgscore"));
-				vo.setScorecounts(rs.getInt("scorecounts"));
-				vo.setStuId(rs.getString("stuId"));
-				vo.setName(rs.getString("name"));
-				return vo;
-			}
-		});
-		int rowCount = queryForInt(SQLConstant.STATISTISC_BY_SCHOOL_ROWCOUNT3,schoolcard);
-		page.setRowCount(rowCount);
-		page.setMaxPage(PageHelper.getMaxPage(rowCount, page.getPageSize()));
-		page.setList(list);
+	public Page<ScoreSchoolVO> listScore3(Page<ScoreSchoolVO> page,String schoolcard,String name) throws Exception{
+
+        Users users  = LoginBean.getLoginBean().getUser();
+        String type = users.getQuestionType();
+        String sql = formatSQL(SQLConstant.STATISTISC_BY_SCHOOL_SCORE3,"examscore3",type);
+        List list = new ArrayList();
+        Connection conn = jdbcTemplate.getDataSource().getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1,schoolcard);
+        ps.setString(2,"%"+name+"%");
+        ps.setInt(3, (page.getCurrPage()-1)*page.getPageSize());
+        ps.setInt(4, page.getPageSize());
+        ResultSet rs1 = ps.executeQuery();
+        while(rs1.next()){
+            ScoreSchoolVO vo = new ScoreSchoolVO();
+            vo.setMaxscore(rs1.getInt("maxscore"));
+            vo.setMinscore(rs1.getInt("minscore"));
+            vo.setPasscount(rs1.getInt("passcount"));
+            vo.setAvgscore(rs1.getInt("avgscore"));
+            vo.setScorecounts(rs1.getInt("scorecounts"));
+            vo.setStuId(rs1.getString("stuId"));
+            vo.setName(rs1.getString("name"));
+            list.add(vo);
+        }
+        ResultSet rs = ps.executeQuery(SQLConstant.SELECT_ROWCOUNTS);
+        while(rs.next()){
+            page.setRowCount(rs.getInt("counts"));
+        }
+        rs.close();
+        rs1.close();
+        ps.close();
+        conn.close();
+        page.setMaxPage(PageHelper.getMaxPage(page.getRowCount(), page.getPageSize()));
+        page.setList(list);
+
 		return page;
 	}
 	
@@ -236,7 +278,10 @@ public class SystemDAO extends GenericDAO{
 	 * 根学员统计查询
 	 */
 	public ScoreSchoolVO getStasticScore3(String stuId){
-		List<ScoreSchoolVO> list =  jdbcTemplate.query(SQLConstant.STATISTISC3_BY_SCHOOL_STU_SCORE,new Object[]{stuId},new RowMapper<ScoreSchoolVO>(){
+        Users users  = LoginBean.getLoginBean().getUser();
+        String type = users.getQuestionType();
+        String sql = formatSQL(SQLConstant.STATISTISC3_BY_SCHOOL_STU_SCORE,"examscore3",type);
+		List<ScoreSchoolVO> list =  jdbcTemplate.query(sql,new Object[]{stuId},new RowMapper<ScoreSchoolVO>(){
 			@Override
 			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
 					throws SQLException {
@@ -256,7 +301,10 @@ public class SystemDAO extends GenericDAO{
 	}
 	
 	public List<ScoreVO> getScores3(String studentId){
-		return jdbcTemplate.query(SQLConstant.EXAMSCORE3_QUERY_ALL,new Object[]{studentId},new RowMapper<ScoreVO>(){
+        Users users  = LoginBean.getLoginBean().getUser();
+        String type = users.getQuestionType();
+        String sql = formatSQL(SQLConstant.EXAMSCORE3_QUERY_ALL,"examscore3",type);
+		return jdbcTemplate.query(sql,new Object[]{studentId},new RowMapper<ScoreVO>(){
 			@Override
 			public ScoreVO mapRow(ResultSet rs, int arg1) throws SQLException {
 				ScoreVO vo  = new ScoreVO();
@@ -333,7 +381,7 @@ public class SystemDAO extends GenericDAO{
 	/**
 	 * 根据驾校查询
 	 * @param page
-	 * @param studentId
+	 * @param schoolId
 	 * @return
 	 */
 	public Page<Message> listMessageBySch(Page page,String schoolId){
@@ -359,7 +407,6 @@ public class SystemDAO extends GenericDAO{
 	/**
 	 * 根据驾校查询
 	 * @param page
-	 * @param studentId
 	 * @return
 	 */
 	public Page<Message> listMessageBySys(Page page){
@@ -399,7 +446,6 @@ public class SystemDAO extends GenericDAO{
 	
 	/**
 	 * 查询登录日志
-	 * @param id
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")

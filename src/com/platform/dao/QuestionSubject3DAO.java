@@ -153,10 +153,10 @@ public class QuestionSubject3DAO extends GenericDAO{
 	 * 从科目三题库根据类型分页获取题目
 	 * @return
 	 */
-	public Page<QuestionVO> listQuestionAll(Page<QuestionVO> page) throws Exception{
-        Users users  = LoginBean.getLoginBean().getUser();
-        String type = users.getQuestionType();
+	public Page<QuestionVO> listQuestionAll(Page<QuestionVO> page,String type) throws Exception{
+
         String sql = formatSQL(SQLConstant.QUESTION3_QUERY_PAGE_ALL,"questions3",type);
+        sql = formatSQL(sql,"section",type);
         List list = new ArrayList();
         Connection conn = jdbcTemplate.getDataSource().getConnection();
         PreparedStatement ps = conn.prepareStatement(sql);

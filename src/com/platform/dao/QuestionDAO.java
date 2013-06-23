@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
+import com.platform.domain.QuestionTable;
 import com.platform.domain.Users;
 import com.platform.util.LoginBean;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -230,4 +231,16 @@ public class QuestionDAO extends GenericDAO{
 			}
 		});
 	}
+
+    public List<QuestionTable> questionTableList(){
+        return jdbcTemplate.query(SQLConstant.QUESTIONTABLE_QUERY,new RowMapper<QuestionTable>() {
+            @Override
+            public QuestionTable mapRow(ResultSet rs, int i) throws SQLException {
+                QuestionTable qt = new QuestionTable();
+                qt.setName(rs.getString("tablename"));
+                qt.setTitle(rs.getString("tabletitle"));
+                return qt;
+            }
+        });
+    }
 }
