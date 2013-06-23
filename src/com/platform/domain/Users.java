@@ -17,9 +17,17 @@ public class Users extends BaseDomain{
 	private String sex;
 	private String role;
 	private String activeTime;
-	
-	
-	public String getActiveTime() {
+    private String questionType;
+
+    public String getQuestionType() {
+        return questionType;
+    }
+
+    public void setQuestionType(String questionType) {
+        this.questionType = questionType;
+    }
+
+    public String getActiveTime() {
 		return activeTime;
 	}
 	public void setActiveTime(String activeTime) {

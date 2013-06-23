@@ -160,7 +160,7 @@ public class QuestionService implements IService {
     /**
      * 根据类型分页获取小汽车
      */
-    public Page<QuestionVO> listQuestionOrder_car(Page<QuestionVO> page,String category){
+    public Page<QuestionVO> listQuestionOrder_car(Page<QuestionVO> page,String category) throws Exception{
     	return questionCarDAO.listQuestionOrder_car(page,category);
     }
     
@@ -201,7 +201,7 @@ public class QuestionService implements IService {
     /**
      * 查询已标记题car
      */
-    public Page<QuestionVO> listMarkQuestion(Page<QuestionVO> page,String studentId,String cartype){
+    public Page<QuestionVO> listMarkQuestion(Page<QuestionVO> page,String studentId,String cartype) throws Exception{
     	if(cartype==null||"".equals(cartype)) return null;
     	if(StringConstant.questionType_car==StringConstant.questionType.get(cartype))
     		return questionCarDAO.listMarkQuestionCar(page,studentId,StringConstant.questionType.get(cartype));
@@ -233,7 +233,7 @@ public class QuestionService implements IService {
     
     /*****************************错题练习开始*********************************/
     
-    public Page<QuestionVO> listWrongQuestion(Page<QuestionVO> page,String studentId,String cartype){
+    public Page<QuestionVO> listWrongQuestion(Page<QuestionVO> page,String studentId,String cartype) throws Exception{
     	if(cartype==null) return null;
     	if(StringConstant.questionType_car==StringConstant.questionType.get(cartype))
     		return questionCarDAO.listWrongQuestionCar(page,studentId,StringConstant.questionType.get(cartype));
@@ -260,7 +260,7 @@ public class QuestionService implements IService {
     }
     
     /*******************************题库管理开始***********************************/
-    public Page<QuestionVO> listQuestion(Page<QuestionVO> page,int cartype){
+    public Page<QuestionVO> listQuestion(Page<QuestionVO> page,int cartype) throws Exception{
     	if(StringConstant.questionType_car== cartype)
     		return questionCarDAO.listQuestionOrderAll_car(page);
     	else if(StringConstant.questionType_bus== cartype)

@@ -26,24 +26,24 @@ public final class SQLConstant {
 	public static final String QUESTION_TRUCK_QUERY_RANDOM = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_truck order by rand() limit ?";
 	public static final String QUESTION_MOTO_QUERY_RANDOM = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions_motorcycle order by rand() limit ?";
 	
-	public static final String QUESTION_CAR_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_car where category = ? limit ?,?";
+	public static final String QUESTION_CAR_QUERY_PAGE = "select SQL_CALC_FOUND_ROWS id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_car where category = ? limit ?,?";
 	public static final String QUESTION_CAR_QUERY_ROWCOUNT = "select count(id) from questions_car where category = ?";
-	public static final String QUESTION_BUS_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_bus where category = ? limit ?,?";
+	public static final String QUESTION_BUS_QUERY_PAGE = "select SQL_CALC_FOUND_ROWS id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_bus where category = ? limit ?,?";
 	public static final String QUESTION_BUS_QUERY_ROWCOUNT = "select count(id) from questions_bus where category = ?";
-	public static final String QUESTION_TRUCK_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_truck where category = ? limit ?,?";
+	public static final String QUESTION_TRUCK_QUERY_PAGE = "select SQL_CALC_FOUND_ROWS id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_truck where category = ? limit ?,?";
 	public static final String QUESTION_TRUCK_QUERY_ROWCOUNT = "select count(id) from questions_truck where category = ?";
-	public static final String QUESTION_MOTO_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_motorcycle where category = ? limit ?,?";
+	public static final String QUESTION_MOTO_QUERY_PAGE = "select SQL_CALC_FOUND_ROWS id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_motorcycle where category = ? limit ?,?";
 	public static final String QUESTION_MOTO_QUERY_ROWCOUNT = "select count(id) from questions_motorcycle where category = ?";
 	/**
 	 * 题库 科目一 分页获取
 	 */
-	public static final String QUESTION_CAR_QUERY_PAGE_ALL = "select c.id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips,s.name as sname from questions_car c left join section s on c.category = s.id order by c.id limit ?,?";
+	public static final String QUESTION_CAR_QUERY_PAGE_ALL = "select SQL_CALC_FOUND_ROWS c.id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips,s.name as sname from questions_car c left join section s on c.category = s.id order by c.id limit ?,?";
 	public static final String QUESTION_CAR_QUERY_ROWCOUNT_ALL = "select count(id) from questions_car";
-	public static final String QUESTION_BUS_QUERY_PAGE_ALL= "select c.id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips,s.name as sname from questions_bus c left join section s on c.category = s.id order by c.id limit ?,?";
+	public static final String QUESTION_BUS_QUERY_PAGE_ALL= "select SQL_CALC_FOUND_ROWS c.id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips,s.name as sname from questions_bus c left join section s on c.category = s.id order by c.id limit ?,?";
 	public static final String QUESTION_BUS_QUERY_ROWCOUNT_ALL = "select count(id) from questions_bus";
-	public static final String QUESTION_TRUCK_QUERY_PAGE_ALL = "select c.id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips,s.name as sname from questions_truck c left join section s on c.category = s.id order by c.id limit ?,?";
+	public static final String QUESTION_TRUCK_QUERY_PAGE_ALL = "select SQL_CALC_FOUND_ROWS c.id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips,s.name as sname from questions_truck c left join section s on c.category = s.id order by c.id limit ?,?";
 	public static final String QUESTION_TRUCK_QUERY_ROWCOUNT_ALL = "select count(id) from questions_truck";
-	public static final String QUESTION_MOTO_QUERY_PAGE_ALL = "select c.id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips,s.name as sname from questions_motorcycle c left join section s on c.category = s.id order by c.id limit ?,?";
+	public static final String QUESTION_MOTO_QUERY_PAGE_ALL = "select SQL_CALC_FOUND_ROWS c.id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips,s.name as sname from questions_motorcycle c left join section s on c.category = s.id order by c.id limit ?,?";
 	public static final String QUESTION_MOTO_QUERY_ROWCOUNT_ALL = "select count(id) from questions_motorcycle";
 	
 	/**
@@ -73,9 +73,9 @@ public final class SQLConstant {
 	 * 题库 科目三
 	 */
 	public static final String QUESTION3_QUERY_RANDOM = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video from questions3 order by rand() limit ?";
-	public static final String QUESTION3_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions3 where category = ? limit ?,?";
+	public static final String QUESTION3_QUERY_PAGE = "select SQL_CALC_FOUND_ROWS id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions3 where category = ? limit ?,?";
 	public static final String QUESTION3_QUERY_ROWCOUNT = "select count(id) from questions3 where category = ?";
-	public static final String QUESTION3_QUERY_PAGE_ALL = "select c.id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips,s.name as sname from questions3 c left join section s on c.category = s.id order by c.id limit ?,?";
+	public static final String QUESTION3_QUERY_PAGE_ALL = "select SQL_CALC_FOUND_ROWS c.id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips,s.name as sname from questions3 c left join section s on c.category = s.id order by c.id limit ?,?";
 	public static final String QUESTION3_QUERY_ROWCOUNT_ALL = "select count(id) from questions3";
 	public static final String QUESTION3_QUERY_BY_ID = "select * from questions3 where id = ?";
 	public static final String QUESTION3_UPDATE_BY_ID = "update questions3 set code = ?,question = ?,answer_a = ?,answer_b = ?,answer_c = ?,answer_d = ?,answer = ?,question_img = ?,question_video = ?,category = ?,tips = ? where id = ?";
@@ -84,7 +84,7 @@ public final class SQLConstant {
 	/**
 	 * 学员
 	 */
-	public static final String STUDENT_LOGIN = "select id,name,remindtimes,reminddays,begindate,identity,cartype,schoolid from studentcard where number = ? and password = ?";
+	public static final String STUDENT_LOGIN = "select stu.id,stu.name,remindtimes,reminddays,begindate,identity,cartype,schoolid,sch.questiontype from studentcard stu, schoolcard sch where stu.number = ? and stu.password = ? and sch.id = stu.schoolid";
 	public static final String STUDENT_UPDATEINFO = "update studentcard set name=?,identity=?,age=?,sex=?,cartype=?,phonenumber=? where id=?";
 	public static final String STUDENT_COUNTDOWN = "update studentcard set remindtimes = remindtimes-1 where id = ?";
 	public static final String STUDENT_GET_BY_ID = "select stu.id,stu.name,identity,age,sex,cartype,phonenumber,sch.name as sname from studentcard stu left join schoolcard sch on stu.schoolid = sch.id  where stu.id = ?";
@@ -169,10 +169,10 @@ public final class SQLConstant {
 	public static final String MARK_QUESTION_QUERY_ROWCOUNT = "select count(id) from markquestion where studentid = ? and questiontype = ?";
 
 	
-	public static final String MARK_QUESTION_CAR_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_car where id in (select questionid from markquestion where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";	
-	public static final String MARK_QUESTION_BUS_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_bus where id in (select questionid from markquestion where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";	
-	public static final String MARK_QUESTION_TRUCK_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_truck where id in (select questionid from markquestion where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";	
-	public static final String MARK_QUESTION_MOTO_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_motorcycle where id in (select questionid from markquestion where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";	
+	public static final String MARK_QUESTION_CAR_QUERY_PAGE = "select SQL_CALC_FOUND_ROWS id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_car where id in (select questionid from markquestion where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";
+	public static final String MARK_QUESTION_BUS_QUERY_PAGE = "select SQL_CALC_FOUND_ROWS id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_bus where id in (select questionid from markquestion where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";
+	public static final String MARK_QUESTION_TRUCK_QUERY_PAGE = "select SQL_CALC_FOUND_ROWS id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_truck where id in (select questionid from markquestion where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";
+	public static final String MARK_QUESTION_MOTO_QUERY_PAGE = "select SQL_CALC_FOUND_ROWS id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions_motorcycle where id in (select questionid from markquestion where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";
 	
 	/**
 	 * 标记题科目三
@@ -223,7 +223,7 @@ public final class SQLConstant {
 	 */
 	public static final String LOGINLOGS_SAVE = "insert into loginlogs(id,userid,createtime,createdate) values(?,?,?,?)";
 	public static final String LOGINLOGS_PAGE_QUERY = "select SQL_CALC_FOUND_ROWS createdate,count(id) as lcount from loginlogs where createdate >= ? and createdate<=? group by createdate order by createdate desc limit ?,?";
-	public static final String LOGINLOGS_ROWCOUNTS = "select FOUND_ROWS() as counts";
+	public static final String SELECT_ROWCOUNTS = "select FOUND_ROWS() as counts";
 	
 	/**
 	 * 用户激活统计

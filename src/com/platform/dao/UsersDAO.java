@@ -59,6 +59,7 @@ public class UsersDAO extends GenericDAO{
 				user.SetRole(StringConstant.ROLE_STUDENT);
 				user.setSchoolId(rs.getString("schoolid"));
 				user.setReminddays(rs.getInt("reminddays"));
+                user.setQuestionType(rs.getString("questiontype"));
 				return user;
 			}
 		});

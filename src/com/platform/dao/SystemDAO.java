@@ -418,7 +418,7 @@ public class SystemDAO extends GenericDAO{
 			ll.setDate(rs1.getDate("createdate")+"");
 			list.add(ll);
 		}
-		ResultSet rs = ps.executeQuery(SQLConstant.LOGINLOGS_ROWCOUNTS);
+		ResultSet rs = ps.executeQuery(SQLConstant.SELECT_ROWCOUNTS);
 		while(rs.next()){
 			page.setRowCount(rs.getInt("counts"));
 		}
@@ -426,7 +426,6 @@ public class SystemDAO extends GenericDAO{
 		rs1.close();
 		ps.close();
 		conn.close();
-		//计算两个日期之间的天数
 		page.setMaxPage(PageHelper.getMaxPage(page.getRowCount(), page.getPageSize()));
 		page.setList(list);
 		return page;
@@ -452,7 +451,7 @@ public class SystemDAO extends GenericDAO{
 			ll.setDate(rs1.getDate("activedate")+"");
 			list.add(ll);
 		}
-		ResultSet rs = ps.executeQuery(SQLConstant.LOGINLOGS_ROWCOUNTS);
+		ResultSet rs = ps.executeQuery(SQLConstant.SELECT_ROWCOUNTS);
 		while(rs.next()){
 			page.setRowCount(rs.getInt("counts"));
 		}

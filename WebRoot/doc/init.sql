@@ -118,8 +118,7 @@ create table schoolcard (
     address varchar(80),
     tel varchar(15),
     logo varchar(20),
-    questiontable varchar(50),
-    imageresource varchar(50),
+    questiontype varchar(20),
     createtime datetime
 );
 
@@ -242,11 +241,7 @@ create table questiontable (
     createtime datetime
 );
 
-drop table if exists imageresourcetable;
-create table imageresourcetable (
-    sourcename varchar(50) not null primary key,
-    createtime datetime
-);
+
 
 alter table questions_car drop column question_vedio;
 alter table questions_car add column question_video varchar(20);
@@ -310,3 +305,5 @@ update questions_motorcycle set category = '4028813518f35feb0118f392eee50015' wh
 
 update questions3 set category = '4028813518f35feb0118f392eee50016' where category = '安全文明驾驶常识';
 
+insert into  questiontable values('shandong','山东省题库','2013-06-22');
+update schoolcard set questiontype = 'shandong';
