@@ -154,8 +154,8 @@ public class QuestionService implements IService {
     /**
      * 获得章节
      */
-    public List<Section> getSection(String type){
-    	return questionDAO.getSection(type);
+    public List<Section> getSection(String type,String code){
+    	return questionDAO.getSection(type,code);
     }
  
     /**

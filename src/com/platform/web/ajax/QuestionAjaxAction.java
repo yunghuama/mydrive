@@ -51,6 +51,7 @@ public class QuestionAjaxAction {
     private Adver adver;
     private List<Adver> adverList;
     private SchoolVo school;
+    private String code;
     /**
      * 保存成绩
      * @return
@@ -222,7 +223,7 @@ public class QuestionAjaxAction {
 	 */
 	public String getCategory(){
 		try {
-			sectionList = questionService.getSection(type+"");
+			sectionList = questionService.getSection(type+"",code);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -434,5 +435,12 @@ public class QuestionAjaxAction {
 	public void setAdverList(List<Adver> adverList) {
 		this.adverList = adverList;
 	}
-	
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 }

@@ -109,5 +109,14 @@
           <param name="bufferSize">4096</param><!-- 输出时缓冲区的大小 --> 
       </result>
     </action>
+  <action name="listSchool" class="systemAction" method="listSchool">
+      <result>/system/school_list.jsp</result>
+  </action>
+  <action name="toUpdateSchool" class="systemAction" method="toUpdateSchool">
+      <result>/system/school_modify.jsp</result>
+  </action>
+  <action name="updateSchool" class="systemAction" method="updateSchool">
+      <result type="redirect">/exam/system/listSchool.d</result>
+  </action>
   </package>
 </struts>

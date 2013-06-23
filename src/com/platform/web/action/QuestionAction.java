@@ -107,7 +107,7 @@ public class QuestionAction extends GenericAction {
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 			Users users = loginBean.getUser();
 			type = StringConstant.questionType.get(users.getCartype());
-			sectionList = questionService.getSection(type+"");
+			sectionList = questionService.getSection(type+"",users.getQuestionType());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -121,7 +121,9 @@ public class QuestionAction extends GenericAction {
 	 */
 	public String section3(){
 		try {
-			sectionList = questionService.getSection(StringConstant.SECTION_TYPE_3);
+            LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+            Users users = loginBean.getUser();
+			sectionList = questionService.getSection(StringConstant.SECTION_TYPE_3,users.getQuestionType());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -241,7 +243,7 @@ public class QuestionAction extends GenericAction {
 		try{
 		
 		if(upload!=null&&upload.size()>0){
-			String path = FileHelper.getPath(type);
+			String path = FileHelper.getPath(type,code);
 			UploadHelper helper = new UploadHelper(upload, uploadFileName, uploadTitle, uploadContentType, path, UploadHelper.NAME);
 			List<AttachedFile> list = helper.getAttachedFiles();
 			if(list!=null&&list.size()>0){
@@ -268,7 +270,7 @@ public class QuestionAction extends GenericAction {
 		try{
 			question = questionService.findQuestionById(questionId, type);
 			int t = type==4?3:1;
-			sectionList = questionService.getSection(t+"");
+			sectionList = questionService.getSection(t+"",code);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -280,7 +282,7 @@ public class QuestionAction extends GenericAction {
 		//如果有附件
 		try{
 		if(upload!=null&&upload.size()>0){
-			String path = FileHelper.getPath(type);
+			String path = FileHelper.getPath(type,code);
 			UploadHelper helper = new UploadHelper(upload, uploadFileName, uploadTitle, uploadContentType, path, UploadHelper.NAME);
 			List<AttachedFile> list = helper.getAttachedFiles();
 			if(list!=null&&list.size()>0){

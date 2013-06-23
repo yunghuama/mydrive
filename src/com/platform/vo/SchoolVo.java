@@ -7,8 +7,26 @@ public class SchoolVo {
 	private String address;
 	private String id;
 	private String tel;
-	
-	public String getTel() {
+	private String questionType;
+    private String number;
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getQuestionType() {
+        return questionType;
+    }
+
+    public void setQuestionType(String questionType) {
+        this.questionType = questionType;
+    }
+
+    public String getTel() {
 		return tel;
 	}
 	public void setTel(String tel) {

@@ -32,12 +32,13 @@ fieldset {
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
-	loadCategory(1);
+    var code = $("#code").val();
+	loadCategory(1,code);
 	$("select[name='type']").bind("change",function(){
 			if($(this).val()==4){
-				loadCategory(3);
+				loadCategory(3,code);
 			}else {
-				loadCategory(1);
+				loadCategory(1,code);
 			}	
 	});
 	$("#next").click(function(){
@@ -68,11 +69,11 @@ $(document).ready(function(){
 	});
 });
 
-function loadCategory(type){
+function loadCategory(type,code){
 	$.ajax({
 		   type: "POST",
 		   url: '<%=path%>/system/ajax/getCategory.d',
-		   data: {'type':type},
+		   data: {'type':type,'code':code},
 		   async: false,
 		   success: function(data){
 			   var array = [];
@@ -89,10 +90,12 @@ function loadCategory(type){
 <body style="overflow:auto">
 	 <div id="infoContent">
 			<fieldset>
-			<legend>添加题库</legend>
+			<legend>添加题库 </legend>
 			<div id="sectionContent">
 				<form  name="infoForm" id="infoForm" action="<%=path%>/exam/subject1/saveQuestion.d" method="post" enctype="multipart/form-data">
-				<table class="form-table" cellspacing="0" cellpadding="0">
+                <s:hidden id="code" name="code" value="%{#parameters.code}"/>
+
+                <table class="form-table" cellspacing="0" cellpadding="0">
 		        <tr>
 		          <td class="form-left"><span class="form-required">*</span>章节编号</td>
 		          <td class="form-right"><s:textfield name="question.code" theme="simple" cssClass="text"/> </td>

@@ -130,8 +130,8 @@ $(document).ready(function(){
 					</s:elseif>
 				</div>
 				<div class="operate">
-				<a href="<%=path %>/exam/subject1/toUpdateQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>"> <img alt="" src="<%=path%>/image/modifyquestion.png"></a><br/>
-				<a href="<%=path %>/exam/subject1/deleteQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>"><img alt="" src="<%=path%>/image/del.png"> </a><br/>
+				<a href="<%=path %>/exam/subject1/toUpdateQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>&code=<s:property value='code'/>"> <img alt="" src="<%=path%>/image/modifyquestion.png"></a><br/>
+				<a href="<%=path %>/exam/subject1/deleteQuestion.d?questionId=<s:property value='#question.id'/>&type=<s:property value='type'/>&code=<s:property value='code'/>"><img alt="" src="<%=path%>/image/del.png"> </a><br/>
 				</div>
 				</div>
 				<div class="clear"></div>

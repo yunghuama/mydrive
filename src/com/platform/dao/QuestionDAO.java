@@ -114,10 +114,9 @@ public class QuestionDAO extends GenericDAO{
 	 * @param type
 	 * @return
 	 */
-	public List<Section> getSection(String type){
-        Users users  = LoginBean.getLoginBean().getUser();
-        String questionType = users.getQuestionType();
-        String sql = formatSQL(SQLConstant.SECTION_QUERY_BY_TYPE,"section",questionType);
+	public List<Section> getSection(String type,String code){
+
+        String sql = formatSQL(SQLConstant.SECTION_QUERY_BY_TYPE,"section",code);
 
 		return jdbcTemplate.query(sql,new Object[]{type}, new RowMapper<Section>(){
 			@Override

@@ -7,6 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import com.platform.domain.*;
+import com.platform.service.QuestionService;
+import com.platform.vo.SchoolVo;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -20,10 +23,6 @@ import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.platform.constants.StringConstant;
-import com.platform.domain.Announcement;
-import com.platform.domain.AttachedFile;
-import com.platform.domain.Message;
-import com.platform.domain.Users;
 import com.platform.service.SystemService;
 import com.platform.service.UsersService;
 import com.platform.util.ConfigureUtil;
@@ -43,6 +42,8 @@ public class SystemAction extends GenericAction {
 	private SystemService systemService;
 	@Autowired
 	private UsersService usersService;
+    @Autowired
+    private QuestionService questionService;
 	
 	private Announcement announcement;
 	private String annId,stDate,enDate;
@@ -52,6 +53,9 @@ public class SystemAction extends GenericAction {
 	private InputStream inputStream;
 	private String fileName;
 	private String logo;
+    private SchoolVo schoolVo;
+    private List<QuestionTable> questionTableList;
+
 	/**
 	 * 保存公告
 	 * @return
@@ -723,10 +727,56 @@ public class SystemAction extends GenericAction {
 		}
 		return SUCCESS;
 	}
-	
-	
-	
-	public String getLogo() {
+
+    /**
+     * 查询驾校列表
+     * @return
+     */
+	public String listSchool(){
+         try{
+             page = systemService.listSchool(page);
+         }catch(Exception e){
+             e.printStackTrace();
+         }
+        return SUCCESS;
+    }
+
+    /**
+     * 查询驾校
+     * @return
+     */
+    public String toUpdateSchool(){
+        try{
+            questionTableList = questionService.questionTableList();
+            schoolVo = systemService.getSchool(schoolVo.getId());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+       return SUCCESS;
+    }
+
+    /**
+     * 更新驾校
+     * @return
+     */
+    public String updateSchool(){
+        try{
+            systemService.updateSchool(schoolVo);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return SUCCESS;
+    }
+
+    public SchoolVo getSchoolVo() {
+        return schoolVo;
+    }
+
+    public void setSchoolVo(SchoolVo schoolVo) {
+        this.schoolVo = schoolVo;
+    }
+
+    public String getLogo() {
 		return logo;
 	}
 
@@ -741,9 +791,15 @@ public class SystemAction extends GenericAction {
 		return inputStream;
 	}
 
+    public List<QuestionTable> getQuestionTableList() {
+        return questionTableList;
+    }
 
+    public void setQuestionTableList(List<QuestionTable> questionTableList) {
+        this.questionTableList = questionTableList;
+    }
 
-	public Announcement getAnnouncement() {
+    public Announcement getAnnouncement() {
 		return announcement;
 	}
 
@@ -821,4 +877,5 @@ public class SystemAction extends GenericAction {
 	public void setEnDate(String enDate) {
 		this.enDate = enDate;
 	}
+
 }

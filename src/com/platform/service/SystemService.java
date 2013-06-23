@@ -2,6 +2,7 @@ package com.platform.service;
 
 import java.util.List;
 
+import com.platform.vo.SchoolVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -201,4 +202,25 @@ public class SystemService implements IService {
    public int updateSLogo(String id,String logo){
 	   return systemDAO.updateSLogo(id, logo);
    }
+
+    /**
+     * 查询驾校列表
+      */
+    public Page<SchoolVo> listSchool(Page page) throws Exception{
+        return systemDAO.listSchool(page);
+    }
+
+    /**
+     * 查询驾校信息
+     */
+    public SchoolVo getSchool(String id){
+        return systemDAO.getSchoolById(id);
+    }
+
+    /**
+     * 更新驾校信息
+     */
+    public int updateSchool(SchoolVo vo){
+        return systemDAO.updateSchoolById(vo);
+    }
 }

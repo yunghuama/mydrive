@@ -186,6 +186,9 @@ if(session.getAttribute("LoginBean")==null) {
 			$("a[name='id_6_5']").bind("click",function(){
 				$("#mainFrame").attr("src","<%=path%>/exam/system/listMessageSys.d");
 			});
+            $("a[name='id_6_6']").bind("click",function(){
+                $("#mainFrame").attr("src","<%=path%>/exam/system/listSchool.d");
+            });
 			
 			
 			new Adver({
@@ -370,6 +373,9 @@ if(session.getAttribute("LoginBean")==null) {
   						<s:if test='@com.platform.constants.StringConstant@getOperate(\"sys_message\")=="T"'>
   						<li class="sub-menu-item"><a href="javascript:void(0);" name="id_6_5">用户反馈</a></li>
   						</s:if>
+                        <s:if test='@com.platform.constants.StringConstant@getOperate(\"school\")=="T"'>
+                        <li class="sub-menu-item"><a href="javascript:void(0);" name="id_6_6">驾校管理</a></li>
+                        </s:if>
   					</ul>
   				</li>
   				</s:if>

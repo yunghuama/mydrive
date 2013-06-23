@@ -237,7 +237,8 @@ public final class SQLConstant {
 	public static final String SCHOOL_LOGO_GET = "select logo from schoolcard where id = ?";
 	public static final String SCHOOL_IDENTITY_GET = "select * from schoolcard where id = ?";
 	public static final String SCHOOL_LOGO_UPDATE = "update schoolcard set logo = ? where id = ?";
-
+    public static final String SCHOOL_QUERY = "select * from schoolcard limit ?,?";
+    public static final String SCHOOL_UPDATE = "update schoolcard set name = ?,address = ?,tel = ?,questiontype = ? where id = ?";
     /**
      * quetionTable
      */

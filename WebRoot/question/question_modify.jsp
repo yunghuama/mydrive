@@ -74,6 +74,7 @@ function loadCategory(type){
 				<s:hidden name="isDelImage" id="isDelImage"/>
 				<s:hidden name="question.image" id="img"/>
 				<s:hidden name="question.video" id="video"/>
+                <s:hidden name="code"/>
 				<table class="form-table" cellspacing="0" cellpadding="0">
 		        <tr>
 		          <td class="form-left"><span class="form-required">*</span>章节编号</td>

@@ -568,4 +568,69 @@ public class SystemDAO extends GenericDAO{
 				id
 		});
 	}
+
+    /**
+     * 查询所有驾校
+     */
+    public Page<SchoolVo> listSchool(Page page) throws Exception{
+        List list = new ArrayList();
+        Connection conn = jdbcTemplate.getDataSource().getConnection();
+        PreparedStatement ps = conn.prepareStatement(SQLConstant.SCHOOL_QUERY);
+        ps.setInt(1, (page.getCurrPage()-1)*page.getPageSize());
+        ps.setInt(2, page.getPageSize());
+        ResultSet rs1 = ps.executeQuery();
+        while(rs1.next()){
+            SchoolVo vo = new SchoolVo();
+            vo.setNumber(rs1.getString("number"));
+            vo.setName(rs1.getString("name"));
+            vo.setAddress(rs1.getString("address"));
+            vo.setTel(rs1.getString("tel"));
+            vo.setQuestionType(rs1.getString("questiontype"));
+            vo.setId(rs1.getString("id"));
+            list.add(vo);
+        }
+        ResultSet rs = ps.executeQuery(SQLConstant.SELECT_ROWCOUNTS);
+        while(rs.next()){
+            page.setRowCount(rs.getInt("counts"));
+        }
+        rs.close();
+        rs1.close();
+        ps.close();
+        conn.close();
+        //计算两个日期之间的天数
+        page.setMaxPage(PageHelper.getMaxPage(page.getRowCount(), page.getPageSize()));
+        page.setList(list);
+        return page;
+    }
+
+    public SchoolVo getSchoolById(String id){
+         List<SchoolVo> list = jdbcTemplate.query(SQLConstant.SCHOOL_IDENTITY_GET,new Object[]{id},new RowMapper<SchoolVo>() {
+             @Override
+             public SchoolVo mapRow(ResultSet rs, int i) throws SQLException {
+                 SchoolVo vo = new SchoolVo();
+                 vo.setNumber(rs.getString("number"));
+                 vo.setName(rs.getString("name"));
+                 vo.setAddress(rs.getString("address"));
+                 vo.setTel(rs.getString("tel"));
+                 vo.setQuestionType(rs.getString("questiontype"));
+                 vo.setId(rs.getString("id"));
+                 return vo;
+             }
+         }
+         ) ;
+        if(list!=null&&list.size()>0){
+           return list.get(0);
+        }
+        return null;
+    }
+
+    public int updateSchoolById(SchoolVo vo){
+          return jdbcTemplate.update(SQLConstant.SCHOOL_UPDATE,new Object[]{
+             vo.getName(),
+             vo.getAddress(),
+             vo.getTel(),
+             vo.getQuestionType(),
+             vo.getId()
+          });
+    }
 }
