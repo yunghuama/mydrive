@@ -28,7 +28,7 @@ $(document).ready(function(){
 </head>
 <body style="overflow:auto">
 	<div class="video">
-	<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/sub2/<%=name %>&p=0" quality="high" width="700" height="400" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+	<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/<s:property value="#session['LoginBean'].user.questionType"/>/sub2/<%=name %>&p=0" quality="high" width="700" height="400" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
 	</div>
 </body>
 </html>

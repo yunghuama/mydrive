@@ -20,7 +20,7 @@ $(document).ready(function(){
 	var exam = new Exam({'selectGridRenderTo':'questionnumber','questionRenderTo':'questionContent','richMediaRenderTo':'questionImage','qScore':2});
 	//添加题目
 	 <s:iterator id="question" value="list" status="i">
-	 var question = new Question('<s:property value="#i.index"/>','<s:property value="#question.id"/>','<s:property value="#question.question"/>','<s:property value="#question.answer_a"/>','<s:property value="#question.answer_b"/>','<s:property value="#question.answer_c"/>','<s:property value="#question.answer_d"/>','<s:property value="#question.answer"/>','<s:property value="#question.image"/>','<s:property value="#question.video"/>','/sub3');
+	 var question = new Question('<s:property value="#i.index"/>','<s:property value="#question.id"/>','<s:property value="#question.question"/>','<s:property value="#question.answer_a"/>','<s:property value="#question.answer_b"/>','<s:property value="#question.answer_c"/>','<s:property value="#question.answer_d"/>','<s:property value="#question.answer"/>','<s:property value="#question.image"/>','<s:property value="#question.video"/>','/<s:property value="#session['LoginBean'].user.questionType"/>/sub3');
 	 exam.add(question);
 	 </s:iterator>
 	//绘制表格

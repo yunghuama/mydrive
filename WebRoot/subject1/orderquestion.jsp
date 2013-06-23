@@ -95,8 +95,8 @@ $(document).ready(function(){
 				 </div>
 				<div class="richmedia">
 					<s:if test='#question.image!=""&&#question.image!=null'>
-						<img src='/image/sub1/<s:property value="type"/>/<s:property value="#question.image"/>' class="showImg"/><br/><br/>
-						<a name='/image/sub1/<s:property value="type"/>/<s:property value="#question.image"/>' href="javascript:void(0);" class="showImgA">查看大图</a>
+						<img src='/image/<s:property value="#session['LoginBean'].user.questionType"/>/sub1/<s:property value="type"/>/<s:property value="#question.image"/>' class="showImg"/><br/><br/>
+						<a name='/image/<s:property value="#session['LoginBean'].user.questionType"/>/sub1/<s:property value="type"/>/<s:property value="#question.image"/>' href="javascript:void(0);" class="showImgA">查看大图</a>
 					</s:if>
 				</div>
 				<div class="clear"></div>

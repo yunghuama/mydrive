@@ -115,17 +115,17 @@ $(document).ready(function(){
 				<div class="richmedia">
 					<s:if test='#question.image!=""&&#question.image!=null'>
 						<s:if test="type!=4">
-						<img src='/image/sub1/<s:property value="type"/>/<s:property value="#question.image"/>'/><br/><br/>
-						<a href='/image/sub1/<s:property value="type"/>/<s:property value="#question.image"/>' target="_blank">查看大图</a>
+						<img src='/image/<s:property value="#session['LoginBean'].user.questionType"/>/sub1/<s:property value="type"/>/<s:property value="#question.image"/>'/><br/><br/>
+						<a href='/image/<s:property value="#session['LoginBean'].user.questionType"/>/sub1/<s:property value="type"/>/<s:property value="#question.image"/>' target="_blank">查看大图</a>
 						</s:if>
 						<s:elseif test="type==4">
-						<img src='/image/sub3/<s:property value="#question.image"/>'/><br/><br/>
-						<a href='/image/sub3/<s:property value="#question.image"/>' target="_blank">查看大图</a>
+						<img src='/image/<s:property value="#session['LoginBean'].user.questionType"/>/sub3/<s:property value="#question.image"/>'/><br/><br/>
+						<a href='/image/<s:property value="#session['LoginBean'].user.questionType"/>/sub3/<s:property value="#question.image"/>' target="_blank">查看大图</a>
 						</s:elseif>
 					</s:if>
 					<s:elseif test='#question.video!=""&&#question.video!=null'>
 						<s:if test="type==4">
-						<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/sub3/<s:property value='#question.video'/>&p=0" quality="high" width="300" height="150" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+						<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/<s:property value="#session['LoginBean'].user.questionType"/>/sub3/<s:property value='#question.video'/>&p=0" quality="high" width="300" height="150" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
 						</s:if>
 					</s:elseif>
 				</div>

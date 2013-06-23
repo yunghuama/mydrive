@@ -88,11 +88,11 @@ $(document).ready(function(){
 				 </div>
 				<div class="richmedia">
 					<s:if test='#question.image!=""&&#question.image!=null'>
-						<img src='/image/sub3/<s:property value="#question.image"/>' class="showImg"/><br/><br/>
-						<a name='/image/sub3/<s:property value="#question.image"/>' href="javascript:void(0);" class="showImgA">查看大图</a>
+						<img src='/image/<s:property value="#session['LoginBean'].user.questionType"/>/sub3/<s:property value="#question.image"/>' class="showImg"/><br/><br/>
+						<a name='/image/<s:property value="#session['LoginBean'].user.questionType"/>/sub3/<s:property value="#question.image"/>' href="javascript:void(0);" class="showImgA">查看大图</a>
 					</s:if>
 					<s:elseif test='#question.video!=""&&#question.video!=null'>
-					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/sub3/<s:property value='#question.video'/>&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
+					<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/<s:property value="#session['LoginBean'].user.questionType"/>/sub3/<s:property value='#question.video'/>&p=0" quality="high" width="300" height="200" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
 					</s:elseif>
 				</div>
 				<div class="clear"></div>
