@@ -61,8 +61,9 @@ public class QuestionSubject3DAO extends GenericDAO{
 	 * @param question
 	 * @return
 	 */
-	public int saveQuestion3(Question question){
-		return jdbcTemplate.update(SQLConstant.QUESTION_3_SAVE, new Object[]{
+	public int saveQuestion3(Question question,String code){
+        String sql = formatSQL(SQLConstant.QUESTION_3_SAVE,"questions3",code);
+		return jdbcTemplate.update(sql, new Object[]{
 				question.getCode(),
 				question.getQuestion(),
 				question.getAnswer_a(),
@@ -199,9 +200,7 @@ public class QuestionSubject3DAO extends GenericDAO{
 	 * 根据ID 查询问题
 	 * @return
 	 */
-	public Question findQuestionById(int id){
-        Users users  = LoginBean.getLoginBean().getUser();
-        String type = users.getQuestionType();
+	public Question findQuestionById(int id,String type){
         String sql = formatSQL(SQLConstant.QUESTION3_QUERY_BY_ID,"questions3",type);
 		List<Question> list =  jdbcTemplate.query(sql,new Object[]{id},new RowMapper<Question>(){
 			@Override
@@ -235,9 +234,7 @@ public class QuestionSubject3DAO extends GenericDAO{
 	 * 根据ID 更新问题
 	 * @return
 	 */
-	public int updateQuestion(Question question){
-        Users users  = LoginBean.getLoginBean().getUser();
-        String type = users.getQuestionType();
+	public int updateQuestion(Question question,String type){
         String sql = formatSQL(SQLConstant.QUESTION_BUS_UPDATE_BY_ID,"questions3",type);
 		return jdbcTemplate.update(sql, new Object[]{
 				question.getCode(),

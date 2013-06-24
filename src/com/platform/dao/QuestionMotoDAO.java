@@ -64,9 +64,9 @@ public class QuestionMotoDAO extends GenericDAO{
 	 * @param question
 	 * @return
 	 */
-	public int saveQuestion_Moto(Question question){
-
-		return jdbcTemplate.update(SQLConstant.QUESTION_MOTO_SAVE, new Object[]{
+	public int saveQuestion_Moto(Question question,String code){
+        String sql = formatSQL(SQLConstant.QUESTION_MOTO_SAVE,"questions_motorcycle",code);
+		return jdbcTemplate.update(sql, new Object[]{
 				question.getCode(),
 				question.getQuestion(),
 				question.getAnswer_a(),
@@ -203,9 +203,7 @@ public class QuestionMotoDAO extends GenericDAO{
 	 * 根据ID 查询问题
 	 * @return
 	 */
-	public Question findQuestionById(int id){
-        Users users  = LoginBean.getLoginBean().getUser();
-        String type = users.getQuestionType();
+	public Question findQuestionById(int id,String type){
         String sql = formatSQL(SQLConstant.QUESTION_MOTO_QUERY_BY_ID,"questions_motorcycle",type);
 		List<Question> list =  jdbcTemplate.query(sql,new Object[]{id},new RowMapper<Question>(){
 			@Override
@@ -238,9 +236,7 @@ public class QuestionMotoDAO extends GenericDAO{
 	 * 根据ID 更新问题
 	 * @return
 	 */
-	public int updateQuestion(Question question){
-        Users users  = LoginBean.getLoginBean().getUser();
-        String type = users.getQuestionType();
+	public int updateQuestion(Question question,String type){
         String sql = formatSQL(SQLConstant.QUESTION_MOTO_UPDATE_BY_ID,"questions_motorcycle",type);
 		return jdbcTemplate.update(sql, new Object[]{
 				question.getCode(),

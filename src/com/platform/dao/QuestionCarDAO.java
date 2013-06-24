@@ -56,8 +56,9 @@ public class QuestionCarDAO extends GenericDAO{
 	 * @param question
 	 * @return
 	 */
-	public int saveQuestion_Car(Question question){
-		return jdbcTemplate.update(SQLConstant.QUESTION_CAR_SAVE, new Object[]{
+	public int saveQuestion_Car(Question question,String code){
+        String sql = formatSQL(SQLConstant.QUESTION_CAR_SAVE,"questions_car",code);
+		return jdbcTemplate.update(sql, new Object[]{
 				question.getCode(),
 				question.getQuestion(),
 				question.getAnswer_a(),
@@ -195,9 +196,7 @@ public class QuestionCarDAO extends GenericDAO{
 	 * 根据ID 查询问题
 	 * @return
 	 */
-	public Question findQuestionById(int id){
-        Users users  = LoginBean.getLoginBean().getUser();
-        String type = users.getQuestionType();
+	public Question findQuestionById(int id,String type){
         String sql = formatSQL(SQLConstant.QUESTION_CAR_QUERY_BY_ID,"questions_car",type);
 		List<Question> list =  jdbcTemplate.query(sql,new Object[]{id},new RowMapper<Question>(){
 			@Override
@@ -230,9 +229,7 @@ public class QuestionCarDAO extends GenericDAO{
 	 * 根据ID 更新问题
 	 * @return
 	 */
-	public int updateQuestion(Question question){
-        Users users  = LoginBean.getLoginBean().getUser();
-        String type = users.getQuestionType();
+	public int updateQuestion(Question question,String type){
         String sql = formatSQL(SQLConstant.QUESTION_CAR_UPDATE_BY_ID,"questions_car",type);
 		return jdbcTemplate.update(sql, new Object[]{
 				question.getCode(),

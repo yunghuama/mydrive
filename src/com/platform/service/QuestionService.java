@@ -49,8 +49,8 @@ public class QuestionService implements IService {
      * @return
      */
     @Transactional(rollbackFor={Exception.class,RuntimeException.class})
-    public int saveQuestion_car(Question question){
-    	return questionCarDAO.saveQuestion_Car(question);
+    public int saveQuestion_car(Question question,String code){
+    	return questionCarDAO.saveQuestion_Car(question,code);
     }
     
     /**
@@ -59,8 +59,8 @@ public class QuestionService implements IService {
      * @return
      */
     @Transactional(rollbackFor={Exception.class,RuntimeException.class})
-    public int saveQuestion_bus(Question question){
-    	return questionBusDAO.saveQuestion_Bus(question);
+    public int saveQuestion_bus(Question question,String code){
+    	return questionBusDAO.saveQuestion_Bus(question,code);
     }
     
     /**
@@ -69,8 +69,8 @@ public class QuestionService implements IService {
      * @return
      */
     @Transactional(rollbackFor={Exception.class,RuntimeException.class})
-    public int saveQuestion_truck(Question question){
-    	return questionTruckDAO.saveQuestion_Truck(question);
+    public int saveQuestion_truck(Question question,String code){
+    	return questionTruckDAO.saveQuestion_Truck(question,code);
     }
     
     /**
@@ -79,8 +79,8 @@ public class QuestionService implements IService {
      * @return
      */
     @Transactional(rollbackFor={Exception.class,RuntimeException.class})
-    public int saveQuestion_moto(Question question){
-    	return questionMotoDAO.saveQuestion_Moto(question);
+    public int saveQuestion_moto(Question question,String code){
+    	return questionMotoDAO.saveQuestion_Moto(question,code);
     }
     
     /**
@@ -89,8 +89,8 @@ public class QuestionService implements IService {
      * @return
      */
     @Transactional(rollbackFor={Exception.class,RuntimeException.class})
-    public int saveQuestion3(Question question){
-    	return questionSubject3DAO.saveQuestion3(question);
+    public int saveQuestion3(Question question,String code){
+    	return questionSubject3DAO.saveQuestion3(question,code);
     }
     /*****************************练习模式|模拟考试开始*********************************/
     
@@ -289,17 +289,17 @@ public class QuestionService implements IService {
      * @param cartype
      * @return
      */
-    public int saveQuestion(Question question,int cartype){
+    public int saveQuestion(Question question,int cartype,String code){
     	if(StringConstant.questionType_car== cartype)
-    		return questionCarDAO.saveQuestion_Car(question);
+    		return questionCarDAO.saveQuestion_Car(question,code);
     	else if(StringConstant.questionType_bus== cartype)
-    		return questionBusDAO.saveQuestion_Bus(question);
+    		return questionBusDAO.saveQuestion_Bus(question,code);
     		else if(StringConstant.questionType_truck== cartype)
-    			return questionTruckDAO.saveQuestion_Truck(question);
+    			return questionTruckDAO.saveQuestion_Truck(question,code);
     			else if(StringConstant.questionType_moto== cartype)
-    				return questionMotoDAO.saveQuestion_Moto(question);
+    				return questionMotoDAO.saveQuestion_Moto(question,code);
     				else if(StringConstant.questionType_3 == cartype)
-    					return questionSubject3DAO.saveQuestion3(question);
+    					return questionSubject3DAO.saveQuestion3(question,code);
     	return 0;
     }
     
@@ -309,17 +309,17 @@ public class QuestionService implements IService {
      * @param cartype
      * @return
      */
-    public Question findQuestionById(int id,int cartype){
+    public Question findQuestionById(int id,int cartype,String code){
     	if(StringConstant.questionType_car== cartype)
-    		return questionCarDAO.findQuestionById(id);
+    		return questionCarDAO.findQuestionById(id,code);
     	else if(StringConstant.questionType_bus== cartype)
-    		return questionBusDAO.findQuestionById(id);
+    		return questionBusDAO.findQuestionById(id,code);
     		else if(StringConstant.questionType_truck== cartype)
-    			return questionTruckDAO.findQuestionById(id);
+    			return questionTruckDAO.findQuestionById(id,code);
     			else if(StringConstant.questionType_moto== cartype)
-    				return questionMotoDAO.findQuestionById(id);
+    				return questionMotoDAO.findQuestionById(id,code);
     				else if(StringConstant.questionType_3 == cartype)
-    					return questionSubject3DAO.findQuestionById(id);
+    					return questionSubject3DAO.findQuestionById(id,code);
     	return null;
     }
     
@@ -328,17 +328,17 @@ public class QuestionService implements IService {
      * @param cartype
      * @return
      */
-    public int updateQuestion(Question question,int cartype){
+    public int updateQuestion(Question question,int cartype,String code){
     	if(StringConstant.questionType_car== cartype)
-    		return questionCarDAO.updateQuestion(question);
+    		return questionCarDAO.updateQuestion(question,code);
     	else if(StringConstant.questionType_bus== cartype)
-    		return questionBusDAO.updateQuestion(question);
+    		return questionBusDAO.updateQuestion(question,code);
     		else if(StringConstant.questionType_truck== cartype)
-    			return questionTruckDAO.updateQuestion(question);
+    			return questionTruckDAO.updateQuestion(question,code);
     			else if(StringConstant.questionType_moto== cartype)
-    				return questionMotoDAO.updateQuestion(question);
+    				return questionMotoDAO.updateQuestion(question,code);
     				else if(StringConstant.questionType_3 == cartype)
-    					return questionSubject3DAO.updateQuestion(question);
+    					return questionSubject3DAO.updateQuestion(question,code);
     	return 0;
     }
     

@@ -255,7 +255,7 @@ public class QuestionAction extends GenericAction {
 			}
 		}
 		//保存
-		questionService.saveQuestion(question, type);
+		questionService.saveQuestion(question, type,code);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -268,7 +268,7 @@ public class QuestionAction extends GenericAction {
 	 */
 	public String toUpdateQuestion(){
 		try{
-			question = questionService.findQuestionById(questionId, type);
+			question = questionService.findQuestionById(questionId, type,code);
 			int t = type==4?3:1;
 			sectionList = questionService.getSection(t+"",code);
 		}catch(Exception e){
@@ -298,7 +298,7 @@ public class QuestionAction extends GenericAction {
 			}
 		}
 		//保存
-		questionService.updateQuestion(question, type);
+		questionService.updateQuestion(question, type,code);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -337,7 +337,7 @@ public class QuestionAction extends GenericAction {
 			//如果没有错误,则进行导入
 				for(int i=1;i<=rowNum;i++){
 					HSSFRow row = sheet.getRow(i);
-					HSSFCell code = row.getCell((short)0);
+					HSSFCell code1 = row.getCell((short)0);
 					HSSFCell question = row.getCell((short)1);
 					HSSFCell a = row.getCell((short)2);
 					HSSFCell b = row.getCell((short)3);
@@ -348,7 +348,7 @@ public class QuestionAction extends GenericAction {
 					HSSFCell category = row.getCell((short)8);
 					
 					Question q = new Question();
-					q.setCode(code.getStringCellValue());
+					q.setCode(code1.getStringCellValue());
 					q.setQuestion(question.getStringCellValue());
 					q.setAnswer_a(a.getStringCellValue());
 					q.setAnswer_b(b.getStringCellValue());
@@ -358,7 +358,7 @@ public class QuestionAction extends GenericAction {
 					q.setCategory(category==null? "":category.getStringCellValue());
 					q.setImage(image==null?"":image.getStringCellValue());
 					
-					questionService.saveQuestion_moto(q);
+					questionService.saveQuestion_moto(q,code);
 					
 					System.out.println(q.getCode());
 				}
@@ -379,7 +379,7 @@ public class QuestionAction extends GenericAction {
 			int rowNum = hssfSheet.getLastRowNum();
 			for(int i=1;i<=rowNum;i++){
 				XSSFRow row = hssfSheet.getRow(i);
-				XSSFCell code = row.getCell(0);
+				XSSFCell code1 = row.getCell(0);
 				XSSFCell question = row.getCell((short)1);
 				XSSFCell a = row.getCell((short)2);
 				XSSFCell b = row.getCell((short)3);
@@ -390,7 +390,7 @@ public class QuestionAction extends GenericAction {
 				XSSFCell category = row.getCell((short)8);
 				
 				Question q = new Question();
-				q.setCode(code.getStringCellValue().trim());
+				q.setCode(code1.getStringCellValue().trim());
 				q.setQuestion(question.getStringCellValue().trim());
 				q.setAnswer_a(a.getStringCellValue().trim());
 				q.setAnswer_b(b.getStringCellValue().trim());
@@ -408,7 +408,7 @@ public class QuestionAction extends GenericAction {
 				}
 //				q.setImage(image==null?"":image.getStringCellValue().trim());
 				//导入
-				questionService.saveQuestion3(q);
+				questionService.saveQuestion3(q,code);
 				System.out.println(q.getCode());
 			}
 			
