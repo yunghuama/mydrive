@@ -34,6 +34,17 @@ $(document).ready(function(){
 	}).bind("mouseout",function(){
 		$(this).removeClass("mouseover");
 	});
+    $(".addDiv img").click(function(){
+        $("form").attr("action","<%=path%>/exam/system/toSaveSchool.d");
+        $("form").submit();
+    });
+    $(".del").click(function(){
+        var id = $(this).attr("id");
+        $("#schoolId").val(id);
+        $("form").attr("action","<%=path%>/exam/system/deleteSchool.d");
+
+        $("form").submit();
+    });
 	//构造分页
 	var maxPage = parseInt($("#maxPage").val());
 	var currentPage = parseInt($("#currPage").val());
@@ -64,6 +75,7 @@ $(document).ready(function(){
 	 <div id="main">
 			<div id="title"><span>驾校管理</span></div>
 			<div id="sectionContent">
+                <div class="addDiv"><a href="javascript:void(0);"><img src="<%=path%>/image/add.png"/></a></div>
 				<table>
 					<tr>
 						<th width="10%">序号</th>
@@ -79,7 +91,7 @@ $(document).ready(function(){
 						<td><s:property value="#school.number"/> </td>
                         <td><s:property value="#school.name"/> </td>
 						<td><s:property value="#school.tel"/> </td>
-						<td><a href='<%=path%>/exam/system/toUpdateSchool.d?schoolVo.id=<s:property value="#school.id"/>'>修改</a> </td>
+						<td><a href='<%=path%>/exam/system/toUpdateSchool.d?schoolVo.id=<s:property value="#school.id"/>'>修改</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="del" href='javascript:void(0);' id='<s:property value="#school.id"/>'>删除</a></td>
 					</tr>
 					</s:iterator>
 					</s:if>
@@ -93,6 +105,7 @@ $(document).ready(function(){
 			<form action="<%=path %>/exam/system/listSchool.d">
 			<s:hidden id="maxPage" name="page.maxPage"/>
 			<s:hidden id="currPage" name="page.currPage"/>
+            <s:hidden name="schoolVo.id" id="schoolId"></s:hidden>
 			<button id="prev">上一页</button>
 			<select id="jump">
 			</select>

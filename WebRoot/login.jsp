@@ -124,6 +124,7 @@ String path = request.getContextPath();
     	</div>
     	</div>
     </div>
+    <div style="position:absolute;font-size:14px;bottom:10px;width:100%;text-align:center;color:#7d7d7d"><span>©2013 驾考之家 鲁ICP备13006277号</span></div>
 	<div id="adsLeft"></div>
 	<div id="adsRight"></div>
     <script src="<%=path%>/js/jquery.js" type="text/javascript"></script>

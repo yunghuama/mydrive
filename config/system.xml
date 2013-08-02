@@ -118,5 +118,14 @@
   <action name="updateSchool" class="systemAction" method="updateSchool">
       <result type="redirect">/exam/system/listSchool.d</result>
   </action>
+  <action name="toSaveSchool" class="systemAction" method="toSaveSchool">
+      <result>/system/school_add.jsp</result>
+  </action>
+  <action name="saveSchool" class="systemAction" method="saveSchool">
+      <result type="redirect">/exam/system/listSchool.d</result>
+  </action>
+  <action name="deleteSchool" class="systemAction" method="deleteSchool">
+      <result type="redirect">/exam/system/listSchool.d</result>
+  </action>
   </package>
 </struts>

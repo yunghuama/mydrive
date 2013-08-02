@@ -479,7 +479,7 @@ public class SystemDAO extends GenericDAO{
 	
 	/**
 	 * 查询激活用户
-	 * @param id
+	 * @param
 	 * @return
 	 */
 	public Page listActiveCard(String sDate, String eDate, Page page)throws Exception{
@@ -513,7 +513,7 @@ public class SystemDAO extends GenericDAO{
 	
 	/**
 	 * 查询激活
-	 * @param id
+	 * @param
 	 * @return
 	 */
 	
@@ -603,12 +603,19 @@ public class SystemDAO extends GenericDAO{
         return page;
     }
 
+
+    /**
+     * 根据ID查询学校
+     * @param id
+     * @return
+     */
     public SchoolVo getSchoolById(String id){
          List<SchoolVo> list = jdbcTemplate.query(SQLConstant.SCHOOL_IDENTITY_GET,new Object[]{id},new RowMapper<SchoolVo>() {
              @Override
              public SchoolVo mapRow(ResultSet rs, int i) throws SQLException {
                  SchoolVo vo = new SchoolVo();
                  vo.setNumber(rs.getString("number"));
+                 vo.setPassword(rs.getString("password"));
                  vo.setName(rs.getString("name"));
                  vo.setAddress(rs.getString("address"));
                  vo.setTel(rs.getString("tel"));
@@ -624,13 +631,49 @@ public class SystemDAO extends GenericDAO{
         return null;
     }
 
+    /**
+     * 更新驾校
+     * @param vo
+     * @return
+     */
     public int updateSchoolById(SchoolVo vo){
           return jdbcTemplate.update(SQLConstant.SCHOOL_UPDATE,new Object[]{
+             vo.getNumber(),
              vo.getName(),
+             vo.getPassword(),
              vo.getAddress(),
              vo.getTel(),
              vo.getQuestionType(),
              vo.getId()
           });
+    }
+
+
+    /**
+     * 保存驾校
+     * @param vo
+     * @return
+     */
+   public int saveSchool(SchoolVo vo){
+       return jdbcTemplate.update(SQLConstant.SCHOOL_SAVE,new Object[]{
+           UUIDGenerator.generate(),
+           vo.getNumber(),
+           vo.getPassword(),
+           vo.getName(),
+           vo.getAddress(),
+           vo.getTel(),
+           vo.getLogo(),
+           vo.getCity(),
+           vo.getQuestionType(),
+           new Date()
+       });
+   }
+
+    /**
+     *
+     *  删除驾校
+      */
+    public int delSchool(String id){
+        return jdbcTemplate.update(SQLConstant.SCHOOL_DEL,id);
     }
 }

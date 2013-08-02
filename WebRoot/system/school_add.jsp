@@ -46,9 +46,9 @@ $(document).ready(function(){
 <body style="overflow:auto">
 	 		<div id="infoContent">
 			<fieldset>
-			<legend>修改驾校</legend>
+			<legend>添加驾校</legend>
 			<div id="sectionContent">
-				<form action="<%=path%>/exam/system/updateSchool.d" method="post">
+				<form action="<%=path%>/exam/system/saveSchool.d" method="post">
 				<s:hidden name="schoolVo.id"/>
 				<table class="form-table" cellspacing="0" cellpadding="0">
 		        <tr>

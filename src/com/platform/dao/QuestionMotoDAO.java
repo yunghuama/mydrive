@@ -52,6 +52,13 @@ public class QuestionMotoDAO extends GenericDAO{
 		return jdbcTemplate.queryForInt(sql,args);
 	}
 
+    /**
+     * 根据动态前缀组合表名
+     * @param sql
+     * @param str
+     * @param prefix
+     * @return
+     */
     public String formatSQL(String sql,String str,String prefix){
         if(sql!=null&&!"".equals(str)){
             sql = sql.replace(str,prefix+"_"+str);

@@ -9,6 +9,24 @@ public class SchoolVo {
 	private String tel;
 	private String questionType;
     private String number;
+    private String password;
+    private String city;
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getNumber() {
         return number;

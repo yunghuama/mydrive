@@ -358,7 +358,7 @@ public class QuestionAction extends GenericAction {
 					q.setCategory(category==null? "":category.getStringCellValue());
 					q.setImage(image==null?"":image.getStringCellValue());
 					
-					questionService.saveQuestion_moto(q,code);
+					questionService.saveQuestion_car(q,code);
 					
 					System.out.println(q.getCode());
 				}

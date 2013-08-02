@@ -729,6 +729,24 @@ public class SystemAction extends GenericAction {
 	}
 
     /**
+     * 预保存驾校
+     * @return
+     */
+    public String toSaveSchool(){
+        questionTableList = questionService.questionTableList();
+        return SUCCESS;
+    }
+
+    /**
+     * 保存驾校
+     * @return
+     */
+    public String saveSchool(){
+        systemService.saveSchool(schoolVo);
+        return SUCCESS;
+    }
+
+    /**
      * 查询驾校列表
      * @return
      */
@@ -766,6 +784,19 @@ public class SystemAction extends GenericAction {
             e.printStackTrace();
         }
         return SUCCESS;
+    }
+
+    /**
+     * 删除驾校
+     * @return
+     */
+    public String deleteSchool(){
+       try{
+           systemService.deleteSchool(schoolVo.getId());
+       }catch(Exception e){
+           e.printStackTrace();
+       }
+      return SUCCESS;
     }
 
     public SchoolVo getSchoolVo() {

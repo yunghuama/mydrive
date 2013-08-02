@@ -52,7 +52,6 @@ public class SystemService implements IService {
    
    /**
     * 查询学员科目1成绩所有
-    * @param page
     * @param schoolcard
     * @return
     */
@@ -62,7 +61,6 @@ public class SystemService implements IService {
    
    /**
     * 查询学员科目1成绩所有
-    * @param page
     * @param schoolcard
     * @return
     */
@@ -211,6 +209,14 @@ public class SystemService implements IService {
     }
 
     /**
+     *
+     * 保存驾校
+     */
+    public int saveSchool(SchoolVo school){
+         return   systemDAO.saveSchool(school);
+    }
+
+    /**
      * 查询驾校信息
      */
     public SchoolVo getSchool(String id){
@@ -222,5 +228,12 @@ public class SystemService implements IService {
      */
     public int updateSchool(SchoolVo vo){
         return systemDAO.updateSchoolById(vo);
+    }
+
+    /**
+     * 删除驾校
+     */
+    public int deleteSchool(String id){
+         return systemDAO.delSchool(id);
     }
 }

@@ -237,8 +237,10 @@ public final class SQLConstant {
 	public static final String SCHOOL_LOGO_GET = "select logo from schoolcard where id = ?";
 	public static final String SCHOOL_IDENTITY_GET = "select * from schoolcard where id = ?";
 	public static final String SCHOOL_LOGO_UPDATE = "update schoolcard set logo = ? where id = ?";
-    public static final String SCHOOL_QUERY = "select * from schoolcard limit ?,?";
-    public static final String SCHOOL_UPDATE = "update schoolcard set name = ?,address = ?,tel = ?,questiontype = ? where id = ?";
+    public static final String SCHOOL_QUERY = "select * from schoolcard order by createtime desc limit ?,?";
+    public static final String SCHOOL_UPDATE = "update schoolcard set number = ?,name = ?,password=?,address = ?,tel = ?,questiontype = ? where id = ?";
+    public static final String SCHOOL_SAVE =  "insert into schoolcard(id,number,password,name,address,tel,logo,city,questiontype,createtime) values(?,?,?,?,?,?,?,?,?,?)";
+    public static final String SCHOOL_DEL = "delete from schoolcard where id = ?";
     /**
      * quetionTable
      */
