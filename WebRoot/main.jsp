@@ -189,6 +189,9 @@ if(session.getAttribute("LoginBean")==null) {
             $("a[name='id_6_6']").bind("click",function(){
                 $("#mainFrame").attr("src","<%=path%>/exam/system/listSchool.d");
             });
+            $("a[name='id_6_7']").bind("click",function(){
+                $("#mainFrame").attr("src","<%=path%>/system/student_manage.jsp");
+            });
 			
 			
 			new Adver({
@@ -375,6 +378,9 @@ if(session.getAttribute("LoginBean")==null) {
   						</s:if>
                         <s:if test='@com.platform.constants.StringConstant@getOperate(\"school\")=="T"'>
                         <li class="sub-menu-item"><a href="javascript:void(0);" name="id_6_6">驾校管理</a></li>
+                        </s:if>
+                        <s:if test='@com.platform.constants.StringConstant@getOperate(\"studentcard\")=="T"'>
+                             <li class="sub-menu-item"><a href="javascript:void(0);" name="id_6_7">学员卡管理</a></li>
                         </s:if>
   					</ul>
   				</li>

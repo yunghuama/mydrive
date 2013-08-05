@@ -94,7 +94,11 @@ public final class SQLConstant {
 	public static final String STUDENT_TIME0 = "update studentcard set remindtimes = 0 where number = ? and password = ?";
 	public static final String STUDENT_TIMES_GET = "select remindtimes,reminddays,begindate from studentcard where id = ?";
 	public static final String STUDENT_ACTIVETIME_UPDATE = "update studentcard set activetime = ?,activedate = ? where id = ?";
-	
+	public static final String STUDENT_GET_BY_NUMBER = "select * from studentcard where number = ?";
+    public static final String SCHOOLCARD_GET_ALL = "select * from schoolcard order by createtime desc ";
+    public static final String STUDENT_UPDATE_AJAX = "update studentcard set remindtimes=?,reminddays=?,schoolid=?,begindate = ? where number = ?";
+    public static final String STUDENT_UPDATE_BY_NUMBERS = "update studentcard set schoolid = ? where number >= ? and number <= ?";
+
 	/**
 	 * 学校
 	 */

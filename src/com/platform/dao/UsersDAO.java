@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
+import com.platform.vo.StudentVo;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -284,4 +285,72 @@ public class UsersDAO extends GenericDAO{
 		}
 		return null;
 	}
+
+    /**
+     *
+     * @return
+     */
+    public StudentVo getStudentCardByNumber(String number){
+          List<StudentVo> list = jdbcTemplate.query(SQLConstant.STUDENT_GET_BY_NUMBER,new Object[]{number},new RowMapper<StudentVo>() {
+              @Override
+              public StudentVo mapRow(ResultSet rs, int i) throws SQLException {
+                  StudentVo vo = new StudentVo();
+                  vo.setNumber(rs.getString("number"));
+                  vo.setRemindDays(rs.getInt("reminddays"));
+                  vo.setRemindTimes(rs.getInt("remindtimes"));
+                  vo.setSchoolId(rs.getString("schoolId"));
+                  vo.setBeginDate(rs.getDate("begindate")+"");
+                  return vo;
+              }
+          });
+        if(list!=null&&list.size()>0){
+            return list.get(0);
+        }
+        return null;
+    }
+
+    /**
+     * 获得驾校列表
+     * @return
+     */
+    public List<SchoolVo> getSchoolVoList(){
+         return  jdbcTemplate.query(SQLConstant.SCHOOLCARD_GET_ALL,new RowMapper<SchoolVo>() {
+             @Override
+             public SchoolVo mapRow(ResultSet rs, int i) throws SQLException {
+                 SchoolVo vo = new SchoolVo();
+                 vo.setId(rs.getString("id"));
+                 vo.setName(rs.getString("name"));
+                 return vo;
+             }
+         });
+
+    }
+
+    /**
+     * 更新学员卡信息
+     */
+    public int updateStudentCard(StudentVo vo){
+         return jdbcTemplate.update(SQLConstant.STUDENT_UPDATE_AJAX,new Object[]{
+             vo.getRemindTimes(),
+             vo.getRemindDays(),
+             vo.getSchoolId(),
+             new Date(),
+             vo.getNumber()
+         });
+    }
+
+    /**
+     * 更新学员卡信息
+     * @param fnumber
+     * @param tnumber
+     * @param schoolId
+     * @return
+     */
+    public int updateStudentCards(int fnumber,int tnumber,String schoolId){
+         return jdbcTemplate.update(SQLConstant.STUDENT_UPDATE_BY_NUMBERS,new Object[]{
+                 schoolId,
+                 fnumber+"",
+                 tnumber+""
+         });
+    }
 }

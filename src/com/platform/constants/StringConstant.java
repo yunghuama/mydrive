@@ -85,7 +85,9 @@ public final class StringConstant {
 	public static final String CARDACTIVITY = "cardactive";
     //驾校管理
     public static final String SCHOOLCARD = "school";
-	
+    //学员卡管理
+	public static final String STUDENTCARD = "studentcard";
+
 	public static Map<String,Integer> questionType = new Hashtable<String,Integer>();
 	public static Map<String,String> operate = new HashMap<String,String>();
 	public static Map<String,String> loginInfo = new HashMap<String,String>();
@@ -158,6 +160,8 @@ public final class StringConstant {
 		operate.put(ROLE_ADMIN+CARDACTIVITY, "T");
 		operate.put(ROLE_ADMIN+MSG_SYS, "T");
         operate.put(ROLE_ADMIN+SCHOOLCARD,"T");
+        operate.put(ROLE_ADMIN+STUDENTCARD,"T");
+
 		advPage.put("0", "登录页面");
 		advPage.put("1", "工作台页面");
 		advPosition.put("0","左边");

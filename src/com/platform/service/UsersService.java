@@ -1,5 +1,6 @@
 package com.platform.service;
 
+import com.platform.vo.StudentVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,8 @@ import com.platform.dao.UsersDAO;
 import com.platform.domain.Users;
 import com.platform.exception.CRUDException;
 import com.platform.vo.SchoolVo;
+
+import java.util.List;
 
 @Service
 public class UsersService implements IService {
@@ -90,4 +93,38 @@ public class UsersService implements IService {
    public Users getUsersTime(String id){
 	   return usersDAO.getUsersTime(id);
    }
+
+    /**
+     * 根据卡号获得学生卡
+     * @param number
+     * @return
+     */
+    public StudentVo getStudentByNumber(String number){
+         return usersDAO.getStudentCardByNumber(number);
+    }
+
+    /**
+     * 获得驾校列表
+     * @return
+     */
+    public List<SchoolVo> getSchoolVoList(){
+        return usersDAO.getSchoolVoList();
+    }
+
+    /**
+     * 更新学员卡
+     * @param vo
+     * @return
+     */
+    public int updateStudentCard(StudentVo vo){
+        return usersDAO.updateStudentCard(vo);
+    }
+
+    /**
+     * 更新学员卡
+     * @return
+     */
+    public int updateStudentCards(int fnumber,int tnumber,String schoolId){
+        return usersDAO.updateStudentCards(fnumber, tnumber, schoolId);
+    }
 }

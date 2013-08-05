@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import com.platform.vo.StudentVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -52,7 +53,12 @@ public class QuestionAjaxAction {
     private List<Adver> adverList;
     private SchoolVo school;
     private String code;
+    private StudentVo studentVo;
+    private List<SchoolVo> schoolVoList;
+    private int fnumber,tnumber;
+    private String schoolId;
     /**
+     *
      * 保存成绩
      * @return
      */
@@ -311,7 +317,8 @@ public class QuestionAjaxAction {
 		
 		return Action.SUCCESS;
 	}
-	
+
+
 	public String getSchoolIdentity(){
 		try{
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
@@ -321,8 +328,79 @@ public class QuestionAjaxAction {
 		}
 		return Action.SUCCESS;
 	}
-	
-	public SchoolVo getSchool() {
+
+    /**
+     * 根据卡号获得学员卡
+     * @return
+     */
+    public String getStudentCardByNumber(){
+        try{
+            studentVo = usersService.getStudentByNumber(studentVo.getNumber());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date stDate = sdf.parse(studentVo.getBeginDate());
+            int days = (int)(new Date().getTime()-stDate.getTime())/(24*60*60*1000);
+            studentVo.setRemindDays(studentVo.getRemindDays()-days<0?0:studentVo.getRemindDays()-days);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return Action.SUCCESS;
+    }
+
+    /**
+     * 获得驾校
+     * @return
+     */
+    public String getSchoolList(){
+        try{
+            schoolVoList =   usersService.getSchoolVoList();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return Action.SUCCESS;
+    }
+
+    /**
+     * 更新学员卡信息
+     * @return
+     */
+    public String updateStudentCard(){
+        try{
+           int i = usersService.updateStudentCard(studentVo);
+            if(i==1){
+                result = "修改成功";
+            }else {
+                result= "修改失败";
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+         return Action.SUCCESS;
+    }
+
+    /**
+     * 更新学员卡信息
+     * @return
+     */
+    public String updateStudentCardByNumbers(){
+        try{
+            int i = usersService.updateStudentCards(fnumber,tnumber,schoolId);
+            result = "更新成功:"+i+"条";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+         return Action.SUCCESS;
+    }
+
+    public List<SchoolVo> getSchoolVoList() {
+        return schoolVoList;
+    }
+
+    public void setSchoolVoList(List<SchoolVo> schoolVoList) {
+        this.schoolVoList = schoolVoList;
+    }
+
+    public SchoolVo getSchool() {
 		return school;
 	}
 
@@ -442,5 +520,37 @@ public class QuestionAjaxAction {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public StudentVo getStudentVo() {
+        return studentVo;
+    }
+
+    public void setStudentVo(StudentVo studentVo) {
+        this.studentVo = studentVo;
+    }
+
+    public int getFnumber() {
+        return fnumber;
+    }
+
+    public void setFnumber(int fnumber) {
+        this.fnumber = fnumber;
+    }
+
+    public int getTnumber() {
+        return tnumber;
+    }
+
+    public void setTnumber(int tnumber) {
+        this.tnumber = tnumber;
+    }
+
+    public String getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(String schoolId) {
+        this.schoolId = schoolId;
     }
 }

@@ -108,35 +108,39 @@ public class DatabaseManager {
          */
       @Test
       public void testImportQuestion() throws Exception{
-          String path  = "/Users/cheney/Downloads/driver/car.xls";
+          String path  = "/Users/cheney/Downloads/driver/q3.xls";
           Class.forName("com.mysql.jdbc.Driver");
-          QUESTION_TYPE qt = QUESTION_TYPE.CAR;
+          QUESTION_TYPE qt = QUESTION_TYPE.Q3;
           Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/driver","root","colon");
           String sql = "";
 
           switch (qt){
               case CAR: {
-
+                  System.out.println("导入：car");
+                  sql = "insert into shandong_questions_car(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,tips,createtime) values(?,?,?,?,?,?,?,?,?,?,?,?)";
               }
               break;
               case BUS : {
-
+                  System.out.println("导入：bus");
+                  sql = "insert into shandong_questions_bus(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,tips,createtime) values(?,?,?,?,?,?,?,?,?,?,?,?)";
               }
               break;
               case TRUCK: {
-
+                  System.out.println("导入：truck");
+                  sql = "insert into shandong_questions_truck(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,tips,createtime) values(?,?,?,?,?,?,?,?,?,?,?,?)";
               }
               break;
               case MOTO: {
-
+                  System.out.println("导入：moto");
+                  sql = "insert into shandong_questions_motorcycle(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,tips,createtime) values(?,?,?,?,?,?,?,?,?,?,?,?)";
               }
               break;
               case Q3: {
-
+                  System.out.println("导入：q3");
+                  sql = "insert into shandong_questions3(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,tips,createtime) values(?,?,?,?,?,?,?,?,?,?,?,?)";
               }
               break;
           }
-          sql = "insert into questions_car(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,tips,createtime) values(?,?,?,?,?,?,?,?,?,?,?,?)";
 
 
           PreparedStatement ps =  conn.prepareStatement(sql);
@@ -147,6 +151,7 @@ public class DatabaseManager {
           int rowNum = sheet.getLastRowNum();
           //如果没有错误,则进行导入
           for(int i=1;i<=rowNum;i++){
+              System.out.println("正在导入:"+i);
               HSSFRow row = sheet.getRow(i);
               HSSFCell code1 = row.getCell((short)0);
               HSSFCell question = row.getCell((short)1);
@@ -159,7 +164,12 @@ public class DatabaseManager {
               HSSFCell category = row.getCell((short)8);
 
               Question q = new Question();
-              q.setCode(code1.getStringCellValue());
+              if(code1.getCellType()==HSSFCell.CELL_TYPE_NUMERIC){
+                  q.setCode(code1.getNumericCellValue()+"");
+              }else if(code1.getCellType()==HSSFCell.CELL_TYPE_STRING){
+                  q.setCode(code1.getStringCellValue());
+              }
+
               q.setQuestion(question.getStringCellValue());
               q.setAnswer_a(a.getStringCellValue());
               q.setAnswer_b(b.getStringCellValue());
@@ -170,7 +180,20 @@ public class DatabaseManager {
               q.setImage(image==null?"":image.getStringCellValue());
 
 
-
+              ps.setString(1,q.getCode());
+              ps.setString(2, q.getQuestion());
+              ps.setString(3,q.getAnswer_a());
+              java.util.Date dd = new java.util.Date();
+              ps.setString(4,q.getAnswer_b());
+              ps.setString(5,q.getAnswer_c());
+              ps.setString(6,q.getAnswer_d());
+              ps.setString(7,q.getAnswer());
+              ps.setString(8,q.getImage());
+              ps.setString(9,q.getVideo());
+              ps.setString(10,q.getCategory());
+              ps.setString(11,q.getTips());
+              ps.setDate(12,new Date(dd.getTime()));
+              ps.execute();
 
               System.out.println(i+"---"+image);
             }

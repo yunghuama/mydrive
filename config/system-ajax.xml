@@ -81,6 +81,26 @@
         <param name="root">school</param>
       </result>
     </action>
+  <action name="getStudentCardByNumber" class="questionAjaxAction" method="getStudentCardByNumber">
+      <result type="json">
+          <param name="root">studentVo</param>
+      </result>
+  </action>
+  <action name="getSchoolList" class="questionAjaxAction" method="getSchoolList">
+      <result type="json">
+          <param name="root">schoolVoList</param>
+      </result>
+  </action>
+  <action name="updateStudentCard" class="questionAjaxAction" method="updateStudentCard">
+      <result type="json">
+          <param name="root">result</param>
+      </result>
+  </action>
+  <action name="updateStudentCardByNumbers" class="questionAjaxAction" method="updateStudentCardByNumbers">
+      <result type="json">
+          <param name="root">result</param>
+      </result>
+  </action>
   </package>
   
 </struts>
