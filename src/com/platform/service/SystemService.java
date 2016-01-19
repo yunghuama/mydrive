@@ -20,7 +20,8 @@ import com.platform.vo.ScoreVO;
 public class SystemService implements IService {
 
     private SystemDAO systemDAO;
-    @Autowired
+    @Override
+	@Autowired
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
     	systemDAO = SystemDAO.getInstance(jdbcTemplate);
     }

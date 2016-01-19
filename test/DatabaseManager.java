@@ -1,9 +1,11 @@
 import com.platform.domain.Question;
 import com.platform.util.UUIDGenerator;
+
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -35,10 +37,10 @@ public class DatabaseManager {
      */
       @Test
       public void testImportUsersFromXls() throws Exception{
-           String path  = "insert into studentcard(number,password,createtime) values(?,?,?)";
+           String path  = "/Users/cheney/Desktop/20140616/1.xlsx";
            Class.forName("com.mysql.jdbc.Driver");
            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/driver","root","colon");
-           String sql = "";
+           String sql = "insert into studentcard(number,password,createtime) values(?,?,?)";
            PreparedStatement ps =  conn.prepareStatement(sql);
           try{
               //如果是xls
@@ -51,8 +53,6 @@ public class DatabaseManager {
                   HSSFRow row = sheet.getRow(i);
                   HSSFCell number = row.getCell((short)0);
                   HSSFCell password = row.getCell((short)1);
-
-
 
               }
               System.out.println("导入结束");
@@ -67,7 +67,7 @@ public class DatabaseManager {
      */
        @Test
        public void testImportUsersFromXlsx() throws Exception{
-        String path  = "/Users/cheney/Downloads/student.xlsx";
+        String path  = "/Users/cheney/Desktop/20140616/10.xlsx";
         Class.forName("com.mysql.jdbc.Driver");
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/driver","root","colon");
         String sql = "insert into studentcard(id,number,password,schoolId,begindate,remindtimes,reminddays,createtime) values(?,?,?,?,?,?,?,?)";
@@ -90,8 +90,8 @@ public class DatabaseManager {
                 java.util.Date dd = new java.util.Date();
                 ps.setString(4,"4028813518f35feb0118f392eee50046");
                 ps.setDate(5,new Date(dd.getTime()));
-                ps.setInt(6,5);
-                ps.setInt(7,3);
+                ps.setInt(6,100);
+                ps.setInt(7,365);
                 ps.setDate(8,new Date(dd.getTime()));
                 ps.execute();
             }
@@ -164,9 +164,9 @@ public class DatabaseManager {
               HSSFCell category = row.getCell((short)8);
 
               Question q = new Question();
-              if(code1.getCellType()==HSSFCell.CELL_TYPE_NUMERIC){
+              if(code1.getCellType()==Cell.CELL_TYPE_NUMERIC){
                   q.setCode(code1.getNumericCellValue()+"");
-              }else if(code1.getCellType()==HSSFCell.CELL_TYPE_STRING){
+              }else if(code1.getCellType()==Cell.CELL_TYPE_STRING){
                   q.setCode(code1.getStringCellValue());
               }
 

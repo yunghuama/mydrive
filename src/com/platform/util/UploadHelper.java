@@ -69,7 +69,7 @@ public class UploadHelper {
         List<AttachedFile> list = new ArrayList<AttachedFile>();
         if (Validate.collectionNotNull(files)) {
             for (int i = 0; i < files.size(); i++) {
-                if (Validate.notNull((String) realNames.get(i))) {
+                if (Validate.notNull(realNames.get(i))) {
                     String[] splitName = realNames.get(i).split("\\.");
 
                     AttachedFile attachedFile = new AttachedFile();

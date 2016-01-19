@@ -1,12 +1,7 @@
 package com.platform.web.action;
 
-import java.io.FileInputStream;
 import java.util.List;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -14,9 +9,7 @@ import org.springframework.stereotype.Controller;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.platform.constants.StringConstant;
-import com.platform.domain.Question;
 import com.platform.domain.Section;
-import com.platform.domain.Users;
 import com.platform.service.QuestionSubject3Service;
 import com.platform.service.UsersService;
 import com.platform.util.LoginBean;

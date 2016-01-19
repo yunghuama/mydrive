@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.platform.constants.StringConstant;
 import com.platform.dao.QuestionSubject3DAO;
 import com.platform.domain.Section;
 import com.platform.vo.Page;
@@ -20,7 +19,8 @@ public class QuestionSubject3Service implements IService {
 
     private QuestionSubject3DAO questionDAO;
     
-    @Autowired
+    @Override
+	@Autowired
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
     	questionDAO = QuestionSubject3DAO.getInstance(jdbcTemplate);
     }

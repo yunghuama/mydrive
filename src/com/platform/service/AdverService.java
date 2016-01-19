@@ -16,7 +16,8 @@ public class AdverService implements IService {
 
     private AdverDAO adverDAO;
 
-    @Autowired
+    @Override
+	@Autowired
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
     	adverDAO = AdverDAO.getInstance(jdbcTemplate);
     }

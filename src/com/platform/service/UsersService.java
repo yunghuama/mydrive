@@ -19,7 +19,8 @@ public class UsersService implements IService {
 
     private UsersDAO usersDAO;
 
-    @Autowired
+    @Override
+	@Autowired
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         usersDAO = UsersDAO.getInstance(jdbcTemplate);
     }

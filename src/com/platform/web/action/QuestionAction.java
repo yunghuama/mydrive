@@ -269,8 +269,7 @@ public class QuestionAction extends GenericAction {
 	public String toUpdateQuestion(){
 		try{
 			question = questionService.findQuestionById(questionId, type,code);
-			int t = type==4?3:1;
-			sectionList = questionService.getSection(t+"",code);
+			sectionList = questionService.getSection(type+"",code);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

@@ -65,6 +65,7 @@ public class FileHelper {
 		File folder = new File(folderPath);
 		if(folder.exists() && folder.isDirectory()) {
 			String[] files = folder.list(new FilenameFilter(){
+				@Override
 				public boolean accept(File dir, String name) {
 					if(suffix == null) {
 						return true;

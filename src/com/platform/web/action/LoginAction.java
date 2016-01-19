@@ -15,7 +15,6 @@ import com.platform.service.QuestionService;
 import com.platform.service.SystemService;
 import com.platform.service.UsersService;
 import com.platform.util.LoginBean;
-import com.platform.vo.SchoolVo;
 
 
 @Controller

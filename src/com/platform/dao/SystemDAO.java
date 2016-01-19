@@ -14,7 +14,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.platform.constants.SQLConstant;
-import com.platform.constants.StringConstant;
 import com.platform.domain.Announcement;
 import com.platform.domain.Message;
 import com.platform.domain.Users;

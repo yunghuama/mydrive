@@ -10,13 +10,14 @@ import java.util.List;
 import com.platform.domain.*;
 import com.platform.service.QuestionService;
 import com.platform.vo.SchoolVo;
+
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.CellRangeAddress;
-import org.apache.struts2.ServletActionContext;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -159,8 +160,8 @@ public class SystemAction extends GenericAction {
 			HSSFSheet sheet = wb.createSheet("驾考成绩");  
 			//设置居中的样式
 			HSSFCellStyle style = wb.createCellStyle();  
-	        style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中  
-	        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中  
+	        style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);//垂直居中  
+	        style.setAlignment(CellStyle.ALIGN_CENTER);//水平居中  
 	        //创建第一行
 	        HSSFRow row = sheet.createRow((short) 0); 
 	        row.setHeight((short)500);  
@@ -227,8 +228,8 @@ public class SystemAction extends GenericAction {
 			HSSFSheet sheet = wb.createSheet("驾考成绩");  
 			//设置居中的样式
 			HSSFCellStyle style = wb.createCellStyle();  
-	        style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中  
-	        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中  
+	        style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);//垂直居中  
+	        style.setAlignment(CellStyle.ALIGN_CENTER);//水平居中  
 	        //创建第一行
 	        HSSFRow row = sheet.createRow((short) 0); 
 	        row.setHeight((short)500);  
@@ -333,8 +334,8 @@ public class SystemAction extends GenericAction {
 			HSSFSheet sheet = wb.createSheet("驾考成绩");  
 			//设置居中的样式
 			HSSFCellStyle style = wb.createCellStyle();  
-	        style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中  
-	        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中  
+	        style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);//垂直居中  
+	        style.setAlignment(CellStyle.ALIGN_CENTER);//水平居中  
 	        //创建第一行
 	        HSSFRow row = sheet.createRow((short) 0); 
 	        row.setHeight((short)500);  
@@ -401,8 +402,8 @@ public class SystemAction extends GenericAction {
 			HSSFSheet sheet = wb.createSheet("驾考成绩");  
 			//设置居中的样式
 			HSSFCellStyle style = wb.createCellStyle();  
-	        style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中  
-	        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中  
+	        style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);//垂直居中  
+	        style.setAlignment(CellStyle.ALIGN_CENTER);//水平居中  
 	        //创建第一行
 	        HSSFRow row = sheet.createRow((short) 0); 
 	        row.setHeight((short)500);  
@@ -495,8 +496,8 @@ public class SystemAction extends GenericAction {
 			HSSFSheet sheet = wb.createSheet("激活卡统计");  
 			//设置居中的样式
 			HSSFCellStyle style = wb.createCellStyle();  
-	        style.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);//垂直居中  
-	        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);//水平居中  
+	        style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);//垂直居中  
+	        style.setAlignment(CellStyle.ALIGN_CENTER);//水平居中  
 	        //创建第一行
 	        HSSFRow row = sheet.createRow((short) 0); 
 	        row.setHeight((short)500);  

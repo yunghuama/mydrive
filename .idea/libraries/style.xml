@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="style">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/WebRoot/js/ckplayer/style.zip!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

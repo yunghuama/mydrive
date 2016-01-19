@@ -1,11 +1,5 @@
 package com.platform.domain;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
-import org.apache.struts2.json.annotations.JSON;
-
 public class Question  {
 
     private static final long serialVersionUID = -7094766838338441306L;

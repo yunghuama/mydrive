@@ -11,7 +11,6 @@ import com.platform.domain.Adver;
 import com.platform.domain.AttachedFile;
 import com.platform.service.AdverService;
 import com.platform.util.ConfigureUtil;
-import com.platform.util.FileHelper;
 import com.platform.util.UploadHelper;
 
 

@@ -1,5 +1,6 @@
 package com.platform.util;
 
+import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -72,7 +73,7 @@ public class ImageHelper {
 			double scaleY = (double)new_height / (double)height;
 			
 			//生成图片
-			BufferedImage new_image = new BufferedImage(new_width, new_height, BufferedImage.SCALE_SMOOTH);
+			BufferedImage new_image = new BufferedImage(new_width, new_height, Image.SCALE_SMOOTH);
 			
 			AffineTransformOp ato = new AffineTransformOp(AffineTransform.getScaleInstance(scaleX, scaleY), null);
 			new_image = ato.filter(srcImage, null);

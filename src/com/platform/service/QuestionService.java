@@ -33,7 +33,8 @@ public class QuestionService implements IService {
     private QuestionMotoDAO questionMotoDAO;
     private QuestionSubject3DAO questionSubject3DAO;
     
-    @Autowired
+    @Override
+	@Autowired
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
     	questionDAO = QuestionDAO.getInstance(jdbcTemplate);
     	questionBusDAO = QuestionBusDAO.getInstance(jdbcTemplate);

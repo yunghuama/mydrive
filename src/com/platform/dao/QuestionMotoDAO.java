@@ -15,9 +15,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.platform.constants.SQLConstant;
 import com.platform.domain.Question;
-import com.platform.domain.Section;
 import com.platform.util.PageHelper;
-import com.platform.util.UUIDGenerator;
 import com.platform.vo.Page;
 import com.platform.vo.QuestionVO;
 

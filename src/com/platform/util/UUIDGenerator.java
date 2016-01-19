@@ -1,6 +1,5 @@
 package com.platform.util;
 
-import java.io.Serializable;
 import java.net.InetAddress;
 /**
  * <p>
