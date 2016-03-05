@@ -105,7 +105,7 @@ public class SystemDAO extends GenericDAO{
 
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
-        String sql = formatSQL(SQLConstant.STATISTISC_BY_SCHOOL_SCORE,"examscore",type);
+        String sql = formatSQL(SQLConstant.STATISTISC_BY_SCHOOL_SCORE,"examscore","shandong");
         List list = new ArrayList();
         Connection conn = jdbcTemplate.getDataSource().getConnection();
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -146,7 +146,7 @@ public class SystemDAO extends GenericDAO{
 	public List<ScoreSchoolVO> listScore1All(String schoolcard,String name){
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
-        String sql = formatSQL(SQLConstant.STATISTISC_BY_SCHOOL_SCORE_ALL,"examscore",type);
+        String sql = formatSQL(SQLConstant.STATISTISC_BY_SCHOOL_SCORE_ALL,"examscore","shandong");
 		return  jdbcTemplate.query(sql,new Object[]{schoolcard,"%"+name+"%"},new RowMapper<ScoreSchoolVO>(){
 			@Override
 			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
@@ -170,7 +170,7 @@ public class SystemDAO extends GenericDAO{
 	public List<ScoreSchoolVO> listScore3All(String schoolcard,String name){
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
-        String sql = formatSQL(SQLConstant.STATISTISC_BY_SCHOOL_SCORE3_ALL,"examscore3",type);
+        String sql = formatSQL(SQLConstant.STATISTISC_BY_SCHOOL_SCORE3_ALL,"examscore3","shandong");
 		return  jdbcTemplate.query(sql,new Object[]{schoolcard,"%"+name+"%"},new RowMapper<ScoreSchoolVO>(){
 			@Override
 			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
@@ -194,7 +194,7 @@ public class SystemDAO extends GenericDAO{
 	public ScoreSchoolVO getStasticScore1(String stuId){
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
-        String sql = formatSQL(SQLConstant.STATISTISC_BY_SCHOOL_STU_SCORE,"examscore",type);
+        String sql = formatSQL(SQLConstant.STATISTISC_BY_SCHOOL_STU_SCORE,"examscore","shandong");
 		List<ScoreSchoolVO> list =  jdbcTemplate.query(sql,new Object[]{stuId},new RowMapper<ScoreSchoolVO>(){
 			@Override
 			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
@@ -217,7 +217,7 @@ public class SystemDAO extends GenericDAO{
 	public List<ScoreVO> getScores1(String studentId){
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
-        String sql = formatSQL(SQLConstant.EXAMSCORE_QUERY_ALL,"examscore",type);
+        String sql = formatSQL(SQLConstant.EXAMSCORE_QUERY_ALL,"examscore","shandong");
 		return jdbcTemplate.query(sql,new Object[]{studentId},new RowMapper<ScoreVO>(){
 			@Override
 			public ScoreVO mapRow(ResultSet rs, int arg1) throws SQLException {
@@ -238,7 +238,7 @@ public class SystemDAO extends GenericDAO{
 
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
-        String sql = formatSQL(SQLConstant.STATISTISC_BY_SCHOOL_SCORE3,"examscore3",type);
+        String sql = formatSQL(SQLConstant.STATISTISC_BY_SCHOOL_SCORE3,"examscore3","shandong");
         List list = new ArrayList();
         Connection conn = jdbcTemplate.getDataSource().getConnection();
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -279,7 +279,7 @@ public class SystemDAO extends GenericDAO{
 	public ScoreSchoolVO getStasticScore3(String stuId){
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
-        String sql = formatSQL(SQLConstant.STATISTISC3_BY_SCHOOL_STU_SCORE,"examscore3",type);
+        String sql = formatSQL(SQLConstant.STATISTISC3_BY_SCHOOL_STU_SCORE,"examscore3","shandong");
 		List<ScoreSchoolVO> list =  jdbcTemplate.query(sql,new Object[]{stuId},new RowMapper<ScoreSchoolVO>(){
 			@Override
 			public ScoreSchoolVO mapRow(ResultSet rs, int arg1)
@@ -302,7 +302,7 @@ public class SystemDAO extends GenericDAO{
 	public List<ScoreVO> getScores3(String studentId){
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
-        String sql = formatSQL(SQLConstant.EXAMSCORE3_QUERY_ALL,"examscore3",type);
+        String sql = formatSQL(SQLConstant.EXAMSCORE3_QUERY_ALL,"examscore3","shandong");
 		return jdbcTemplate.query(sql,new Object[]{studentId},new RowMapper<ScoreVO>(){
 			@Override
 			public ScoreVO mapRow(ResultSet rs, int arg1) throws SQLException {

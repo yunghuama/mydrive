@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.platform.constants.StringConstant;
 import com.platform.domain.Section;
+import com.platform.domain.Users;
 import com.platform.service.QuestionSubject3Service;
 import com.platform.service.UsersService;
 import com.platform.util.LoginBean;
@@ -30,13 +31,20 @@ public class QuestionSubject3Action extends GenericAction {
 	private List<Section> sectionList;
 	private String categoryId;
 	private int questionId;
+	private int type;//题库类型
 	/**
 	 * 初始化练习模式试题
 	 * @return
 	 */
 	public String initExerciseQuestion(){
 		try{
-			list = questionService.listQuestionRandom();
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			Users users = loginBean.getUser();
+			type = StringConstant.questionType.get(users.getCartype());
+			if(StringConstant.questionType_moto == type)
+				list = questionService.listQuestionRandom_moto();
+			else
+				list = questionService.listQuestionRandom();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -49,7 +57,13 @@ public class QuestionSubject3Action extends GenericAction {
 	 */
 	public String initSimulationQuestion(){
 		try{
-			list = questionService.listQuestionRandom();
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			Users users = loginBean.getUser();
+			type = StringConstant.questionType.get(users.getCartype());
+			if(StringConstant.questionType_moto == type)
+				list = questionService.listQuestionRandom_moto();
+			else
+				list = questionService.listQuestionRandom();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -62,7 +76,16 @@ public class QuestionSubject3Action extends GenericAction {
 	 */
 	public String section(){
 		try {
-			sectionList = questionService.getSection(StringConstant.SECTION_TYPE_3);
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			Users users = loginBean.getUser();
+			type = StringConstant.questionType.get(users.getCartype());
+			if(StringConstant.questionType_moto == type)
+			{
+				sectionList = questionService.getSection(StringConstant.SECTION_TYPE_3_2);
+			}else
+			{
+				sectionList = questionService.getSection(StringConstant.SECTION_TYPE_3);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,7 +96,13 @@ public class QuestionSubject3Action extends GenericAction {
 	
 	public String orderQuestion(){
 		try{
-			page = questionService.listQuestionOrder(page,categoryId);
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			Users users = loginBean.getUser();
+			type = StringConstant.questionType.get(users.getCartype());
+			if(StringConstant.questionType_moto == type)
+				page = questionService.listQuestionOrder_moto(page,categoryId);
+			else
+				page = questionService.listQuestionOrder(page,categoryId);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -87,7 +116,8 @@ public class QuestionSubject3Action extends GenericAction {
 	public String markQuestion(){
 		try {
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-			page = questionService.listMarkQuestion(page, loginBean.getUser().getId());
+			Users users = loginBean.getUser();
+			page = questionService.listMarkQuestion(page, loginBean.getUser().getId() , users.getCartype());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -103,7 +133,7 @@ public class QuestionSubject3Action extends GenericAction {
 	public String delMarkQuestion(){
 		try {
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-			questionService.delMarkQuestion(questionId,loginBean.getUser().getId());
+			questionService.delMarkQuestion(questionId,loginBean.getUser().getId() , loginBean.getUser().getCartype());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -118,7 +148,7 @@ public class QuestionSubject3Action extends GenericAction {
 	public String delWrongQuestion(){
 		try {
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-			questionService.delWrongQuestion(questionId,loginBean.getUser().getId());
+			questionService.delWrongQuestion(questionId,loginBean.getUser().getId(),loginBean.getUser().getCartype());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -132,7 +162,7 @@ public class QuestionSubject3Action extends GenericAction {
 	public String listWrongQuestion(){
 		try {
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-			page = questionService.listWrongQuestion(page, loginBean.getUser().getId());
+			page = questionService.listWrongQuestion(page, loginBean.getUser().getId(),loginBean.getUser().getCartype());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -93,8 +93,12 @@ $(document).ready(function(){
 				<div class="type" id="3">
 					<span>摩托车</span>
 				</div>
+				<div style="clear:both"></div>
 				<div class="type" id="4">
-					<span>科目三</span>
+					<span>科三(非摩托)</span>
+				</div>
+				<div class="type" id="6">
+					<span>科三(摩托)</span>
 				</div>
 			</div>
 			<div id="questionDiv">
@@ -114,17 +118,17 @@ $(document).ready(function(){
 				<div id="right">
 				<div class="richmedia">
 					<s:if test='#question.image!=""&&#question.image!=null'>
-						<s:if test="type!=4">
+						<s:if test="type!=4&&type!=6">
 						<img src='/image/<s:property value='code'/>/sub1/<s:property value="type"/>/<s:property value="#question.image"/>'/><br/><br/>
 						<a href='/image/<s:property value='code'/>/sub1/<s:property value="type"/>/<s:property value="#question.image"/>' target="_blank">查看大图</a>
 						</s:if>
-						<s:elseif test="type==4">
+						<s:elseif test="type==4||type==6">
 						<img src='/image/<s:property value='code'/>/sub3/<s:property value="#question.image"/>'/><br/><br/>
 						<a href='/image/<s:property value='code'/>/sub3/<s:property value="#question.image"/>' target="_blank">查看大图</a>
 						</s:elseif>
 					</s:if>
 					<s:elseif test='#question.video!=""&&#question.video!=null'>
-						<s:if test="type==4">
+						<s:if test="type==4||type==6">
 						<embed src="<%=path%>/js/ckplayer/ckplayer.swf" flashvars="f=/image/<s:property value='code'/>/sub3/<s:property value='#question.video'/>&p=0" quality="high" width="300" height="150" align="middle" allowScriptAccess="always" allowFullscreen="true" type="application/x-shockwave-flash"></embed>
 						</s:if>
 					</s:elseif>

@@ -80,7 +80,30 @@ public class QuestionSubject3DAO extends GenericDAO{
 	}
 	
 	/**
-	 * 从小车题库获得指定数量的题目
+	 * 保存小车
+	 * @param question
+	 * @return
+	 */
+	public int saveQuestion3_moto(Question question,String code){
+        String sql = formatSQL(SQLConstant.QUESTION_3_MOTO_SAVE,"questions3_moto",code);
+		return jdbcTemplate.update(sql, new Object[]{
+				question.getCode(),
+				question.getQuestion(),
+				question.getAnswer_a(),
+				question.getAnswer_b(),
+				question.getAnswer_c(),
+				question.getAnswer_d(),
+				question.getAnswer(),
+				question.getImage(),
+				question.getVideo(),
+				question.getCategory(),
+				question.getTips(),
+				new Date()
+		});
+	}
+	
+	/**
+	 * 从科目三获得指定数量的题目
 	 * @return
 	 */
 	public List<QuestionVO> listQuestionRandom(){
@@ -106,6 +129,32 @@ public class QuestionSubject3DAO extends GenericDAO{
 		});
 	}
 	
+	/**
+	 * 从科目三获得指定数量的题目
+	 * @return
+	 */
+	public List<QuestionVO> listQuestionRandom_moto(){
+        Users users  = LoginBean.getLoginBean().getUser();
+        String type = users.getQuestionType();
+        String sql = formatSQL(SQLConstant.QUESTION3_MOTO_QUERY_RANDOM,"questions3_moto",type);
+		return jdbcTemplate.query(sql,new Object[]{50},new RowMapper<QuestionVO>(){
+			@Override
+			public QuestionVO mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				QuestionVO vo = new QuestionVO();
+				vo.setId(rs.getInt("id"));
+				vo.setAnswer(rs.getString("answer"));
+				vo.setAnswer_a(rs.getString("answer_a"));
+				vo.setAnswer_b(rs.getString("answer_b"));
+				vo.setAnswer_c(rs.getString("answer_c"));
+				vo.setAnswer_d(rs.getString("answer_d"));
+				vo.setQuestion(rs.getString("question"));
+				vo.setImage(rs.getString("question_img"));
+				vo.setVideo(rs.getString("question_video"));
+				return vo;
+			}
+		});
+	}
 	
 	/**
 	 * 从小车题库根据类型分页获取题目
@@ -115,6 +164,49 @@ public class QuestionSubject3DAO extends GenericDAO{
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
         String sql = formatSQL(SQLConstant.QUESTION3_QUERY_PAGE,"questions3",type);
+        List list = new ArrayList();
+        Connection conn = jdbcTemplate.getDataSource().getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1,category);
+        ps.setInt(2, (page.getCurrPage()-1)*page.getPageSize());
+        ps.setInt(3, page.getPageSize());
+        ResultSet rs1 = ps.executeQuery();
+        while(rs1.next()){
+            QuestionVO vo = new QuestionVO();
+            vo.setId(rs1.getInt("id"));
+            vo.setAnswer(rs1.getString("answer"));
+            vo.setAnswer_a(rs1.getString("answer_a"));
+            vo.setAnswer_b(rs1.getString("answer_b"));
+            vo.setAnswer_c(rs1.getString("answer_c"));
+            vo.setAnswer_d(rs1.getString("answer_d"));
+            vo.setQuestion(rs1.getString("question"));
+            vo.setImage(rs1.getString("question_img"));
+            vo.setVideo(rs1.getString("question_video"));
+            vo.setTips(rs1.getString("tips"));
+            list.add(vo);
+        }
+        ResultSet rs = ps.executeQuery(SQLConstant.SELECT_ROWCOUNTS);
+        while(rs.next()){
+            page.setRowCount(rs.getInt("counts"));
+        }
+        rs.close();
+        rs1.close();
+        ps.close();
+        conn.close();
+        page.setMaxPage(PageHelper.getMaxPage(page.getRowCount(), page.getPageSize()));
+        page.setList(list);
+
+		return page;
+	}
+	
+	/**
+	 * 从小车题库根据类型分页获取题目
+	 * @return
+	 */
+	public Page<QuestionVO> listQuestionOrder_moto(Page<QuestionVO> page,String category) throws Exception{
+        Users users  = LoginBean.getLoginBean().getUser();
+        String type = users.getQuestionType();
+        String sql = formatSQL(SQLConstant.QUESTION3_MOTO_QUERY_PAGE,"questions3",type);
         List list = new ArrayList();
         Connection conn = jdbcTemplate.getDataSource().getConnection();
         PreparedStatement ps = conn.prepareStatement(sql);
@@ -192,6 +284,48 @@ public class QuestionSubject3DAO extends GenericDAO{
         return page;
 	}
 	
+	/**
+	 * 从科目三题库根据类型分页获取题目
+	 * @return
+	 */
+	public Page<QuestionVO> listQuestionAll_moto(Page<QuestionVO> page,String type) throws Exception{
+
+        String sql = formatSQL(SQLConstant.QUESTION3_MOTO_QUERY_PAGE_ALL,"questions3_moto",type);
+        sql = formatSQL(sql,"section",type);
+        List list = new ArrayList();
+        Connection conn = jdbcTemplate.getDataSource().getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, (page.getCurrPage()-1)*page.getPageSize());
+        ps.setInt(2, page.getPageSize());
+        ResultSet rs1 = ps.executeQuery();
+        while(rs1.next()){
+            QuestionVO vo = new QuestionVO();
+            vo.setId(rs1.getInt("id"));
+            vo.setAnswer(rs1.getString("answer"));
+            vo.setAnswer_a(rs1.getString("answer_a"));
+            vo.setAnswer_b(rs1.getString("answer_b"));
+            vo.setAnswer_c(rs1.getString("answer_c"));
+            vo.setAnswer_d(rs1.getString("answer_d"));
+            vo.setQuestion(rs1.getString("question"));
+            vo.setImage(rs1.getString("question_img"));
+            vo.setVideo(rs1.getString("question_video"));
+            vo.setTips(rs1.getString("tips"));
+            vo.setCategory(rs1.getString("sname"));
+            list.add(vo);
+        }
+        ResultSet rs = ps.executeQuery(SQLConstant.SELECT_ROWCOUNTS);
+        while(rs.next()){
+            page.setRowCount(rs.getInt("counts"));
+        }
+        rs.close();
+        rs1.close();
+        ps.close();
+        conn.close();
+        page.setMaxPage(PageHelper.getMaxPage(page.getRowCount(), page.getPageSize()));
+        page.setList(list);
+        return page;
+	}
+	
 	public int queryForInt(String sql,Object args){
 		return jdbcTemplate.queryForInt(sql,args);
 	}
@@ -230,12 +364,69 @@ public class QuestionSubject3DAO extends GenericDAO{
 		return null;
 	}
 	
+	
+	/**
+	 * 根据ID 查询问题
+	 * @return
+	 */
+	public Question findQuestionById_moto(int id,String type){
+        String sql = formatSQL(SQLConstant.QUESTION3_MOTO_QUERY_BY_ID,"questions3_moto",type);
+		List<Question> list =  jdbcTemplate.query(sql,new Object[]{id},new RowMapper<Question>(){
+			@Override
+			public Question mapRow(ResultSet rs, int arg1)
+					throws SQLException {
+				Question vo = new Question();
+				vo.setId(rs.getInt("id"));
+				vo.setCode(rs.getString("code"));
+				vo.setCode(rs.getString("code"));
+				vo.setAnswer(rs.getString("answer"));
+				vo.setAnswer_a(rs.getString("answer_a"));
+				vo.setAnswer_b(rs.getString("answer_b"));
+				vo.setAnswer_c(rs.getString("answer_c"));
+				vo.setAnswer_d(rs.getString("answer_d"));
+				vo.setQuestion(rs.getString("question"));
+				vo.setImage(rs.getString("question_img"));
+				vo.setVideo(rs.getString("question_video"));
+				vo.setTips(rs.getString("tips"));
+				vo.setCategory(rs.getString("category"));
+				return vo;
+			}
+		});
+		
+		if(list!=null&&list.size()>0){
+			return list.get(0);
+		}
+		return null;
+	}
+	
 	/**
 	 * 根据ID 更新问题
 	 * @return
 	 */
 	public int updateQuestion(Question question,String type){
-        String sql = formatSQL(SQLConstant.QUESTION_BUS_UPDATE_BY_ID,"questions3",type);
+        String sql = formatSQL(SQLConstant.QUESTION3_UPDATE_BY_ID,"questions3",type);
+		return jdbcTemplate.update(sql, new Object[]{
+				question.getCode(),
+				question.getQuestion(),
+				question.getAnswer_a(),
+				question.getAnswer_b(),
+				question.getAnswer_c(),
+				question.getAnswer_d(),
+				question.getAnswer(),
+				question.getImage(),
+				question.getVideo(),
+				question.getCategory(),
+				question.getTips(),
+				question.getId()
+		});
+	}
+	
+	/**
+	 * 根据ID 更新问题
+	 * @return
+	 */
+	public int updateQuestion_moto(Question question,String type){
+        String sql = formatSQL(SQLConstant.QUESTION3_MOTO_UPDATE_BY_ID,"questions3_moto",type);
 		return jdbcTemplate.update(sql, new Object[]{
 				question.getCode(),
 				question.getQuestion(),
@@ -260,7 +451,7 @@ public class QuestionSubject3DAO extends GenericDAO{
 	 * @param cartype
 	 * @return
 	 */
-	public int saveExamScore(String studentId,int score,String time){
+	public int saveExamScore(String studentId,int score,String time,int cartype){
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
         String sql = formatSQL(SQLConstant.EXAMSCORE3_SAVE,"examscore3",type);
@@ -269,6 +460,7 @@ public class QuestionSubject3DAO extends GenericDAO{
 				studentId,
 				score,
 				time,
+				cartype,
 				new Date()
 		});
 	}
@@ -280,7 +472,7 @@ public class QuestionSubject3DAO extends GenericDAO{
 	 * @param questiontype
 	 * @return
 	 */
-	public int saveErrorQuestion(String questionId,String studentId){
+	public int saveErrorQuestion(String questionId,String studentId, int questiontype){
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
         String sql = formatSQL(SQLConstant.ERRORQUESTION3_SAVE,"question_wrong3",type);
@@ -288,6 +480,7 @@ public class QuestionSubject3DAO extends GenericDAO{
 				UUIDGenerator.generate(),
 				questionId,
 				studentId,
+				questiontype,
 				new Date()
 		});
 	}
@@ -324,7 +517,7 @@ public class QuestionSubject3DAO extends GenericDAO{
 	/**
 	 * 保存标记的题目
 	 */
-	public int saveMarkQuestion(int questionId,String studentId){
+	public int saveMarkQuestion(int questionId,String studentId,int questionType){
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
         String sql = formatSQL(SQLConstant.MARK3_QUESTION_SAVE,"markquestion3",type);
@@ -332,6 +525,7 @@ public class QuestionSubject3DAO extends GenericDAO{
 			UUIDGenerator.generate(),
 			questionId,
 			studentId,
+			questionType,
 			new Date()
 		});
 	}
@@ -339,50 +533,97 @@ public class QuestionSubject3DAO extends GenericDAO{
 	/**
 	 * 保存标记的题目
 	 */
-	public boolean hasMarkQuestion(int questionId,String studentId){
+	public boolean hasMarkQuestion(int questionId,String studentId,int questionType){
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
         String sql = formatSQL(SQLConstant.MARK3_QUESTION_ISEXISTS,"markquestion3",type);
 		return jdbcTemplate.queryForInt(sql, new Object[]{
 			questionId,
-			studentId
+			studentId,
+			questionType
 		}) == 0 ? false : true;
 	}
 	
 	/**
 	 * 删除已标记题
 	 */
-	public int delMarkQuestion(int questionId,String studentId){
+	public int delMarkQuestion(int questionId,String studentId,int questionType){
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
         String sql = formatSQL(SQLConstant.MARK3_QUESTION_DEL,"markquestion3",type);
-		return jdbcTemplate.update(sql, questionId,studentId);
+		return jdbcTemplate.update(sql, questionId,studentId,questionType);
 	}
 	
 	/**
 	 * 删除错题
 	 */
-	public int delWrongQuestion(int questionId,String studentId){
+	public int delWrongQuestion(int questionId,String studentId,int questionType){
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
         String sql = formatSQL(SQLConstant.WRONG_QUESTION3_DEL,"question_wrong3",type);
-		return jdbcTemplate.update(sql, questionId,studentId);
+		return jdbcTemplate.update(sql, questionId,studentId,questionType);
 	}
 	/**
 	 * 查询已标记题目
 	 */
-	public Page<QuestionVO> listMarkQuestion(Page page,String studentId) throws Exception{
+	public Page<QuestionVO> listMarkQuestion(Page page,String studentId, int questionType) throws Exception{
 
         Users users  = LoginBean.getLoginBean().getUser();
-        String questionType = users.getQuestionType();
-        String sql = formatSQL(SQLConstant.MARK3_QUESTION_QUERY_PAGE,"questions3",questionType);
-        sql =  formatSQL(sql,"markquestion3",questionType);
+        String type = users.getQuestionType();
+        String sql = formatSQL(SQLConstant.MARK3_QUESTION_QUERY_PAGE,"questions3",type);
+        sql =  formatSQL(sql,"markquestion3",type);
         List list = new ArrayList();
         Connection conn = jdbcTemplate.getDataSource().getConnection();
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1,studentId);
-        ps.setInt(2, (page.getCurrPage()-1)*page.getPageSize());
-        ps.setInt(3, page.getPageSize());
+        ps.setInt(2,questionType);
+        ps.setInt(3, (page.getCurrPage()-1)*page.getPageSize());
+        ps.setInt(4, page.getPageSize());
+        ResultSet rs1 = ps.executeQuery();
+        while(rs1.next()){
+            QuestionVO vo = new QuestionVO();
+            vo.setId(rs1.getInt("id"));
+            vo.setAnswer(rs1.getString("answer"));
+            vo.setAnswer_a(rs1.getString("answer_a"));
+            vo.setAnswer_b(rs1.getString("answer_b"));
+            vo.setAnswer_c(rs1.getString("answer_c"));
+            vo.setAnswer_d(rs1.getString("answer_d"));
+            vo.setQuestion(rs1.getString("question"));
+            vo.setImage(rs1.getString("question_img"));
+            vo.setVideo(rs1.getString("question_video"));
+            vo.setTips(rs1.getString("tips"));
+            list.add(vo);
+        }
+        ResultSet rs = ps.executeQuery(SQLConstant.SELECT_ROWCOUNTS);
+        while(rs.next()){
+            page.setRowCount(rs.getInt("counts"));
+        }
+        rs.close();
+        rs1.close();
+        ps.close();
+        conn.close();
+        page.setMaxPage(PageHelper.getMaxPage(page.getRowCount(), page.getPageSize()));
+        page.setList(list);
+
+		return page;
+	}
+	
+	/**
+	 * 查询已标记题目
+	 */
+	public Page<QuestionVO> listMarkQuestion_moto(Page page,String studentId, int questionType) throws Exception{
+
+        Users users  = LoginBean.getLoginBean().getUser();
+        String type = users.getQuestionType();
+        String sql = formatSQL(SQLConstant.MARK3_MOTO_QUESTION_QUERY_PAGE,"questions3_moto",type);
+        sql =  formatSQL(sql,"markquestion3",type);
+        List list = new ArrayList();
+        Connection conn = jdbcTemplate.getDataSource().getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1,studentId);
+        ps.setInt(2,questionType);
+        ps.setInt(3, (page.getCurrPage()-1)*page.getPageSize());
+        ps.setInt(4, page.getPageSize());
         ResultSet rs1 = ps.executeQuery();
         while(rs1.next()){
             QuestionVO vo = new QuestionVO();
@@ -415,18 +656,19 @@ public class QuestionSubject3DAO extends GenericDAO{
 	/**
 	 * 查询错题
 	 */
-	public Page<QuestionVO> listWrongQuestion(Page page,String studentId) throws Exception{
+	public Page<QuestionVO> listWrongQuestion(Page page,String studentId , int quetionType) throws Exception{
 
         Users users  = LoginBean.getLoginBean().getUser();
-        String questionType = users.getQuestionType();
-        String sql = formatSQL(SQLConstant.WRONG_QUESTION3_QUERY_PAGE,"questions3",questionType);
-        sql =  formatSQL(sql,"question_wrong3",questionType);
+        String type = users.getQuestionType();
+        String sql = formatSQL(SQLConstant.WRONG_QUESTION3_QUERY_PAGE,"questions3",type);
+        sql =  formatSQL(sql,"question_wrong3",type);
         List list = new ArrayList();
         Connection conn = jdbcTemplate.getDataSource().getConnection();
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1,studentId);
-        ps.setInt(2, (page.getCurrPage()-1)*page.getPageSize());
-        ps.setInt(3, page.getPageSize());
+        ps.setInt(2,quetionType);
+        ps.setInt(3, (page.getCurrPage()-1)*page.getPageSize());
+        ps.setInt(4, page.getPageSize());
         ResultSet rs1 = ps.executeQuery();
         while(rs1.next()){
             QuestionVO vo = new QuestionVO();
@@ -461,11 +703,11 @@ public class QuestionSubject3DAO extends GenericDAO{
 	 * @param studentId
 	 * @return
 	 */
-	public StatisticVO statistic(String studentId){
+	public StatisticVO statistic(String studentId,int carType){
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
         String sql = formatSQL(SQLConstant.STATISTISC_SCORE3,"examscore3",type);
-		List<StatisticVO> list = jdbcTemplate.query(sql,new Object[]{studentId},new RowMapper<StatisticVO>(){
+		List<StatisticVO> list = jdbcTemplate.query(sql,new Object[]{studentId,carType},new RowMapper<StatisticVO>(){
 			@Override
 			public StatisticVO mapRow(ResultSet rs, int arg1) throws SQLException {
 				StatisticVO vo  = new StatisticVO();
@@ -488,11 +730,11 @@ public class QuestionSubject3DAO extends GenericDAO{
 	 * @param studentId
 	 * @return
 	 */
-	public List<ScoreVO> getScores(String studentId){
+	public List<ScoreVO> getScores(String studentId,int cartype){
         Users users  = LoginBean.getLoginBean().getUser();
         String type = users.getQuestionType();
         String sql = formatSQL(SQLConstant.EXAMSCORE3_QUERY,"examscore3",type);
-		return jdbcTemplate.query(sql,new Object[]{studentId},new RowMapper<ScoreVO>(){
+		return jdbcTemplate.query(sql,new Object[]{studentId,cartype},new RowMapper<ScoreVO>(){
 			@Override
 			public ScoreVO mapRow(ResultSet rs, int arg1) throws SQLException {
 				ScoreVO vo  = new ScoreVO();

@@ -93,7 +93,7 @@ public class QuestionAjaxAction {
 					result = "error";
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return  Action.SUCCESS;
@@ -109,7 +109,7 @@ public class QuestionAjaxAction {
 		try{
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 		if(loginBean!=null){
-			int r = questionSubject3Service.saveExamScore(loginBean.getUser().getId(), score.getScore(), score.getTime(), score.getErrorQuestion());
+			int r = questionSubject3Service.saveExamScore(loginBean.getUser().getId(), score.getScore(), score.getTime(),loginBean.getUser().getCartype(), score.getErrorQuestion());
 			if(r==1){
 				result = "success";
 				Users users = loginBean.getUser();
@@ -152,7 +152,7 @@ public class QuestionAjaxAction {
 		try{
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
 			if(loginBean!=null){
-				int flag = 	questionSubject3Service.saveMarkQuestion(questionId, loginBean.getUser().getId());
+				int flag = 	questionSubject3Service.saveMarkQuestion(questionId, loginBean.getUser().getId(),loginBean.getUser().getCartype());
 				if(flag==1)
 					result = "success";
 				else 
@@ -202,7 +202,7 @@ public class QuestionAjaxAction {
 	public String statisticsSub3(){
 		try{
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		statisticVO = questionSubject3Service.getStatistic(loginBean.getUser().getId());
+		statisticVO = questionSubject3Service.getStatistic(loginBean.getUser().getId(),loginBean.getUser().getCartype());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -216,7 +216,7 @@ public class QuestionAjaxAction {
 	public String scoreListSub3(){
 		try{
 		LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-		scoreVoList = questionSubject3Service.getScores(loginBean.getUser().getId());
+		scoreVoList = questionSubject3Service.getScores(loginBean.getUser().getId(),loginBean.getUser().getCartype());
 		}catch(Exception e){
 			e.printStackTrace();
 		}

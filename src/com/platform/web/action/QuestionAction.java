@@ -313,7 +313,7 @@ public class QuestionAction extends GenericAction {
 		try{
 			
 			System.out.println("导入");
-			String path = "/home/cheney/driver/db1/q3.xlsx";
+			String path = "/Users/mma/soft/xls/q3_moto_1.xlsx";
 			
 			if(path.endsWith("xls")){
 				importXls(path);
@@ -378,7 +378,11 @@ public class QuestionAction extends GenericAction {
 			int rowNum = hssfSheet.getLastRowNum();
 			for(int i=1;i<=rowNum;i++){
 				XSSFRow row = hssfSheet.getRow(i);
+				if(row==null)
+					continue;
 				XSSFCell code1 = row.getCell(0);
+				if(code1==null)
+					continue;
 				XSSFCell question = row.getCell((short)1);
 				XSSFCell a = row.getCell((short)2);
 				XSSFCell b = row.getCell((short)3);
@@ -407,7 +411,7 @@ public class QuestionAction extends GenericAction {
 				}
 //				q.setImage(image==null?"":image.getStringCellValue().trim());
 				//导入
-				questionService.saveQuestion3(q,code);
+				questionService.saveQuestion3_moto(q,code);
 				System.out.println(q.getCode());
 			}
 			
