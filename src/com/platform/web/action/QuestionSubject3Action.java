@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.platform.constants.StringConstant;
 import com.platform.domain.Section;
+import com.platform.domain.Users;
 import com.platform.service.QuestionSubject3Service;
 import com.platform.service.UsersService;
 import com.platform.util.LoginBean;
@@ -30,13 +31,20 @@ public class QuestionSubject3Action extends GenericAction {
 	private List<Section> sectionList;
 	private String categoryId;
 	private int questionId;
+	private int type;//题库类型
 	/**
 	 * 初始化练习模式试题
 	 * @return
 	 */
 	public String initExerciseQuestion(){
 		try{
-			list = questionService.listQuestionRandom();
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			Users users = loginBean.getUser();
+			type = StringConstant.questionType.get(users.getCartype());
+			if(StringConstant.questionType_moto == type)
+				list = questionService.listQuestionRandom_moto();
+			else
+				list = questionService.listQuestionRandom();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -49,7 +57,13 @@ public class QuestionSubject3Action extends GenericAction {
 	 */
 	public String initSimulationQuestion(){
 		try{
-			list = questionService.listQuestionRandom();
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			Users users = loginBean.getUser();
+			type = StringConstant.questionType.get(users.getCartype());
+			if(StringConstant.questionType_moto == type)
+				list = questionService.listQuestionRandom_moto();
+			else
+				list = questionService.listQuestionRandom();
 		}catch(Exception e){
 			e.printStackTrace();
 		}

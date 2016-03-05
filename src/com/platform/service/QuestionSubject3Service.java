@@ -37,6 +37,15 @@ public class QuestionSubject3Service implements IService {
     
     
     /**
+     * 随机获得科目三(摩托车)的题目
+     * @return
+     */
+    public List<QuestionVO> listQuestionRandom_moto(){
+    	return questionDAO.listQuestionRandom_moto();
+    }
+    
+    
+    /**
      * 保存考试成绩
      */
     @Transactional(rollbackFor={Exception.class,RuntimeException.class})

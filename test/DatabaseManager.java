@@ -28,7 +28,7 @@ import java.sql.PreparedStatement;
 public class DatabaseManager {
 
     public enum  QUESTION_TYPE {
-        CAR,BUS,TRUCK,MOTO,Q3
+        CAR,BUS,TRUCK,MOTO,Q3,Q3_MOTO
     }
 
     /**
@@ -110,7 +110,7 @@ public class DatabaseManager {
       public void testImportQuestion() throws Exception{
           String path  = "/Users/cheney/Downloads/driver/q3.xls";
           Class.forName("com.mysql.jdbc.Driver");
-          QUESTION_TYPE qt = QUESTION_TYPE.Q3;
+          QUESTION_TYPE qt = QUESTION_TYPE.Q3_MOTO;
           Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/driver","root","colon");
           String sql = "";
 
@@ -138,6 +138,11 @@ public class DatabaseManager {
               case Q3: {
                   System.out.println("导入：q3");
                   sql = "insert into shandong_questions3(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,tips,createtime) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+              }
+              break;
+              case Q3_MOTO: {
+                  System.out.println("导入：q3");
+                  sql = "insert into shandong_questions3_moto(code,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,category,tips,createtime) values(?,?,?,?,?,?,?,?,?,?,?,?)";
               }
               break;
           }

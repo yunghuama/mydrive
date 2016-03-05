@@ -107,7 +107,7 @@ function loadCategory(type){
 		        <tr>
 		          <td class="form-left"></span>题库类型</td>
 		          <td class="form-right">
-		         		 <s:select name="type" disabled="true" list="#{'0':'小汽车','1':'大客车','2':'大货车','3':'摩托车','4':'科目三' }"></s:select> 
+		         		 <s:select name="type" disabled="true" list="#{'0':'小汽车','1':'大客车','2':'大货车','3':'摩托车','4':'科目三(货/客/小车)','6':'科目三(摩托车)' }"></s:select> 
 		          </td>
 		        </tr>
 		        <tr>

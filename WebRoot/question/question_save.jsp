@@ -35,9 +35,14 @@ $(document).ready(function(){
     var code = $("#code").val();
 	loadCategory(1,code);
 	$("select[name='type']").bind("change",function(){
-			if($(this).val()==4){
+			if($(this).val()==4 || $(this).val() == 6){
+				loadCategory(4,code);
+			}else if($(this).val()==3)
+			{
 				loadCategory(3,code);
-			}else {
+			}
+			else 
+			{
 				loadCategory(1,code);
 			}	
 	});
@@ -132,7 +137,8 @@ function loadCategory(type,code){
 								<option value="1">大客车</option>
 								<option value="2">小货车</option>
 								<option value="3">摩托车</option>
-								<option value="4">科目三</option>
+								<option value="4">科目三(货/客/小车)</option>
+								<option value="6">科目三(摩托车)</option>
 						</select>
 		          </td>
 		        </tr>

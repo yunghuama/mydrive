@@ -93,8 +93,12 @@ $(document).ready(function(){
 				<div class="type" id="3">
 					<span>摩托车</span>
 				</div>
+				<div style="clear:both"></div>
 				<div class="type" id="4">
-					<span>科目三</span>
+					<span>科三(非摩托)</span>
+				</div>
+				<div class="type" id="6">
+					<span>科三(摩托)</span>
 				</div>
 			</div>
 			<div id="questionDiv">

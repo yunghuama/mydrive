@@ -93,6 +93,18 @@ public class QuestionService implements IService {
     public int saveQuestion3(Question question,String code){
     	return questionSubject3DAO.saveQuestion3(question,code);
     }
+    
+    /**
+     * 保存摩托车类型题库
+     * @param question
+     * @return
+     */
+    @Transactional(rollbackFor={Exception.class,RuntimeException.class})
+    public int saveQuestion3_moto(Question question,String code){
+    	return questionSubject3DAO.saveQuestion3_moto(question,code);
+    }
+    
+    
     /*****************************练习模式|模拟考试开始*********************************/
     
     /**
@@ -273,6 +285,8 @@ public class QuestionService implements IService {
     				return questionMotoDAO.listQuestionOrderAll_moto(page,type);
     				else if(StringConstant.questionType_3 == cartype)
     					return questionSubject3DAO.listQuestionAll(page,type);
+    					else if(StringConstant.questionType_3_2 == cartype)
+    						return questionSubject3DAO.listQuestionAll_moto(page,type);
     	return page;
     }
 
@@ -301,6 +315,8 @@ public class QuestionService implements IService {
     				return questionMotoDAO.saveQuestion_Moto(question,code);
     				else if(StringConstant.questionType_3 == cartype)
     					return questionSubject3DAO.saveQuestion3(question,code);
+    				    else if(StringConstant.questionType_3_2 == cartype)
+    				    	return questionSubject3DAO.saveQuestion3_moto(question,code);
     	return 0;
     }
     
@@ -321,6 +337,8 @@ public class QuestionService implements IService {
     				return questionMotoDAO.findQuestionById(id,code);
     				else if(StringConstant.questionType_3 == cartype)
     					return questionSubject3DAO.findQuestionById(id,code);
+    					else if(StringConstant.questionType_3_2 == cartype)
+    						return questionSubject3DAO.findQuestionById_moto(id,code);
     	return null;
     }
     
@@ -340,6 +358,8 @@ public class QuestionService implements IService {
     				return questionMotoDAO.updateQuestion(question,code);
     				else if(StringConstant.questionType_3 == cartype)
     					return questionSubject3DAO.updateQuestion(question,code);
+    					else if(StringConstant.questionType_3_2 == cartype)
+    						return questionSubject3DAO.updateQuestion_moto(question,code);
     	return 0;
     }
     
@@ -360,6 +380,8 @@ public class QuestionService implements IService {
     				return questionMotoDAO.deleteByProperty(SQLConstant.QUESTION_MOTO_DELETE_BY_ID, id);
     				else if(StringConstant.questionType_3 == cartype)
     					return questionSubject3DAO.deleteByProperty(SQLConstant.QUESTION3_DELETE_BY_ID, id);
+    					else if(StringConstant.questionType_3_2 == cartype)
+    						return questionSubject3DAO.deleteByProperty(SQLConstant.QUESTION3_MOTO_DELETE_BY_ID, id);
     	return 0;
     }
 }

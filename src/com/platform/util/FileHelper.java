@@ -467,6 +467,8 @@ public class FileHelper {
     			return configure.get(StringConstant.PATH_IMAGE_SUB1)+ "/" +code+ "/sub1" + "/"+type;
     		else if(StringConstant.questionType_3 == type)
     			return configure.get(StringConstant.PATH_IMAGE_SUB3)+ "/" +code+ "/sub3";
+    		else if(StringConstant.questionType_3_2 == type)
+    			return configure.get(StringConstant.PATH_IMAGE_SUB3)+ "/" +code+ "/sub3";
     	return null;
     }
 }
