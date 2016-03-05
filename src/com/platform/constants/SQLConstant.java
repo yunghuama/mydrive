@@ -142,9 +142,9 @@ public final class SQLConstant {
 	/**
 	 * 考试成绩 科目三
 	 */
-	public static final String EXAMSCORE3_SAVE = "insert into examscore3(id,studentId,score,time,createtime) values(?,?,?,?,?)";
-	public static final String STATISTISC_SCORE3 = "select max(score) as maxscore, min(score) as minscore, count(id) as scorecounts ,avg(score) as avgscore,sum(score>=90) as passcount from examscore3 where studentid = ?";
-	public static final String EXAMSCORE3_QUERY = "select score,time,createtime from examscore3 where studentid = ? order by createtime desc limit 0,5";
+	public static final String EXAMSCORE3_SAVE = "insert into examscore3(id,studentId,score,time,cartype,createtime) values(?,?,?,?,?,?)";
+	public static final String STATISTISC_SCORE3 = "select max(score) as maxscore, min(score) as minscore, count(id) as scorecounts ,avg(score) as avgscore,sum(score>=90) as passcount from examscore3 where studentid = ? and cartype = ?";
+	public static final String EXAMSCORE3_QUERY = "select score,time,createtime from examscore3 where studentid = ? and cartype = ? order by createtime desc limit 0,5";
 	public static final String STATISTISC_BY_SCHOOL_SCORE3 = "select max(exam.score) as maxscore, min(exam.score) as minscore, count(exam.id) as scorecounts ,avg(exam.score) as avgscore,sum(exam.score>=90) as passcount,stu.name,stu.id as stuId  from examscore3 exam , studentcard stu where exam.studentid = stu.id and stu.schoolid = ? and stu.name like ? group by exam.studentid limit ?,?";
 	public static final String STATISTISC_BY_SCHOOL_ROWCOUNT3 = "select count(exam.id) from examscore3 exam , studentcard stu where exam.studentid = stu.id and stu.schoolid = ?";
 	public static final String EXAMSCORE3_QUERY_ALL = "select score,time,createtime from examscore3 where studentid = ? order by createtime desc";
@@ -167,10 +167,10 @@ public final class SQLConstant {
 	/**
 	 * 错题 科目三
 	 */
-	public static final String ERRORQUESTION3_SAVE = "insert question_wrong3(id,questionId,studentId,updateTime) values(?,?,?,?)";
-	public static final String WRONG_QUESTION3_QUERY_ROWCOUNT = "select count(id) from question_wrong3 where studentid = ?";
-	public static final String WRONG_QUESTION3_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions3 where id in (select questionid from question_wrong3 where studentid = ?  order by createtime desc ) limit ?,?";	
-	public static final String WRONG_QUESTION3_DEL = "delete from question_wrong3 where questionid = ? and studentid = ?";
+	public static final String ERRORQUESTION3_SAVE = "insert question_wrong3(id,questionId,studentId,questiontype,updateTime) values(?,?,?,?,?)";
+	public static final String WRONG_QUESTION3_QUERY_ROWCOUNT = "select count(id) from question_wrong3 where studentid = ? and questiontype = ?";
+	public static final String WRONG_QUESTION3_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions3 where id in (select questionid from question_wrong3 where studentid = ?  and questiontype = ? order by createtime desc ) limit ?,?";	
+	public static final String WRONG_QUESTION3_DEL = "delete from question_wrong3 where questionid = ? and studentid = ? and questiontype = ?";
 
 	
 	
@@ -197,12 +197,13 @@ public final class SQLConstant {
 	/**
 	 * 标记题科目三
 	 */
-	public static final String MARK3_QUESTION_SAVE = "insert into markquestion3(id,questionid,studentid,createtime) values(?,?,?,?)";
-	public static final String MARK3_QUESTION_DEL = "delete from markquestion3 where questionid = ? and studentid = ?";
-	public static final String MARK3_QUESTION_ISEXISTS = "select count(id) from markquestion3 where questionid = ? and studentid = ?";
+	public static final String MARK3_QUESTION_SAVE = "insert into markquestion3(id,questionid,studentid,questionType,createtime) values(?,?,?,?,?)";
+	public static final String MARK3_QUESTION_DEL = "delete from markquestion3 where questionid = ? and studentid = ? and questionType = ?";
+	public static final String MARK3_QUESTION_ISEXISTS = "select count(id) from markquestion3 where questionid = ? and studentid = ? and questionType = ?";
 	public static final String MARK3_QUESTION_QUERY_ROWCOUNT = "select count(id) from markquestion3 where studentid = ?";
 
-	public static final String MARK3_QUESTION_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions3 where id in (select questionid from markquestion3 where studentid = ?  order by createtime desc ) limit ?,?";
+	public static final String MARK3_QUESTION_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions3 where id in (select questionid from markquestion3 where studentid = ? and questiontype = ? order by createtime desc ) limit ?,?";
+	public static final String MARK3_MOTO_QUESTION_QUERY_PAGE = "select id,question,answer_a,answer_b,answer_c,answer_d,answer,question_img,question_video,tips from questions3_moto where id in (select questionid from markquestion3 where studentid = ? and questiontype = ?  order by createtime desc ) limit ?,?";
 	
 	
 	/**

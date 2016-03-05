@@ -76,7 +76,16 @@ public class QuestionSubject3Action extends GenericAction {
 	 */
 	public String section(){
 		try {
-			sectionList = questionService.getSection(StringConstant.SECTION_TYPE_3);
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			Users users = loginBean.getUser();
+			type = StringConstant.questionType.get(users.getCartype());
+			if(StringConstant.questionType_moto == type)
+			{
+				sectionList = questionService.getSection(StringConstant.SECTION_TYPE_3_2);
+			}else
+			{
+				sectionList = questionService.getSection(StringConstant.SECTION_TYPE_3);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -87,7 +96,13 @@ public class QuestionSubject3Action extends GenericAction {
 	
 	public String orderQuestion(){
 		try{
-			page = questionService.listQuestionOrder(page,categoryId);
+			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
+			Users users = loginBean.getUser();
+			type = StringConstant.questionType.get(users.getCartype());
+			if(StringConstant.questionType_moto == type)
+				page = questionService.listQuestionOrder_moto(page,categoryId);
+			else
+				page = questionService.listQuestionOrder(page,categoryId);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -101,7 +116,8 @@ public class QuestionSubject3Action extends GenericAction {
 	public String markQuestion(){
 		try {
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-			page = questionService.listMarkQuestion(page, loginBean.getUser().getId());
+			Users users = loginBean.getUser();
+			page = questionService.listMarkQuestion(page, loginBean.getUser().getId() , users.getCartype());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -117,7 +133,7 @@ public class QuestionSubject3Action extends GenericAction {
 	public String delMarkQuestion(){
 		try {
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-			questionService.delMarkQuestion(questionId,loginBean.getUser().getId());
+			questionService.delMarkQuestion(questionId,loginBean.getUser().getId() , loginBean.getUser().getCartype());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -132,7 +148,7 @@ public class QuestionSubject3Action extends GenericAction {
 	public String delWrongQuestion(){
 		try {
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-			questionService.delWrongQuestion(questionId,loginBean.getUser().getId());
+			questionService.delWrongQuestion(questionId,loginBean.getUser().getId(),loginBean.getUser().getCartype());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -146,7 +162,7 @@ public class QuestionSubject3Action extends GenericAction {
 	public String listWrongQuestion(){
 		try {
 			LoginBean loginBean = (LoginBean)ActionContext.getContext().getSession().get("LoginBean");
-			page = questionService.listWrongQuestion(page, loginBean.getUser().getId());
+			page = questionService.listWrongQuestion(page, loginBean.getUser().getId(),loginBean.getUser().getCartype());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
